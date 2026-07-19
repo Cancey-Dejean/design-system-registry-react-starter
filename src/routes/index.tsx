@@ -1,6 +1,5 @@
 import { IconBlocks, IconBrandGithub } from "@tabler/icons-react";
 import { Link, createFileRoute } from "@tanstack/react-router";
-// import { Button } from "@/components/ui/button";
 
 import { DocsButton } from "@/components/ui/button";
 

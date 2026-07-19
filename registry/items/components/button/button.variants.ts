@@ -4,34 +4,34 @@ import { cn } from "@/lib/utils";
 
 const buttonBase = cn(
   "group relative inline-flex shrink-0 items-center justify-center gap-2 rounded-md leading-none font-medium whitespace-nowrap transition",
-  "transition-all duration-300 ease-in-out active:not-disabled:scale-95",
+  "transition-smooth active:not-disabled:scale-95",
   "hover:no-underline",
   "disabled:pointer-events-none disabled:opacity-50",
-  "focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none",
-  "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
-  "[&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "focus-visible:ring-2 focus-visible:ring-(--color-blue-500) focus-visible:ring-offset-2 focus-visible:outline-none",
+  "aria-invalid:border-(--destructive) aria-invalid:ring-(--destructive)/20 dark:aria-invalid:ring-(--destructive)/40",
+  "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 );
 
 const buttonConfig = {
   variants: {
     variant: {
-      primary: "bg-primary text-white hover:bg-primary/80",
-      secondary: "bg-muted text-foreground hover:bg-muted/80",
-      outline: "border border-border bg-transparent hover:bg-muted",
-      ghost: "hover:bg-muted",
-      link: "text-primary underline-offset-4 hover:underline bg-transparent p-0 h-auto",
+      primary:
+        "bg-(--primary) dark:bg-(--input)/30 hover:bg-(--primary)/80 dark:hover:bg-(--input)/50",
+      secondary: "bg-(--muted) text-(--foreground) hover:bg-(--muted)/80",
+      outline: "border border-(--border) bg-(--color-transparent) hover:bg-(--muted)",
+      ghost: "hover:bg-(--muted)",
     },
     icon: {
       true: "p-0 rounded-full",
     },
     size: {
-      sm: "h-8 px-3 text-xs",
-      md: "h-10 px-4 text-sm",
-      lg: "h-12 px-6 text-base",
-      "icon-xs": "size-6",
+      sm: "h-8 px-3 text-(--text-12)",
+      md: "h-10 px-4 text-(--text-14)",
+      lg: "h-12 px-6 text-(--text-16)",
+      // "icon-xs": "size-6",
       "icon-sm": "size-8",
-      "icon-md": "size-10",
-      "icon-lg": "size-12",
+      "icon-md": "size-9",
+      "icon-lg": "size-10",
     },
     fullWidth: {
       true: "w-full",
@@ -39,32 +39,8 @@ const buttonConfig = {
   },
   compoundVariants: [
     {
-      size: "sm",
-      className: "[&_svg]:size-3",
-    },
-    {
-      size: "md",
-      className: "[&_svg]:size-4",
-    },
-    {
-      size: "lg",
-      className: "[&_svg]:size-5",
-    },
-    {
-      size: "icon-xs",
-      className: "[&_svg]:size-3",
-    },
-    {
-      size: "icon-sm",
-      className: "[&_svg]:size-4",
-    },
-    {
-      size: "icon-md",
-      className: "[&_svg]:size-4",
-    },
-    {
-      size: "icon-lg",
-      className: "[&_svg]:size-5",
+      variant: "primary",
+      className: "text-(--color-white)",
     },
   ],
 

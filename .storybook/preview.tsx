@@ -1,4 +1,9 @@
+import { withThemeByClassName } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/tanstack-react";
+import { INITIAL_VIEWPORTS } from "storybook/viewport";
+
+// oxlint-disable-next-line import/no-unassigned-import -- side-effect CSS import
+import "@/styles/globals.css";
 
 const preview: Preview = {
   parameters: {
@@ -8,6 +13,15 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    options: {
+      storySort: {
+        method: "alphabetical",
+        order: [],
+      },
+    },
+    viewport: {
+      options: INITIAL_VIEWPORTS,
+    },
 
     a11y: {
       // 'todo' - show a11y violations in the test UI only
@@ -16,6 +30,16 @@ const preview: Preview = {
       test: "todo",
     },
   },
+
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        light: "light",
+        dark: "dark",
+      },
+      defaultTheme: "light",
+    }),
+  ],
 };
 
 export default preview;

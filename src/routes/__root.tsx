@@ -14,7 +14,7 @@ import type { RegistrySectionId } from "../lib/registry/sections";
 import { getJsonLdScripts, getWebSiteJsonLd } from "../lib/seo";
 import { siteConfig } from "../lib/site-config";
 
-import appCss from "../styles.css?url";
+import appCss from "../styles/styles.css?url";
 
 export const Route = createRootRoute({
   headers: () => ({

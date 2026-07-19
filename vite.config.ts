@@ -1,11 +1,17 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+/// <reference types="vitest/config" />
 import contentCollections from "@content-collections/vite";
 import createMdx from "@mdx-js/rollup";
 import babel from "@rolldown/plugin-babel";
+import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
 import rsc from "@vitejs/plugin-rsc";
+import { playwright } from "@vitest/browser-playwright";
 import { nitro } from "nitro/vite";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
@@ -14,6 +20,10 @@ import { defineConfig } from "vite-plus";
 import { getPrerenderPages } from "./src/lib/prerender-pages.ts";
 import { shouldExcludeFromSitemap } from "./src/lib/seo.ts";
 import { siteConfig } from "./src/lib/site-config.ts";
+const dirname =
+  typeof __dirname !== "undefined" ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+
+// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 
 const config = defineConfig({
   run: {
@@ -33,7 +43,7 @@ const config = defineConfig({
   fmt: {
     sortImports: {},
     sortTailwindcss: {
-      stylesheet: "src/styles.css",
+      stylesheet: "src/styles/styles.css",
       functions: ["clsx", "cn", "cva", "tw"],
       preserveDuplicates: false,
       preserveWhitespace: false,
@@ -61,7 +71,10 @@ const config = defineConfig({
   },
   lint: {
     plugins: ["oxc", "eslint", "typescript", "react", "import", "unicorn", "vitest", "jsx-a11y"],
-    options: { typeAware: true, typeCheck: true },
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
     env: {
       builtin: true,
     },
@@ -104,11 +117,6 @@ const config = defineConfig({
       "src/routeTree.gen.ts",
     ],
   },
-  test: {
-    setupFiles: ["./src/test/setup.ts"],
-    include: ["src/**/*.test.ts", "src/**/*.test.tsx"],
-    globals: true,
-  },
   clearScreen: false,
   build: {
     rolldownOptions: {
@@ -144,11 +152,17 @@ const config = defineConfig({
       // shadcn/schema is compiled against Zod v3 and still calls deepPartial().
       // Keep bare zod imports on the v3 entry even when another dependency
       // hoists Zod v4 to the workspace root. see: https://github.com/shadcn-ui/ui/pull/9311
-      { find: /^zod$/, replacement: "zod/v3" },
+      {
+        find: /^zod$/,
+        replacement: "zod/v3",
+      },
       // tslib's CJS UMD sets __esModule: true without providing a default
       // export, which breaks Vite 8 / Rolldown's consistent CJS interop.
       // Alias to the native ESM build to avoid the interop entirely.
-      { find: /^tslib$/, replacement: "tslib/tslib.es6.js" },
+      {
+        find: /^tslib$/,
+        replacement: "tslib/tslib.es6.js",
+      },
     ],
   },
   plugins: [
@@ -175,7 +189,6 @@ const config = defineConfig({
                 if (!shouldExcludeFromSitemap(page.path)) {
                   return undefined;
                 }
-
                 return {
                   sitemap: {
                     ...page.sitemap,
@@ -197,6 +210,40 @@ const config = defineConfig({
     }),
     ...(process.env.VITEST === "true" ? [] : [nitro()]),
   ],
+  test: {
+    projects: [
+      {
+        extends: true,
+        test: {
+          setupFiles: ["./src/test/setup.ts"],
+          include: ["src/**/*.test.ts", "src/**/*.test.tsx"],
+          globals: true,
+        },
+      },
+      {
+        extends: true,
+        plugins: [
+          // The plugin will run tests for the stories defined in your Storybook config
+          // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
+          storybookTest({
+            configDir: path.join(dirname, ".storybook"),
+          }),
+        ],
+        test: {
+          name: "storybook",
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: playwright({}),
+            instances: [
+              {
+                browser: "chromium",
+              },
+            ],
+          },
+        },
+      },
+    ],
+  },
 });
-
 export default config;

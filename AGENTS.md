@@ -46,7 +46,7 @@ Use **Vite+**: `vp install`, `vp dev`, `vp build`, `vp test`
 - Registry catalog: `src/lib/registry/catalog.ts`; JSON output: `src/lib/registry/json.server.ts`.
 - Registry JSON routes: `/registry.json` and `/r/registry.json` serve the index; item JSON routes live under `/r/<name>.json`.
 - Public registry catalog routes: `/registry`, `/components`, `/blocks`, `/utilities`, and section item pages like `/components/<name>`.
-- Docs chrome: `src/components/docs/`; theme/CSS: `src/styles.css`.
+- Docs chrome: `src/components/docs/`; theme/CSS: `src/styles/styles.css`.
 - See the [SKILL.md](skills/shadcn-registry/SKILL.md) file for the registry authoring workflow.
 
 ## Verification

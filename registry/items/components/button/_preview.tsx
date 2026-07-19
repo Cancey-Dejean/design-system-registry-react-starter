@@ -1,15 +1,16 @@
 "use client";
 
 import { Button, ButtonCTAGroup } from "./button";
+import { BUTTON_VARIANTS } from "./button.variants";
 
 export function Preview() {
   return (
     <ButtonCTAGroup>
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="link">Link</Button>
+      {BUTTON_VARIANTS.map((variant) => (
+        <Button key={variant} variant={variant}>
+          {variant}
+        </Button>
+      ))}
     </ButtonCTAGroup>
   );
 }

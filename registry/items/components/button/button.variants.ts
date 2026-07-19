@@ -18,8 +18,8 @@ const buttonConfig = {
       primary: "bg-primary text-white hover:bg-primary/80",
       secondary: "bg-muted text-foreground hover:bg-muted/80",
       outline: "border border-border bg-transparent hover:bg-muted",
-      link: "text-primary underline-offset-4 hover:underline bg-transparent p-0 h-auto",
       ghost: "hover:bg-muted",
+      link: "text-primary underline-offset-4 hover:underline bg-transparent p-0 h-auto",
     },
     icon: {
       true: "p-0 rounded-full",

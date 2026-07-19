@@ -28,7 +28,6 @@ const buttonConfig = {
       sm: "h-8 px-3 text-(--text-12)",
       md: "h-10 px-4 text-(--text-14)",
       lg: "h-12 px-6 text-(--text-16)",
-      // "icon-xs": "size-6",
       "icon-sm": "size-8",
       "icon-md": "size-9",
       "icon-lg": "size-10",

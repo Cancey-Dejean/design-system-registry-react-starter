@@ -1,14 +1,35 @@
 ---
 name: styles
 type: registry:file
-title: "Styles"
-description: "Design system globals and theme CSS for consumer apps."
+title: Styles
+description: Design system globals and theme CSS for consumer apps.
+dependencies:
+  - tw-animate-css
+  - "@fontsource-variable/geist"
+  - "@fontsource-variable/geist-mono"
+  - "@tailwindcss/typography"
 files:
-  - path: styles.css
+  - path: globals.css
     type: registry:file
-    target: "src/styles/globals.css"
+    target: src/styles/globals.css
+  - path: theme.css
+    type: registry:file
+    target: src/styles/theme.css
 ---
 
-Design system globals and theme CSS for consumer apps.
+Install the design system CSS foundation, then import `globals.css` in your app entry stylesheet or root layout.
 
+```sh
+npx shadcn@latest add @design-system-ui/styles
+```
 
+```tsx
+import "@/styles/globals.css";
+```
+
+This writes:
+
+- `src/styles/globals.css`
+- `src/styles/theme.css`
+
+If those paths already exist, the shadcn CLI may prompt before overwriting.

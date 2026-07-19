@@ -10,11 +10,11 @@
 
 @layer base {
   * {
-    @apply border-border outline-(--ring);
+    @apply border-(--border) outline-(--ring);
   }
 
   html {
-    @apply font-body;
+    @apply font-(--body);
   }
 
   body {

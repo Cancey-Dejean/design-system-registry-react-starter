@@ -1,0 +1,27 @@
+---
+name: button
+type: registry:ui
+title: Button
+description: A polymorphic button with variants, sizes, icons, and a CTA group helper.
+dependencies:
+  - class-variance-authority
+files:
+  - path: button.tsx
+    type: registry:ui
+  - path: button.types.ts
+    type: registry:ui
+  - path: button.variants.ts
+    type: registry:ui
+---
+
+Use the button for primary actions, secondary actions, links, and icon-only controls. Pair related
+actions with `ButtonCTAGroup`.
+
+```tsx
+import { Button, ButtonCTAGroup } from "@/components/ui/button";
+
+<ButtonCTAGroup>
+  <Button variant="primary">Save</Button>
+  <Button variant="outline">Cancel</Button>
+</ButtonCTAGroup>
+```

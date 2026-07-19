@@ -28,7 +28,7 @@ function Button<T extends React.ElementType = "button">({
 
   return (
     <Component
-      data-slot={Component}
+      data-slot="button"
       className={cn(buttonVariants({ variant, size, fullWidth, icon }), className)}
       {...props}
     />

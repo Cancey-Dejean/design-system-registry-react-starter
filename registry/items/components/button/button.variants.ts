@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const buttonBase = cn(
   "group relative inline-flex shrink-0 items-center justify-center gap-2 rounded-md leading-none font-medium whitespace-nowrap transition",
-  "transition-smooth active:not-disabled:scale-95",
+  "transition-all duration-300 ease-in-out active:not-disabled:scale-95",
   "hover:no-underline",
   "disabled:pointer-events-none disabled:opacity-50",
   "focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none",

@@ -1,40 +1,33 @@
 ---
 title: Installation
-description: Install and run the registry template locally.
+description: Install Design System UI items with the shadcn CLI.
 order: 1
 ---
 
-After forking the template, install dependencies with [Vite+](https://viteplus.dev/guide/) and start the local docs app.
+Install any item from **Design System UI** with the [shadcn CLI](https://ui.shadcn.com/docs/cli). Replace `example-card` with the item name from the catalog.
+
+## npm
 
 ```sh
-vp install
-vp dev
+npx shadcn@latest add @design-system-ui/example-card
 ```
 
-Open the local URL from Vite+ to preview your docs, registry catalog, and install pages.
-
-## Customize the Registry
-
-Update `registry/config.ts` before publishing your fork. This file controls the public registry identity, namespace, description, homepage, repository URL, and generated install URLs.
-
-## Add Registry Items
-
-Scaffold new installable items under `registry/items/**` with the starter script.
+## pnpm
 
 ```sh
-bun --bun ./scripts/new.ts --type registry:ui --name example-card --description "A compact card component."
+pnpm dlx shadcn@latest add @design-system-ui/example-card
 ```
 
-You can also run `bun --bun ./scripts/new.ts` for an interactive prompt. Use `--target` for `registry:page`, `registry:file`, custom alias installs such as `@ui/ai/prompt-input.tsx`, or targeted `registry:item` files.
-
-The scaffold creates the item source, `_registry.mdx` metadata and usage docs, and an optional `_preview.tsx` preview. Public documentation pages live directly in `registry/docs/`.
-
-## Verify Changes
-
-Run the registry doctor after item changes, check the files you touched, and build before publishing.
+## yarn
 
 ```sh
-bun --bun ./scripts/doctor.ts
-vp check --fix <touched-file>
-vp build
+yarn dlx shadcn@latest add @design-system-ui/example-card
 ```
+
+## bun
+
+```sh
+bunx --bun shadcn@latest add @design-system-ui/example-card
+```
+
+Browse [components](/components), [hooks](/utilities), and [blocks](/blocks) for the exact install command on each item page.

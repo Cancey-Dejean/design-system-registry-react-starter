@@ -1,7 +1,8 @@
 import { IconBlocks, IconBrandGithub } from "@tabler/icons-react";
 import { Link, createFileRoute } from "@tanstack/react-router";
+// import { Button } from "@/components/ui/button";
 
-import { Button } from "@/components/ui/button";
+import { DocsButton } from "@/components/ui/button";
 
 import { getSeoHead } from "../lib/seo";
 import { siteConfig } from "../lib/site-config";
@@ -25,15 +26,15 @@ function HomePage() {
         </h1>
         <p className="max-w-lg text-base text-muted-foreground">{siteConfig.description}</p>
         <div className="flex items-center gap-3">
-          <Button
+          <DocsButton
             size="lg"
             nativeButton={false}
             render={<Link to="/$section" params={{ section: "components" }} />}
           >
             <IconBlocks data-icon="inline-start" />
             Browse
-          </Button>
-          <Button
+          </DocsButton>
+          <DocsButton
             variant="outline"
             size="lg"
             nativeButton={false}
@@ -41,7 +42,7 @@ function HomePage() {
           >
             <IconBrandGithub data-icon="inline-start" />
             GitHub
-          </Button>
+          </DocsButton>
         </div>
       </div>
     </div>

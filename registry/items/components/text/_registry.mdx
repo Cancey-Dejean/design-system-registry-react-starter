@@ -1,0 +1,26 @@
+---
+name: text
+type: registry:ui
+title: Text
+description: A polymorphic body text component with size, weight, tone, and alignment controls.
+dependencies:
+  - class-variance-authority
+files:
+  - path: text.tsx
+    type: registry:ui
+  - path: text.types.ts
+    type: registry:ui
+  - path: text.variants.ts
+    type: registry:ui
+---
+
+Use Text for paragraphs, captions, and other body copy. Set `as` to change the rendered element
+when you need a `span`, `label`, or other tag.
+
+```tsx
+import { Text } from "@/components/text/text";
+
+<Text size="md" weight="regular" tone="muted">
+  Supporting copy for the section.
+</Text>
+```

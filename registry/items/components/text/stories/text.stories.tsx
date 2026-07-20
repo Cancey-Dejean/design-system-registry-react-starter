@@ -8,9 +8,12 @@ import { TEXT_SIZES, TEXT_ALIGNMENTS, TEXT_WEIGHTS, TEXT_TONES } from "../text.v
 const meta: Meta<typeof Text> = {
   title: "Components/Text",
   component: Text,
+  parameters: {
+    layout: "fullscreen",
+  },
   decorators: [
     (Story) => (
-      <StoryWrapper>
+      <StoryWrapper className="p-4">
         <Story />
       </StoryWrapper>
     ),
@@ -41,6 +44,10 @@ const meta: Meta<typeof Text> = {
       description: "The text alignment",
       control: "select",
       options: TEXT_ALIGNMENTS,
+    },
+    as: {
+      description: "The HTML element to render the text as",
+      control: false,
     },
   },
 };
@@ -107,7 +114,7 @@ export const Alignments: Story = {
   render: (args) => (
     <div className="flex w-full flex-col gap-4">
       {TEXT_ALIGNMENTS.map((align) => (
-        <Text key={align} {...args}>
+        <Text key={align} {...args} align={align}>
           Align: <strong>{align}</strong> — The quick brown fox jumps over the lazy dog.
         </Text>
       ))}

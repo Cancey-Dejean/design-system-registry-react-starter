@@ -148,8 +148,6 @@ export function Example() {
 Put the interactive preview in `_preview.tsx`.
 
 ```tsx
-"use client";
-
 import { ExampleCard } from "./example-card";
 
 export function Preview() {

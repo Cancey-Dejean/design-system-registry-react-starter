@@ -1,5 +1,3 @@
-"use client";
-
 import LinkSpread from "./link-spread";
 import { DemoCard } from "./stories/demo-card";
 

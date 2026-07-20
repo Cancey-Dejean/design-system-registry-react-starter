@@ -1,5 +1,3 @@
-"use client";
-
 import { LinkText } from "./link-text";
 import { LINK_TONES } from "./link-text.variants";
 

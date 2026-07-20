@@ -1,5 +1,3 @@
-"use client";
-
 import { Button, ButtonCTAGroup } from "./button";
 import { BUTTON_VARIANTS } from "./button.variants";
 

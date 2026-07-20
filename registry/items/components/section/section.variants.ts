@@ -7,12 +7,14 @@ const sectionBase = cn("mx-auto w-full px-6");
 const sectionConfig = {
   variants: {
     padding: {
-      base: "py-20 md:py-24",
+      sm: "py-12 md:py-16",
+      md: "py-20 md:py-24",
+      lg: "py-24 md:py-32",
     },
   },
   compoundVariants: [],
   defaultVariants: {
-    padding: "base",
+    padding: "md",
   },
 } as const;
 

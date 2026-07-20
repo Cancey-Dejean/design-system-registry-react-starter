@@ -1,0 +1,27 @@
+---
+name: section
+type: registry:ui
+title: Section
+description: A semantic section wrapper with responsive vertical padding variants.
+dependencies:
+  - class-variance-authority
+files:
+  - path: section.tsx
+    type: registry:ui
+  - path: section.types.ts
+    type: registry:ui
+  - path: section.variants.ts
+    type: registry:ui
+---
+
+Use Section to wrap page content with consistent horizontal padding and responsive vertical spacing.
+Set `padding` to control the top and bottom rhythm.
+
+```tsx
+import Section from "@/components/section/section";
+
+<Section padding="md">
+  <h2>Section title</h2>
+  <p>Section content</p>
+</Section>;
+```

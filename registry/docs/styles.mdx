@@ -10,6 +10,18 @@ Before components look correct, add the design system style files. This installs
 
 Your project should already be set up with [shadcn](https://ui.shadcn.com/docs/installation) and Tailwind CSS.
 
+Add the Design System UI registry to `components.json` (once per project):
+
+```json
+{
+  "registries": {
+    "@design-system-ui": "https://design-system-registry-react-starter.vercel.app/r/{name}.json"
+  }
+}
+```
+
+Without this, the CLI returns `Unknown registry "@design-system-ui"`. See [Installation](/docs/installation) for the full setup flow.
+
 ## Install
 
 ### npm

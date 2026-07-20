@@ -8,25 +8,41 @@ Install any item from **Design System UI** with the [shadcn CLI](https://ui.shad
 
 Start with [styles](/docs/styles) so your project has the design system CSS foundation before adding components.
 
-## npm
+## Configure the registry
+
+Your project must already be set up with [shadcn](https://ui.shadcn.com/docs/installation). Then add this registry to `components.json` so the CLI can resolve `@design-system-ui/*` items:
+
+```json
+{
+  "registries": {
+    "@design-system-ui": "https://design-system-registry-react-starter.vercel.app/r/{name}.json"
+  }
+}
+```
+
+Do this once per project. Without it, installs fail with `Unknown registry "@design-system-ui"`.
+
+## Install an item
+
+### npm
 
 ```sh
 npx shadcn@latest add @design-system-ui/example-card
 ```
 
-## pnpm
+### pnpm
 
 ```sh
 pnpm dlx shadcn@latest add @design-system-ui/example-card
 ```
 
-## yarn
+### yarn
 
 ```sh
 yarn dlx shadcn@latest add @design-system-ui/example-card
 ```
 
-## bun
+### bun
 
 ```sh
 bunx --bun shadcn@latest add @design-system-ui/example-card

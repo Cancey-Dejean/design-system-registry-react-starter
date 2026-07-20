@@ -431,7 +431,7 @@
 }
 
 @theme inline {
-  /* --color-*: initial; */
+  /* --text-*: initial; */
   --font-body: var(--font-body);
 
   --color-sidebar-ring: var(--sidebar-ring);

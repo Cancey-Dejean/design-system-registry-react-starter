@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-const headingBase = cn("leading-none! font-semibold tracking-tight");
+const headingBase = cn("leading-none font-semibold tracking-tight");
 
 const headingConfig = {
   variants: {
@@ -15,13 +15,13 @@ const headingConfig = {
       6: "",
     },
     size: {
-      xs: "text-xl",
-      sm: "text-2xl",
-      md: "text-3xl",
-      lg: "text-4xl",
-      xl: "text-5xl",
-      "2xl": "text-6xl",
-      "3xl": "sm:text-7xl text-3xl",
+      xs: "[font-size:var(--text-20)]",
+      sm: "[font-size:var(--text-20)] sm:[font-size:var(--text-24)]",
+      md: "[font-size:var(--text-24)] sm:[font-size:var(--text-30)]",
+      lg: "[font-size:var(--text-30)] sm:[font-size:var(--text-36)]",
+      xl: "[font-size:var(--text-36)] sm:[font-size:var(--text-48)]",
+      "2xl": "[font-size:var(--text-48)] sm:[font-size:var(--text-60)]",
+      "3xl": "[font-size:var(--text-60)] sm:[font-size:var(--text-72)]",
     },
     weight: {
       regular: "font-normal",
@@ -31,12 +31,11 @@ const headingConfig = {
       extrabold: "font-extrabold",
     },
     tone: {
-      default: "text-foreground",
-      muted: "text-muted-foreground",
-      brand: "text-primary",
-      danger: "text-destructive",
-      success: "text-green-600",
-      warning: "text-yellow-600",
+      default: "text-(--foreground)",
+      muted: "text-(--muted-foreground)",
+      danger: "text-(--destructive)",
+      success: "text-(--color-green-600)",
+      warning: "text-(--color-yellow-600)",
     },
   },
   compoundVariants: [],

@@ -6,6 +6,9 @@
 @import "@fontsource-variable/geist-mono";
 @plugin "@tailwindcss/typography";
 
+/* Imported UI Library Styles */
+@import "./theme.css";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

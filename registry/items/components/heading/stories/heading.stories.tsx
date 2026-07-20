@@ -7,6 +7,7 @@ import { HEADING_LEVELS, HEADING_SIZES, HEADING_WEIGHTS, HEADING_TONES } from ".
 
 const meta: Meta<typeof Heading> = {
   title: "Components/Heading",
+  tags: ["autodocs"],
   component: Heading,
   decorators: [
     (Story) => (

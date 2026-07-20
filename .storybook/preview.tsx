@@ -3,7 +3,7 @@ import type { Preview } from "@storybook/tanstack-react";
 import { INITIAL_VIEWPORTS } from "storybook/viewport";
 
 // oxlint-disable-next-line import/no-unassigned-import -- side-effect CSS import
-import "@/styles/globals.css";
+import "../registry/items/files/styles/globals.css";
 
 const preview: Preview = {
   parameters: {

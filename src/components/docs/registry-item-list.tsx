@@ -28,13 +28,16 @@ export function RegistryItemList({ catalog }: RegistryItemListProps) {
       />
 
       {catalog.items.length > 0 ? (
-        <div className="flex flex-col">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {catalog.items.map((item) => (
             <Link
               key={item.name}
               to="/$section/$name"
-              params={{ section: getRegistrySectionIdForType(item.type), name: item.name }}
-              className="flex flex-col gap-1 border-b py-3 transition-colors first:border-t hover:text-foreground"
+              params={{
+                section: getRegistrySectionIdForType(item.type),
+                name: item.name,
+              }}
+              className="flex flex-col gap-1 py-3 transition-colors hover:text-foreground"
             >
               <span className="text-sm font-medium">{item.title}</span>
               <span className="text-sm text-muted-foreground">{item.description}</span>

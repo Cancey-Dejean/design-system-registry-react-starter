@@ -7,7 +7,7 @@
 @plugin "@tailwindcss/typography";
 
 /* Imported UI Library Styles */
-@import "./theme.css";
+@import "../../registry/items/files/styles/theme.css";
 
 @custom-variant dark (&:is(.dark *));
 

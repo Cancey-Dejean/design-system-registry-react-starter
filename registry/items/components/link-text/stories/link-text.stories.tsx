@@ -9,6 +9,9 @@ const meta: Meta<typeof LinkText> = {
   title: "Components/Link Text",
   tags: ["autodocs"],
   component: LinkText,
+  parameters: {
+    layout: "fullscreen",
+  },
   decorators: [
     (Story) => (
       <StoryWrapper>
@@ -115,7 +118,7 @@ export const AppStoreGroup: Story = {
     tone: { table: { disable: true } },
   },
   render: ({ ...props }: React.ComponentProps<"a">) => (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-3">
       <LinkText {...props} className="rounded-sm bg-black">
         <svg aria-hidden="true" width="135" height="40" viewBox="0 0 135 40" fill="none">
           <path

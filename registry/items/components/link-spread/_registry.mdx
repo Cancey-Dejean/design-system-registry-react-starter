@@ -1,0 +1,22 @@
+---
+name: link-spread
+type: registry:ui
+title: Link Spread
+description: An absolute positioned anchor that makes an entire container clickable.
+files:
+  - path: link-spread.tsx
+    type: registry:ui
+---
+
+Use Link Spread inside a relatively positioned parent to make the full card surface clickable
+while keeping other content visible and accessible.
+
+```tsx
+import LinkSpread from "@/components/link-spread/link-spread";
+
+<article className="relative">
+  <h3>Card title</h3>
+  <p>Card copy</p>
+  <LinkSpread href="/details" aria-label="Open details" />
+</article>;
+```

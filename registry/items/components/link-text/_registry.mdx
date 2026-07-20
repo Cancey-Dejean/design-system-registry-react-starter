@@ -1,0 +1,26 @@
+---
+name: link-text
+type: registry:ui
+title: Link Text
+description: A polymorphic text link with tone, underline, size, and external-link controls.
+dependencies:
+  - class-variance-authority
+files:
+  - path: link-text.tsx
+    type: registry:ui
+  - path: link-text.types.ts
+    type: registry:ui
+  - path: link-text.variants.ts
+    type: registry:ui
+---
+
+Use Link Text for inline actions, navigation labels, and linked UI copy. It supports visual
+variants and can render as any element through the `as` prop.
+
+```tsx
+import { LinkText } from "@/components/link-text/link-text";
+
+<LinkText href="/docs" tone="default" underline="hover">
+  Read the docs
+</LinkText>;
+```

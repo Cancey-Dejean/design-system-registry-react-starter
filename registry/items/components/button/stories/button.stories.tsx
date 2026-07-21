@@ -55,8 +55,10 @@ export const Default: Story = {
 };
 
 export const LeadingIcon: Story = {
+  args: {
+    children: "Button",
+  },
   argTypes: {
-    variant: { table: { disable: true } },
     onClick: { table: { disable: true } },
     fullWidth: { table: { disable: true } },
     as: { table: { disable: true } },
@@ -65,23 +67,23 @@ export const LeadingIcon: Story = {
   },
   render: (args) => (
     <div className="flex flex-col items-center gap-6">
-      {BUTTON_VARIANTS.map((variant) => (
-        <ButtonCTAGroup key={variant}>
-          {(["sm", "md", "lg"] as const).map((size) => (
-            <Button key={size} {...args} variant={variant} size={size}>
-              <Mail />
-              {variant}
-            </Button>
-          ))}
-        </ButtonCTAGroup>
-      ))}
+      <ButtonCTAGroup>
+        {(["sm", "md", "lg"] as const).map((size) => (
+          <Button key={size} {...args} size={size}>
+            <Mail />
+            {args.children}
+          </Button>
+        ))}
+      </ButtonCTAGroup>
     </div>
   ),
 };
 
 export const TrailingIcon: Story = {
+  args: {
+    children: "Button",
+  },
   argTypes: {
-    variant: { table: { disable: true } },
     onClick: { table: { disable: true } },
     fullWidth: { table: { disable: true } },
     as: { table: { disable: true } },
@@ -90,16 +92,14 @@ export const TrailingIcon: Story = {
   },
   render: (args) => (
     <div className="flex flex-col items-center gap-6">
-      {BUTTON_VARIANTS.map((variant) => (
-        <ButtonCTAGroup key={variant} {...args}>
-          {(["sm", "md", "lg"] as const).map((size) => (
-            <Button key={size} {...args} variant={variant} size={size}>
-              {variant}
-              <ArrowRight />
-            </Button>
-          ))}
-        </ButtonCTAGroup>
-      ))}
+      <ButtonCTAGroup>
+        {(["sm", "md", "lg"] as const).map((size) => (
+          <Button key={size} {...args} size={size}>
+            {args.children}
+            <ArrowRight />
+          </Button>
+        ))}
+      </ButtonCTAGroup>
     </div>
   ),
 };

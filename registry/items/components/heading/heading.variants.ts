@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-const headingBase = cn("leading-none font-semibold tracking-tight");
+const headingBase = cn("leading-none tracking-tight");
 
 const headingConfig = {
   variants: {

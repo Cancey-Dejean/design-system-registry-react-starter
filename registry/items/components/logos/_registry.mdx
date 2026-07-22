@@ -1,0 +1,31 @@
+---
+name: logos
+type: registry:ui
+title: Logos
+description: Apple brand logo SVGs with a searchable gallery for browsing and copying.
+dependencies:
+  - lucide-react
+files:
+  - path: apple-logo.tsx
+    type: registry:ui
+  - path: apple-music.tsx
+    type: registry:ui
+  - path: apple-fitness.tsx
+    type: registry:ui
+  - path: logo-grid.tsx
+    type: registry:ui
+  - path: logo-gallery.tsx
+    type: registry:ui
+---
+
+Import individual logos, or browse the set with `LogoGallery`.
+
+```tsx
+import AppleLogo from "@/components/logos/apple-logo";
+import AppleMusicLogo from "@/components/logos/apple-music";
+import AppleFitnessLogo from "@/components/logos/apple-fitness";
+
+<AppleLogo className="h-12 w-auto" />
+<AppleMusicLogo className="h-8 w-auto" />
+<AppleFitnessLogo className="h-8 w-auto" />
+```

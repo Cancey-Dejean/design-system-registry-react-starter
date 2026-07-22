@@ -35,7 +35,6 @@ const textConfig = {
   compoundVariants: [],
 
   defaultVariants: {
-    level: 1,
     size: "md",
     weight: "regular",
     tone: "default",

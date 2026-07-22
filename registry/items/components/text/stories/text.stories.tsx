@@ -60,11 +60,17 @@ export const Default: Story = {
     children:
       "The quick brown fox jumps over the lazy dog. This is a sample paragraph to demonstrate the text component.",
   },
+  render: (args) => (
+    <Text {...args}>
+      {args.children ||
+        "The quick brown fox jumps over the lazy dog. This is a sample paragraph to demonstrate the text component."}
+    </Text>
+  ),
 };
 
 export const Sizes: Story = {
   argTypes: {
-    size: { table: { disable: true } },
+    size: { control: false },
   },
   render: (args) => (
     <div className="flex flex-col gap-4">
@@ -79,7 +85,7 @@ export const Sizes: Story = {
 
 export const Weights: Story = {
   argTypes: {
-    weight: { table: { disable: true } },
+    weight: { control: false },
   },
   render: (args) => (
     <div className="flex flex-col gap-4">
@@ -94,7 +100,7 @@ export const Weights: Story = {
 
 export const Tones: Story = {
   argTypes: {
-    tone: { table: { disable: true } },
+    tone: { control: false },
   },
   render: (args) => (
     <div className="flex flex-col gap-4">
@@ -109,7 +115,7 @@ export const Tones: Story = {
 
 export const Alignments: Story = {
   argTypes: {
-    align: { table: { disable: true } },
+    align: { control: false },
   },
   render: (args) => (
     <div className="flex w-full flex-col gap-4">

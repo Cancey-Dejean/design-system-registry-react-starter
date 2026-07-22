@@ -1,0 +1,26 @@
+---
+name: container
+type: registry:ui
+title: Container
+description: A centered content wrapper with max-width size variants.
+dependencies:
+  - class-variance-authority
+files:
+  - path: container.tsx
+    type: registry:ui
+  - path: container.types.tsx
+    type: registry:ui
+  - path: container.variants.tsx
+    type: registry:ui
+---
+
+Use the container to constrain page or section content. Set `size` to `base`, `contained`, `thin`,
+or `full`.
+
+```tsx
+import { Container } from "@/components/container/container";
+
+<Container size="base">
+  <p>Content goes here...</p>
+</Container>
+```

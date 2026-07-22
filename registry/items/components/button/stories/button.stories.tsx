@@ -18,7 +18,7 @@ const meta: Meta<typeof Button> = {
   },
   decorators: [
     (Story) => (
-      <StoryWrapper className="max-w-full">
+      <StoryWrapper className="max-w-full p-4">
         <Story />
       </StoryWrapper>
     ),

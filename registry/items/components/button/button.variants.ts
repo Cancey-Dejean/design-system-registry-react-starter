@@ -28,9 +28,9 @@ const buttonConfig = {
       sm: "h-8 px-3 text-(--text-12)",
       md: "h-10 px-4 text-(--text-14)",
       lg: "h-12 px-6 text-(--text-16)",
-      "icon-sm": "size-8",
-      "icon-md": "size-9",
-      "icon-lg": "size-10",
+      "icon-sm": "size-8 [&_svg]:size-3.5",
+      "icon-md": "size-9 [&_svg]:size-4",
+      "icon-lg": "size-10 [&_svg]:size-4.5",
     },
     fullWidth: {
       true: "w-full",

@@ -23,7 +23,8 @@
     "prepare": "vp config",
     "knip": "vp exec knip",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "doctor": "npx react-doctor@latest"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

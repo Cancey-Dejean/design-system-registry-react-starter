@@ -17,12 +17,18 @@ import {
   User,
 } from "lucide-react";
 
+import Cloud from "./icon-set/cloud";
+import KeyRounded from "./icon-set/key-rounded";
+import MailRounded from "./icon-set/mail-rounded";
 import NavArrow from "./icon-set/nav-arrow";
 import XCircleSolid from "./icon-set/x-cirlcle-solid";
 
 export const ICONS = {
   "nav-arrow": NavArrow,
   "x-circle-solid": XCircleSolid,
+  cloud: Cloud,
+  "key-rounded": KeyRounded,
+  "mail-rounded": MailRounded,
   "arrow-right": ArrowRight,
   "arrow-left": ArrowLeft,
   sun: Sun,

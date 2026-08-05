@@ -2,7 +2,7 @@
 name: icons
 type: registry:ui
 title: Icons
-description: A typed icon component with size variants and an Apple-style icon set.
+description: A typed icon component with size variants and a custom icon set.
 dependencies:
   - class-variance-authority
   - lucide-react
@@ -21,17 +21,15 @@ files:
     type: registry:ui
   - path: icon-set/types.ts
     type: registry:ui
-  - path: icon-set/arrow-corner.tsx
+  - path: icon-set/cloud.tsx
     type: registry:ui
-  - path: icon-set/cart-icon.tsx
+  - path: icon-set/key-rounded.tsx
     type: registry:ui
-  - path: icon-set/chevron-right.tsx
+  - path: icon-set/mail-rounded.tsx
     type: registry:ui
-  - path: icon-set/close-x.tsx
+  - path: icon-set/nav-arrow.tsx
     type: registry:ui
-  - path: icon-set/devices.tsx
-    type: registry:ui
-  - path: icon-set/search-icon.tsx
+  - path: icon-set/x-cirlcle-solid.tsx
     type: registry:ui
 ---
 
@@ -41,6 +39,6 @@ individual SVGs from `icon-set`.
 ```tsx
 import Icon from "@/components/icons/icon/icon";
 
-<Icon icon="chevron-right" size="md" />
-<Icon icon="cart" size="lg" />
+<Icon icon="nav-arrow" size="md" />
+<Icon icon="x-circle-solid" size="lg" />
 ```

@@ -2,13 +2,7 @@ import type { SVGProps } from "react";
 
 import { cn } from "@/lib/utils";
 
-export default function Logo({
-  className,
-  ...props
-}: SVGProps<SVGSVGElement> & {
-  logo?: React.ReactNode;
-  lineColorClass?: string;
-}) {
+export default function BrandLogo({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
       aria-hidden="true"

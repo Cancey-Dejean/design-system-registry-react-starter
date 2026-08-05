@@ -1,10 +1,11 @@
 import { cn } from "@/lib/utils";
 
-import type { IconProps } from "../icons/icon-set/types";
+import type { LogoProps } from "./types";
 
-export default function XLogo({ className, ...props }: IconProps) {
+export default function XLogo({ className, ...props }: LogoProps) {
   return (
     <svg
+      aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

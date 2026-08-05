@@ -1,5 +1,5 @@
-import ThreePortalsLogo from "./3-portals";
+import Logo from "./logo/logo";
 
 export function Preview() {
-  return <ThreePortalsLogo />;
+  return <Logo logo="three-portals" size="lg" />;
 }

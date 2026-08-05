@@ -3,41 +3,12 @@
 import { Check, Search } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import ThreePortalsLogo from "./3-portals";
-import AlphaWaveLogo from "./alpha-wave";
-import AppleLogo from "./apple";
-import AppleStore from "./apple-store";
-import FacebookLogo from "./facebook";
-import GoogleLogo from "./google";
-import InstagramLogo from "./instagram";
-import LeapYearLogo from "./leap-year";
-import Logo from "./logo";
+import { LOGOS } from "./";
 import LogoGrid from "./logo-grid";
-import LogoText from "./logo-text";
-import MainLogo from "./main-logo";
-import PlayStore from "./play-store";
-import VoxelLabsLogo from "./voxel-labs";
-import XLogo from "./x";
+import Logo from "./logo/logo";
+import type { LogoKey } from "./logo/logo.types";
 
-const LOGOS: Record<string, React.ComponentType<{ className?: string }>> = {
-  logo: Logo,
-  "logo-text": LogoText,
-  apple: AppleLogo,
-  "main-logo": MainLogo,
-  "three-portals": ThreePortalsLogo,
-  "alpha-wave": AlphaWaveLogo,
-  "leap-year": LeapYearLogo,
-  "voxel-labs": VoxelLabsLogo,
-  "apple-store": AppleStore,
-  "google-play": PlayStore,
-  instagram: InstagramLogo,
-  "x-logo": XLogo,
-  facebook: FacebookLogo,
-  google: GoogleLogo,
-};
-
-type LogoKey = keyof typeof LOGOS;
-const LOGO_LIST = Object.keys(LOGOS);
+const LOGO_LIST = Object.keys(LOGOS) as LogoKey[];
 
 function useDebouncedValue<T>(value: T, delay: number): T {
   const [debounced, setDebounced] = useState(value);
@@ -53,7 +24,6 @@ function useDebouncedValue<T>(value: T, delay: number): T {
 function LogoCard({ name }: { name: LogoKey }) {
   const ref = useRef<HTMLDivElement>(null);
   const [feedback, setFeedback] = useState<"copied" | "downloaded" | null>(null);
-  const Component = LOGOS[name];
   const isImage = name === "main-logo";
 
   const handleClick = useCallback(() => {
@@ -117,7 +87,7 @@ function LogoCard({ name }: { name: LogoKey }) {
         ref={ref}
         className="flex items-center justify-center text-foreground transition-colors duration-200 group-hover:text-primary [&_img]:max-h-8 [&_img]:w-auto [&_svg]:max-h-12 [&_svg]:min-w-auto"
       >
-        <Component className="size-full object-contain" />
+        <Logo logo={name} size="lg" className="size-full object-contain" />
       </div>
 
       <span className="w-full truncate text-center text-[11px] font-medium tracking-tight text-muted-foreground transition-colors duration-200 group-hover:text-foreground">

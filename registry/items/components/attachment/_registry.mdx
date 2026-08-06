@@ -1,0 +1,49 @@
+---
+name: attachment
+type: registry:ui
+title: Attachment
+description: Displays a file or image attachment with media, metadata, upload state, and actions.
+dependencies:
+  - "@base-ui/react"
+  - class-variance-authority
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/button.json
+files:
+  - path: attachment.tsx
+    type: registry:ui
+---
+
+Use attachments for files and images in chat composers, message threads, and upload lists.
+
+```tsx
+import {
+  Attachment,
+  AttachmentAction,
+  AttachmentActions,
+  AttachmentContent,
+  AttachmentDescription,
+  AttachmentMedia,
+  AttachmentTitle,
+} from "@/components/ui/attachment";
+
+<Attachment>
+  <AttachmentMedia>
+    <FileTextIcon />
+  </AttachmentMedia>
+  <AttachmentContent>
+    <AttachmentTitle>sales-dashboard.pdf</AttachmentTitle>
+    <AttachmentDescription>PDF · 2.4 MB</AttachmentDescription>
+  </AttachmentContent>
+  <AttachmentActions>
+    <AttachmentAction aria-label="Remove sales-dashboard.pdf">
+      <XIcon />
+    </AttachmentAction>
+  </AttachmentActions>
+</Attachment>
+```
+
+Supports `state` (`idle`, `uploading`, `processing`, `error`, `done`), `size` (`default`,
+`sm`, `xs`), and `orientation` (`horizontal`, `vertical`). Wrap multiple items in
+`AttachmentGroup` for a scrollable row. Requires `shimmer` and `scroll-fade` utilities from
+`shadcn/tailwind.css` (or this registry's shimmer / scroll-fade items) for progress and group
+edge fade.

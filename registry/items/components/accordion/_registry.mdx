@@ -1,0 +1,40 @@
+---
+name: accordion
+type: registry:ui
+title: Accordion
+description: A vertically stacked set of interactive headings that each reveal a section of content.
+dependencies:
+  - "@base-ui/react"
+  - "@tabler/icons-react"
+files:
+  - path: accordion.tsx
+    type: registry:ui
+---
+
+Use the accordion for FAQs, settings sections, and other progressive disclosure patterns.
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+<Accordion defaultValue={["item-1"]}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>
+      Yes. It adheres to the WAI-ARIA design pattern.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Is it styled?</AccordionTrigger>
+    <AccordionContent>
+      Yes. It comes with default styles that match the other components.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+Open multiple sections with `multiple`.

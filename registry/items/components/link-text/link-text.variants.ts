@@ -3,16 +3,16 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const linkTextBase = cn(
-  "inline-flex items-center gap-1 leading-none! font-medium transition-colors focus-visible:ring-2 focus-visible:ring-(--color-blue-500) focus-visible:ring-offset-2 focus-visible:outline-none",
+  "inline-flex items-center gap-1 leading-none! font-medium transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none",
 );
 
 const linkTextConfig = {
   variants: {
     tone: {
-      default: "text-(--primary) hover:text-(--primary)/80",
-      muted: "text-(--muted-foreground) hover:text-(--foreground)",
-      subtle: "text-(--color-neutral-500) hover:text-(--color-neutral-700)",
-      danger: "text-(--destructive) hover:text-(--destructive)/80",
+      default: "text-primary hover:text-primary/80",
+      muted: "text-muted-foreground hover:text-foreground",
+      subtle: "text-neutral-500 hover:text-neutral-700",
+      danger: "text-destructive hover:text-destructive/80",
     },
     underline: {
       none: "no-underline",

@@ -1,0 +1,23 @@
+---
+name: badge
+type: registry:ui
+title: Badge
+description: Displays a badge or a component that looks like a badge.
+dependencies:
+  - "@base-ui/react"
+  - class-variance-authority
+files:
+  - path: badge.tsx
+    type: registry:ui
+---
+
+Use badges for status, counts, labels, and compact metadata.
+
+```tsx
+import { Badge } from "@/components/ui/badge";
+
+<Badge>Badge</Badge>
+```
+
+Variants: `default`, `secondary`, `destructive`, `outline`, `ghost`, and `link`. Render as a link
+with `render={<a href="..." />}`.

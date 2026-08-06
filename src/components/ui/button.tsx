@@ -55,4 +55,9 @@ function DocsButton({
   );
 }
 
-export { DocsButton, DocsButton as Button, docsButtonVariants };
+export {
+  DocsButton,
+  DocsButton as Button,
+  docsButtonVariants,
+  docsButtonVariants as buttonVariants,
+};

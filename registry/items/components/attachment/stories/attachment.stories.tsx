@@ -38,7 +38,7 @@ const meta: Meta<typeof Attachment> = {
   decorators: [
     (Story) => (
       <StoryWrapper className="max-w-full p-6">
-        <div className="flex w-full max-w-lg flex-col gap-4">
+        <div className="flex w-full max-w-lg flex-col items-center justify-center gap-4">
           <Story />
         </div>
       </StoryWrapper>

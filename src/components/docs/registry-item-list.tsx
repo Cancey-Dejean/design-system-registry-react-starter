@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 import type { RegistryRouteItem } from "../../lib/registry/sections";
 import { getRegistrySectionIdForType } from "../../lib/registry/sections";
+import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { DocsPageHeader } from "./docs-page-header";
 
 type RegistryListItem = RegistryRouteItem & {
@@ -28,7 +29,7 @@ export function RegistryItemList({ catalog }: RegistryItemListProps) {
       />
 
       {catalog.items.length > 0 ? (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
           {catalog.items.map((item) => (
             <Link
               key={item.name}
@@ -37,10 +38,14 @@ export function RegistryItemList({ catalog }: RegistryItemListProps) {
                 section: getRegistrySectionIdForType(item.type),
                 name: item.name,
               }}
-              className="flex flex-col gap-1 py-3 transition-colors hover:text-foreground"
+              className="block rounded-xl transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
             >
-              <span className="text-sm font-medium">{item.title}</span>
-              <span className="text-sm text-muted-foreground">{item.description}</span>
+              <Card size="sm" className="h-full transition-colors hover:bg-muted/40">
+                <CardHeader>
+                  <CardTitle>{item.title}</CardTitle>
+                  <CardDescription>{item.description}</CardDescription>
+                </CardHeader>
+              </Card>
             </Link>
           ))}
         </div>

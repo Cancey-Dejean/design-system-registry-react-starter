@@ -25,7 +25,7 @@ export function DocsLayout({ section, children }: DocsLayoutProps) {
         />
       </aside>
       <main className="min-w-0 flex-1 py-8">
-        <div className="mx-auto max-w-3xl">{children}</div>
+        <div className="mx-auto max-w-full">{children}</div>
       </main>
     </div>
   );

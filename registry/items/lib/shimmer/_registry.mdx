@@ -1,0 +1,49 @@
+---
+name: shimmer
+type: registry:lib
+title: shimmer
+description: Utilities for adding a shimmer effect to text elements.
+dependencies:
+  - shadcn
+files:
+  - path: shimmer.ts
+    type: registry:lib
+---
+
+Text shimmer for loading and “thinking…” states. Classes ship in
+`shadcn/tailwind.css` — import that in your global CSS (or install the design
+system [styles](/utilities/styles) item).
+
+```css
+@import "tailwindcss";
+@import "shadcn/tailwind.css";
+```
+
+```tsx
+import { shimmerClass } from "@/lib/shimmer";
+
+<p className={`${shimmerClass} text-sm text-muted-foreground`}>
+  Generating response…
+</p>
+```
+
+Or use the utilities directly:
+
+```tsx
+<p className="shimmer text-muted-foreground">Generating response…</p>
+<p className="shimmer shimmer-color-blue-500/60">Generating response…</p>
+<p className="shimmer shimmer-duration-1000 shimmer-once">Response generated.</p>
+```
+
+| Class | Effect |
+| --- | --- |
+| `shimmer` | Looping sweep on text (`background-clip: text`) |
+| `shimmer-once` | Single play |
+| `shimmer-reverse` | Reverse direction |
+| `shimmer-none` | Disable the effect |
+| `shimmer-color-*` | Highlight color (theme color or arbitrary) |
+| `shimmer-duration-<ms>` | Sweep duration in milliseconds |
+| `shimmer-spread-<n>` | Highlight band width on the spacing scale |
+| `shimmer-angle-<deg>` | Band tilt in degrees |
+
+The effect tracks `currentColor`, adapts to dark mode, respects reduced motion, and follows reading direction in RTL.

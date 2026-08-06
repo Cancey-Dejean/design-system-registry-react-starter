@@ -22,7 +22,7 @@ export function DocsPageHeader({
   className,
 }: DocsPageHeaderProps) {
   return (
-    <header className={cn("flex max-w-3xl flex-col gap-2", className)}>
+    <header className={cn("flex max-w-full flex-col gap-2", className)}>
       <div className="flex flex-row flex-wrap items-start justify-between gap-3">
         <h1 className="min-w-0 font-heading text-3xl font-semibold tracking-tight">{title}</h1>
         <DocsPageActions

@@ -1,0 +1,32 @@
+---
+name: button-group
+type: registry:ui
+title: Button Group
+description: A container that groups related buttons with shared borders and orientation.
+dependencies:
+  - "@base-ui/react"
+  - class-variance-authority
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/button.json
+localRegistryDependencies:
+  - separator
+files:
+  - path: button-group.tsx
+    type: registry:ui
+---
+
+Use a button group to connect related actions into a single control strip.
+
+```tsx
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
+
+<ButtonGroup>
+  <Button variant="outline">Copy</Button>
+  <Button variant="outline">Paste</Button>
+  <Button variant="outline">Cut</Button>
+</ButtonGroup>
+```
+
+Set `orientation="vertical"` for a stacked group. Use `ButtonGroupText` for a label segment and
+`ButtonGroupSeparator` between sections.

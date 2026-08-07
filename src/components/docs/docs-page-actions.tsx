@@ -3,10 +3,10 @@
 import { IconChevronDown } from "@tabler/icons-react";
 import type { ReactElement, SVGProps } from "react";
 
+import { ButtonGroup } from "../../../registry/items/components/button-group/button-group";
 import { siteConfig } from "../../lib/site-config";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/button";
-import { ButtonGroup } from "../ui/button-group";
 import { CopyButton } from "../ui/copy-button";
 import {
   DropdownMenu,

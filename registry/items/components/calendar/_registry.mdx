@@ -1,0 +1,33 @@
+---
+name: calendar
+type: registry:ui
+title: Calendar
+description: A date field component that allows users to enter and edit dates.
+dependencies:
+  - react-day-picker
+  - "@tabler/icons-react"
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/button.json
+files:
+  - path: calendar.tsx
+    type: registry:ui
+---
+
+Use the calendar for single dates, ranges, and multi-month layouts. Built on
+[react-day-picker](https://react-day-picker.js.org/).
+
+```tsx
+import { Calendar } from "@/components/ui/calendar";
+import * as React from "react";
+
+function Example() {
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
+
+  return (
+    <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-lg border" />
+  );
+}
+```
+
+Supports react-day-picker modes (`single`, `multiple`, `range`), `captionLayout` (`label`,
+`dropdown`, `dropdown-months`, `dropdown-years`), `numberOfMonths`, and `showWeekNumber`.

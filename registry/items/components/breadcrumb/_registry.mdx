@@ -1,0 +1,45 @@
+---
+name: breadcrumb
+type: registry:ui
+title: Breadcrumb
+description: Displays the path to the current resource using a hierarchy of links.
+dependencies:
+  - "@base-ui/react"
+  - "@tabler/icons-react"
+files:
+  - path: breadcrumb.tsx
+    type: registry:ui
+---
+
+Use breadcrumbs to show navigation context within nested pages.
+
+```tsx
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+Compose `BreadcrumbEllipsis` for collapsed middle segments. Pass a custom child to
+`BreadcrumbSeparator` for an alternate divider, or use `render` on `BreadcrumbLink` for router
+links.

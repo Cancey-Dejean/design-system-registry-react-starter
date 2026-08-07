@@ -1,0 +1,34 @@
+---
+name: bubble
+type: registry:ui
+title: Bubble
+description: Colored message surfaces for chat and conversation UIs, with optional reactions.
+dependencies:
+  - "@base-ui/react"
+  - class-variance-authority
+files:
+  - path: bubble.tsx
+    type: registry:ui
+---
+
+Use bubble for message text surfaces in chat threads. Pair with `Message` for full rows when you
+install the message component.
+
+```tsx
+import { Bubble, BubbleContent, BubbleGroup, BubbleReactions } from "@/components/ui/bubble";
+
+<BubbleGroup>
+  <Bubble variant="muted" align="start">
+    <BubbleContent>How can I help you today?</BubbleContent>
+  </Bubble>
+  <Bubble variant="default" align="end">
+    <BubbleContent>Summarize the design review notes.</BubbleContent>
+    <BubbleReactions side="bottom" align="end">
+      <span className="px-1.5 text-xs">👍 2</span>
+    </BubbleReactions>
+  </Bubble>
+</BubbleGroup>
+```
+
+Variants: `default`, `secondary`, `muted`, `tinted`, `outline`, `ghost`, `destructive`. Align with
+`align` (`start` | `end`). Position reactions via `BubbleReactions` `side` and `align`.

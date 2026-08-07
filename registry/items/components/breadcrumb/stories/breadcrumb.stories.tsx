@@ -28,10 +28,8 @@ const meta: Meta<typeof Breadcrumb> = {
   },
   decorators: [
     (Story) => (
-      <StoryWrapper className="max-w-full p-6">
-        <div className="w-full max-w-2xl">
-          <Story />
-        </div>
+      <StoryWrapper className="p-6">
+        <Story />
       </StoryWrapper>
     ),
   ],

@@ -60,7 +60,7 @@ function ScrollFrame({
 }
 
 const meta: Meta = {
-  title: "Utilities/scroll-fade",
+  title: "Utilities/Scroll Fade",
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",

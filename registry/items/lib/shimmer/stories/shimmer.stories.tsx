@@ -17,7 +17,7 @@ import {
 } from "../shimmer";
 
 const meta: Meta = {
-  title: "Utilities/shimmer",
+  title: "Utilities/Shimmer",
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
@@ -30,7 +30,7 @@ const meta: Meta = {
   },
   decorators: [
     (Story) => (
-      <StoryWrapper className="max-w-full p-6">
+      <StoryWrapper className="p-6">
         <Story />
       </StoryWrapper>
     ),

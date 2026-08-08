@@ -1,0 +1,44 @@
+---
+name: item
+type: registry:ui
+title: Item
+description: A versatile component for displaying content in lists, cards, or menus.
+dependencies:
+  - "@base-ui/react"
+  - class-variance-authority
+localRegistryDependencies:
+  - separator
+files:
+  - path: item.tsx
+    type: registry:ui
+---
+
+Use items to compose list rows, settings rows, and selectable media blocks.
+
+```tsx
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item";
+import { Button } from "@/components/ui/button";
+
+<Item variant="outline">
+  <ItemMedia variant="icon">{/* icon */}</ItemMedia>
+  <ItemContent>
+    <ItemTitle>Title</ItemTitle>
+    <ItemDescription>Supporting text for the item.</ItemDescription>
+  </ItemContent>
+  <ItemActions>
+    <Button size="sm" variant="outline">
+      Action
+    </Button>
+  </ItemActions>
+</Item>
+```
+
+Variants: `default`, `outline`, `muted`. Sizes: `default`, `sm`, `xs`. Render as a link with
+`render={<a href="..." />}`. Group rows with `ItemGroup` and `ItemSeparator`.

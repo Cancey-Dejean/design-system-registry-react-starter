@@ -1,0 +1,30 @@
+---
+name: tabs
+type: registry:ui
+title: Tabs
+description: A set of layered sections of content—known as tab panels—that are displayed one at a time.
+dependencies:
+  - "@base-ui/react"
+  - class-variance-authority
+files:
+  - path: tabs.tsx
+    type: registry:ui
+---
+
+Use for switching between related views. Matches tab value to panel value.
+
+```tsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+<Tabs defaultValue="account">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">Make changes to your account here.</TabsContent>
+  <TabsContent value="password">Change your password here.</TabsContent>
+</Tabs>
+```
+
+Set `TabsList` `variant` to `line` for an underline style. Pass `orientation="vertical"` on `Tabs`
+for a vertical list. Built on Base UI Tabs.

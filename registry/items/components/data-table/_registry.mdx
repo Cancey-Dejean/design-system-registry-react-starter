@@ -1,0 +1,38 @@
+---
+name: data-table
+type: registry:ui
+title: Data Table
+description: Powerful table and datagrids built using TanStack Table.
+dependencies:
+  - "@tanstack/react-table"
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/button.json
+  - https://ui.shadcn.com/r/styles/base-nova/dropdown-menu.json
+localRegistryDependencies:
+  - table
+  - checkbox
+  - input
+  - badge
+files:
+  - path: data-table.tsx
+    type: registry:ui
+  - path: data-table-features.ts
+    type: registry:ui
+---
+
+Build interactive data tables with sorting, filtering, pagination, column visibility, and row
+selection on top of TanStack Table **v9** and the [Table](/components/table) primitives.
+
+```tsx
+import { DataTable } from "@/components/ui/data-table";
+
+import { columns, payments } from "./columns";
+
+export default function PaymentsPage() {
+  return <DataTable columns={columns} data={payments} />;
+}
+```
+
+Declare which TanStack features you need in `data-table-features.ts` (`tableFeatures(...)`). Only
+registered features ship in the bundle. Pass `DataTableFeatures` as the first generic to
+`createColumnHelper` and `ColumnDef`.

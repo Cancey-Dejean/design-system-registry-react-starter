@@ -1,0 +1,39 @@
+---
+name: tooltip
+type: registry:ui
+title: Tooltip
+description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+dependencies:
+  - "@base-ui/react"
+files:
+  - path: tooltip.tsx
+    type: registry:ui
+---
+
+Wrap your app (or story) with `TooltipProvider`. Trigger and content pair under each `Tooltip`.
+
+```tsx
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+export function Example() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger render={<Button variant="outline" />}>Hover</TooltipTrigger>
+        <TooltipContent>
+          <p>Add to library</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
+```
+
+Position with `side`, `sideOffset`, `align`, and `alignOffset` on `TooltipContent`. Set `delay` on
+`TooltipProvider` for open delay in ms.

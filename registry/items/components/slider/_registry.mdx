@@ -1,0 +1,22 @@
+---
+name: slider
+type: registry:ui
+title: Slider
+description: An input where the user selects a value from within a given range.
+dependencies:
+  - "@base-ui/react"
+files:
+  - path: slider.tsx
+    type: registry:ui
+---
+
+Use for volume, price ranges, and other continuous values. Pass a single value or a range via
+arrays.
+
+```tsx
+import { Slider } from "@/components/ui/slider";
+
+<Slider defaultValue={[50]} max={100} step={1} />
+```
+
+For a range, use two values: `defaultValue={[25, 75]}`. Control with `value` and `onValueChange`.

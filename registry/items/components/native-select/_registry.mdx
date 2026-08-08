@@ -1,0 +1,34 @@
+---
+name: native-select
+type: registry:ui
+title: Native Select
+description: A styled native HTML select element with options and option groups.
+dependencies:
+  - "@tabler/icons-react"
+files:
+  - path: native-select.tsx
+    type: registry:ui
+---
+
+Use for simple selects when a custom dropdown is unnecessary. Wraps a native `<select>` with
+shared form field styling.
+
+```tsx
+import {
+  NativeSelect,
+  NativeSelectOptGroup,
+  NativeSelectOption,
+} from "@/components/ui/native-select";
+
+<NativeSelect>
+  <NativeSelectOption value="">Select a fruit</NativeSelectOption>
+  <NativeSelectOption value="apple">Apple</NativeSelectOption>
+  <NativeSelectOption value="banana">Banana</NativeSelectOption>
+  <NativeSelectOptGroup label="Citrus">
+    <NativeSelectOption value="orange">Orange</NativeSelectOption>
+    <NativeSelectOption value="lemon">Lemon</NativeSelectOption>
+  </NativeSelectOptGroup>
+</NativeSelect>
+```
+
+Sizes: `default` and `sm`. Supports `disabled` and `aria-invalid`.

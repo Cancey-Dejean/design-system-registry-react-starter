@@ -1,0 +1,27 @@
+---
+name: toggle
+type: registry:ui
+title: Toggle
+description: A two-state button that can be either on or off.
+dependencies:
+  - "@base-ui/react"
+  - class-variance-authority
+files:
+  - path: toggle.tsx
+    type: registry:ui
+---
+
+Use for toolbar-style on/off controls. Export `toggleVariants` is shared with toggle-group styling.
+
+```tsx
+import { IconBold } from "@tabler/icons-react";
+
+import { Toggle } from "@/components/ui/toggle";
+
+<Toggle aria-label="Toggle bold">
+  <IconBold />
+</Toggle>
+```
+
+Variants: `default`, `outline`. Sizes: `default`, `sm`, `lg`. Control with `pressed` /
+`onPressedChange` when needed. Built on Base UI Toggle.

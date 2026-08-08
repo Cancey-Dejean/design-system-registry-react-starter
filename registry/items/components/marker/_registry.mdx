@@ -1,0 +1,26 @@
+---
+name: marker
+type: registry:ui
+title: Marker
+description: A marker for labeling sections with optional icons, borders, and separators.
+dependencies:
+  - "@base-ui/react"
+  - class-variance-authority
+files:
+  - path: marker.tsx
+    type: registry:ui
+---
+
+Use markers as section captions, inline notes, or divider labels in lists and forms.
+
+```tsx
+import { Marker, MarkerContent, MarkerIcon } from "@/components/ui/marker";
+
+<Marker>
+  <MarkerIcon>{/* icon */}</MarkerIcon>
+  <MarkerContent>Optional section label</MarkerContent>
+</Marker>
+```
+
+Variants: `default`, `separator` (horizontal rules around the label), and `border` (bottom border).
+Render as another element with `render`.

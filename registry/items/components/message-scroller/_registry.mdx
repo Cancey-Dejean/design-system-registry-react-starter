@@ -1,0 +1,57 @@
+---
+name: message-scroller
+type: registry:ui
+title: Message Scroller
+description: Auto-scrolling container for chat message lists with jump-to controls.
+dependencies:
+  - "@shadcn/react"
+  - "@tabler/icons-react"
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/button.json
+localRegistryDependencies:
+  - scroll-fade
+files:
+  - path: message-scroller.tsx
+    type: registry:ui
+---
+
+Use for conversation threads that stay pinned to the latest message and offer a control to jump
+back. Built on [`@shadcn/react/message-scroller`](https://ui.shadcn.com/docs/components/base/message-scroller).
+Viewport uses `scroll-fade-b` from the [scroll-fade](/utilities/scroll-fade) utility.
+
+```tsx
+import {
+  MessageScroller,
+  MessageScrollerButton,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerProvider,
+  MessageScrollerViewport,
+} from "@/components/ui/message-scroller";
+
+function ChatThread({ messages }: { messages: { id: string; text: string }[] }) {
+  return (
+    <MessageScrollerProvider>
+      <MessageScroller className="h-96">
+        <MessageScrollerViewport>
+          <MessageScrollerContent>
+            {messages.map((message, index) => (
+              <MessageScrollerItem
+                key={message.id}
+                scrollAnchor={index === messages.length - 1}
+              >
+                {message.text}
+              </MessageScrollerItem>
+            ))}
+          </MessageScrollerContent>
+        </MessageScrollerViewport>
+        <MessageScrollerButton />
+      </MessageScroller>
+    </MessageScrollerProvider>
+  );
+}
+```
+
+Mark the latest row with `scrollAnchor` so new content sticks to the end. Use hooks
+`useMessageScroller`, `useMessageScrollerScrollable`, and `useMessageScrollerVisibility` for custom
+controls.

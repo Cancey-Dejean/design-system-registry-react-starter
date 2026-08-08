@@ -1,0 +1,36 @@
+---
+name: context-menu
+type: registry:ui
+title: Context Menu
+description: Displays a menu of actions triggered by a right click.
+dependencies:
+  - "@base-ui/react"
+  - "@tabler/icons-react"
+files:
+  - path: context-menu.tsx
+    type: registry:ui
+---
+
+Use a context menu for actions tied to a specific target area (files, cards, canvas regions).
+
+```tsx
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu";
+
+<ContextMenu>
+  <ContextMenuTrigger>Right click here</ContextMenuTrigger>
+  <ContextMenuContent>
+    <ContextMenuItem>Profile</ContextMenuItem>
+    <ContextMenuItem>Billing</ContextMenuItem>
+    <ContextMenuItem>Team</ContextMenuItem>
+    <ContextMenuItem>Subscription</ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>
+```
+
+Compose checkboxes, radio groups, submenus, separators, and shortcuts. Mark destructive actions with
+`variant="destructive"` on `ContextMenuItem`.

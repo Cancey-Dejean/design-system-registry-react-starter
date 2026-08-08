@@ -1,0 +1,29 @@
+---
+name: scroll-area
+type: registry:ui
+title: Scroll Area
+description: Augments native scroll functionality for custom, cross-browser styling.
+dependencies:
+  - "@base-ui/react"
+files:
+  - path: scroll-area.tsx
+    type: registry:ui
+---
+
+Use for overflow content with styled scrollbars. Constrain the root height (or width for horizontal).
+
+```tsx
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+<ScrollArea className="h-72 w-48 rounded-md border">
+  <div className="p-4">
+    {Array.from({ length: 50 }).map((_, i) => (
+      <div key={i} className="text-sm">
+        Item {i + 1}
+      </div>
+    ))}
+  </div>
+</ScrollArea>
+```
+
+Vertical and horizontal scrollbars are included. Constrain size so overflow appears.

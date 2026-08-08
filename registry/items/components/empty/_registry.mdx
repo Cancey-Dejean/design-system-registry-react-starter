@@ -1,0 +1,40 @@
+---
+name: empty
+type: registry:ui
+title: Empty
+description: Use the Empty component to display an empty state.
+dependencies:
+  - class-variance-authority
+files:
+  - path: empty.tsx
+    type: registry:ui
+---
+
+Use empty states for blank lists, search misses, and first-run screens.
+
+```tsx
+import { Button } from "@/components/ui/button";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+
+<Empty>
+  <EmptyHeader>
+    <EmptyMedia variant="icon">{/* icon */}</EmptyMedia>
+    <EmptyTitle>No projects yet</EmptyTitle>
+    <EmptyDescription>
+      Get started by creating a new project.
+    </EmptyDescription>
+  </EmptyHeader>
+  <EmptyContent>
+    <Button>Create project</Button>
+  </EmptyContent>
+</Empty>
+```
+
+`EmptyMedia` accepts `variant="icon"` for a muted icon well, or `default` for custom media.

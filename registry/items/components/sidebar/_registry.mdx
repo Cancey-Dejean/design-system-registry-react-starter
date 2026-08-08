@@ -1,0 +1,75 @@
+---
+name: sidebar
+type: registry:ui
+title: Sidebar
+description: A composable, themeable, and customizable sidebar component.
+dependencies:
+  - "@base-ui/react"
+  - "@tabler/icons-react"
+  - class-variance-authority
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/button.json
+  - https://ui.shadcn.com/r/styles/base-nova/skeleton.json
+  - https://ui.shadcn.com/r/styles/base-nova/tooltip.json
+localRegistryDependencies:
+  - input
+  - separator
+  - sheet
+  - use-mobile
+files:
+  - path: sidebar.tsx
+    type: registry:ui
+---
+
+Wrap the app chrome in `SidebarProvider`, place a `Sidebar` next to `SidebarInset`, and compose menus
+with groups and menu buttons. Toggle with `SidebarTrigger` or `Ctrl/Cmd+B`.
+
+```tsx
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+
+export function AppShell() {
+  return (
+    <SidebarProvider>
+      <Sidebar>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Application</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton isActive>Home</SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton>Settings</SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+      </Sidebar>
+      <SidebarInset>
+        <header className="flex h-12 items-center gap-2 border-b px-4">
+          <SidebarTrigger />
+          <span className="text-sm font-medium">Dashboard</span>
+        </header>
+        <div className="p-4">Main content</div>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}
+```
+
+Set `collapsible` on `Sidebar` to `offcanvas`, `icon`, or `none`. On viewports matching
+`useIsMobile`, the sidebar renders in a sheet.

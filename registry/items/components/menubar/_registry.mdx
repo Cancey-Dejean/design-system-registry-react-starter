@@ -1,0 +1,39 @@
+---
+name: menubar
+type: registry:ui
+title: Menubar
+description: A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
+dependencies:
+  - "@base-ui/react"
+  - "@tabler/icons-react"
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/dropdown-menu.json
+files:
+  - path: menubar.tsx
+    type: registry:ui
+---
+
+Use a menubar for app chrome menus (File, Edit, View). Built on
+[Base UI Menubar](https://base-ui.com/react/components/menubar) and dropdown menu primitives.
+
+```tsx
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
+
+<Menubar>
+  <MenubarMenu>
+    <MenubarTrigger>File</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>New Tab</MenubarItem>
+      <MenubarItem>New Window</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>
+```
+
+Compose checkboxes, radio groups, submenus, separators, and shortcuts like other menu components.

@@ -1,0 +1,44 @@
+---
+name: message
+type: registry:ui
+title: Message
+description: Layout primitives for chat rows with avatars, headers, and footers.
+files:
+  - path: message.tsx
+    type: registry:ui
+---
+
+Compose chat threads with `MessageGroup` and `Message`. Pair with [Bubble](/components/bubble) for
+message surfaces and [Avatar](/components/avatar) inside `MessageAvatar`.
+
+```tsx
+import {
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+  MessageGroup,
+  MessageHeader,
+} from "@/components/ui/message";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Bubble, BubbleContent } from "@/components/ui/bubble";
+
+<MessageGroup>
+  <Message align="start">
+    <MessageAvatar>
+      <Avatar size="sm">
+        <AvatarFallback>AI</AvatarFallback>
+      </Avatar>
+    </MessageAvatar>
+    <MessageContent>
+      <MessageHeader>Assistant</MessageHeader>
+      <Bubble variant="muted">
+        <BubbleContent>How can I help?</BubbleContent>
+      </Bubble>
+      <MessageFooter>Just now</MessageFooter>
+    </MessageContent>
+  </Message>
+</MessageGroup>
+```
+
+Use `align="end"` for outgoing messages (row reverses).

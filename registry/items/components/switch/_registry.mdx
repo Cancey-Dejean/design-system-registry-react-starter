@@ -1,0 +1,25 @@
+---
+name: switch
+type: registry:ui
+title: Switch
+description: A control that allows the user to toggle between checked and not checked.
+dependencies:
+  - "@base-ui/react"
+files:
+  - path: switch.tsx
+    type: registry:ui
+---
+
+Use switches for binary settings. Pair with a label via `htmlFor` matching the switch `id`.
+
+```tsx
+import { Switch } from "@/components/ui/switch";
+
+<div className="flex items-center gap-2">
+  <Switch id="airplane-mode" />
+  <label htmlFor="airplane-mode">Airplane Mode</label>
+</div>
+```
+
+Supports `size` (`default` | `sm`), controlled `checked` / `onCheckedChange`, `disabled`, and
+`aria-invalid`. Built on Base UI Switch.

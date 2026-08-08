@@ -1,0 +1,24 @@
+---
+name: use-mobile
+type: registry:hook
+title: useIsMobile
+description: Detects whether the viewport matches a mobile max-width media query.
+files:
+  - path: use-mobile.ts
+    type: registry:hook
+---
+
+Returns `true` when the viewport matches `(max-width: 63.999rem)` (~1024px). The first client
+render resolves after mount; until then the returned value is `false`.
+
+```tsx
+import { useIsMobile } from "@/hooks/use-mobile";
+
+export function Example() {
+  const isMobile = useIsMobile();
+
+  return <p>{isMobile ? "Mobile layout" : "Desktop layout"}</p>;
+}
+```
+
+Useful for swapping layouts (for example sidebar sheet vs fixed rail) without CSS-only solutions.

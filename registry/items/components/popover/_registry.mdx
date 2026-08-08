@@ -1,0 +1,36 @@
+---
+name: popover
+type: registry:ui
+title: Popover
+description: Displays rich content in a portal, triggered by a button.
+dependencies:
+  - "@base-ui/react"
+files:
+  - path: popover.tsx
+    type: registry:ui
+---
+
+Use popover for contextual content anchored to a trigger. Built on
+[Base UI Popover](https://base-ui.com/react/components/popover).
+
+```tsx
+import { Button } from "@/components/ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
+<Popover>
+  <PopoverTrigger render={<Button variant="outline" />}>Open</PopoverTrigger>
+  <PopoverContent>
+    <PopoverHeader>
+      <PopoverTitle>Dimensions</PopoverTitle>
+      <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>
+    </PopoverHeader>
+  </PopoverContent>
+</Popover>
+```

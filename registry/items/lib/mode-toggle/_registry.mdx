@@ -1,0 +1,25 @@
+---
+name: mode-toggle
+type: registry:lib
+title: Mode Toggle
+description: Cycles light, dark, and system theme modes and persists the choice.
+dependencies:
+  - lucide-react
+files:
+  - path: mode-toggle.tsx
+    type: registry:lib
+---
+
+A client button that cycles `light` → `dark` → `auto` (system preference), writes `theme` to
+`localStorage`, and updates `document.documentElement` classes and `color-scheme`.
+
+```tsx
+import { ModeToggle } from "@/lib/mode-toggle";
+
+<header className="flex justify-end p-4">
+  <ModeToggle />
+</header>
+```
+
+Icons switch to Sun, Moon, or Monitor based on the current mode. Pass `className` to restyle the
+control. Store key is `theme` with values `light`, `dark`, or `auto`.

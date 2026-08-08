@@ -1,0 +1,37 @@
+---
+name: direction
+type: registry:ui
+title: Direction
+description: A provider component that sets the text direction for your application.
+dependencies:
+  - "@base-ui/react"
+files:
+  - path: direction.tsx
+    type: registry:ui
+---
+
+Sets text direction (`ltr` or `rtl`) for Base UI components. Essential for right-to-left languages
+such as Arabic, Hebrew, and Persian. Built on
+[Base UI Direction Provider](https://base-ui.com/react/utils/direction-provider). Also set
+`dir` on the document root for browser layout.
+
+```tsx
+import { DirectionProvider } from "@/components/ui/direction";
+
+<html dir="rtl">
+  <body>
+    <DirectionProvider direction="rtl">{/* Your app content */}</DirectionProvider>
+  </body>
+</html>
+```
+
+### useDirection
+
+```tsx
+import { useDirection } from "@/components/ui/direction";
+
+function MyComponent() {
+  const direction = useDirection();
+  return <div>Current direction: {direction}</div>;
+}
+```

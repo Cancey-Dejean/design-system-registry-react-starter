@@ -1,0 +1,38 @@
+---
+name: toggle-group
+type: registry:ui
+title: Toggle Group
+description: A set of two-state buttons that can be toggled on or off.
+dependencies:
+  - "@base-ui/react"
+  - class-variance-authority
+localRegistryDependencies:
+  - toggle
+files:
+  - path: toggle-group.tsx
+    type: registry:ui
+---
+
+Group related toggles for exclusive or multi selection. Items share variant and size from the
+parent.
+
+```tsx
+import { IconBold, IconItalic, IconUnderline } from "@tabler/icons-react";
+
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+
+<ToggleGroup multiple defaultValue={["bold"]} variant="outline">
+  <ToggleGroupItem value="bold" aria-label="Toggle bold">
+    <IconBold />
+  </ToggleGroupItem>
+  <ToggleGroupItem value="italic" aria-label="Toggle italic">
+    <IconItalic />
+  </ToggleGroupItem>
+  <ToggleGroupItem value="underline" aria-label="Toggle underline">
+    <IconUnderline />
+  </ToggleGroupItem>
+</ToggleGroup>
+```
+
+Base UI uses `defaultValue` / `value` as string arrays, `multiple` for multi-select, and
+`orientation` for layout. Set `spacing={0}` for a joined control.

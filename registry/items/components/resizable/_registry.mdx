@@ -1,0 +1,34 @@
+---
+name: resizable
+type: registry:ui
+title: Resizable
+description: Accessible resizable panel groups and layouts with keyboard support.
+dependencies:
+  - react-resizable-panels
+files:
+  - path: resizable.tsx
+    type: registry:ui
+---
+
+Use for split layouts. Drag the handle between panels to resize.
+
+```tsx
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
+
+<ResizablePanelGroup orientation="horizontal" className="min-h-[200px] rounded-lg border">
+  <ResizablePanel defaultSize={50}>
+    <div className="flex h-full items-center justify-center p-6">One</div>
+  </ResizablePanel>
+  <ResizableHandle withHandle />
+  <ResizablePanel defaultSize={50}>
+    <div className="flex h-full items-center justify-center p-6">Two</div>
+  </ResizablePanel>
+</ResizablePanelGroup>
+```
+
+Set `orientation` to `horizontal` or `vertical`. Pass `withHandle` on `ResizableHandle` for a
+visible grip.

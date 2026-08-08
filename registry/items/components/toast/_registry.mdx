@@ -1,0 +1,42 @@
+---
+name: toast
+type: registry:ui
+title: Toast
+description: A succinct message that is displayed temporarily.
+dependencies:
+  - "@base-ui/react"
+  - "@tabler/icons-react"
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/button.json
+files:
+  - path: toast.tsx
+    type: registry:ui
+---
+
+Wrap the app (or a surface) with `Toaster`, then call `toast.add()` from the shared manager.
+
+```tsx
+import { Button } from "@/components/ui/button";
+import { toast, Toaster } from "@/components/ui/toast";
+
+export function Example() {
+  return (
+    <Toaster>
+      <Button
+        variant="outline"
+        onClick={() =>
+          toast.add({
+            title: "Event created",
+            description: "Friday, February 10, 2023 at 5:57 PM",
+          })
+        }
+      >
+        Show Toast
+      </Button>
+    </Toaster>
+  );
+}
+```
+
+Pass `type` as `success`, `info`, `warning`, `error`, or `loading` for icons. Use `actionProps` for
+an action button, and `toast.promise()` for async feedback. Built on Base UI Toast.

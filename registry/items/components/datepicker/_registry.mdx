@@ -1,0 +1,45 @@
+---
+name: datepicker
+type: registry:ui
+title: Date Picker
+description: A date picker component with range and presets.
+dependencies:
+  - date-fns
+  - "@tabler/icons-react"
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/button.json
+localRegistryDependencies:
+  - calendar
+  - popover
+files:
+  - path: datepicker.tsx
+    type: registry:ui
+---
+
+A date picker built from [Popover](/components/popover) and [Calendar](/components/calendar). See
+also the [shadcn/ui Date Picker guide](https://ui.shadcn.com/docs/components/base/date-picker).
+
+```tsx
+import { DatePicker, DatePickerWithRange } from "@/components/ui/datepicker";
+
+export function Example() {
+  return (
+    <div className="flex flex-col gap-4">
+      <DatePicker />
+      <DatePickerWithRange />
+    </div>
+  );
+}
+```
+
+Composition:
+
+```
+Popover
+├── PopoverTrigger
+└── PopoverContent
+    └── Calendar
+```
+
+Use `captionLayout="dropdown"` for date-of-birth style month/year dropdowns. Pair with `fromYear` /
+`toYear` (mapped to calendar `startMonth` / `endMonth`) to bound selectable years.

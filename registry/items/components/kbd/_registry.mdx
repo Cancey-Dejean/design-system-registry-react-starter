@@ -1,0 +1,24 @@
+---
+name: kbd
+type: registry:ui
+title: Kbd
+description: Used to display textual user input from keyboard.
+files:
+  - path: kbd.tsx
+    type: registry:ui
+---
+
+Use `Kbd` for single keys and `KbdGroup` for shortcuts.
+
+```tsx
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
+
+<Kbd>⌘</Kbd>
+
+<KbdGroup>
+  <Kbd>⌘</Kbd>
+  <Kbd>K</Kbd>
+</KbdGroup>
+```
+
+Styles adapt inside tooltips via `in-data-[slot=tooltip-content]` rules.

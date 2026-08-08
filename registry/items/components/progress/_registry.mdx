@@ -1,0 +1,26 @@
+---
+name: progress
+type: registry:ui
+title: Progress
+description: Displays an indicator showing the completion progress of a task.
+dependencies:
+  - "@base-ui/react"
+files:
+  - path: progress.tsx
+    type: registry:ui
+---
+
+Use for loading state and task completion. Pair with `ProgressLabel` and `ProgressValue` for
+labeled bars. The track and indicator are rendered by default.
+
+```tsx
+import { Progress, ProgressLabel, ProgressValue } from "@/components/ui/progress";
+
+<Progress value={60}>
+  <ProgressLabel>Upload</ProgressLabel>
+  <ProgressValue />
+</Progress>
+```
+
+Pass `value` as a number from 0–100. Omit or use null for an indeterminate presentation when
+supported by Base UI.

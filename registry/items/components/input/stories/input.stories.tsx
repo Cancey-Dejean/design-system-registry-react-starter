@@ -125,5 +125,5 @@ function ControlledDemo() {
 }
 
 export const Controlled: Story = {
-  render: () => <ControlledDemo />,
+  render: (args) => <ControlledDemo {...args} />,
 };

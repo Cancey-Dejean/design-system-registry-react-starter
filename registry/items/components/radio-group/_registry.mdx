@@ -1,0 +1,35 @@
+---
+name: radio-group
+type: registry:ui
+title: Radio Group
+description: A set of checkable buttons where only one can be checked at a time.
+dependencies:
+  - "@base-ui/react"
+files:
+  - path: radio-group.tsx
+    type: registry:ui
+---
+
+Use for mutually exclusive choices. Pair each `RadioGroupItem` with a label.
+
+```tsx
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+
+<RadioGroup defaultValue="comfortable">
+  <div className="flex items-center gap-2">
+    <RadioGroupItem value="default" id="r1" />
+    <Label htmlFor="r1">Default</Label>
+  </div>
+  <div className="flex items-center gap-2">
+    <RadioGroupItem value="comfortable" id="r2" />
+    <Label htmlFor="r2">Comfortable</Label>
+  </div>
+  <div className="flex items-center gap-2">
+    <RadioGroupItem value="compact" id="r3" />
+    <Label htmlFor="r3">Compact</Label>
+  </div>
+</RadioGroup>
+```
+
+Control with `value` / `onValueChange`, or use `defaultValue` for uncontrolled groups.

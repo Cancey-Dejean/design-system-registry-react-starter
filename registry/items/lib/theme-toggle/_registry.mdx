@@ -1,0 +1,39 @@
+---
+name: theme-toggle
+type: registry:lib
+title: Theme Toggle
+description: Switches between branded data-theme palettes and persists the choice.
+files:
+  - path: theme-toggle.tsx
+    type: registry:lib
+---
+
+Switches `document.documentElement` `data-theme` among `theme-primary`, `theme-secondary`, and
+`theme-tertiary`. Values are stored in `localStorage` under `data-theme`.
+
+```tsx
+import { ThemeToggle } from "@/lib/theme-toggle";
+
+<header className="flex justify-end p-4">
+  <ThemeToggle />
+</header>
+```
+
+Define CSS for each brand palette on the root:
+
+```css
+:root[data-theme="theme-primary"] {
+  /* primary brand tokens */
+}
+
+:root[data-theme="theme-secondary"] {
+  /* secondary brand tokens */
+}
+
+:root[data-theme="theme-tertiary"] {
+  /* tertiary brand tokens */
+}
+```
+
+This is for **brand** palettes (not light/dark mode). For light/dark/system cycling, use
+[mode-toggle](/utilities/mode-toggle).

@@ -1,0 +1,26 @@
+---
+name: checkbox
+type: registry:ui
+title: Checkbox
+description: A control that allows the user to toggle between checked and not checked.
+dependencies:
+  - "@base-ui/react"
+  - "@tabler/icons-react"
+files:
+  - path: checkbox.tsx
+    type: registry:ui
+---
+
+Use checkboxes for multi-select options, settings, and form field toggles.
+
+```tsx
+import { Checkbox } from "@/components/ui/checkbox";
+
+<div className="flex items-center gap-2">
+  <Checkbox id="terms" />
+  <label htmlFor="terms">Accept terms and conditions</label>
+</div>
+```
+
+Supports controlled/uncontrolled `checked` state, `disabled`, and `aria-invalid` styling for form
+errors. Built on Base UI Checkbox.

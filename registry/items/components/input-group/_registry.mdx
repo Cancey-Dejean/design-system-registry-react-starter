@@ -1,0 +1,37 @@
+---
+name: input-group
+type: registry:ui
+title: Input Group
+description: Display additional information or actions to an input or textarea.
+dependencies:
+  - class-variance-authority
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/button.json
+localRegistryDependencies:
+  - input
+  - textarea
+files:
+  - path: input-group.tsx
+    type: registry:ui
+---
+
+Use an input group to attach text, icons, or actions to a field.
+
+```tsx
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+  InputGroupText,
+} from "@/components/ui/input-group";
+
+<InputGroup>
+  <InputGroupAddon>
+    <InputGroupText>https://</InputGroupText>
+  </InputGroupAddon>
+  <InputGroupInput placeholder="example.com" />
+</InputGroup>
+```
+
+Align addons with `align`: `inline-start`, `inline-end`, `block-start`, or `block-end`. Use
+`InputGroupButton` for controls and `InputGroupTextarea` for multi-line fields.

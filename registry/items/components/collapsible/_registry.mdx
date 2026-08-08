@@ -1,0 +1,31 @@
+---
+name: collapsible
+type: registry:ui
+title: Collapsible
+description: An interactive component which expands/collapses a panel.
+dependencies:
+  - "@base-ui/react"
+files:
+  - path: collapsible.tsx
+    type: registry:ui
+---
+
+Use collapsible for show/hide sections that are not a full accordion.
+
+```tsx
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
+<Collapsible>
+  <CollapsibleTrigger>Can I use this in my project?</CollapsibleTrigger>
+  <CollapsibleContent>
+    Yes. Free to use for personal and commercial projects.
+  </CollapsibleContent>
+</Collapsible>
+```
+
+Control openness with `defaultOpen` / `open` and `onOpenChange`. Compose a button via the trigger
+`render` prop when you need styled chrome.

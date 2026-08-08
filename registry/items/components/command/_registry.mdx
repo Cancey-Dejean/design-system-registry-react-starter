@@ -1,0 +1,58 @@
+---
+name: command
+type: registry:ui
+title: Command
+description: Command menu for search and quick actions.
+dependencies:
+  - cmdk
+  - lucide-react
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/dialog.json
+localRegistryDependencies:
+  - input-group
+files:
+  - path: command.tsx
+    type: registry:ui
+---
+
+Use command for searchable action menus and keyboard-driven palettes. Built on
+[cmdk](https://cmdk.paco.me/).
+
+```tsx
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/components/ui/command";
+
+<Command className="max-w-sm rounded-lg border">
+  <CommandInput placeholder="Type a command or search..." />
+  <CommandList>
+    <CommandEmpty>No results found.</CommandEmpty>
+    <CommandGroup heading="Suggestions">
+      <CommandItem>Calendar</CommandItem>
+      <CommandItem>Search Emoji</CommandItem>
+      <CommandItem>Calculator</CommandItem>
+    </CommandGroup>
+    <CommandSeparator />
+    <CommandGroup heading="Settings">
+      <CommandItem>
+        Profile
+        <CommandShortcut>⌘P</CommandShortcut>
+      </CommandItem>
+      <CommandItem>
+        Settings
+        <CommandShortcut>⌘S</CommandShortcut>
+      </CommandItem>
+    </CommandGroup>
+  </CommandList>
+</Command>
+```
+
+Wrap with `CommandDialog` for a modal command palette. Dialog is required when installing the
+dialog composition.

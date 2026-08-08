@@ -1,0 +1,22 @@
+---
+name: input
+type: registry:ui
+title: Input
+description: Displays a form input field or a component that looks like an input field.
+dependencies:
+  - "@base-ui/react"
+files:
+  - path: input.tsx
+    type: registry:ui
+---
+
+Use inputs for text, email, password, search, file, and other single-line fields.
+
+```tsx
+import { Input } from "@/components/ui/input";
+
+<Input type="email" placeholder="Email" />
+```
+
+Supports native `type` values, `disabled`, and `aria-invalid` for form error styling. Built on
+Base UI Input.

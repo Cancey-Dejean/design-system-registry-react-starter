@@ -1,0 +1,48 @@
+---
+name: combobox
+type: registry:ui
+title: Combobox
+description: Autocomplete input with a list of suggestions.
+dependencies:
+  - "@base-ui/react"
+  - "@tabler/icons-react"
+registryDependencies:
+  - https://ui.shadcn.com/r/styles/base-nova/button.json
+localRegistryDependencies:
+  - input-group
+files:
+  - path: combobox.tsx
+    type: registry:ui
+---
+
+Use a combobox for searchable selects, multi-select chips, and grouped suggestions.
+
+```tsx
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "@/components/ui/combobox";
+
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
+
+<Combobox items={frameworks}>
+  <ComboboxInput placeholder="Select a framework" />
+  <ComboboxContent>
+    <ComboboxEmpty>No items found.</ComboboxEmpty>
+    <ComboboxList>
+      {(item) => (
+        <ComboboxItem key={item} value={item}>
+          {item}
+        </ComboboxItem>
+      )}
+    </ComboboxList>
+  </ComboboxContent>
+</Combobox>
+```
+
+Use `multiple` with `ComboboxChips` / `ComboboxChip` for multi-select. Set `showClear` on
+`ComboboxInput` for a clear control. Object items need `itemToStringValue`.

@@ -6,7 +6,7 @@ export function DemoContainer({ className, ...props }: React.ComponentProps<type
   return (
     <Container
       className={cn(
-        "flex items-center justify-center rounded-2xl border border-dashed border-(--foreground-muted) bg-background p-4 text-foreground dark:bg-transparent dark:text-white",
+        "border-foreground-muted flex items-center justify-center rounded-2xl border border-dashed bg-background p-4 text-foreground dark:bg-transparent dark:text-white",
         className,
       )}
       {...props}

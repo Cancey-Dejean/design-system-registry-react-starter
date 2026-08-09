@@ -20,11 +20,12 @@ const textConfig = {
       bold: "font-bold",
     },
     tone: {
-      default: "text-(--foreground)",
-      muted: "text-(--muted-foreground)",
-      brand: "text-(--primary)",
-      danger: "text-(--destructive)",
-      success: "text-(--color-green-600)",
+      default: "text-foreground",
+      muted: "text-muted-foreground",
+      brand: "text-primary",
+      danger: "text-destructive",
+      success: "text-green-600",
+      warning: "text-yellow-600",
     },
     align: {
       left: "",

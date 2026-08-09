@@ -1,0 +1,38 @@
+---
+name: dropdown-menu
+type: registry:ui
+title: Dropdown Menu
+description: Displays a menu of actions or options triggered by a button.
+dependencies:
+  - "@base-ui/react"
+  - "@tabler/icons-react"
+files:
+  - path: dropdown-menu.tsx
+    type: registry:ui
+---
+
+Use a dropdown menu for actions attached to a button or other click trigger. Built on
+[Base UI Menu](https://base-ui.com/react/components/menu).
+
+```tsx
+import { Button } from "@/components/button/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/dropdown-menu/dropdown-menu";
+
+<DropdownMenu>
+  <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Billing</DropdownMenuItem>
+    <DropdownMenuItem>Team</DropdownMenuItem>
+    <DropdownMenuItem>Subscription</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+Compose checkboxes, radio groups, submenus, separators, and shortcuts. Mark destructive actions with
+`variant="destructive"` on `DropdownMenuItem`.

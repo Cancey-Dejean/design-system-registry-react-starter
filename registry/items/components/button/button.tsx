@@ -7,7 +7,7 @@ function ButtonCTAGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="button-cta-group"
-      className={cn("relative flex items-center justify-center gap-4", className)}
+      className={cn("relative flex items-center justify-center gap-2", className)}
       {...props}
     />
   );

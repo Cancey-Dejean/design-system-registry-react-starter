@@ -1,7 +1,14 @@
 import componentsConfig from "../../../components.json";
 import { registryItems } from "./catalog";
 import type { RegistryFileType } from "./metadata";
-import { getFileName, getParentPath, normalizePath, stripCodeExtension } from "./paths";
+import {
+  getFileName,
+  getParentPath,
+  getShadcnDefaultTargetSegment,
+  normalizePath,
+  normalizeRegistryRelativePath,
+  stripCodeExtension,
+} from "./paths";
 
 type RegistryDisplaySourceFile = {
   path: string;
@@ -44,6 +51,11 @@ export function getRegistryDisplaySource(
   options: RegistryDisplaySourceOptions = {},
 ): string {
   const displayImportPaths = getRegistryDisplayImportPaths(item, options);
+  const sameItemSourcePaths = new Set(
+    item.sourceFiles
+      .map((sourceFile) => sourceFile.sourcePath)
+      .filter((sourcePath): sourcePath is string => Boolean(sourcePath)),
+  );
   const importerPath = file.sourcePath ?? file.path;
   const isPreviewSourceFile = isRegistryPreviewSourceFile(file);
   const source = isPreviewSourceFile ? cleanRegistryPreviewDisplaySource(file.source) : file.source;
@@ -56,6 +68,13 @@ export function getRegistryDisplaySource(
         specifier,
         displayImportPaths,
       );
+
+      // Keep same-item relative imports in published install content so multi-file
+      // packages retain working paths after install (e.g. icon/ → ./icon.variants).
+      // Previews still rewrite to absolute aliases for docs.
+      if (sourcePath && sameItemSourcePaths.has(sourcePath) && !isPreviewSourceFile) {
+        return match;
+      }
 
       if (!sourcePath) {
         const aliasImportPath = resolveRegistryAliasImportPath(importerPath, specifier);
@@ -212,7 +231,18 @@ function getRegistryFileDisplayImportPath(file: RegistryDisplayPublishedFile): s
 
   const alias = getAliasForRegistryFileType(file.type);
 
-  return alias ? joinImportPath(alias, stripCodeExtension(getFileName(file.path))) : null;
+  if (!alias) {
+    return null;
+  }
+
+  const path = normalizeRegistryRelativePath(file.path);
+  const targetSegment = getShadcnDefaultTargetSegment(file.type);
+  const relativePath =
+    targetSegment && path.startsWith(`${targetSegment}/`)
+      ? path.slice(targetSegment.length + 1)
+      : path;
+
+  return joinImportPath(alias, stripCodeExtension(relativePath));
 }
 
 function getAliasImportPathForTarget(target: string): string {

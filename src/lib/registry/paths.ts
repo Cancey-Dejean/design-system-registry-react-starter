@@ -71,7 +71,9 @@ export function getRegistryFilePublicPath(file: {
     return path;
   }
 
-  return getDefaultRegistryFilePublicPath(getFileName(path), file.type);
+  // Keep nested item-relative paths (e.g. icon-set/cloud.tsx → ui/icon-set/cloud.tsx)
+  // so multi-file packages install with their folder structure intact.
+  return getDefaultRegistryFilePublicPath(path, file.type);
 }
 
 export function getRegistryFileTarget(file: {
@@ -93,7 +95,7 @@ export function getRegistryFileTarget(file: {
 
   const targetPath = path.startsWith(`${targetSegment}/`)
     ? path.slice(targetSegment.length + 1)
-    : getFileName(path);
+    : path;
 
   return `${targetPlaceholder}/${targetPath}`;
 }
@@ -127,3 +129,5 @@ function getShadcnDefaultTargetSegment(type: RegistryFileType): string | undefin
 function getShadcnTargetPlaceholder(type: RegistryFileType): string | undefined {
   return shadcnTargetPlaceholdersByFileType[type];
 }
+
+export { getShadcnDefaultTargetSegment, getShadcnTargetPlaceholder };

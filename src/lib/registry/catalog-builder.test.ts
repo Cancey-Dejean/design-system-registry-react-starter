@@ -122,7 +122,39 @@ files:
     expect(items[0]?.sourceFiles[0]?.sourcePath).toBe("registry/items/pages/example/page.tsx");
   });
 
-  test("derives public install paths from nested item-relative file names", () => {
+  test("preserves nested item-relative paths in public install paths", () => {
+    const items = createRegistryCatalogItems({
+      "registry/items/components/example/_registry.mdx": `---
+name: fixture-icons
+type: registry:ui
+files:
+  - path: index.tsx
+    type: registry:ui
+  - path: icon-set/cloud.tsx
+    type: registry:ui
+---
+`,
+    });
+
+    expect(items[0]?.files).toEqual([
+      {
+        path: "ui/index.tsx",
+        target: "@ui/index.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/icon-set/cloud.tsx",
+        target: "@ui/icon-set/cloud.tsx",
+        type: "registry:ui",
+      },
+    ]);
+    expect(items[0]?.sourceFiles.map((file) => file.sourcePath)).toEqual([
+      "registry/items/components/example/index.tsx",
+      "registry/items/components/example/icon-set/cloud.tsx",
+    ]);
+  });
+
+  test("preserves intermediate directories for nested item-relative file names", () => {
     const items = createRegistryCatalogItems({
       "registry/items/components/example/_registry.mdx": `---
 name: fixture-card
@@ -136,8 +168,8 @@ files:
 
     expect(items[0]?.files).toEqual([
       {
-        path: "ui/fixture-card.tsx",
-        target: "@ui/fixture-card.tsx",
+        path: "ui/src/fixture-card.tsx",
+        target: "@ui/src/fixture-card.tsx",
         type: "registry:ui",
       },
     ]);

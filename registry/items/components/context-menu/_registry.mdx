@@ -22,14 +22,16 @@ import {
 } from "@/components/context-menu/context-menu";
 
 <ContextMenu>
-  <ContextMenuTrigger>Right click here</ContextMenuTrigger>
+  <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+    Right click here
+  </ContextMenuTrigger>
   <ContextMenuContent>
     <ContextMenuItem>Profile</ContextMenuItem>
     <ContextMenuItem>Billing</ContextMenuItem>
     <ContextMenuItem>Team</ContextMenuItem>
     <ContextMenuItem>Subscription</ContextMenuItem>
   </ContextMenuContent>
-</ContextMenu>
+</ContextMenu>;
 ```
 
 Compose checkboxes, radio groups, submenus, separators, and shortcuts. Mark destructive actions with

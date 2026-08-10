@@ -1,8 +1,8 @@
+import type { SVGProps } from "react";
+
 import { cn } from "@/lib/utils";
 
-import type { LogoProps } from "./types";
-
-export default function XLogo({ className, ...props }: LogoProps) {
+export default function XLogo({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
       aria-hidden="true"

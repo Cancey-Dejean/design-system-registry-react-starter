@@ -26,10 +26,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/components/dialog/dialog";
 
 <Dialog>
-  <DialogTrigger render={<Button variant="outline" />}>Open Dialog</DialogTrigger>
+  <DialogTrigger render={<Button variant="outline" />}>
+    Open Dialog
+  </DialogTrigger>
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Edit profile</DialogTitle>
@@ -42,7 +44,7 @@ import {
       <Button type="submit">Save changes</Button>
     </DialogFooter>
   </DialogContent>
-</Dialog>
+</Dialog>;
 ```
 
 Set `showCloseButton={false}` on `DialogContent` to hide the corner X. Pass `showCloseButton` on

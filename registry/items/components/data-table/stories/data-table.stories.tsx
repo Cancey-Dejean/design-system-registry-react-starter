@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import StoryWrapper from "@/components/ui/story-wrapper";
 
 import { DataTable } from "../data-table";
-import { columns, payments } from "./payments";
+import { columns, payments } from "../payments";
 
 const meta = {
   title: "Components/Data Table",

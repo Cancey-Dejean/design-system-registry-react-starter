@@ -14,8 +14,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { Checkbox } from "../../checkbox/checkbox";
-import type { DataTableFeatures } from "../data-table-features";
+import { Checkbox } from "../checkbox/checkbox";
+import type { DataTableFeatures } from "./data-table-features";
 
 export type Payment = {
   id: string;
@@ -26,15 +26,50 @@ export type Payment = {
 
 export const payments: Payment[] = [
   { id: "728ed52f", amount: 100, status: "pending", email: "m@example.com" },
-  { id: "489e1d42", amount: 125, status: "processing", email: "example@gmail.com" },
-  { id: "a1b2c3d4", amount: 316, status: "success", email: "ken99@example.com" },
-  { id: "e5f6g7h8", amount: 242, status: "success", email: "Abe45@example.com" },
-  { id: "i9j0k1l2", amount: 837, status: "processing", email: "Monserrat44@example.com" },
-  { id: "m3n4o5p6", amount: 874, status: "success", email: "Silas22@example.com" },
-  { id: "q7r8s9t0", amount: 721, status: "failed", email: "carmella@example.com" },
+  {
+    id: "489e1d42",
+    amount: 125,
+    status: "processing",
+    email: "example@gmail.com",
+  },
+  {
+    id: "a1b2c3d4",
+    amount: 316,
+    status: "success",
+    email: "ken99@example.com",
+  },
+  {
+    id: "e5f6g7h8",
+    amount: 242,
+    status: "success",
+    email: "Abe45@example.com",
+  },
+  {
+    id: "i9j0k1l2",
+    amount: 837,
+    status: "processing",
+    email: "Monserrat44@example.com",
+  },
+  {
+    id: "m3n4o5p6",
+    amount: 874,
+    status: "success",
+    email: "Silas22@example.com",
+  },
+  {
+    id: "q7r8s9t0",
+    amount: 721,
+    status: "failed",
+    email: "carmella@example.com",
+  },
   { id: "u1v2w3x4", amount: 450, status: "pending", email: "sara@example.com" },
   { id: "y5z6a7b8", amount: 199, status: "success", email: "noah@example.com" },
-  { id: "c9d0e1f2", amount: 512, status: "processing", email: "lia@example.com" },
+  {
+    id: "c9d0e1f2",
+    amount: 512,
+    status: "processing",
+    email: "lia@example.com",
+  },
   { id: "g3h4i5j6", amount: 88, status: "failed", email: "omar@example.com" },
   { id: "k7l8m9n0", amount: 1020, status: "success", email: "ava@example.com" },
 ];

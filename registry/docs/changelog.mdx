@@ -8,6 +8,17 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ---
 
+## v1.4.0: August 10, 2026
+
+- **Install paths:** Multi-file components now publish nested folder structure instead of flattening basename-only into `ui/`. Nested packages such as `Icons` and `Logos` install under `components/icons/**` and `components/logos/**` (including `icon/`, `icon-set/`, `logo/`, and `logo-set/`).
+- **Published package imports:** Same-item relative imports are preserved in installed source so multi-file packages keep working after `shadcn add` (for example `./icon.variants`, `./logo-set/apple`, `../index`).
+- **Icons / Logos:** Added explicit install `target`s for every published file; removed unused `icon-set/types.ts` and `logo-set/types.ts` stubs.
+- **Data Table:** Sample `payments.tsx` (columns + fixture data) is now a published registry file, not story-only source.
+- **Targets & docs:** Install targets and usage examples updated across registry items (including `Accordion`, `Button`, `Hero`, and many component `_registry.mdx` pages) so install paths match consumers’ `components.json` aliases.
+- **Previews:** Component registry preview exports and docs samples tightened for catalog rendering.
+
+---
+
 ## v1.3.0: July 22, 2026
 
 - Documented how to register `@design-system-ui` in `components.json` on the [Installation](/docs/installation) and [Styles](/docs/styles) pages, so new projects can resolve namespaced install commands.

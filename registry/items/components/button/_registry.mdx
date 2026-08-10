@@ -8,10 +8,13 @@ dependencies:
 files:
   - path: button.tsx
     type: registry:ui
-  - path: button/button.types.ts
+    target: components/ui/button/button.tsx
+  - path: button.types.ts
     type: registry:ui
-  - path: button/button.variants.ts
+    target: components/ui/button/button.types.ts
+  - path: button.variants.ts
     type: registry:ui
+    target: components/ui/button/button.variants.ts
 ---
 
 Use the button for primary actions, secondary actions, links, and icon-only controls. Pair related

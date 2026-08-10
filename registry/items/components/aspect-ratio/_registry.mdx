@@ -6,6 +6,7 @@ description: Displays content within a desired aspect ratio.
 files:
   - path: aspect-ratio.tsx
     type: registry:ui
+    target: components/ui/aspect-ratio/aspect-ratio.tsx
 ---
 
 Use aspect ratio to constrain media and placeholders so layout does not shift as content loads.
@@ -13,13 +14,17 @@ Use aspect ratio to constrain media and placeholders so layout does not shift as
 ```tsx
 import { AspectRatio } from "@/components/aspect-ratio/aspect-ratio";
 
-<AspectRatio ratio={16 / 9} className="overflow-hidden rounded-lg bg-muted">
-  <img
-    src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
-    alt="Mountain landscape by Drew Beamer"
-    className="size-full object-cover"
-  />
-</AspectRatio>
+export function Preview() {
+  return (
+    <AspectRatio ratio={16 / 9} className="bg-muted overflow-hidden rounded-lg">
+      <img
+        src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+        alt="Mountain landscape by Drew Beamer"
+        className="size-full object-cover"
+      />
+    </AspectRatio>
+  );
+}
 ```
 
 Pass `ratio` as a number (for example `16 / 9`, `1`, or `4 / 3`).

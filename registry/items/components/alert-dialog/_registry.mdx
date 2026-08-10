@@ -10,6 +10,7 @@ registryDependencies:
 files:
   - path: alert-dialog.tsx
     type: registry:ui
+    target: components/ui/alert-dialog/alert-dialog.tsx
 ---
 
 Use alert dialogs for destructive or confirm-before-acting flows that need an explicit response.
@@ -28,24 +29,28 @@ import {
 } from "@/components/alert-dialog/alert-dialog";
 import { Button } from "@/components/button/button";
 
-<AlertDialog>
-  <AlertDialogTrigger render={<Button variant="outline" />}>
-    Show Dialog
-  </AlertDialogTrigger>
-  <AlertDialogContent>
-    <AlertDialogHeader>
-      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-      <AlertDialogDescription>
-        This action cannot be undone. This will permanently delete your account
-        and remove your data from our servers.
-      </AlertDialogDescription>
-    </AlertDialogHeader>
-    <AlertDialogFooter>
-      <AlertDialogCancel>Cancel</AlertDialogCancel>
-      <AlertDialogAction>Continue</AlertDialogAction>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>
+export function Preview() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger render={<Button variant="outline" />}>
+        Show Dialog
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
 ```
 
 Pass `size="sm"` on `AlertDialogContent` for a compact layout. Add `AlertDialogMedia` for a leading

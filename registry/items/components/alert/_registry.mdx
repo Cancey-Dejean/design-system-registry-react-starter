@@ -21,12 +21,16 @@ import {
   AlertTitle,
 } from "@/components/alert/alert";
 
-<Alert>
-  <AlertTitle>Heads up!</AlertTitle>
-  <AlertDescription>
-    You can add components and dependencies to your app using the CLI.
-  </AlertDescription>
-</Alert>;
+export function Preview() {
+  return (
+    <Alert>
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>
+        You can add components and dependencies to your app using the CLI.
+      </AlertDescription>
+    </Alert>
+  );
+}
 ```
 
 Pass `variant="destructive"` for error-style callouts. Compose an icon as a child of `Alert` for

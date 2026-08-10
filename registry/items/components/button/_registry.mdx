@@ -8,9 +8,9 @@ dependencies:
 files:
   - path: button.tsx
     type: registry:ui
-  - path: button.types.ts
+  - path: button/button.types.ts
     type: registry:ui
-  - path: button.variants.ts
+  - path: button/button.variants.ts
     type: registry:ui
 ---
 
@@ -20,8 +20,12 @@ actions with `ButtonCTAGroup`.
 ```tsx
 import { Button, ButtonCTAGroup } from "@/components/button/button";
 
-<ButtonCTAGroup>
-  <Button variant="primary">Save</Button>
-  <Button variant="outline">Cancel</Button>
-</ButtonCTAGroup>
+export function Preview() {
+  return (
+    <ButtonCTAGroup>
+      <Button variant="primary">Save</Button>
+      <Button variant="outline">Cancel</Button>
+    </ButtonCTAGroup>
+  );
+}
 ```

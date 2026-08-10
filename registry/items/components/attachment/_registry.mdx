@@ -11,6 +11,7 @@ registryDependencies:
 files:
   - path: attachment.tsx
     type: registry:ui
+    target: components/ui/attachment/attachment.tsx
 ---
 
 Use attachments for files and images in chat composers, message threads, and upload lists.
@@ -26,20 +27,24 @@ import {
   AttachmentTitle,
 } from "@/components/attachment/attachment";
 
-<Attachment>
-  <AttachmentMedia>
-    <FileTextIcon />
-  </AttachmentMedia>
-  <AttachmentContent>
-    <AttachmentTitle>sales-dashboard.pdf</AttachmentTitle>
-    <AttachmentDescription>PDF · 2.4 MB</AttachmentDescription>
-  </AttachmentContent>
-  <AttachmentActions>
-    <AttachmentAction aria-label="Remove sales-dashboard.pdf">
-      <XIcon />
-    </AttachmentAction>
-  </AttachmentActions>
-</Attachment>
+export function Preview() {
+  return (
+    <Attachment>
+      <AttachmentMedia>
+        <FileTextIcon />
+      </AttachmentMedia>
+      <AttachmentContent>
+        <AttachmentTitle>sales-dashboard.pdf</AttachmentTitle>
+        <AttachmentDescription>PDF · 2.4 MB</AttachmentDescription>
+      </AttachmentContent>
+      <AttachmentActions>
+        <AttachmentAction aria-label="Remove sales-dashboard.pdf">
+          <XIcon />
+        </AttachmentAction>
+      </AttachmentActions>
+    </Attachment>
+  );
+}
 ```
 
 Supports `state` (`idle`, `uploading`, `processing`, `error`, `done`), `size` (`default`,

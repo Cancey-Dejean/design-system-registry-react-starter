@@ -8,17 +8,26 @@ dependencies:
 files:
   - path: avatar.tsx
     type: registry:ui
+    target: components/ui/avatar/avatar.tsx
 ---
 
 Use avatars for user photos, initials, status badges, and stacked groups.
 
 ```tsx
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/avatar/avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/avatar/avatar";
 
-<Avatar>
-  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-  <AvatarFallback>CN</AvatarFallback>
-</Avatar>
+export function Preview() {
+  return (
+    <Avatar>
+      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+  );
+}
 ```
 
 Pass `size` (`sm`, `default`, `lg`) on the root. Compose `AvatarBadge` for status

@@ -8,19 +8,25 @@ dependencies:
 files:
   - path: alert.tsx
     type: registry:ui
+    target: components/ui/alert/alert.tsx
 ---
 
 Use alerts for status messages, warnings, and important callouts.
 
 ```tsx
-import { Alert, AlertAction, AlertDescription, AlertTitle } from "@/components/alert/alert";
+import {
+  Alert,
+  AlertAction,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/alert/alert";
 
 <Alert>
   <AlertTitle>Heads up!</AlertTitle>
   <AlertDescription>
     You can add components and dependencies to your app using the CLI.
   </AlertDescription>
-</Alert>
+</Alert>;
 ```
 
 Pass `variant="destructive"` for error-style callouts. Compose an icon as a child of `Alert` for

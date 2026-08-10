@@ -22,20 +22,24 @@ import {
   AccordionTrigger,
 } from "@/components/accordion/accordion";
 
-<Accordion defaultValue={["item-1"]}>
-  <AccordionItem value="item-1">
-    <AccordionTrigger>Is it accessible?</AccordionTrigger>
-    <AccordionContent>
-      Yes. It adheres to the WAI-ARIA design pattern.
-    </AccordionContent>
-  </AccordionItem>
-  <AccordionItem value="item-2">
-    <AccordionTrigger>Is it styled?</AccordionTrigger>
-    <AccordionContent>
-      Yes. It comes with default styles that match the other components.
-    </AccordionContent>
-  </AccordionItem>
-</Accordion>;
+export function Preview() {
+  return (
+    <Accordion defaultValue={["item-1"]}>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Is it styled?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It comes with default styles that match the other components.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}
 ```
 
 Open multiple sections with `multiple`.

@@ -8,6 +8,7 @@ dependencies:
 files:
   - path: collapsible.tsx
     type: registry:ui
+    target: components/ui/collapsible/collapsible.tsx
 ---
 
 Use collapsible for show/hide sections that are not a full accordion.
@@ -19,12 +20,16 @@ import {
   CollapsibleTrigger,
 } from "@/components/collapsible/collapsible";
 
-<Collapsible>
-  <CollapsibleTrigger>Can I use this in my project?</CollapsibleTrigger>
-  <CollapsibleContent>
-    Yes. Free to use for personal and commercial projects.
-  </CollapsibleContent>
-</Collapsible>
+export function Example() {
+  return (
+    <Collapsible>
+      <CollapsibleTrigger>Can I use this in my project?</CollapsibleTrigger>
+      <CollapsibleContent>
+        Yes. Free to use for personal and commercial projects.
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
 ```
 
 Control openness with `defaultOpen` / `open` and `onOpenChange`. Compose a button via the trigger

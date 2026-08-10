@@ -9,6 +9,7 @@ dependencies:
 files:
   - path: marker.tsx
     type: registry:ui
+    target: components/ui/marker/marker.tsx
 ---
 
 Use markers as section captions, inline notes, or divider labels in lists and forms.
@@ -16,10 +17,14 @@ Use markers as section captions, inline notes, or divider labels in lists and fo
 ```tsx
 import { Marker, MarkerContent, MarkerIcon } from "@/components/marker/marker";
 
-<Marker>
-  <MarkerIcon>{/* icon */}</MarkerIcon>
-  <MarkerContent>Optional section label</MarkerContent>
-</Marker>
+export function Example() {
+  return (
+    <Marker>
+      <MarkerIcon>{/* icon */}</MarkerIcon>
+      <MarkerContent>Optional section label</MarkerContent>
+    </Marker>
+  );
+}
 ```
 
 Variants: `default`, `separator` (horizontal rules around the label), and `border` (bottom border).

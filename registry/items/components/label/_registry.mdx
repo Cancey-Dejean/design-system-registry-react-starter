@@ -6,6 +6,7 @@ description: Renders an accessible label associated with controls.
 files:
   - path: label.tsx
     type: registry:ui
+    target: components/ui/label/label.tsx
 ---
 
 Use labels with form controls via `htmlFor` matching the control `id`.
@@ -14,10 +15,14 @@ Use labels with form controls via `htmlFor` matching the control `id`.
 import { Input } from "@/components/input/input";
 import { Label } from "@/components/label/label";
 
-<div className="grid gap-2">
-  <Label htmlFor="email">Email</Label>
-  <Input id="email" type="email" placeholder="you@example.com" />
-</div>
+export function Example() {
+  return (
+    <div className="grid gap-2">
+      <Label htmlFor="email">Email</Label>
+      <Input id="email" type="email" placeholder="you@example.com" />
+    </div>
+  );
+}
 ```
 
 Disabled styling is driven by `group-data-[disabled=true]` on an ancestor, or `peer-disabled` when

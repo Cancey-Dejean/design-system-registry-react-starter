@@ -11,6 +11,7 @@ registryDependencies:
 files:
   - path: carousel.tsx
     type: registry:ui
+    target: components/ui/carousel/carousel.tsx
 ---
 
 Use a carousel for sliding content with previous and next controls.
@@ -26,23 +27,29 @@ import {
 
 import { Card, CardContent } from "@/components/card/card";
 
-<Carousel className="w-full max-w-xs">
-  <CarouselContent>
-    {Array.from({ length: 5 }).map((_, index) => (
-      <CarouselItem key={index}>
-        <div className="p-1">
-          <Card>
-            <CardContent className="flex aspect-square items-center justify-center p-6">
-              <span className="text-4xl font-semibold">Slide {index + 1}</span>
-            </CardContent>
-          </Card>
-        </div>
-      </CarouselItem>
-    ))}
-  </CarouselContent>
-  <CarouselPrevious />
-  <CarouselNext />
-</Carousel>;
+export function Example() {
+  return (
+    <Carousel className="w-full max-w-xs">
+      <CarouselContent>
+        {Array.from({ length: 5 }).map((_, index) => (
+          <CarouselItem key={index}>
+            <div className="p-1">
+              <Card>
+                <CardContent className="flex aspect-square items-center justify-center p-6">
+                  <span className="text-4xl font-semibold">
+                    Slide {index + 1}
+                  </span>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}
 ```
 
 Pass Embla options via `opts` (for example `loop: true`) and set `orientation="vertical"` for a

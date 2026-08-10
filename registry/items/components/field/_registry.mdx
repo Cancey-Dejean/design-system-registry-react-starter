@@ -11,6 +11,7 @@ localRegistryDependencies:
 files:
   - path: field.tsx
     type: registry:ui
+    target: components/ui/field/field.tsx
 ---
 
 Use field primitives to structure form controls with consistent labels, help text, and validation
@@ -26,13 +27,17 @@ import {
 } from "@/components/field/field";
 import { Input } from "@/components/input/input";
 
-<FieldGroup>
-  <Field>
-    <FieldLabel htmlFor="email">Email</FieldLabel>
-    <Input id="email" type="email" placeholder="you@example.com" />
-    <FieldDescription>We will never share your email.</FieldDescription>
-  </Field>
-</FieldGroup>
+export function Example() {
+  return (
+    <FieldGroup>
+      <Field>
+        <FieldLabel htmlFor="email">Email</FieldLabel>
+        <Input id="email" type="email" placeholder="you@example.com" />
+        <FieldDescription>We will never share your email.</FieldDescription>
+      </Field>
+    </FieldGroup>
+  );
+}
 ```
 
 Orientations: `vertical` (default), `horizontal`, and `responsive` (stacks until the

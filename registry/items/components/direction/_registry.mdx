@@ -8,6 +8,7 @@ dependencies:
 files:
   - path: direction.tsx
     type: registry:ui
+    target: components/ui/direction/direction.tsx
 ---
 
 Sets text direction (`ltr` or `rtl`) for Base UI components. Essential for right-to-left languages
@@ -20,9 +21,11 @@ import { DirectionProvider } from "@/components/direction/direction";
 
 <html dir="rtl">
   <body>
-    <DirectionProvider direction="rtl">{/* Your app content */}</DirectionProvider>
+    <DirectionProvider direction="rtl">
+      {/* Your app content */}
+    </DirectionProvider>
   </body>
-</html>
+</html>;
 ```
 
 ### useDirection
@@ -30,8 +33,7 @@ import { DirectionProvider } from "@/components/direction/direction";
 ```tsx
 import { useDirection } from "@/components/ui/direction";
 
-function MyComponent() {
-  const direction = useDirection();
-  return <div>Current direction: {direction}</div>;
+export function Example() {
+  return <div>Current direction: {useDirection()}</div>;
 }
 ```

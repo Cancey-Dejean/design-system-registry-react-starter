@@ -17,10 +17,13 @@ localRegistryDependencies:
 files:
   - path: data-table.tsx
     type: registry:ui
+    target: components/ui/data-table/data-table.tsx
   - path: data-table-features.ts
     type: registry:ui
+    target: components/ui/data-table/data-table-features.ts
   - path: payments.tsx
     type: registry:ui
+    target: components/ui/payments/payments.tsx
 ---
 
 Build interactive data tables with sorting, filtering, pagination, column visibility, and row
@@ -30,7 +33,7 @@ selection on top of TanStack Table **v9** and the [Table](/components/table) pri
 import { DataTable } from "@/components/ui/data-table";
 import { columns, payments } from "@/components/ui/payments";
 
-export default function PaymentsPage() {
+export default function Example() {
   return <DataTable columns={columns} data={payments} />;
 }
 ```

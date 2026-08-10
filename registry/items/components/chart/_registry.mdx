@@ -8,6 +8,7 @@ dependencies:
 files:
   - path: chart.tsx
     type: registry:ui
+    target: components/ui/chart/chart.tsx
 ---
 
 Use `ChartContainer` with a `config` map for series labels and colors. Compose Recharts primitives
@@ -35,20 +36,24 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-  <BarChart accessibilityLayer data={chartData}>
-    <CartesianGrid vertical={false} />
-    <XAxis
-      dataKey="month"
-      tickLine={false}
-      tickMargin={10}
-      axisLine={false}
-      tickFormatter={(value) => value.slice(0, 3)}
-    />
-    <ChartTooltip content={<ChartTooltipContent />} />
-    <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-  </BarChart>
-</ChartContainer>
+export function Example() {
+  return (
+    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+      <BarChart accessibilityLayer data={chartData}>
+        <CartesianGrid vertical={false} />
+        <XAxis
+          dataKey="month"
+          tickLine={false}
+          tickMargin={10}
+          axisLine={false}
+          tickFormatter={(value) => value.slice(0, 3)}
+        />
+        <ChartTooltip content={<ChartTooltipContent />} />
+        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+      </BarChart>
+    </ChartContainer>
+  );
+}
 ```
 
 Theme series with CSS variables (`--chart-1` …) or theme-aware entries in `ChartConfig`.

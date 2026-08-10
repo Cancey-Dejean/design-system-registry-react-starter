@@ -13,6 +13,7 @@ localRegistryDependencies:
 files:
   - path: input-group.tsx
     type: registry:ui
+    target: components/ui/input-group/input-group.tsx
 ---
 
 Use an input group to attach text, icons, or actions to a field.
@@ -25,12 +26,16 @@ import {
   InputGroupText,
 } from "@/components/input-group/input-group";
 
-<InputGroup>
-  <InputGroupAddon>
-    <InputGroupText>https://</InputGroupText>
-  </InputGroupAddon>
-  <InputGroupInput placeholder="example.com" />
-</InputGroup>
+export function Example() {
+  return (
+    <InputGroup>
+      <InputGroupAddon>
+        <InputGroupText>https://</InputGroupText>
+      </InputGroupAddon>
+      <InputGroupInput placeholder="example.com" />
+    </InputGroup>
+  );
+}
 ```
 
 Align addons with `align`: `inline-start`, `inline-end`, `block-start`, or `block-end`. Use

@@ -8,10 +8,13 @@ dependencies:
 files:
   - path: container.tsx
     type: registry:ui
+    target: components/ui/container/container.tsx
   - path: container.types.tsx
     type: registry:ui
+    target: components/ui/container/container.types.ts
   - path: container.variants.tsx
     type: registry:ui
+    target: components/ui/container/container.variants.ts
 ---
 
 Use the container to constrain page or section content. Set `size` to `base`, `contained`, `thin`,
@@ -20,10 +23,14 @@ or `full`.
 ```tsx
 import { Container } from "@/components/container/container";
 
-<Container
-  size="thin"
-  className="bg-background flex items-center justify-center rounded-2xl border border-dashed p-4"
->
-  Content goes here...
-</Container>;
+export function Example() {
+  return (
+    <Container
+      size="thin"
+      className="bg-background flex items-center justify-center rounded-2xl border border-dashed p-4"
+    >
+      Content goes here...
+    </Container>
+  );
+}
 ```

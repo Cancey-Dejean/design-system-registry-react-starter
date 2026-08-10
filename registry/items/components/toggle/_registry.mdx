@@ -9,18 +9,22 @@ dependencies:
 files:
   - path: toggle.tsx
     type: registry:ui
+    target: components/ui/toggle/toggle.tsx
 ---
 
 Use for toolbar-style on/off controls. Export `toggleVariants` is shared with toggle-group styling.
 
 ```tsx
 import { IconBold } from "@tabler/icons-react";
-
 import { Toggle } from "@/components/toggle/toggle";
 
-<Toggle aria-label="Toggle bold">
-  <IconBold />
-</Toggle>
+export function Example() {
+  return (
+    <Toggle aria-label="Toggle bold">
+      <IconBold />
+    </Toggle>
+  );
+}
 ```
 
 Variants: `default`, `outline`. Sizes: `default`, `sm`, `lg`. Control with `pressed` /

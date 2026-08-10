@@ -8,25 +8,36 @@ dependencies:
 files:
   - path: hover-card.tsx
     type: registry:ui
+    target: components/ui/hover-card/hover-card.tsx
 ---
 
 Use a hover card to show rich preview content when the user hovers a trigger. Built on
 [Base UI Preview Card](https://base-ui.com/react/components/preview-card).
 
 ```tsx
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/hover-card/hover-card";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/hover-card/hover-card";
 
-<HoverCard>
-  <HoverCardTrigger href="https://github.com/shadcn">@shadcn</HoverCardTrigger>
-  <HoverCardContent>
-    <div className="flex flex-col gap-2">
-      <p className="font-medium">@shadcn</p>
-      <p className="text-sm text-muted-foreground">
-        The React library for building web applications.
-      </p>
-    </div>
-  </HoverCardContent>
-</HoverCard>
+export function Example() {
+  return (
+    <HoverCard>
+      <HoverCardTrigger href="https://github.com/shadcn">
+        @shadcn
+      </HoverCardTrigger>
+      <HoverCardContent>
+        <div className="flex flex-col gap-2">
+          <p className="font-medium">@shadcn</p>
+          <p className="text-muted-foreground text-sm">
+            The React library for building web applications.
+          </p>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  );
+}
 ```
 
 Position with `side`, `sideOffset`, `align`, and `alignOffset` on `HoverCardContent`.

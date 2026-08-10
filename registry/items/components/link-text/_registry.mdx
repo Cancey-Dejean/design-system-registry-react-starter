@@ -8,10 +8,13 @@ dependencies:
 files:
   - path: link-text.tsx
     type: registry:ui
+    target: components/ui/link-text/link-text.tsx
   - path: link-text.types.ts
     type: registry:ui
+    target: components/ui/link-text/link-text.types.ts
   - path: link-text.variants.ts
     type: registry:ui
+    target: components/ui/link-text/link-text.variants.ts
 ---
 
 Use Link Text for inline actions, navigation labels, and linked UI copy. It supports visual
@@ -20,7 +23,11 @@ variants and can render as any element through the `as` prop.
 ```tsx
 import { LinkText } from "@/components/link-text/link-text";
 
-<LinkText href="/docs" tone="default" underline="hover">
-  Read the docs
-</LinkText>;
+export function Example() {
+  return (
+    <LinkText href="/docs" tone="default" underline="hover">
+      Read the docs
+    </LinkText>
+  );
+}
 ```

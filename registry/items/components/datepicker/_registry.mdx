@@ -14,13 +14,17 @@ localRegistryDependencies:
 files:
   - path: datepicker.tsx
     type: registry:ui
+    target: components/ui/datepicker/datepicker.tsx
 ---
 
 A date picker built from [Popover](/components/popover) and [Calendar](/components/calendar). See
 also the [shadcn/ui Date Picker guide](https://ui.shadcn.com/docs/components/base/date-picker).
 
 ```tsx
-import { DatePicker, DatePickerWithRange } from "@/components/datepicker/datepicker";
+import {
+  DatePicker,
+  DatePickerWithRange,
+} from "@/components/datepicker/datepicker";
 
 export function Example() {
   return (

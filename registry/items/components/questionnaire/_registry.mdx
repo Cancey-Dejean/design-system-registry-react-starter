@@ -11,6 +11,7 @@ registryDependencies:
 files:
   - path: questionnaire.tsx
     type: registry:ui
+    target: components/ui/questionnaire/questionnaire.tsx
 ---
 
 A multi-step questionnaire for single-choice, multiple-choice, freeform, and skippable items. Built
@@ -38,7 +39,11 @@ const items = [
   {
     name: "direction",
     required: true,
-    choices: [{ value: "delegation" }, { value: "questions" }, { value: "both" }],
+    choices: [
+      { value: "delegation" },
+      { value: "questions" },
+      { value: "both" },
+    ],
   },
 ] as const;
 
@@ -48,30 +53,39 @@ function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   // answers.get("direction")
 }
 
-<Questionnaire items={items} onSubmit={handleSubmit}>
-  <QuestionnaireProgress />
-  <QuestionnaireItem name="direction" required>
-    <QuestionnaireTitle>What should we prototype next?</QuestionnaireTitle>
-    <QuestionnaireDescription>Choose a direction or write your own.</QuestionnaireDescription>
-    <QuestionnaireChoices>
-      <QuestionnaireChoice value="delegation">
-        <span className="font-medium">Delegation</span>
-      </QuestionnaireChoice>
-      <QuestionnaireChoice value="questions">
-        <span className="font-medium">Question prompts</span>
-      </QuestionnaireChoice>
-      <QuestionnaireChoice value="both">
-        <span className="font-medium">Both together</span>
-      </QuestionnaireChoice>
-      <QuestionnaireInput aria-label="Another answer" placeholder="Type another answer…" />
-    </QuestionnaireChoices>
-    <QuestionnaireError />
-  </QuestionnaireItem>
-  <QuestionnaireActions>
-    <QuestionnairePrevious />
-    <QuestionnaireSkip />
-    <QuestionnaireNext />
-    <QuestionnaireSubmit />
-  </QuestionnaireActions>
-</Questionnaire>
+export function Example() {
+  return (
+    <Questionnaire items={items} onSubmit={handleSubmit}>
+      <QuestionnaireProgress />
+      <QuestionnaireItem name="direction" required>
+        <QuestionnaireTitle>What should we prototype next?</QuestionnaireTitle>
+        <QuestionnaireDescription>
+          Choose a direction or write your own.
+        </QuestionnaireDescription>
+        <QuestionnaireChoices>
+          <QuestionnaireChoice value="delegation">
+            <span className="font-medium">Delegation</span>
+          </QuestionnaireChoice>
+          <QuestionnaireChoice value="questions">
+            <span className="font-medium">Question prompts</span>
+          </QuestionnaireChoice>
+          <QuestionnaireChoice value="both">
+            <span className="font-medium">Both together</span>
+          </QuestionnaireChoice>
+          <QuestionnaireInput
+            aria-label="Another answer"
+            placeholder="Type another answer…"
+          />
+        </QuestionnaireChoices>
+        <QuestionnaireError />
+      </QuestionnaireItem>
+      <QuestionnaireActions>
+        <QuestionnairePrevious />
+        <QuestionnaireSkip />
+        <QuestionnaireNext />
+        <QuestionnaireSubmit />
+      </QuestionnaireActions>
+    </Questionnaire>
+  );
+}
 ```

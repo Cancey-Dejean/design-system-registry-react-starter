@@ -9,6 +9,7 @@ dependencies:
 files:
   - path: dropdown-menu.tsx
     type: registry:ui
+    target: components/ui/dropdown-menu/dropdown-menu.tsx
 ---
 
 Use a dropdown menu for actions attached to a button or other click trigger. Built on
@@ -23,15 +24,21 @@ import {
   DropdownMenuTrigger,
 } from "@/components/dropdown-menu/dropdown-menu";
 
-<DropdownMenu>
-  <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownMenuItem>Profile</DropdownMenuItem>
-    <DropdownMenuItem>Billing</DropdownMenuItem>
-    <DropdownMenuItem>Team</DropdownMenuItem>
-    <DropdownMenuItem>Subscription</DropdownMenuItem>
-  </DropdownMenuContent>
-</DropdownMenu>
+export function Example() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>
+        Open
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Billing</DropdownMenuItem>
+        <DropdownMenuItem>Team</DropdownMenuItem>
+        <DropdownMenuItem>Subscription</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
 ```
 
 Compose checkboxes, radio groups, submenus, separators, and shortcuts. Mark destructive actions with

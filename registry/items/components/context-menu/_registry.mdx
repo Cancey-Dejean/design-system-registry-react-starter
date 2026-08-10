@@ -9,6 +9,7 @@ dependencies:
 files:
   - path: context-menu.tsx
     type: registry:ui
+    target: components/ui/context-menu/context-menu.tsx
 ---
 
 Use a context menu for actions tied to a specific target area (files, cards, canvas regions).
@@ -21,17 +22,21 @@ import {
   ContextMenuTrigger,
 } from "@/components/context-menu/context-menu";
 
-<ContextMenu>
-  <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
-    Right click here
-  </ContextMenuTrigger>
-  <ContextMenuContent>
-    <ContextMenuItem>Profile</ContextMenuItem>
-    <ContextMenuItem>Billing</ContextMenuItem>
-    <ContextMenuItem>Team</ContextMenuItem>
-    <ContextMenuItem>Subscription</ContextMenuItem>
-  </ContextMenuContent>
-</ContextMenu>;
+export function Example() {
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+        Right click here
+      </ContextMenuTrigger>
+      <ContextMenuContent>
+        <ContextMenuItem>Profile</ContextMenuItem>
+        <ContextMenuItem>Billing</ContextMenuItem>
+        <ContextMenuItem>Team</ContextMenuItem>
+        <ContextMenuItem>Subscription</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+}
 ```
 
 Compose checkboxes, radio groups, submenus, separators, and shortcuts. Mark destructive actions with

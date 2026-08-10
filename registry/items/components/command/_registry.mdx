@@ -12,6 +12,7 @@ localRegistryDependencies:
 files:
   - path: command.tsx
     type: registry:ui
+    target: components/ui/command/command.tsx
 ---
 
 Use command for searchable action menus and keyboard-driven palettes. Built on
@@ -29,28 +30,32 @@ import {
   CommandShortcut,
 } from "@/components/command/command";
 
-<Command className="max-w-sm rounded-lg border">
-  <CommandInput placeholder="Type a command or search..." />
-  <CommandList>
-    <CommandEmpty>No results found.</CommandEmpty>
-    <CommandGroup heading="Suggestions">
-      <CommandItem>Calendar</CommandItem>
-      <CommandItem>Search Emoji</CommandItem>
-      <CommandItem>Calculator</CommandItem>
-    </CommandGroup>
-    <CommandSeparator />
-    <CommandGroup heading="Settings">
-      <CommandItem>
-        Profile
-        <CommandShortcut>⌘P</CommandShortcut>
-      </CommandItem>
-      <CommandItem>
-        Settings
-        <CommandShortcut>⌘S</CommandShortcut>
-      </CommandItem>
-    </CommandGroup>
-  </CommandList>
-</Command>
+export function Example() {
+  return (
+    <Command className="max-w-sm rounded-lg border">
+      <CommandInput placeholder="Type a command or search..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+          <CommandItem>Calendar</CommandItem>
+          <CommandItem>Search Emoji</CommandItem>
+          <CommandItem>Calculator</CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Settings">
+          <CommandItem>
+            Profile
+            <CommandShortcut>⌘P</CommandShortcut>
+          </CommandItem>
+          <CommandItem>
+            Settings
+            <CommandShortcut>⌘S</CommandShortcut>
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  );
+}
 ```
 
 Wrap with `CommandDialog` for a modal command palette. Dialog is required when installing the

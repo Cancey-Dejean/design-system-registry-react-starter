@@ -6,6 +6,7 @@ description: Displays a multi-line text input field.
 files:
   - path: textarea.tsx
     type: registry:ui
+    target: components/ui/textarea/textarea.tsx
 ---
 
 Use a textarea for comments, descriptions, and other multi-line form values.
@@ -13,7 +14,9 @@ Use a textarea for comments, descriptions, and other multi-line form values.
 ```tsx
 import { Textarea } from "@/components/textarea/textarea";
 
-<Textarea placeholder="Type your message here." />
+export function Example() {
+  return <Textarea placeholder="Type your message here." />;
+}
 ```
 
 Supports `disabled`, `rows`, and `aria-invalid` for form error styling. Auto height is driven by

@@ -8,6 +8,7 @@ dependencies:
 files:
   - path: slider.tsx
     type: registry:ui
+    target: components/ui/slider/slider.tsx
 ---
 
 Use for volume, price ranges, and other continuous values. Pass a single value or a range via
@@ -16,7 +17,9 @@ arrays.
 ```tsx
 import { Slider } from "@/components/slider/slider";
 
-<Slider defaultValue={[50]} max={100} step={1} />
+export function Example() {
+  return <Slider defaultValue={[50]} max={100} step={1} />;
+}
 ```
 
 For a range, use two values: `defaultValue={[25, 75]}`. Control with `value` and `onValueChange`.

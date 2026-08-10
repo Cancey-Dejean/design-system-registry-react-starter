@@ -13,6 +13,7 @@ localRegistryDependencies:
 files:
   - path: button-group.tsx
     type: registry:ui
+    target: components/ui/button-group/button-group.tsx
 ---
 
 Use a button group to connect related actions into a single control strip.
@@ -21,11 +22,15 @@ Use a button group to connect related actions into a single control strip.
 import { Button } from "@/components/button/button";
 import { ButtonGroup } from "@/components/button-group/button-group";
 
-<ButtonGroup>
-  <Button variant="outline">Copy</Button>
-  <Button variant="outline">Paste</Button>
-  <Button variant="outline">Cut</Button>
-</ButtonGroup>
+export function Example() {
+  return (
+    <ButtonGroup>
+      <Button variant="outline">Copy</Button>
+      <Button variant="outline">Paste</Button>
+      <Button variant="outline">Cut</Button>
+    </ButtonGroup>
+  );
+}
 ```
 
 Set `orientation="vertical"` for a stacked group. Use `ButtonGroupText` for a label segment and

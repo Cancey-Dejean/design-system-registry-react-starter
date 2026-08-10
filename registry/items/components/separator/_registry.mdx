@@ -8,6 +8,7 @@ dependencies:
 files:
   - path: separator.tsx
     type: registry:ui
+    target: components/ui/separator/separator.tsx
 ---
 
 Use a separator to divide content groups horizontally or vertically.
@@ -15,11 +16,15 @@ Use a separator to divide content groups horizontally or vertically.
 ```tsx
 import { Separator } from "@/components/separator/separator";
 
-<div>
-  <div>Section one</div>
-  <Separator className="my-4" />
-  <div>Section two</div>
-</div>
+export function Example() {
+  return (
+    <div>
+      <div>Section one</div>
+      <Separator className="my-4" />
+      <div>Section two</div>
+    </div>
+  );
+}
 ```
 
 Pass `orientation="vertical"` for an upright divider.

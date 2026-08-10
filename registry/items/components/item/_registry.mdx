@@ -11,6 +11,7 @@ localRegistryDependencies:
 files:
   - path: item.tsx
     type: registry:ui
+    target: components/ui/item/item.tsx
 ---
 
 Use items to compose list rows, settings rows, and selectable media blocks.
@@ -26,18 +27,22 @@ import {
 } from "@/components/item/item";
 import { Button } from "@/components/button/button";
 
-<Item variant="outline">
-  <ItemMedia variant="icon">{/* icon */}</ItemMedia>
-  <ItemContent>
-    <ItemTitle>Title</ItemTitle>
-    <ItemDescription>Supporting text for the item.</ItemDescription>
-  </ItemContent>
-  <ItemActions>
-    <Button size="sm" variant="outline">
-      Action
-    </Button>
-  </ItemActions>
-</Item>
+export function Example() {
+  return (
+    <Item variant="outline">
+      <ItemMedia variant="icon">{/* icon */}</ItemMedia>
+      <ItemContent>
+        <ItemTitle>Title</ItemTitle>
+        <ItemDescription>Supporting text for the item.</ItemDescription>
+      </ItemContent>
+      <ItemActions>
+        <Button size="sm" variant="outline">
+          Action
+        </Button>
+      </ItemActions>
+    </Item>
+  );
+}
 ```
 
 Variants: `default`, `outline`, `muted`. Sizes: `default`, `sm`, `xs`. Render as a link with

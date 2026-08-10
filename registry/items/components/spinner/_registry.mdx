@@ -5,6 +5,10 @@ title: Spinner
 description: An accessible loading spinner built on Lucide's Loader2 icon.
 dependencies:
   - lucide-react
+files:
+  - path: spinner.tsx
+    type: registry:ui
+    target: components/ui/spinner/spinner.tsx
 ---
 
 Use the spinner to indicate loading or pending state. Pass `className` to adjust size or color.
@@ -12,5 +16,7 @@ Use the spinner to indicate loading or pending state. Pass `className` to adjust
 ```tsx
 import { Spinner } from "@/components/spinner/spinner";
 
-<Spinner className="size-6" />
+export function Example() {
+  return <Spinner className="size-6" />;
+}
 ```

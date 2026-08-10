@@ -8,6 +8,7 @@ dependencies:
 files:
   - path: empty.tsx
     type: registry:ui
+    target: components/ui/empty/empty.tsx
 ---
 
 Use empty states for blank lists, search misses, and first-run screens.
@@ -23,18 +24,22 @@ import {
   EmptyTitle,
 } from "@/components/empty/empty";
 
-<Empty>
-  <EmptyHeader>
-    <EmptyMedia variant="icon">{/* icon */}</EmptyMedia>
-    <EmptyTitle>No projects yet</EmptyTitle>
-    <EmptyDescription>
-      Get started by creating a new project.
-    </EmptyDescription>
-  </EmptyHeader>
-  <EmptyContent>
-    <Button>Create project</Button>
-  </EmptyContent>
-</Empty>
+export function Example() {
+  return (
+    <Empty>
+      <EmptyHeader>
+        <EmptyMedia variant="icon">{/* icon */}</EmptyMedia>
+        <EmptyTitle>No projects yet</EmptyTitle>
+        <EmptyDescription>
+          Get started by creating a new project.
+        </EmptyDescription>
+      </EmptyHeader>
+      <EmptyContent>
+        <Button>Create project</Button>
+      </EmptyContent>
+    </Empty>
+  );
+}
 ```
 
 `EmptyMedia` accepts `variant="icon"` for a muted icon well, or `default` for custom media.

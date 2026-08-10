@@ -9,6 +9,7 @@ dependencies:
 files:
   - path: checkbox.tsx
     type: registry:ui
+    target: components/ui/checkbox/checkbox.tsx
 ---
 
 Use checkboxes for multi-select options, settings, and form field toggles.
@@ -16,10 +17,14 @@ Use checkboxes for multi-select options, settings, and form field toggles.
 ```tsx
 import { Checkbox } from "@/components/checkbox/checkbox";
 
-<div className="flex items-center gap-2">
-  <Checkbox id="terms" />
-  <label htmlFor="terms">Accept terms and conditions</label>
-</div>
+export function Example() {
+  return (
+    <div className="flex items-center gap-2">
+      <Checkbox id="terms" />
+      <label htmlFor="terms">Accept terms and conditions</label>
+    </div>
+  );
+}
 ```
 
 Supports controlled/uncontrolled `checked` state, `disabled`, and `aria-invalid` styling for form

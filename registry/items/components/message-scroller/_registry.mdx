@@ -13,6 +13,7 @@ localRegistryDependencies:
 files:
   - path: message-scroller.tsx
     type: registry:ui
+    target: components/ui/message-scroller/message-scroller.tsx
 ---
 
 Use for conversation threads that stay pinned to the latest message and offer a control to jump
@@ -29,7 +30,11 @@ import {
   MessageScrollerViewport,
 } from "@/components/message-scroller/message-scroller";
 
-function ChatThread({ messages }: { messages: { id: string; text: string }[] }) {
+export function Example({
+  messages,
+}: {
+  messages: { id: string; text: string }[];
+}) {
   return (
     <MessageScrollerProvider>
       <MessageScroller className="h-96">

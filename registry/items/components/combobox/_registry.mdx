@@ -13,6 +13,7 @@ localRegistryDependencies:
 files:
   - path: combobox.tsx
     type: registry:ui
+    target: components/ui/combobox/combobox.tsx
 ---
 
 Use a combobox for searchable selects, multi-select chips, and grouped suggestions.
@@ -29,19 +30,23 @@ import {
 
 const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
-<Combobox items={frameworks}>
-  <ComboboxInput placeholder="Select a framework" />
-  <ComboboxContent>
-    <ComboboxEmpty>No items found.</ComboboxEmpty>
-    <ComboboxList>
-      {(item) => (
-        <ComboboxItem key={item} value={item}>
-          {item}
-        </ComboboxItem>
-      )}
-    </ComboboxList>
-  </ComboboxContent>
-</Combobox>
+export function Example() {
+  return (
+    <Combobox items={frameworks}>
+      <ComboboxInput placeholder="Select a framework" />
+      <ComboboxContent>
+        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxList>
+          {(item) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  );
+}
 ```
 
 Use `multiple` with `ComboboxChips` / `ComboboxChip` for multi-select. Set `showClear` on

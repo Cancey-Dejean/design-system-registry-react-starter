@@ -8,6 +8,7 @@ dependencies:
 files:
   - path: native-select.tsx
     type: registry:ui
+    target: components/ui/native-select/native-select.tsx
 ---
 
 Use for simple selects when a custom dropdown is unnecessary. Wraps a native `<select>` with
@@ -20,15 +21,19 @@ import {
   NativeSelectOption,
 } from "@/components/native-select/native-select";
 
-<NativeSelect>
-  <NativeSelectOption value="">Select a fruit</NativeSelectOption>
-  <NativeSelectOption value="apple">Apple</NativeSelectOption>
-  <NativeSelectOption value="banana">Banana</NativeSelectOption>
-  <NativeSelectOptGroup label="Citrus">
-    <NativeSelectOption value="orange">Orange</NativeSelectOption>
-    <NativeSelectOption value="lemon">Lemon</NativeSelectOption>
-  </NativeSelectOptGroup>
-</NativeSelect>
+export function Example() {
+  return (
+    <NativeSelect>
+      <NativeSelectOption value="">Select a fruit</NativeSelectOption>
+      <NativeSelectOption value="apple">Apple</NativeSelectOption>
+      <NativeSelectOption value="banana">Banana</NativeSelectOption>
+      <NativeSelectOptGroup label="Citrus">
+        <NativeSelectOption value="orange">Orange</NativeSelectOption>
+        <NativeSelectOption value="lemon">Lemon</NativeSelectOption>
+      </NativeSelectOptGroup>
+    </NativeSelect>
+  );
+}
 ```
 
 Sizes: `default` and `sm`. Supports `disabled` and `aria-invalid`.

@@ -8,6 +8,7 @@ dependencies:
 files:
   - path: input.tsx
     type: registry:ui
+    target: components/ui/input/input.tsx
 ---
 
 Use inputs for text, email, password, search, file, and other single-line fields.
@@ -15,7 +16,9 @@ Use inputs for text, email, password, search, file, and other single-line fields
 ```tsx
 import { Input } from "@/components/input/input";
 
-<Input type="email" placeholder="Email" />
+export function Example() {
+  return <Input type="email" placeholder="Email" />;
+}
 ```
 
 Supports native `type` values, `disabled`, and `aria-invalid` for form error styling. Built on

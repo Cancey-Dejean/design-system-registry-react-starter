@@ -8,10 +8,13 @@ dependencies:
 files:
   - path: section.tsx
     type: registry:ui
+    target: components/ui/section/section.tsx
   - path: section.types.ts
     type: registry:ui
+    target: components/ui/section/section.types.ts
   - path: section.variants.ts
     type: registry:ui
+    target: components/ui/section/section.variants.ts
 ---
 
 Use Section to wrap page content with consistent horizontal padding and responsive vertical spacing.
@@ -20,7 +23,11 @@ Set `padding` to control the top and bottom rhythm.
 ```tsx
 import Section from "@/components/section/section";
 
-<Section className="border-foreground bg-background text-foreground flex items-center justify-center rounded-2xl border border-dashed dark:bg-transparent dark:text-white">
-  Content goes here...
-</Section>;
+export function Example() {
+  return (
+    <Section className="border-foreground bg-background text-foreground flex items-center justify-center rounded-2xl border border-dashed dark:bg-transparent dark:text-white">
+      Content goes here...
+    </Section>
+  );
+}
 ```

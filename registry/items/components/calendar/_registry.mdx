@@ -11,6 +11,7 @@ registryDependencies:
 files:
   - path: calendar.tsx
     type: registry:ui
+    target: components/ui/calendar/calendar.tsx
 ---
 
 Use the calendar for single dates, ranges, and multi-month layouts. Built on
@@ -24,7 +25,12 @@ function Example() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   return (
-    <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-lg border" />
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+      className="rounded-lg border"
+    />
   );
 }
 ```

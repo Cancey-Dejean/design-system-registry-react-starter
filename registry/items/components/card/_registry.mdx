@@ -6,6 +6,7 @@ description: Displays a card with header, content, and footer.
 files:
   - path: card.tsx
     type: registry:ui
+    target: components/ui/card/card.tsx
 ---
 
 Compose a card with optional header, content, and footer slots. Use `size="sm"` for denser spacing.
@@ -21,17 +22,21 @@ import {
   CardTitle,
 } from "@/components/card/card";
 
-<Card>
-  <CardHeader>
-    <CardTitle>Card Title</CardTitle>
-    <CardDescription>Card Description</CardDescription>
-    <CardAction>Card Action</CardAction>
-  </CardHeader>
-  <CardContent>
-    <p>Card Content</p>
-  </CardContent>
-  <CardFooter>
-    <p>Card Footer</p>
-  </CardFooter>
-</Card>
+export function Example() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>Card Description</CardDescription>
+        <CardAction>Card Action</CardAction>
+      </CardHeader>
+      <CardContent>
+        <p>Card Content</p>
+      </CardContent>
+      <CardFooter>
+        <p>Card Footer</p>
+      </CardFooter>
+    </Card>
+  );
+}
 ```

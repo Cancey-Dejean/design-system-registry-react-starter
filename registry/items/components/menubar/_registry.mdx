@@ -11,6 +11,7 @@ registryDependencies:
 files:
   - path: menubar.tsx
     type: registry:ui
+    target: components/ui/menubar/menubar.tsx
 ---
 
 Use a menubar for app chrome menus (File, Edit, View). Built on
@@ -25,15 +26,19 @@ import {
   MenubarTrigger,
 } from "@/components/menubar/menubar";
 
-<Menubar>
-  <MenubarMenu>
-    <MenubarTrigger>File</MenubarTrigger>
-    <MenubarContent>
-      <MenubarItem>New Tab</MenubarItem>
-      <MenubarItem>New Window</MenubarItem>
-    </MenubarContent>
-  </MenubarMenu>
-</Menubar>
+export function Example() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>New Tab</MenubarItem>
+          <MenubarItem>New Window</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  );
+}
 ```
 
 Compose checkboxes, radio groups, submenus, separators, and shortcuts like other menu components.

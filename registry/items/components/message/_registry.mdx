@@ -6,6 +6,7 @@ description: Layout primitives for chat rows with avatars, headers, and footers.
 files:
   - path: message.tsx
     type: registry:ui
+    target: components/ui/message/message.tsx
 ---
 
 Compose chat threads with `MessageGroup` and `Message`. Pair with [Bubble](/components/bubble) for
@@ -23,22 +24,26 @@ import {
 import { Avatar, AvatarFallback } from "@/components/avatar/avatar";
 import { Bubble, BubbleContent } from "@/components/bubble/bubble";
 
-<MessageGroup>
-  <Message align="start">
-    <MessageAvatar>
-      <Avatar size="sm">
-        <AvatarFallback>AI</AvatarFallback>
-      </Avatar>
-    </MessageAvatar>
-    <MessageContent>
-      <MessageHeader>Assistant</MessageHeader>
-      <Bubble variant="muted">
-        <BubbleContent>How can I help?</BubbleContent>
-      </Bubble>
-      <MessageFooter>Just now</MessageFooter>
-    </MessageContent>
-  </Message>
-</MessageGroup>
+export function Example() {
+  return (
+    <MessageGroup>
+      <Message align="start">
+        <MessageAvatar>
+          <Avatar size="sm">
+            <AvatarFallback>AI</AvatarFallback>
+          </Avatar>
+        </MessageAvatar>
+        <MessageContent>
+          <MessageHeader>Assistant</MessageHeader>
+          <Bubble variant="muted">
+            <BubbleContent>How can I help?</BubbleContent>
+          </Bubble>
+          <MessageFooter>Just now</MessageFooter>
+        </MessageContent>
+      </Message>
+    </MessageGroup>
+  );
+}
 ```
 
 Use `align="end"` for outgoing messages (row reverses).

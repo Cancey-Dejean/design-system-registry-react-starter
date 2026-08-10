@@ -10,6 +10,7 @@ registryDependencies:
 files:
   - path: drawer.tsx
     type: registry:ui
+    target: components/ui/drawer/drawer.tsx
 ---
 
 Use a drawer for mobile-friendly sheets of content that slide in from an edge. Built on
@@ -28,19 +29,27 @@ import {
   DrawerTrigger,
 } from "@/components/drawer/drawer";
 
-<Drawer>
-  <DrawerTrigger render={<Button variant="outline" />}>Open Drawer</DrawerTrigger>
-  <DrawerContent>
-    <DrawerHeader>
-      <DrawerTitle>Move Goal</DrawerTitle>
-      <DrawerDescription>Set your daily activity goal.</DrawerDescription>
-    </DrawerHeader>
-    <DrawerFooter>
-      <Button>Submit</Button>
-      <DrawerClose render={<Button variant="outline" />}>Cancel</DrawerClose>
-    </DrawerFooter>
-  </DrawerContent>
-</Drawer>
+export function Example() {
+  return (
+    <Drawer>
+      <DrawerTrigger render={<Button variant="outline" />}>
+        Open Drawer
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Move Goal</DrawerTitle>
+          <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+        </DrawerHeader>
+        <DrawerFooter>
+          <Button>Submit</Button>
+          <DrawerClose render={<Button variant="outline" />}>
+            Cancel
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
+}
 ```
 
 Set `swipeDirection` to `"down"`, `"up"`, `"left"`, or `"right"`. Pass `showSwipeHandle` for a

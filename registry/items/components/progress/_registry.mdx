@@ -8,18 +8,27 @@ dependencies:
 files:
   - path: progress.tsx
     type: registry:ui
+    target: components/ui/progress/progress.tsx
 ---
 
 Use for loading state and task completion. Pair with `ProgressLabel` and `ProgressValue` for
 labeled bars. The track and indicator are rendered by default.
 
 ```tsx
-import { Progress, ProgressLabel, ProgressValue } from "@/components/progress/progress";
+import {
+  Progress,
+  ProgressLabel,
+  ProgressValue,
+} from "@/components/progress/progress";
 
-<Progress value={60}>
-  <ProgressLabel>Upload</ProgressLabel>
-  <ProgressValue />
-</Progress>
+export function Example() {
+  return (
+    <Progress value={60}>
+      <ProgressLabel>Upload</ProgressLabel>
+      <ProgressValue />
+    </Progress>
+  );
+}
 ```
 
 Pass `value` as a number from 0–100. Omit or use null for an indeterminate presentation when

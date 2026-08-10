@@ -11,6 +11,7 @@ registryDependencies:
 files:
   - path: sheet.tsx
     type: registry:ui
+    target: components/ui/sheet/sheet.tsx
 ---
 
 Use sheets for side or edge panels. Default side is `right`.
@@ -28,18 +29,24 @@ import {
   SheetTrigger,
 } from "@/components/sheet/sheet";
 
-<Sheet>
-  <SheetTrigger render={<Button variant="outline" />}>Open</SheetTrigger>
-  <SheetContent>
-    <SheetHeader>
-      <SheetTitle>Edit profile</SheetTitle>
-      <SheetDescription>Make changes to your profile here.</SheetDescription>
-    </SheetHeader>
-    <SheetFooter>
-      <SheetClose render={<Button variant="outline" />}>Close</SheetClose>
-    </SheetFooter>
-  </SheetContent>
-</Sheet>
+export function Example() {
+  return (
+    <Sheet>
+      <SheetTrigger render={<Button variant="outline" />}>Open</SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here.
+          </SheetDescription>
+        </SheetHeader>
+        <SheetFooter>
+          <SheetClose render={<Button variant="outline" />}>Close</SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  );
+}
 ```
 
 Pass `side` (`top` | `right` | `bottom` | `left`) on `SheetContent`. Set `showCloseButton={false}` to

@@ -10,6 +10,7 @@ dependencies:
 files:
   - path: navigation-menu.tsx
     type: registry:ui
+    target: components/ui/navigation-menu/navigation-menu.tsx
 ---
 
 Use for site chrome with top-level links and optional flyout content. Built on
@@ -25,26 +26,34 @@ import {
   NavigationMenuTrigger,
 } from "@/components/navigation-menu/navigation-menu";
 
-<NavigationMenu>
-  <NavigationMenuList>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-      <NavigationMenuContent>
-        <ul className="grid w-48 gap-1 p-1">
-          <li>
-            <NavigationMenuLink href="/docs">Introduction</NavigationMenuLink>
-          </li>
-          <li>
-            <NavigationMenuLink href="/docs/installation">Installation</NavigationMenuLink>
-          </li>
-        </ul>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-      <NavigationMenuLink href="/docs">Docs</NavigationMenuLink>
-    </NavigationMenuItem>
-  </NavigationMenuList>
-</NavigationMenu>
+export function Example() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-48 gap-1 p-1">
+              <li>
+                <NavigationMenuLink href="/docs">
+                  Introduction
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="/docs/installation">
+                  Installation
+                </NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="/docs">Docs</NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}
 ```
 
 Reuse `navigationMenuTriggerStyle()` for link items that should match trigger chrome.

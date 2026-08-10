@@ -8,6 +8,7 @@ dependencies:
 files:
   - path: tooltip.tsx
     type: registry:ui
+    target: components/ui/tooltip/tooltip.tsx
 ---
 
 Wrap your app (or story) with `TooltipProvider`. Trigger and content pair under each `Tooltip`.
@@ -25,7 +26,9 @@ export function Example() {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger render={<Button variant="outline" />}>Hover</TooltipTrigger>
+        <TooltipTrigger render={<Button variant="outline" />}>
+          Hover
+        </TooltipTrigger>
         <TooltipContent>
           <p>Add to library</p>
         </TooltipContent>

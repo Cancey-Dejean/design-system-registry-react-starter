@@ -8,6 +8,7 @@ dependencies:
 files:
   - path: scroll-area.tsx
     type: registry:ui
+    target: components/ui/scroll-area/scroll-area.tsx
 ---
 
 Use for overflow content with styled scrollbars. Constrain the root height (or width for horizontal).
@@ -15,15 +16,19 @@ Use for overflow content with styled scrollbars. Constrain the root height (or w
 ```tsx
 import { ScrollArea } from "@/components/scroll-area/scroll-area";
 
-<ScrollArea className="h-72 w-48 rounded-md border">
-  <div className="p-4">
-    {Array.from({ length: 50 }).map((_, i) => (
-      <div key={i} className="text-sm">
-        Item {i + 1}
+export function Example() {
+  return (
+    <ScrollArea className="h-72 w-48 rounded-md border">
+      <div className="p-4">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div key={i} className="text-sm">
+            Item {i + 1}
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-</ScrollArea>
+    </ScrollArea>
+  );
+}
 ```
 
 Vertical and horizontal scrollbars are included. Constrain size so overflow appears.

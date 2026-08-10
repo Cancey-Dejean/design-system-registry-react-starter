@@ -8,6 +8,7 @@ dependencies:
 files:
   - path: switch.tsx
     type: registry:ui
+    target: components/ui/switch/switch.tsx
 ---
 
 Use switches for binary settings. Pair with a label via `htmlFor` matching the switch `id`.
@@ -15,10 +16,14 @@ Use switches for binary settings. Pair with a label via `htmlFor` matching the s
 ```tsx
 import { Switch } from "@/components/switch/switch";
 
-<div className="flex items-center gap-2">
-  <Switch id="airplane-mode" />
-  <label htmlFor="airplane-mode">Airplane Mode</label>
-</div>
+export function Example() {
+  return (
+    <div className="flex items-center gap-2">
+      <Switch id="airplane-mode" />
+      <label htmlFor="airplane-mode">Airplane Mode</label>
+    </div>
+  );
+}
 ```
 
 Supports `size` (`default` | `sm`), controlled `checked` / `onCheckedChange`, `disabled`, and

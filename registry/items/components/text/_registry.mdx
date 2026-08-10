@@ -8,10 +8,13 @@ dependencies:
 files:
   - path: text.tsx
     type: registry:ui
+    target: components/ui/text/text.tsx
   - path: text.types.ts
     type: registry:ui
+    target: components/ui/text/text.types.ts
   - path: text.variants.ts
     type: registry:ui
+    target: components/ui/text/text.variants.ts
 ---
 
 Use Text for paragraphs, captions, and other body copy. Set `as` to change the rendered element
@@ -20,7 +23,11 @@ when you need a `span`, `label`, or other tag.
 ```tsx
 import { Text } from "@/components/text/text";
 
-<Text size="md" weight="regular" tone="muted">
-  Supporting copy for the section.
-</Text>
+export function Example() {
+  return (
+    <Text size="md" weight="regular" tone="muted">
+      Supporting copy for the section.
+    </Text>
+  );
+}
 ```

@@ -8,10 +8,13 @@ dependencies:
 files:
   - path: heading.tsx
     type: registry:ui
+    target: components/ui/heading/heading.tsx
   - path: heading.types.ts
     type: registry:ui
+    target: components/ui/heading/heading.types.ts
   - path: heading.variants.ts
     type: registry:ui
+    target: components/ui/heading/heading.variants.ts
 ---
 
 Use the heading for page titles, section headers, and any semantic `h1`–`h6` text. Set `level` for
@@ -20,7 +23,11 @@ document outline semantics and `size` when the visual scale should differ from t
 ```tsx
 import Heading from "@/components/heading/heading";
 
-<Heading level={1} size="2xl">
-  Page title
-</Heading>
+export function Example() {
+  return (
+    <Heading level={1} size="2xl">
+      Page title
+    </Heading>
+  );
+}
 ```

@@ -31,6 +31,7 @@ Use **Vite+**: `vp install`, `vp dev`, `vp build`, `vp test`
 
 - Treat short prompts like "add a button component to the registry" as implementation requests.
 - For registry item authoring or adaptation, use the installable `shadcn-registry` [SKILL.md](skills/shadcn-registry/SKILL.md) when available.
+- After shipping user-facing registry, component, docs, or install-path changes, update `registry/docs/changelog.mdx` with the `update-changelog` [SKILL.md](skills/update-changelog/SKILL.md).
 - For new registry items, scaffold the starter files non-interactively with `bun --bun ./scripts/new.ts --type <type> --name <kebab-name> --description "<description>"`; add `--target` for `registry:page`, `registry:file`, and custom alias installs like `@ui/ai/<file>.tsx`, `--file-extension` for non-`ts` file items, and font flags for `registry:font`.
 - Put published registry source under `registry/items/**`, never under `src/components/ui`.
 - `src/components/ui` is for the docs app shell shadcn components only.
@@ -43,6 +44,7 @@ Use **Vite+**: `vp install`, `vp dev`, `vp build`, `vp test`
 - Registry URL helpers and route path policy stay in `src/lib/site-config.ts`.
 - Authored docs: direct `registry/docs/*.mdx` or `registry/docs/*.md` files with optional `title`, `description`, `order`, and `group` frontmatter. Nested docs pages are not supported yet.
 - Registry item docs and metadata live in `registry/items/**/_registry.mdx`; interactive previews live in sibling `_preview.tsx` files.
+- If a component uses `cva` from `class-variance-authority`, put it in a colocated `<name>.variants.ts` file. Follow `registry/items/components/button/button.variants.ts` and the Component Variants section in `registry/docs/registry.mdx`.
 - Registry catalog: `src/lib/registry/catalog.ts`; JSON output: `src/lib/registry/json.server.ts`.
 - Registry JSON routes: `/registry.json` and `/r/registry.json` serve the index; item JSON routes live under `/r/<name>.json`.
 - Public registry catalog routes: `/registry`, `/components`, `/blocks`, `/utilities`, and section item pages like `/components/<name>`.

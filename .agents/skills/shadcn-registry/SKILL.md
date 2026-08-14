@@ -83,6 +83,12 @@ export function Preview() {
 
 Keep previews client-safe: static data, local state, and events are fine; avoid network calls, auth, server functions, env reads, and app-only providers.
 
+## Component Variants
+
+If a component uses `cva` from `class-variance-authority`, put every `cva()` call in a colocated `<name>.variants.ts` file (`.ts`, not `.tsx`). Do not define CVA in the component `.tsx`. Follow `registry/items/components/button/button.variants.ts` and the Component Variants section in `registry/docs/registry.mdx`.
+
+Required shape: `{name}Base` via `cn()`, `{name}Config` with `variants`, `compoundVariants`, and `defaultVariants` plus `as const`, `{name}Cva`, key arrays such as `BUTTON_VARIANTS`, and `{name}Variants = {name}Cva`. Keep multiple CVA helpers for one item in the same variants file. List the file in `_registry.mdx` `files` and add `class-variance-authority` to `dependencies`.
+
 ## Adaptation Rules
 
 - Extract only the reusable unit into the scaffolded item folder.
@@ -96,5 +102,6 @@ Keep previews client-safe: static data, local state, and events are fine; avoid 
 
 - Run `vp check --fix <touched-files>`.
 - Run `bun --bun ./scripts/doctor.ts` after registry item changes when Bun is available.
+- Update `registry/docs/changelog.mdx` for user-facing changes using the `update-changelog` skill.
 - Run focused tests when catalog, JSON, source loading, or docs rendering changed.
 - Run `vp build` before handoff when docs, routes, registry JSON, catalog loading, or source loading changed.

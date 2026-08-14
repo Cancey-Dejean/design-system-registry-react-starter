@@ -53,4 +53,6 @@ For registry authoring tasks, agents should:
 3. Scaffold new items with `bun --bun ./scripts/new.ts --type <type> --name <kebab-name> --description "<description>"`.
 4. Add `--target` for `registry:page`, `registry:file`, custom alias installs like `@ui/ai/<file>.tsx`, and targeted `registry:item` files; use `--file-extension` for `registry:file` and targeted `registry:item` files.
 5. Edit the generated source, `_registry.mdx`, and `_preview.tsx` with usage docs, previews, and dependency metadata.
-6. Run `vp check --fix` on touched files, `bun --bun ./scripts/doctor.ts`, and `vp build` before handoff when docs, routes, registry JSON, catalog loading, or source loading changed.
+6. If the item uses `cva` from `class-variance-authority`, extract it into a colocated `<name>.variants.ts` file. Follow the Component Variants section in [Registry](/docs/registry) and `registry/items/components/button/button.variants.ts`.
+7. Update [Changelog](/docs/changelog) for user-facing work with the `update-changelog` skill.
+8. Run `vp check --fix` on touched files, `bun --bun ./scripts/doctor.ts`, and `vp build` before handoff when docs, routes, registry JSON, catalog loading, or source loading changed.

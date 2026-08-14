@@ -8,6 +8,15 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ---
 
+## v1.5.0: August 14, 2026
+
+- **Component variants:** Components that use `class-variance-authority` now keep every `cva()` call in a colocated `<name>.variants.ts` file (`.ts`, not `.tsx`). The component file imports the helper; it does not define CVA inline.
+- **Extracted variants:** Moved CVA out of component source for `Alert`, `Attachment`, `Badge`, `Bubble`, `Button Group`, `Empty`, `Field`, `Input Group`, `Item`, `Marker`, `Navigation Menu`, `Sidebar`, `Tabs`, and `Toggle`. `Toggle Group` now imports `toggleVariants` from `toggle.variants.ts`.
+- **Container:** Renamed `container.variants.tsx` / `container.types.tsx` to `.ts` so the file extension matches the variants convention.
+- **Docs:** Documented the Component Variants pattern on the [Registry](/docs/registry) authoring page, with pointers from Agents docs, `AGENTS.md`, and the `shadcn-registry` skill so maintainers and coding agents follow the same layout as `button.variants.ts`.
+
+---
+
 ## v1.4.0: August 10, 2026
 
 - **Install paths:** Multi-file components now publish nested folder structure instead of flattening basename-only into `ui/`. Nested packages such as `Icons` and `Logos` install under `components/icons/**` and `components/logos/**` (including `icon/`, `icon-set/`, `logo/`, and `logo-set/`).

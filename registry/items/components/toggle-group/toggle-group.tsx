@@ -7,7 +7,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-import { toggleVariants } from "../toggle/toggle";
+import { toggleVariants } from "../toggle/toggle.variants";
 
 const ToggleGroupContext = React.createContext<
   VariantProps<typeof toggleVariants> & {

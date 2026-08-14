@@ -82,4 +82,83 @@ List authored source files with paths relative to the item `_registry.mdx` file.
 
 Use `localRegistryDependencies` for dependencies on other local registry items.
 
+## Component Variants
+
+If a component uses `cva` from `class-variance-authority`, keep that definition in a colocated `<name>.variants.ts` file. Do not call `cva` in the component `.tsx`. Use `.ts`, not `.tsx`.
+
+Treat [`button`](/components/button) as the reference:
+
+```text
+registry/items/components/button/
+  _registry.mdx
+  _preview.tsx
+  button.tsx
+  button.types.ts
+  button.variants.ts
+```
+
+`button.tsx` imports the CVA helper and renders. `button.variants.ts` owns every `cva()` call for that item. If one folder has several CVA helpers, keep them in the same `.variants.ts` file. Put `VariantProps` in a colocated `<name>.types.ts` file when the item has named variant types, as Button does.
+
+Each variants file should follow this shape:
+
+```ts
+import { cva } from "class-variance-authority";
+
+import { cn } from "@/lib/utils";
+
+const exampleBase = cn("inline-flex items-center rounded-md");
+
+const exampleConfig = {
+  variants: {
+    variant: {
+      primary: "bg-primary text-primary-foreground",
+      outline: "border border-border bg-background",
+    },
+    size: {
+      sm: "h-8 px-3",
+      md: "h-9 px-4",
+    },
+  },
+  compoundVariants: [],
+  defaultVariants: {
+    variant: "primary",
+    size: "md",
+  },
+} as const;
+
+export const exampleCva = cva(exampleBase, {
+  ...exampleConfig,
+  compoundVariants: [...exampleConfig.compoundVariants],
+});
+
+export const EXAMPLE_VARIANTS = Object.keys(
+  exampleConfig.variants.variant,
+) as (keyof typeof exampleConfig.variants.variant)[];
+
+export const EXAMPLE_SIZES = Object.keys(
+  exampleConfig.variants.size,
+) as (keyof typeof exampleConfig.variants.size)[];
+
+export const exampleVariants = exampleCva;
+```
+
+Always include `compoundVariants` on the config, even when it is empty, and spread it into `cva()` so the `as const` config stays compatible. Export a key array for each variant axis that stories or other items need to iterate. Re-export the CVA helper from the component file only when another item already consumes that public name.
+
+List the variants file in `_registry.mdx` `files`, and add `class-variance-authority` to `dependencies`. Include `.types.ts` when the item has one:
+
+```yaml
+dependencies:
+  - class-variance-authority
+files:
+  - path: example.tsx
+    type: registry:ui
+    target: components/ui/example/example.tsx
+  - path: example.types.ts
+    type: registry:ui
+    target: components/ui/example/example.types.ts
+  - path: example.variants.ts
+    type: registry:ui
+    target: components/ui/example/example.variants.ts
+```
+
 After editing an item, run `vp check --fix` on touched files and `bun --bun ./scripts/doctor.ts`. Run `vp build` when registry docs, routes, JSON output, catalog loading, or source loading changed.

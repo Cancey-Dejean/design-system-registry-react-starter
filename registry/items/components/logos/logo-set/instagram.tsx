@@ -8,7 +8,7 @@ export default function InstagramLogo({ className, ...props }: SVGProps<SVGSVGEl
       aria-hidden="true"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 264.583 264.583"
-      className={cn(className)}
+      className={cn("size-6", className)}
       {...props}
     >
       <defs>

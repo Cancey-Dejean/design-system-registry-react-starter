@@ -1,0 +1,10 @@
+---
+description: Prevent AI co-author trailers in Git commits
+alwaysApply: true
+---
+
+# Commit Attribution
+
+- Never include a `Co-authored-by:` trailer in commit messages.
+- Specifically, never add `Co-authored-by: Cursor <cursoragent@cursor.com>`.
+- Remove any AI-generated co-author trailer before committing.

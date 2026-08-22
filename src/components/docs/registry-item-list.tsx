@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
 
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
 import type { RegistryRouteItem } from "../../lib/registry/sections";
 import { getRegistrySectionIdForType } from "../../lib/registry/sections";
-import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { DocsPageHeader } from "./docs-page-header";
 
 type RegistryListItem = RegistryRouteItem & {

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
-@import "@fontsource-variable/geist-mono";
+/* Supports weights 100-900 */
+@import "@fontsource-variable/inter/wght.css";
 @plugin "@tailwindcss/typography";
 @import "./theme.css";
 
@@ -10,15 +10,15 @@
 
 @layer base {
   * {
-    @apply border-(--border) outline-(--ring);
+    @apply border-border outline-ring;
   }
 
   html {
-    @apply font-(--body);
+    @apply font-body;
   }
 
   body {
-    @apply overflow-x-hidden bg-(--background) text-(--foreground) antialiased selection:bg-red-500/20 selection:text-red-200;
+    @apply overflow-x-hidden bg-background text-foreground antialiased selection:bg-red-500/20 selection:text-red-200;
   }
 
   a {

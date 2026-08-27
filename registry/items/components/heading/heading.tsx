@@ -1,4 +1,4 @@
-import * as React from "react";
+import type { ElementType } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -13,7 +13,7 @@ export default function Heading({
   className,
   ...props
 }: HeadingProps) {
-  const Tag = `h${level}` as React.ElementType;
+  const Tag = `h${level}` as ElementType;
 
   return (
     <Tag

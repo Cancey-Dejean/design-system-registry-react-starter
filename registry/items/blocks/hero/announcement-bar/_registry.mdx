@@ -1,0 +1,39 @@
+---
+name: announcement-bar
+type: registry:block
+title: Announcement Bar
+description: A full-width site banner with light, dark, and gray theme variants, plus an Embla carousel slider.
+dependencies:
+  - class-variance-authority
+  - embla-carousel-react
+  - lucide-react
+files:
+  - path: announcement-bar.tsx
+    type: registry:block
+  - path: announcement-bar.variants.ts
+    type: registry:block
+---
+
+Use the announcement bar for sitewide notices above the header. Set `theme` to `light`, `dark`, or
+`gray`.
+
+```tsx
+import AnnouncementBar from "@/components/announcement-bar";
+
+<AnnouncementBar theme="gray" className="text-center">
+  <p>Free shipping on orders over $50.</p>
+</AnnouncementBar>
+```
+
+For rotating announcements, use `AnnouncementBarSlider`. Pass each message as a child; prev/next
+chevrons and keyboard arrows navigate between slides.
+
+```tsx
+import { AnnouncementBarSlider } from "@/components/announcement-bar";
+
+<AnnouncementBarSlider theme="gray">
+  <p>We’re donating $10 to the National Park Foundation for each purchase…</p>
+  <p>Save on Mac and iPad for college with education pricing.</p>
+  <p>Shop the latest Apple Watch bands and accessories.</p>
+</AnnouncementBarSlider>
+```

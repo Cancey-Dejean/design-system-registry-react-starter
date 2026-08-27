@@ -15,13 +15,13 @@ const headingConfig = {
       6: "",
     },
     size: {
-      xs: "[font-size:var(--text-20)]",
-      sm: "[font-size:var(--text-20)] sm:[font-size:var(--text-24)]",
-      md: "[font-size:var(--text-24)] sm:[font-size:var(--text-30)]",
-      lg: "[font-size:var(--text-30)] sm:[font-size:var(--text-36)]",
-      xl: "[font-size:var(--text-36)] sm:[font-size:var(--text-48)]",
-      "2xl": "[font-size:var(--text-48)] sm:[font-size:var(--text-60)]",
-      "3xl": "[font-size:var(--text-60)] sm:[font-size:var(--text-72)]",
+      xs: "",
+      sm: "",
+      md: "",
+      lg: "",
+      xl: "",
+      "2xl": "",
+      "3xl": "",
     },
     weight: {
       regular: "font-normal",
@@ -39,7 +39,36 @@ const headingConfig = {
       warning: "text-yellow-600",
     },
   },
-  compoundVariants: [],
+  compoundVariants: [
+    {
+      size: "xs",
+      class: "text-20",
+    },
+    {
+      size: "sm",
+      class: "text-20 sm:text-24",
+    },
+    {
+      size: "md",
+      class: "text-24 sm:text-30",
+    },
+    {
+      size: "lg",
+      class: "text-30 sm:text-36",
+    },
+    {
+      size: "xl",
+      class: "text-36 sm:text-48",
+    },
+    {
+      size: "2xl",
+      class: "text-48 sm:text-60",
+    },
+    {
+      size: "3xl",
+      class: "text-60 sm:text-72",
+    },
+  ],
 
   defaultVariants: {
     level: 1,

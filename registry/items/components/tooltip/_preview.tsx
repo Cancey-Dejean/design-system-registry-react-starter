@@ -1,4 +1,5 @@
-import { Button } from "../button/button";
+import { Button } from "@registry/components/button/button";
+
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip";
 
 export function Preview() {

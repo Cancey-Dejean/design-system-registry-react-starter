@@ -1,3 +1,4 @@
+import { Spinner } from "@registry/components/spinner/spinner";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ArrowRight, Mail, ShoppingCart } from "lucide-react";
 import { fn } from "storybook/test";
@@ -5,7 +6,6 @@ import { fn } from "storybook/test";
 import StoryWrapper from "@/components/ui/story-wrapper";
 import { cn } from "@/lib/utils";
 
-import { Spinner } from "../../spinner/spinner";
 import { Button, ButtonCTAGroup } from "../button";
 import { BUTTON_SIZES, BUTTON_VARIANTS } from "../button.variants";
 

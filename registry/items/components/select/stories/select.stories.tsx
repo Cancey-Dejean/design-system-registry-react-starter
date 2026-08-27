@@ -1,9 +1,9 @@
+import { Label } from "@registry/components/label/label";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import StoryWrapper from "@/components/ui/story-wrapper";
 
-import { Label } from "../../label/label";
 import {
   Select,
   SelectContent,

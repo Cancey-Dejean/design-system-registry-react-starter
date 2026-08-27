@@ -1,9 +1,9 @@
+import { Checkbox } from "@registry/components/checkbox/checkbox";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Input } from "@/components/ui/input";
 import StoryWrapper from "@/components/ui/story-wrapper";
 
-import { Checkbox } from "../../checkbox/checkbox";
 import { Label } from "../label";
 
 const meta = {

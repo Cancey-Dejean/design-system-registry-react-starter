@@ -1,4 +1,5 @@
-import { Card, CardContent } from "../card/card";
+import { Card, CardContent } from "@registry/components/card/card";
+
 import {
   Carousel,
   CarouselContent,

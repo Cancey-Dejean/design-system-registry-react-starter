@@ -1,9 +1,9 @@
+import { Card, CardContent } from "@registry/components/card/card";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
 import StoryWrapper from "@/components/ui/story-wrapper";
 
-import { Card, CardContent } from "../../card/card";
 import {
   type CarouselApi,
   Carousel,

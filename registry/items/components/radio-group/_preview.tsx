@@ -1,4 +1,5 @@
-import { Label } from "../label/label";
+import { Label } from "@registry/components/label/label";
+
 import { RadioGroup, RadioGroupItem } from "./radio-group";
 
 export function Preview() {

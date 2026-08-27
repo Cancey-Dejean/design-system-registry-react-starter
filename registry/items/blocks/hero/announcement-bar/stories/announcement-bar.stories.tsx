@@ -1,6 +1,6 @@
+import { Container } from "@registry/components/container/container";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Container } from "../../../../components/container/container";
 import AnnouncementBar, { AnnouncementBarSlider } from "../announcement-bar";
 import { ANNOUNCEMENT_BAR_THEMES } from "../announcement-bar.variants";
 import { sliderItems } from "./announcement-bar.data";

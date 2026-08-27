@@ -1,5 +1,15 @@
 "use client";
 
+import { Button } from "@registry/components/button/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@registry/components/card/card";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { FormEvent } from "react";
 import { fn } from "storybook/test";
@@ -15,16 +25,6 @@ import {
 } from "@/components/ui/dialog";
 import StoryWrapper from "@/components/ui/story-wrapper";
 
-import { Button } from "../../button/button";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../../card/card";
 import {
   Questionnaire,
   QuestionnaireActions,

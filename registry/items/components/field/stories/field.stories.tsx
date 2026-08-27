@@ -1,3 +1,4 @@
+import { Checkbox } from "@registry/components/checkbox/checkbox";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "@/components/ui/button";
@@ -5,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import StoryWrapper from "@/components/ui/story-wrapper";
 import { Textarea } from "@/components/ui/textarea";
 
-import { Checkbox } from "../../checkbox/checkbox";
 import {
   Field,
   FieldContent,

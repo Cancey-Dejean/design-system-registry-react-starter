@@ -1,9 +1,9 @@
+import { Kbd } from "@registry/components/kbd/kbd";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "@/components/ui/button";
 import StoryWrapper from "@/components/ui/story-wrapper";
 
-import { Kbd } from "../../kbd/kbd";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../tooltip";
 
 const meta = {

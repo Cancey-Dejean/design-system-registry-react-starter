@@ -1,9 +1,9 @@
+import { Avatar, AvatarFallback } from "@registry/components/avatar/avatar";
+import { Bubble, BubbleContent, BubbleReactions } from "@registry/components/bubble/bubble";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import StoryWrapper from "@/components/ui/story-wrapper";
 
-import { Avatar, AvatarFallback } from "../../avatar/avatar";
-import { Bubble, BubbleContent, BubbleReactions } from "../../bubble/bubble";
 import {
   Message,
   MessageAvatar,

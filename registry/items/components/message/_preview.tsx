@@ -1,5 +1,6 @@
-import { Avatar, AvatarFallback } from "../avatar/avatar";
-import { Bubble, BubbleContent } from "../bubble/bubble";
+import { Avatar, AvatarFallback } from "@registry/components/avatar/avatar";
+import { Bubble, BubbleContent } from "@registry/components/bubble/bubble";
+
 import {
   Message,
   MessageAvatar,

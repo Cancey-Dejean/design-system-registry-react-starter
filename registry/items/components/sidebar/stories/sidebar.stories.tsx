@@ -1,3 +1,4 @@
+import { TooltipProvider } from "@registry/components/tooltip/tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   IconChartBar,
@@ -11,7 +12,6 @@ import type { ReactNode } from "react";
 
 import StoryWrapper from "@/components/ui/story-wrapper";
 
-import { TooltipProvider } from "../../tooltip/tooltip";
 import {
   Sidebar,
   SidebarContent,

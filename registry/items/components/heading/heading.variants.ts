@@ -7,21 +7,21 @@ const headingBase = cn("leading-none tracking-tight");
 const headingConfig = {
   variants: {
     level: {
-      1: "",
-      2: "",
-      3: "",
-      4: "",
-      5: "",
-      6: "",
+      h1: "",
+      h2: "",
+      h3: "",
+      h4: "",
+      h5: "",
+      h6: "",
     },
     size: {
-      xs: "",
-      sm: "",
-      md: "",
-      lg: "",
-      xl: "",
-      "2xl": "",
-      "3xl": "",
+      xs: "[font-size:var(--text-18)] sm:[font-size:var(--text-20)]",
+      sm: "[font-size:var(--text-20)] sm:[font-size:var(--text-24)]",
+      md: "[font-size:var(--text-24)] sm:[font-size:var(--text-30)]",
+      lg: "[font-size:var(--text-30)] sm:[font-size:var(--text-36)]",
+      xl: "[font-size:var(--text-36)] sm:[font-size:var(--text-48)]",
+      "2xl": "[font-size:var(--text-48)] sm:[font-size:var(--text-60)]",
+      "3xl": "[font-size:var(--text-60)] sm:[font-size:var(--text-72)]",
     },
     weight: {
       regular: "font-normal",
@@ -33,45 +33,14 @@ const headingConfig = {
     tone: {
       default: "text-foreground",
       muted: "text-muted-foreground",
-      brand: "text-primary",
       danger: "text-destructive",
       success: "text-green-600",
       warning: "text-yellow-600",
     },
   },
-  compoundVariants: [
-    {
-      size: "xs",
-      class: "text-20",
-    },
-    {
-      size: "sm",
-      class: "text-20 sm:text-24",
-    },
-    {
-      size: "md",
-      class: "text-24 sm:text-30",
-    },
-    {
-      size: "lg",
-      class: "text-30 sm:text-36",
-    },
-    {
-      size: "xl",
-      class: "text-36 sm:text-48",
-    },
-    {
-      size: "2xl",
-      class: "text-48 sm:text-60",
-    },
-    {
-      size: "3xl",
-      class: "text-60 sm:text-72",
-    },
-  ],
-
+  compoundVariants: [],
   defaultVariants: {
-    level: 1,
+    level: "h1",
     size: "md",
     weight: "semibold",
     tone: "default",

@@ -7,10 +7,10 @@ const textBase = cn("tracking-tight");
 const textConfig = {
   variants: {
     size: {
-      xs: "[font-size:var(--text-12)]",
-      sm: "[font-size:var(--text-14)]",
-      md: "[font-size:var(--text-16)]",
-      lg: "[font-size:var(--text-18)]",
+      xs: "[font-size:var(--text-12)] sm:[font-size:var(--text-14)]",
+      sm: "[font-size:var(--text-14)] sm:[font-size:var(--text-16)]",
+      md: "[font-size:var(--text-16)] sm:[font-size:var(--text-18)]",
+      lg: "[font-size:var(--text-18)] sm:[font-size:var(--text-20)]",
     },
     weight: {
       light: "font-light",
@@ -22,7 +22,6 @@ const textConfig = {
     tone: {
       default: "text-foreground",
       muted: "text-muted-foreground",
-      brand: "text-primary",
       danger: "text-destructive",
       success: "text-green-600",
       warning: "text-yellow-600",

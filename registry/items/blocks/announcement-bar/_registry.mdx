@@ -7,18 +7,22 @@ dependencies:
   - class-variance-authority
   - embla-carousel-react
   - lucide-react
+localRegistryDependencies:
+  - container
 files:
   - path: announcement-bar.tsx
     type: registry:block
+    target: components/ui/announcement-bar/announcement-bar.tsx
   - path: announcement-bar.variants.ts
     type: registry:block
+    target: components/ui/announcement-bar/announcement-bar.variants.ts
 ---
 
 Use the announcement bar for sitewide notices above the header. Set `theme` to `light`, `dark`, or
 `gray`.
 
 ```tsx
-import AnnouncementBar from "@/components/announcement-bar";
+import AnnouncementBar from "@/components/ui/announcement-bar/announcement-bar";
 
 <AnnouncementBar theme="gray" className="text-center">
   <p>Free shipping on orders over $50.</p>
@@ -29,7 +33,7 @@ For rotating announcements, use `AnnouncementBarSlider`. Pass each message as a 
 chevrons and keyboard arrows navigate between slides.
 
 ```tsx
-import { AnnouncementBarSlider } from "@/components/announcement-bar";
+import { AnnouncementBarSlider } from "@/components/ui/announcement-bar/announcement-bar";
 
 <AnnouncementBarSlider theme="gray">
   <p>We’re donating $10 to the National Park Foundation for each purchase…</p>

@@ -6,8 +6,8 @@ import { Children, type ComponentProps, useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { Container } from "../../../components/container/container";
-import type { Theme } from "../../../files/types";
+import { Container } from "../../components/container/container";
+import type { Theme } from "../../files/types";
 import { announcementBarVariants } from "./announcement-bar.variants";
 
 export default function AnnouncementBar({

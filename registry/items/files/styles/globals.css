@@ -31,7 +31,7 @@
 }
 
 @utility transition-smooth {
-  @apply transition-all duration-300 ease-in-out;
+  @apply transition duration-300 ease-in-out;
 }
 
 /* Hide default arrows from number inputs. */

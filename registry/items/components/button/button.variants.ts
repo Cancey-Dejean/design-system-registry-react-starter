@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonBase = cn(
-  "group relative inline-flex shrink-0 items-center justify-center gap-2 rounded-md border border-transparent leading-none font-medium whitespace-nowrap transition",
+  "group relative inline-flex shrink-0 items-center justify-center gap-2 rounded-md border border-transparent leading-none font-medium whitespace-nowrap",
   "transition-smooth active:not-disabled:scale-95",
   "hover:no-underline",
   "disabled:pointer-events-none disabled:opacity-50",

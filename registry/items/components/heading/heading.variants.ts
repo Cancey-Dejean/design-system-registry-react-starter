@@ -39,6 +39,7 @@ const headingConfig = {
     },
   },
   compoundVariants: [],
+
   defaultVariants: {
     level: "h1",
     size: "md",

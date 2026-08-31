@@ -20,7 +20,7 @@ const meta: Meta<typeof Heading> = {
     ),
   ],
   args: {
-    level: 2,
+    level: "h2",
     weight: "semibold",
     tone: "default",
     size: "lg",
@@ -66,7 +66,7 @@ export const Sizes: Story = {
   render: (args) => (
     <div className="flex flex-col gap-4">
       {HEADING_SIZES.map((size) => (
-        <Heading key={size} {...args} level={2} size={size}>
+        <Heading key={size} {...args} level="h2" size={size}>
           Size: {size}
         </Heading>
       ))}

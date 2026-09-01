@@ -26,7 +26,7 @@ Skip when edits are limited to private authoring-only files with no consumer imp
 
 ## Workflow
 
-1. **Find the item root** — the folder containing `_registry.mdx` (for example `registry/items/components/icons/`).
+1. **Find the item root** — the folder containing `_registry.mdx` (for example `registry/items/components/heading/`).
 2. **Inventory on-disk source** — list publishable files relative to the item root.
 3. **Read `_registry.mdx`** — compare `files`, `dependencies`, `registryDependencies`, `localRegistryDependencies`, `title`, `description`, and usage examples.
 4. **Read `_preview.tsx`** — confirm it still renders the item's primary experience.
@@ -71,6 +71,8 @@ Paths in `files[].path` are **relative to the item folder**, not prefixed with `
 - [ ] Reflects new variants, icons, props, or hook behavior consumers will see on the docs page
 - [ ] Adds `"use client"` when the preview uses hooks, browser APIs, or event handlers
 - [ ] Stays client-safe: no network calls, auth, server functions, env reads, or app-only providers
+
+Prefer existing patterns: map exported variant arrays in previews (`BUTTON_VARIANTS`, `HEADING_SIZES`) and keep usage snippets in `_registry.mdx` minimal but copy-pasteable.
 
 ## Change → Update Map
 

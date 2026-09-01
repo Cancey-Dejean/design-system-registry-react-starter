@@ -56,6 +56,5 @@ Use **Vite+**: `vp install`, `vp dev`, `vp build`, `vp test`
 
 - After registry edits, run `vp check --fix` on touched files and `bun --bun ./scripts/doctor.ts` (if Bun is installed).
 - After changing published registry source, sync `_registry.mdx` and `_preview.tsx` with [sync-registry-metadata](skills/sync-registry-metadata/SKILL.md).
-- After changing published registry source, sync `_registry.mdx` and `_preview.tsx` with [sync-registry-metadata](skills/sync-registry-metadata/SKILL.md).
 - For route/docs changes, run `vp build` so `src/routeTree.gen.ts` updates.
 - Build before handoff when registry JSON, routes, or source loading changed: `vp build`.

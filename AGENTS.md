@@ -31,6 +31,7 @@ Use **Vite+**: `vp install`, `vp dev`, `vp build`, `vp test`
 
 - Treat short prompts like "add a button component to the registry" as implementation requests.
 - For registry item authoring or adaptation, use the installable `shadcn-registry` [SKILL.md](skills/shadcn-registry/SKILL.md) when available.
+- After changing published source under `registry/items/**`, sync `_registry.mdx` and `_preview.tsx` with the `sync-registry-metadata` [SKILL.md](skills/sync-registry-metadata/SKILL.md).
 - After shipping user-facing registry, component, docs, or install-path changes, update `registry/docs/changelog.mdx` with the `update-changelog` [SKILL.md](skills/update-changelog/SKILL.md).
 - For new registry items, scaffold the starter files non-interactively with `bun --bun ./scripts/new.ts --type <type> --name <kebab-name> --description "<description>"`; add `--target` for `registry:page`, `registry:file`, and custom alias installs like `@ui/ai/<file>.tsx`, `--file-extension` for non-`ts` file items, and font flags for `registry:font`.
 - Put published registry source under `registry/items/**`, never under `src/components/ui`.
@@ -54,5 +55,7 @@ Use **Vite+**: `vp install`, `vp dev`, `vp build`, `vp test`
 ## Verification
 
 - After registry edits, run `vp check --fix` on touched files and `bun --bun ./scripts/doctor.ts` (if Bun is installed).
+- After changing published registry source, sync `_registry.mdx` and `_preview.tsx` with [sync-registry-metadata](skills/sync-registry-metadata/SKILL.md).
+- After changing published registry source, sync `_registry.mdx` and `_preview.tsx` with [sync-registry-metadata](skills/sync-registry-metadata/SKILL.md).
 - For route/docs changes, run `vp build` so `src/routeTree.gen.ts` updates.
 - Build before handoff when registry JSON, routes, or source loading changed: `vp build`.

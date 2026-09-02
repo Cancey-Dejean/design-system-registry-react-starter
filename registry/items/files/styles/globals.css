@@ -8,8 +8,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
-  interpolate-size: allow-keywords;
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
 }
 
 @layer base {

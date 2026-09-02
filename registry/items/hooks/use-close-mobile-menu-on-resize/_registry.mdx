@@ -1,0 +1,25 @@
+---
+name: use-close-mobile-menu-on-resize
+type: registry:hook
+title: useCloseMobileMenuOnResize
+description: Closes a mobile menu or overlay when the viewport is resized.
+files:
+  - path: use-close-mobile-menu-on-resize.ts
+    type: registry:hook
+---
+
+Pass a callback that runs on every `window` `resize` event. Typical use: dismiss a sheet, drawer, or
+mobile nav when the user widens the viewport so the desktop layout takes over.
+
+```tsx
+import { useCloseMobileMenuOnResize } from "@/hooks/use-close-mobile-menu-on-resize";
+
+export function MobileNav({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+  useCloseMobileMenuOnResize(() => onOpenChange(false));
+
+  return open ? <nav>{/* mobile links */}</nav> : null;
+}
+```
+
+Pair with [`useIsMobile`](/utilities/use-mobile) when you only want to close after crossing the mobile
+breakpoint instead of on every resize tick.

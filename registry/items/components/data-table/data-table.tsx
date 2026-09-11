@@ -19,9 +19,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../table/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../table/table";
 import { features, type DataTableFeatures } from "./data-table-features";
 
 export type { DataTableFeatures };
@@ -52,8 +59,11 @@ export function DataTable<TData extends RowData>({
   initialPageSize = 10,
 }: DataTableProps<TData>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<ColumnVisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<ColumnVisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
 
   const table = useTable({
@@ -78,8 +88,12 @@ export function DataTable<TData extends RowData>({
     },
   });
 
-  const filterColumn = filterColumnId ? table.getColumn(filterColumnId) : undefined;
-  const hideableColumns = table.getAllColumns().filter((column) => column.getCanHide());
+  const filterColumn = filterColumnId
+    ? table.getColumn(filterColumnId)
+    : undefined;
+  const hideableColumns = table
+    .getAllColumns()
+    .filter((column) => column.getCanHide());
   const filterValue = filterColumn?.getFilterValue();
   const filterInputValue = typeof filterValue === "string" ? filterValue : "";
 
@@ -91,13 +105,17 @@ export function DataTable<TData extends RowData>({
             <Input
               placeholder={filterPlaceholder}
               value={filterInputValue}
-              onChange={(event) => filterColumn.setFilterValue(event.target.value)}
+              onChange={(event) =>
+                filterColumn.setFilterValue(event.target.value)
+              }
               className="max-w-sm"
             />
           ) : null}
           {showColumnVisibility && hideableColumns.length > 0 ? (
             <DropdownMenu>
-              <DropdownMenuTrigger render={<Button variant="outline" className="ml-auto" />}>
+              <DropdownMenuTrigger
+                render={<Button variant="outline" className="ml-auto" />}
+              >
                 Columns
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -124,7 +142,9 @@ export function DataTable<TData extends RowData>({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
-                    {header.isPlaceholder ? null : <table.FlexRender header={header} />}
+                    {header.isPlaceholder ? null : (
+                      <table.FlexRender header={header} />
+                    )}
                   </TableHead>
                 ))}
               </TableRow>
@@ -133,7 +153,10 @@ export function DataTable<TData extends RowData>({
           <TableBody>
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() ? "selected" : undefined}>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() ? "selected" : undefined}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       <table.FlexRender cell={cell} />
@@ -143,7 +166,10 @@ export function DataTable<TData extends RowData>({
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>
@@ -155,7 +181,7 @@ export function DataTable<TData extends RowData>({
       {showPagination || showSelectionCount ? (
         <div className="flex items-center justify-end space-x-2 py-4">
           {showSelectionCount ? (
-            <div className="flex-1 text-sm text-muted-foreground">
+            <div className="text-muted-foreground flex-1 text-sm">
               {table.getFilteredSelectedRowModel().rows.length} of{" "}
               {table.getFilteredRowModel().rows.length} row(s) selected.
             </div>

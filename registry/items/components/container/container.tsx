@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 import type { ContainerProps } from "./container.types";
 import { containerVariants } from "./container.variants";

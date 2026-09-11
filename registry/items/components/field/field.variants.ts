@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn"
 
 const fieldBase = cn("group/field flex w-full gap-2 data-[invalid=true]:text-destructive");
 

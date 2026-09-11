@@ -6,7 +6,7 @@ import * as React from "react";
 import type { DateRange } from "react-day-picker";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 import { Calendar } from "../calendar/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover/popover";
@@ -40,7 +40,9 @@ function DatePicker({
   id,
   align = "start",
 }: DatePickerProps) {
-  const [uncontrolledDate, setUncontrolledDate] = React.useState<Date | undefined>(defaultValue);
+  const [uncontrolledDate, setUncontrolledDate] = React.useState<
+    Date | undefined
+  >(defaultValue);
   const date = value !== undefined ? value : uncontrolledDate;
 
   function setDate(next: Date | undefined) {
@@ -60,7 +62,7 @@ function DatePicker({
               variant="outline"
               data-empty={!date}
               className={cn(
-                "justify-start text-left font-normal data-[empty=true]:text-muted-foreground",
+                "data-[empty=true]:text-muted-foreground justify-start text-left font-normal",
                 buttonClassName,
               )}
             />
@@ -108,9 +110,9 @@ function DatePickerWithRange({
   id,
   align = "start",
 }: DatePickerWithRangeProps) {
-  const [uncontrolledRange, setUncontrolledRange] = React.useState<DateRange | undefined>(
-    defaultValue,
-  );
+  const [uncontrolledRange, setUncontrolledRange] = React.useState<
+    DateRange | undefined
+  >(defaultValue);
   const range = value !== undefined ? value : uncontrolledRange;
 
   function setRange(next: DateRange | undefined) {
@@ -130,7 +132,7 @@ function DatePickerWithRange({
               variant="outline"
               data-empty={!range?.from}
               className={cn(
-                "min-w-[16.5rem] justify-start text-left font-normal data-[empty=true]:text-muted-foreground",
+                "data-[empty=true]:text-muted-foreground min-w-[16.5rem] justify-start text-left font-normal",
                 buttonClassName,
               )}
             />
@@ -140,7 +142,8 @@ function DatePickerWithRange({
           {range?.from ? (
             range.to ? (
               <>
-                {format(range.from, "LLL dd, y")} - {format(range.to, "LLL dd, y")}
+                {format(range.from, "LLL dd, y")} -{" "}
+                {format(range.to, "LLL dd, y")}
               </>
             ) : (
               format(range.from, "LLL dd, y")

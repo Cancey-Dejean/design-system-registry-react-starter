@@ -1,8 +1,11 @@
 import type { SVGProps } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
-export default function GoogleLogo({ className, ...props }: SVGProps<SVGSVGElement>) {
+export default function GoogleLogo({
+  className,
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       aria-hidden="true"
@@ -32,7 +35,12 @@ export default function GoogleLogo({ className, ...props }: SVGProps<SVGSVGEleme
       </g>
       <defs>
         <clipPath id="clip0_12781_91887">
-          <rect width="24" height="24" fill="white" transform="translate(0.5)" />
+          <rect
+            width="24"
+            height="24"
+            fill="white"
+            transform="translate(0.5)"
+          />
         </clipPath>
       </defs>
     </svg>

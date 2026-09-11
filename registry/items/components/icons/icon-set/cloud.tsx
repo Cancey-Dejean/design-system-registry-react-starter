@@ -1,8 +1,11 @@
 import type { SVGProps } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
-export default function CloudIllustration({ className, ...props }: SVGProps<SVGSVGElement>) {
+export default function CloudIllustration({
+  className,
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       aria-hidden="true"
@@ -23,8 +26,19 @@ export default function CloudIllustration({ className, ...props }: SVGProps<SVGS
           stroke="black"
           strokeOpacity="0.08"
         />
-        <ellipse cx="46.6" cy="54.3998" rx="25.6" ry="25.6" fill="url(#paint0_linear_1266_30154)" />
-        <circle cx="78.6" cy="48" r="32" fill="url(#paint1_linear_1266_30154)" />
+        <ellipse
+          cx="46.6"
+          cy="54.3998"
+          rx="25.6"
+          ry="25.6"
+          fill="url(#paint0_linear_1266_30154)"
+        />
+        <circle
+          cx="78.6"
+          cy="48"
+          r="32"
+          fill="url(#paint1_linear_1266_30154)"
+        />
         <ellipse
           cx="110.6"
           cy="57.6002"
@@ -90,7 +104,11 @@ export default function CloudIllustration({ className, ...props }: SVGProps<SVGS
             type="matrix"
             values="0 0 0 0 0.0392157 0 0 0 0 0.0496732 0 0 0 0 0.0705882 0 0 0 0.04 0"
           />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1266_30154" />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_1266_30154"
+          />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -144,7 +162,10 @@ export default function CloudIllustration({ className, ...props }: SVGProps<SVGS
             result="shape"
           />
         </filter>
-        <clipPath id="bgblur_0_1266_30154_clip_path" transform="translate(-45 -54)">
+        <clipPath
+          id="bgblur_0_1266_30154_clip_path"
+          transform="translate(-45 -54)"
+        >
           <path d="M53 86C53 72.7452 63.7452 62 77 62C90.2548 62 101 72.7452 101 86C101 99.2548 90.2548 110 77 110C63.7452 110 53 99.2548 53 86Z" />
         </clipPath>
         <linearGradient

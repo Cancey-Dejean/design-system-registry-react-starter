@@ -1,8 +1,11 @@
 import type { SVGProps } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
-export default function LeapYearLogo({ className, ...props }: SVGProps<SVGSVGElement>) {
+export default function LeapYearLogo({
+  className,
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       aria-hidden="true"
@@ -24,7 +27,10 @@ export default function LeapYearLogo({ className, ...props }: SVGProps<SVGSVGEle
             fill="url(#paint0_linear_7320_18256)"
           />
           <g filter="url(#filter1_d_7320_18256)">
-            <path d="M30.998 20V12H14.998V20L30.998 20Z" fill="url(#paint1_linear_7320_18256)" />
+            <path
+              d="M30.998 20V12H14.998V20L30.998 20Z"
+              fill="url(#paint1_linear_7320_18256)"
+            />
             <path
               d="M30.9977 27.9999C26.5794 27.9999 22.9977 31.5816 22.9977 35.9999L14.999 36.0002L14.999 35.7938C15.109 27.0865 22.1743 20.0552 30.8948 20.0002L38.998 20.0006V36.0006H30.998L30.9977 27.9999Z"
               fill="url(#paint2_linear_7320_18256)"
@@ -41,7 +47,10 @@ export default function LeapYearLogo({ className, ...props }: SVGProps<SVGSVGEle
           stroke-width="2"
         />
       </g>
-      <path d="M63 32.9999V13.3169H68.076V28.5179H76.959V32.9999H63Z" fill="#0A0D12" />
+      <path
+        d="M63 32.9999V13.3169H68.076V28.5179H76.959V32.9999H63Z"
+        fill="#0A0D12"
+      />
       <path
         d="M85.3611 33.2699C83.7231 33.2699 82.3551 32.9639 81.2571 32.3519C80.1591 31.7219 79.3311 30.8399 78.7731 29.7059C78.2331 28.5719 77.9631 27.2579 77.9631 25.7639V25.4669C77.9631 23.8829 78.2601 22.5509 78.8541 21.4709C79.4481 20.3729 80.2671 19.5359 81.3111 18.9599C82.3731 18.3839 83.5881 18.0959 84.9561 18.0959C86.4861 18.0959 87.7821 18.3839 88.8441 18.9599C89.9241 19.5179 90.7431 20.3099 91.3011 21.3359C91.8591 22.3439 92.1381 23.5319 92.1381 24.8999V26.8979H82.7961V27.5729C82.7961 28.1849 83.0211 28.6889 83.4711 29.0849C83.9211 29.4809 84.4971 29.6789 85.1991 29.6789C85.8291 29.6789 86.3421 29.5529 86.7381 29.3009C87.1341 29.0309 87.3681 28.6799 87.4401 28.2479H91.9761C91.9221 29.2379 91.6071 30.1109 91.0311 30.8669C90.4551 31.6229 89.6811 32.2169 88.7091 32.6489C87.7371 33.0629 86.6211 33.2699 85.3611 33.2699ZM82.7961 23.8739V24.0089H87.4401V23.8739C87.4401 23.0999 87.2241 22.5329 86.7921 22.1729C86.3601 21.7949 85.8021 21.6059 85.1181 21.6059C84.4341 21.6059 83.8761 21.8039 83.4441 22.1999C83.0121 22.5779 82.7961 23.1359 82.7961 23.8739Z"
         fill="#0A0D12"
@@ -94,7 +103,11 @@ export default function LeapYearLogo({ className, ...props }: SVGProps<SVGSVGEle
             type="matrix"
             values="0 0 0 0 0.162923 0 0 0 0 0.162923 0 0 0 0 0.162923 0 0 0 0.08 0"
           />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_7320_18256" />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_7320_18256"
+          />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -134,8 +147,15 @@ export default function LeapYearLogo({ className, ...props }: SVGProps<SVGSVGEle
           <feOffset dy="-3" />
           <feGaussianBlur stdDeviation="1.5" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
-          <feBlend mode="normal" in2="shape" result="effect3_innerShadow_7320_18256" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect3_innerShadow_7320_18256"
+          />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -145,7 +165,10 @@ export default function LeapYearLogo({ className, ...props }: SVGProps<SVGSVGEle
           <feOffset dy="3" />
           <feGaussianBlur stdDeviation="1.5" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-          <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0"
+          />
           <feBlend
             mode="normal"
             in2="effect3_innerShadow_7320_18256"
@@ -165,7 +188,10 @@ export default function LeapYearLogo({ className, ...props }: SVGProps<SVGSVGEle
           />
           <feOffset />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+          />
           <feBlend
             mode="normal"
             in2="effect4_innerShadow_7320_18256"
@@ -201,7 +227,11 @@ export default function LeapYearLogo({ className, ...props }: SVGProps<SVGSVGEle
             type="matrix"
             values="0 0 0 0 0.141176 0 0 0 0 0.141176 0 0 0 0 0.141176 0 0 0 0.1 0"
           />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_7320_18256" />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_7320_18256"
+          />
           <feBlend
             mode="normal"
             in="SourceGraphic"

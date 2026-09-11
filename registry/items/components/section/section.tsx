@@ -1,9 +1,13 @@
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 import type { SectionProps } from "./section.types";
 import { sectionVariants } from "./section.variants";
 
-export default function Section({ padding, className, ...props }: SectionProps) {
+export default function Section({
+  padding,
+  className,
+  ...props
+}: SectionProps) {
   return (
     <section
       data-slot="section"

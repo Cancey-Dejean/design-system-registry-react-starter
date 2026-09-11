@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 const THEME_STORAGE_KEY = "data-theme";
 
@@ -17,7 +17,11 @@ const themeLabels: Record<BrandTheme, string> = {
 };
 
 function isBrandTheme(value: string | null): value is BrandTheme {
-  return value === "theme-primary" || value === "theme-secondary" || value === "theme-tertiary";
+  return (
+    value === "theme-primary" ||
+    value === "theme-secondary" ||
+    value === "theme-tertiary"
+  );
 }
 
 function applyBrandTheme(theme: BrandTheme) {
@@ -47,7 +51,10 @@ type ThemeToggleProps = {
   defaultTheme?: BrandTheme;
 };
 
-function ThemeToggle({ className, defaultTheme = "theme-primary" }: ThemeToggleProps) {
+function ThemeToggle({
+  className,
+  defaultTheme = "theme-primary",
+}: ThemeToggleProps) {
   const [theme, setTheme] = useState<BrandTheme>(defaultTheme);
 
   useEffect(() => {

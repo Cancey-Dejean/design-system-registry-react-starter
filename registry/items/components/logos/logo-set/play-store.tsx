@@ -1,8 +1,11 @@
 import type { SVGProps } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
-export default function PlayStore({ className, ...props }: SVGProps<SVGSVGElement>) {
+export default function PlayStore({
+  className,
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       aria-hidden="true"
@@ -26,9 +29,15 @@ export default function PlayStore({ className, ...props }: SVGProps<SVGSVGElemen
         d="M52.5281 7.737H49.7961V9.639H52.2601V10.36H49.7961V12.262H52.5281V13H49.0251V7H52.5281V7.737Z"
         fill="white"
       />
-      <path d="M55.779 13H55.008V7.737H53.332V7H57.455V7.737H55.779V13Z" fill="white" />
+      <path
+        d="M55.779 13H55.008V7.737H53.332V7H57.455V7.737H55.779V13Z"
+        fill="white"
+      />
       <path d="M60.438 13V7H61.209V13H60.438Z" fill="white" />
-      <path d="M64.6281 13H63.8572V7.737H62.1812V7H66.3042V7.737H64.6281V13Z" fill="white" />
+      <path
+        d="M64.6281 13H63.8572V7.737H62.1812V7H66.3042V7.737H64.6281V13Z"
+        fill="white"
+      />
       <path
         d="M74.1089 12.225C73.5189 12.831 72.7859 13.134 71.9089 13.134C71.0319 13.134 70.2989 12.831 69.7099 12.225C69.1199 11.619 68.8259 10.877 68.8259 9.99999C68.8259 9.12299 69.1199 8.38099 69.7099 7.77499C70.2989 7.16899 71.0319 6.86499 71.9089 6.86499C72.7809 6.86499 73.5129 7.16999 74.1049 7.77899C74.6969 8.38799 74.9929 9.12799 74.9929 9.99999C74.9929 10.877 74.6979 11.619 74.1089 12.225ZM70.2789 11.722C70.7229 12.172 71.2659 12.396 71.9089 12.396C72.5519 12.396 73.0959 12.171 73.5389 11.722C73.9829 11.272 74.2059 10.698 74.2059 9.99999C74.2059 9.30199 73.9829 8.72799 73.5389 8.27799C73.0959 7.82799 72.5519 7.60399 71.9089 7.60399C71.2659 7.60399 70.7229 7.82899 70.2789 8.27799C69.8359 8.72799 69.6129 9.30199 69.6129 9.99999C69.6129 10.698 69.8359 11.272 70.2789 11.722Z"
         fill="white"
@@ -110,7 +119,12 @@ export default function PlayStore({ className, ...props }: SVGProps<SVGSVGElemen
           colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -119,8 +133,15 @@ export default function PlayStore({ className, ...props }: SVGProps<SVGSVGElemen
           />
           <feOffset dy="-0.15" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0" />
-          <feBlend mode="normal" in2="shape" result="effect1_innerShadow_12831_98221" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_12831_98221"
+          />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -129,7 +150,10 @@ export default function PlayStore({ className, ...props }: SVGProps<SVGSVGElemen
           />
           <feOffset dy="0.15" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-          <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0"
+          />
           <feBlend
             mode="normal"
             in2="effect1_innerShadow_12831_98221"
@@ -146,7 +170,12 @@ export default function PlayStore({ className, ...props }: SVGProps<SVGSVGElemen
           colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -155,8 +184,15 @@ export default function PlayStore({ className, ...props }: SVGProps<SVGSVGElemen
           />
           <feOffset dy="-0.15" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0" />
-          <feBlend mode="normal" in2="shape" result="effect1_innerShadow_12831_98221" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_12831_98221"
+          />
         </filter>
         <linearGradient
           id="paint0_linear_12831_98221"

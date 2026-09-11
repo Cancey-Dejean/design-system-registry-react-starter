@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn"
 
 const containerBase = cn("mx-auto w-full px-4 md:px-6");
 

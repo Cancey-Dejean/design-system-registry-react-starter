@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import StoryWrapper from "@registry/lib/story-wrapper";
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 import {
   shimmerAngleClasses,

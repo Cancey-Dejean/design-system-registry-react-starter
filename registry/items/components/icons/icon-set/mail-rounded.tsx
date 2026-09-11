@@ -1,8 +1,11 @@
 import type { SVGProps } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
-export default function MailRounded({ className, ...props }: SVGProps<SVGSVGElement>) {
+export default function MailRounded({
+  className,
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       aria-hidden="true"
@@ -52,7 +55,11 @@ export default function MailRounded({ className, ...props }: SVGProps<SVGSVGElem
             type="matrix"
             values="0 0 0 0 0.0392157 0 0 0 0 0.0496732 0 0 0 0 0.0705882 0 0 0 0.05 0"
           />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_5023_372979" />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_5023_372979"
+          />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -71,7 +78,11 @@ export default function MailRounded({ className, ...props }: SVGProps<SVGSVGElem
             type="matrix"
             values="0 0 0 0 0.0392157 0 0 0 0 0.0496732 0 0 0 0 0.0705882 0 0 0 0.05 0"
           />
-          <feBlend mode="normal" in2="shape" result="effect2_innerShadow_5023_372979" />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect2_innerShadow_5023_372979"
+          />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"

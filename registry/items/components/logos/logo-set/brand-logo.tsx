@@ -1,8 +1,11 @@
 import type { SVGProps } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
-export default function BrandLogo({ className, ...props }: SVGProps<SVGSVGElement>) {
+export default function BrandLogo({
+  className,
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       aria-hidden="true"
@@ -123,7 +126,11 @@ export default function BrandLogo({ className, ...props }: SVGProps<SVGSVGElemen
             type="matrix"
             values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.06 0"
           />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1257_131469" />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_1257_131469"
+          />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -184,7 +191,11 @@ export default function BrandLogo({ className, ...props }: SVGProps<SVGSVGElemen
             type="matrix"
             values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.1 0"
           />
-          <feBlend mode="normal" in2="shape" result="effect4_innerShadow_1257_131469" />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect4_innerShadow_1257_131469"
+          />
         </filter>
         <filter
           id="filter1_dd_1257_131469"
@@ -208,7 +219,11 @@ export default function BrandLogo({ className, ...props }: SVGProps<SVGSVGElemen
             type="matrix"
             values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.06 0"
           />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1257_131469" />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_1257_131469"
+          />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -233,7 +248,10 @@ export default function BrandLogo({ className, ...props }: SVGProps<SVGSVGElemen
             result="shape"
           />
         </filter>
-        <clipPath id="bgblur_2_1257_131469_clip_path" transform="translate(2.5 -19.5)">
+        <clipPath
+          id="bgblur_2_1257_131469_clip_path"
+          transform="translate(2.5 -19.5)"
+        >
           <path d="M5 27H53V31.8C53 38.5206 53 41.8809 51.6921 44.4479C50.5416 46.7058 48.7058 48.5416 46.4479 49.6921C43.8809 51 40.5206 51 33.8 51H24.2C17.4794 51 14.1191 51 11.5521 49.6921C9.29417 48.5416 7.4584 46.7058 6.30792 44.4479C5 41.8809 5 38.5206 5 31.8V27Z" />
         </clipPath>
         <linearGradient
@@ -311,7 +329,12 @@ export default function BrandLogo({ className, ...props }: SVGProps<SVGSVGElemen
           />
         </clipPath>
         <clipPath id="clip1_1257_131469">
-          <rect width="48" height="48" fill="white" transform="translate(5 3)" />
+          <rect
+            width="48"
+            height="48"
+            fill="white"
+            transform="translate(5 3)"
+          />
         </clipPath>
       </defs>
     </svg>

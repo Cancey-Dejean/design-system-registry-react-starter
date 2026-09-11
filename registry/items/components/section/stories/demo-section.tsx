@@ -1,12 +1,15 @@
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 import Section from "../section";
 
-export function DemoSection({ className, ...props }: React.ComponentProps<typeof Section>) {
+export function DemoSection({
+  className,
+  ...props
+}: React.ComponentProps<typeof Section>) {
   return (
     <Section
       className={cn(
-        "flex items-center justify-center rounded-2xl border border-dashed border-foreground bg-background text-foreground dark:bg-transparent dark:text-white",
+        "border-foreground bg-background text-foreground flex items-center justify-center rounded-2xl border border-dashed dark:bg-transparent dark:text-white",
         className,
       )}
       {...props}

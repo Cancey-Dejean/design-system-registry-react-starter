@@ -1,8 +1,11 @@
 import type { SVGProps } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
-export default function LogoText({ className, ...props }: SVGProps<SVGSVGElement>) {
+export default function LogoText({
+  className,
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       aria-hidden="true"
@@ -162,7 +165,11 @@ export default function LogoText({ className, ...props }: SVGProps<SVGSVGElement
             type="matrix"
             values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.06 0"
           />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_12962_29683" />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_12962_29683"
+          />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -223,7 +230,11 @@ export default function LogoText({ className, ...props }: SVGProps<SVGSVGElement
             type="matrix"
             values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.1 0"
           />
-          <feBlend mode="normal" in2="shape" result="effect4_innerShadow_12962_29683" />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect4_innerShadow_12962_29683"
+          />
         </filter>
         <filter
           id="filter1_dd_12962_29683"
@@ -247,7 +258,11 @@ export default function LogoText({ className, ...props }: SVGProps<SVGSVGElement
             type="matrix"
             values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.06 0"
           />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_12962_29683" />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_12962_29683"
+          />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -272,7 +287,10 @@ export default function LogoText({ className, ...props }: SVGProps<SVGSVGElement
             result="shape"
           />
         </filter>
-        <clipPath id="bgblur_2_12962_29683_clip_path" transform="translate(1.5 -13)">
+        <clipPath
+          id="bgblur_2_12962_29683_clip_path"
+          transform="translate(1.5 -13)"
+        >
           <path d="M3.5 18H35.5V21.2C35.5 25.6804 35.5 27.9206 34.6281 29.6319C33.8611 31.1372 32.6372 32.3611 31.1319 33.1281C29.4206 34 27.1804 34 22.7 34H16.3C11.8196 34 9.57937 34 7.86808 33.1281C6.36278 32.3611 5.13893 31.1372 4.37195 29.6319C3.5 27.9206 3.5 25.6804 3.5 21.2V18Z" />
         </clipPath>
         <linearGradient
@@ -350,7 +368,12 @@ export default function LogoText({ className, ...props }: SVGProps<SVGSVGElement
           />
         </clipPath>
         <clipPath id="clip1_12962_29683">
-          <rect width="32" height="32" fill="white" transform="translate(3.5 2)" />
+          <rect
+            width="32"
+            height="32"
+            fill="white"
+            transform="translate(3.5 2)"
+          />
         </clipPath>
       </defs>
     </svg>

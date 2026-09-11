@@ -1,6 +1,9 @@
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
-export default function NavArrow({ className, ...props }: React.ComponentProps<"svg">) {
+export default function NavArrow({
+  className,
+  ...props
+}: React.ComponentProps<"svg">) {
   return (
     <svg
       aria-hidden="true"

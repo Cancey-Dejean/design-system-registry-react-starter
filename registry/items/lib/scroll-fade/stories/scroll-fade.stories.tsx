@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import StoryWrapper from "@registry/lib/story-wrapper";
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 import {
   scrollFadeClass,

@@ -3,7 +3,7 @@ import { useRender } from "@base-ui/react/use-render";
 import { type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 import { bubbleReactionsVariants, bubbleVariants } from "./bubble.variants";
 
@@ -37,7 +37,11 @@ function Bubble({
   );
 }
 
-function BubbleContent({ className, render, ...props }: useRender.ComponentProps<"div">) {
+function BubbleContent({
+  className,
+  render,
+  ...props
+}: useRender.ComponentProps<"div">) {
   return useRender({
     defaultTagName: "div",
     props: mergeProps<"div">(

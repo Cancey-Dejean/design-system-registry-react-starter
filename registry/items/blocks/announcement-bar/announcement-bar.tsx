@@ -4,7 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Children, type ComponentProps, useEffect, useState } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 import { Container } from "../../components/container/container";
 import type { Theme } from "../../files/types";

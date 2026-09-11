@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 export default function MainLogo({
   className,
@@ -6,5 +6,7 @@ export default function MainLogo({
   alt = "Main Logo",
   ...props
 }: React.ComponentProps<"img">) {
-  return <img src={src} alt={alt} className={cn("h-4", className)} {...props} />;
+  return (
+    <img src={src} alt={alt} className={cn("h-4", className)} {...props} />
+  );
 }

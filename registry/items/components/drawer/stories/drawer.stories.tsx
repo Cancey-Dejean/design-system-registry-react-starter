@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Drawer,
@@ -46,7 +46,9 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => (
     <Drawer>
-      <DrawerTrigger render={<Button variant="outline" />}>Open Drawer</DrawerTrigger>
+      <DrawerTrigger render={<Button variant="outline" />}>
+        Open Drawer
+      </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Move Goal</DrawerTitle>
@@ -62,7 +64,9 @@ export const Default: Story = {
         </div>
         <DrawerFooter>
           <Button type="submit">Submit</Button>
-          <DrawerClose render={<Button variant="outline" />}>Cancel</DrawerClose>
+          <DrawerClose render={<Button variant="outline" />}>
+            Cancel
+          </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
@@ -73,7 +77,9 @@ export const WithSwipeHandle: Story = {
   name: "Swipe handle",
   render: () => (
     <Drawer showSwipeHandle>
-      <DrawerTrigger render={<Button variant="outline" />}>Open with handle</DrawerTrigger>
+      <DrawerTrigger render={<Button variant="outline" />}>
+        Open with handle
+      </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Swipe to dismiss</DrawerTitle>
@@ -81,7 +87,7 @@ export const WithSwipeHandle: Story = {
             A handle at the edge signals that the drawer can be dragged closed.
           </DrawerDescription>
         </DrawerHeader>
-        <div className="p-4 pt-2 text-sm text-muted-foreground">
+        <div className="text-muted-foreground p-4 pt-2 text-sm">
           Drag the handle downward to close on touch devices.
         </div>
         <DrawerFooter>
@@ -96,11 +102,15 @@ export const FromRight: Story = {
   name: "From right",
   render: () => (
     <Drawer swipeDirection="right">
-      <DrawerTrigger render={<Button variant="outline" />}>Open from right</DrawerTrigger>
+      <DrawerTrigger render={<Button variant="outline" />}>
+        Open from right
+      </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Filters</DrawerTitle>
-          <DrawerDescription>Adjust filters and apply them to the list.</DrawerDescription>
+          <DrawerDescription>
+            Adjust filters and apply them to the list.
+          </DrawerDescription>
         </DrawerHeader>
         <div className="grid gap-3 p-4 pt-2">
           <div className="grid gap-2">
@@ -112,7 +122,9 @@ export const FromRight: Story = {
         </div>
         <DrawerFooter>
           <Button>Apply</Button>
-          <DrawerClose render={<Button variant="outline" />}>Cancel</DrawerClose>
+          <DrawerClose render={<Button variant="outline" />}>
+            Cancel
+          </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
@@ -123,11 +135,15 @@ export const FromLeft: Story = {
   name: "From left",
   render: () => (
     <Drawer swipeDirection="left">
-      <DrawerTrigger render={<Button variant="outline" />}>Open from left</DrawerTrigger>
+      <DrawerTrigger render={<Button variant="outline" />}>
+        Open from left
+      </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Navigation</DrawerTitle>
-          <DrawerDescription>Quick links and secondary navigation.</DrawerDescription>
+          <DrawerDescription>
+            Quick links and secondary navigation.
+          </DrawerDescription>
         </DrawerHeader>
         <nav className="flex flex-col gap-1 p-4 pt-2">
           <Button variant="ghost" className="justify-start">
@@ -152,14 +168,20 @@ export const FromTop: Story = {
   name: "From top",
   render: () => (
     <Drawer swipeDirection="up" showSwipeHandle>
-      <DrawerTrigger render={<Button variant="outline" />}>Open from top</DrawerTrigger>
+      <DrawerTrigger render={<Button variant="outline" />}>
+        Open from top
+      </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Notifications</DrawerTitle>
-          <DrawerDescription>Recent activity in your workspace.</DrawerDescription>
+          <DrawerDescription>
+            Recent activity in your workspace.
+          </DrawerDescription>
         </DrawerHeader>
         <ul className="space-y-2 p-4 pt-2 text-sm">
-          <li className="rounded-md border p-2">Design system update shipped</li>
+          <li className="rounded-md border p-2">
+            Design system update shipped
+          </li>
           <li className="rounded-md border p-2">New comment on your PR</li>
           <li className="rounded-md border p-2">Invite accepted by teammate</li>
         </ul>
@@ -176,17 +198,27 @@ function ControlledDemo() {
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <p className="text-sm text-muted-foreground">Open: {open ? "true" : "false"}</p>
+      <p className="text-muted-foreground text-sm">
+        Open: {open ? "true" : "false"}
+      </p>
       <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerTrigger render={<Button variant="outline" />}>Controlled drawer</DrawerTrigger>
+        <DrawerTrigger render={<Button variant="outline" />}>
+          Controlled drawer
+        </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>Controlled open state</DrawerTitle>
-            <DrawerDescription>The parent tracks open via open / onOpenChange.</DrawerDescription>
+            <DrawerDescription>
+              The parent tracks open via open / onOpenChange.
+            </DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
-            <Button onClick={() => setOpen(false)}>Close programmatically</Button>
-            <DrawerClose render={<Button variant="outline" />}>Cancel</DrawerClose>
+            <Button onClick={() => setOpen(false)}>
+              Close programmatically
+            </Button>
+            <DrawerClose render={<Button variant="outline" />}>
+              Cancel
+            </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

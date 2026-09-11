@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Dialog,
@@ -46,7 +46,9 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => (
     <Dialog>
-      <DialogTrigger render={<Button variant="outline" />}>Open Dialog</DialogTrigger>
+      <DialogTrigger render={<Button variant="outline" />}>
+        Open Dialog
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
@@ -69,7 +71,9 @@ export const Default: Story = {
           </div>
         </div>
         <DialogFooter>
-          <DialogClose render={<Button variant="outline" />}>Cancel</DialogClose>
+          <DialogClose render={<Button variant="outline" />}>
+            Cancel
+          </DialogClose>
           <Button type="submit">Save changes</Button>
         </DialogFooter>
       </DialogContent>
@@ -81,19 +85,27 @@ export const WithoutClose: Story = {
   name: "Without close button",
   render: () => (
     <Dialog>
-      <DialogTrigger render={<Button variant="outline" />}>Share link</DialogTrigger>
+      <DialogTrigger render={<Button variant="outline" />}>
+        Share link
+      </DialogTrigger>
       <DialogContent showCloseButton={false}>
         <DialogHeader>
           <DialogTitle>Share this page</DialogTitle>
           <DialogDescription>
-            Anyone with the link can view this page. Copy it from the field below.
+            Anyone with the link can view this page. Copy it from the field
+            below.
           </DialogDescription>
         </DialogHeader>
-        <Input readOnly defaultValue="https://ui.shadcn.com/docs/components/dialog" />
+        <Input
+          readOnly
+          defaultValue="https://ui.shadcn.com/docs/components/dialog"
+        />
         <DialogFooter showCloseButton>
           <Button
             onClick={() => {
-              void navigator.clipboard.writeText("https://ui.shadcn.com/docs/components/dialog");
+              void navigator.clipboard.writeText(
+                "https://ui.shadcn.com/docs/components/dialog",
+              );
             }}
           >
             Copy link
@@ -108,15 +120,18 @@ export const StickyFooter: Story = {
   name: "Sticky footer",
   render: () => (
     <Dialog>
-      <DialogTrigger render={<Button variant="outline">Sticky Footer</Button>} />
+      <DialogTrigger
+        render={<Button variant="outline">Sticky Footer</Button>}
+      />
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Sticky Footer</DialogTitle>
           <DialogDescription>
-            This dialog has a sticky footer that stays visible while the content scrolls.
+            This dialog has a sticky footer that stays visible while the content
+            scrolls.
           </DialogDescription>
         </DialogHeader>
-        <div className="-mx-4 no-scrollbar max-h-[50vh] overflow-y-auto px-4">
+        <div className="no-scrollbar -mx-4 max-h-[50vh] overflow-y-auto px-4">
           {[
             "scroll-1",
             "scroll-2",
@@ -130,12 +145,13 @@ export const StickyFooter: Story = {
             "scroll-10",
           ].map((id) => (
             <p key={id} className="mb-4 leading-normal">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           ))}
         </div>
@@ -151,16 +167,18 @@ export const CustomWidth: Story = {
   name: "Custom width",
   render: () => (
     <Dialog>
-      <DialogTrigger render={<Button variant="outline" />}>Show details</DialogTrigger>
+      <DialogTrigger render={<Button variant="outline" />}>
+        Show details
+      </DialogTrigger>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle>Project details</DialogTitle>
           <DialogDescription>
-            Overview of the current sprint scope and owners. This panel uses a wider max width for
-            denser content.
+            Overview of the current sprint scope and owners. This panel uses a
+            wider max width for denser content.
           </DialogDescription>
         </DialogHeader>
-        <ul className="list-disc space-y-1 pl-4 text-sm text-muted-foreground">
+        <ul className="text-muted-foreground list-disc space-y-1 pl-4 text-sm">
           <li>Ship calendar and dialog registry items</li>
           <li>Finish input group dependency wiring</li>
           <li>Document install paths for consumers</li>
@@ -181,12 +199,16 @@ function ControlledDemo() {
       <Button variant="outline" onClick={() => setOpen(true)}>
         Open controlled dialog
       </Button>
-      <p className="text-sm text-muted-foreground">Open: {open ? "true" : "false"}</p>
+      <p className="text-muted-foreground text-sm">
+        Open: {open ? "true" : "false"}
+      </p>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Controlled dialog</DialogTitle>
-            <DialogDescription>Open state is managed outside the dialog tree.</DialogDescription>
+            <DialogDescription>
+              Open state is managed outside the dialog tree.
+            </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button onClick={() => setOpen(false)}>Close</Button>
@@ -205,13 +227,17 @@ export const Scrollable: Story = {
   name: "Scrollable content",
   render: () => (
     <Dialog>
-      <DialogTrigger render={<Button variant="outline">Scrollable Content</Button>} />
+      <DialogTrigger
+        render={<Button variant="outline">Scrollable Content</Button>}
+      />
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Scrollable Content</DialogTitle>
-          <DialogDescription>This is a dialog with scrollable content.</DialogDescription>
+          <DialogDescription>
+            This is a dialog with scrollable content.
+          </DialogDescription>
         </DialogHeader>
-        <div className="-mx-4 no-scrollbar max-h-[50vh] overflow-y-auto px-4">
+        <div className="no-scrollbar -mx-4 max-h-[50vh] overflow-y-auto px-4">
           {[
             "scroll-1",
             "scroll-2",
@@ -225,12 +251,13 @@ export const Scrollable: Story = {
             "scroll-10",
           ].map((id) => (
             <p key={id} className="mb-4 leading-normal">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           ))}
         </div>

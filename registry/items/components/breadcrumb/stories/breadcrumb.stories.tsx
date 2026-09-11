@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconSlash } from "@tabler/icons-react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Breadcrumb,
@@ -130,7 +130,9 @@ export const Deep: Story = {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink href="/workspace/projects/design-system">Design system</BreadcrumbLink>
+          <BreadcrumbLink href="/workspace/projects/design-system">
+            Design system
+          </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
@@ -151,7 +153,9 @@ export const AsChildLink: Story = {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink render={<a href="/settings" />}>Settings</BreadcrumbLink>
+          <BreadcrumbLink render={<a href="/settings" />}>
+            Settings
+          </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>

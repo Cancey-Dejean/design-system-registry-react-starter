@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconCircle, IconFileText, IconRocket } from "@tabler/icons-react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   NavigationMenu,
@@ -56,7 +56,9 @@ function ListItem({
         className="flex h-full flex-col items-start gap-1 rounded-md p-3"
       >
         <div className="text-sm leading-none font-medium">{title}</div>
-        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+          {children}
+        </p>
       </NavigationMenuLink>
     </li>
   );
@@ -120,9 +122,15 @@ export const RichContent: Story = {
               <ListItem title="Analytics">
                 Track product usage and conversion in real time.
               </ListItem>
-              <ListItem title="Automations">Ship workflows without writing glue code.</ListItem>
-              <ListItem title="Security">SSO, audit logs, and role-based access.</ListItem>
-              <ListItem title="Integrations">Connect your stack with first-party plugins.</ListItem>
+              <ListItem title="Automations">
+                Ship workflows without writing glue code.
+              </ListItem>
+              <ListItem title="Security">
+                SSO, audit logs, and role-based access.
+              </ListItem>
+              <ListItem title="Integrations">
+                Connect your stack with first-party plugins.
+              </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -131,30 +139,45 @@ export const RichContent: Story = {
           <NavigationMenuContent>
             <ul className="grid w-56 gap-1 p-2">
               <li>
-                <NavigationMenuLink href="#" className="flex-col items-start gap-1">
+                <NavigationMenuLink
+                  href="#"
+                  className="flex-col items-start gap-1"
+                >
                   <span className="flex items-center gap-2 font-medium">
                     <IconFileText />
                     Docs
                   </span>
-                  <span className="text-muted-foreground">Guides and API reference.</span>
+                  <span className="text-muted-foreground">
+                    Guides and API reference.
+                  </span>
                 </NavigationMenuLink>
               </li>
               <li>
-                <NavigationMenuLink href="#" className="flex-col items-start gap-1">
+                <NavigationMenuLink
+                  href="#"
+                  className="flex-col items-start gap-1"
+                >
                   <span className="flex items-center gap-2 font-medium">
                     <IconRocket />
                     Changelog
                   </span>
-                  <span className="text-muted-foreground">What shipped this week.</span>
+                  <span className="text-muted-foreground">
+                    What shipped this week.
+                  </span>
                 </NavigationMenuLink>
               </li>
               <li>
-                <NavigationMenuLink href="#" className="flex-col items-start gap-1">
+                <NavigationMenuLink
+                  href="#"
+                  className="flex-col items-start gap-1"
+                >
                   <span className="flex items-center gap-2 font-medium">
                     <IconCircle />
                     Status
                   </span>
-                  <span className="text-muted-foreground">Uptime and incidents.</span>
+                  <span className="text-muted-foreground">
+                    Uptime and incidents.
+                  </span>
                 </NavigationMenuLink>
               </li>
             </ul>

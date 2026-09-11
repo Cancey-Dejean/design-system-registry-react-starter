@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconBold, IconItalic, IconUnderline } from "@tabler/icons-react";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Toggle } from "../toggle";
 
@@ -131,7 +131,9 @@ function ControlledDemo() {
       >
         <IconBold />
       </Toggle>
-      <p className="text-sm text-muted-foreground">Pressed: {String(pressed)}</p>
+      <p className="text-muted-foreground text-sm">
+        Pressed: {String(pressed)}
+      </p>
     </div>
   );
 }

@@ -1,9 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../accordion";
 
 const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",
@@ -45,7 +50,8 @@ const faqItems = [
   {
     value: "item-1",
     trigger: "Is it accessible?",
-    content: "Yes. It adheres to the WAI-ARIA design pattern and is built on Base UI primitives.",
+    content:
+      "Yes. It adheres to the WAI-ARIA design pattern and is built on Base UI primitives.",
   },
   {
     value: "item-2",
@@ -56,7 +62,8 @@ const faqItems = [
   {
     value: "item-3",
     trigger: "Is it animated?",
-    content: "Yes. Height is animated with accordion open and close transitions.",
+    content:
+      "Yes. Height is animated with accordion open and close transitions.",
   },
 ] as const;
 
@@ -111,7 +118,9 @@ export const DisabledItem: Story = {
     <Accordion defaultValue={["item-1"]}>
       <AccordionItem value="item-1">
         <AccordionTrigger>Available section</AccordionTrigger>
-        <AccordionContent>This item can be expanded and collapsed.</AccordionContent>
+        <AccordionContent>
+          This item can be expanded and collapsed.
+        </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2" disabled>
         <AccordionTrigger>Disabled section</AccordionTrigger>
@@ -119,7 +128,9 @@ export const DisabledItem: Story = {
       </AccordionItem>
       <AccordionItem value="item-3">
         <AccordionTrigger>Another section</AccordionTrigger>
-        <AccordionContent>Use disabled on AccordionItem to lock a single panel.</AccordionContent>
+        <AccordionContent>
+          Use disabled on AccordionItem to lock a single panel.
+        </AccordionContent>
       </AccordionItem>
     </Accordion>
   ),
@@ -133,20 +144,21 @@ export const LongContent: Story = {
         <AccordionTrigger>What is included?</AccordionTrigger>
         <AccordionContent>
           <p>
-            The accordion ships as an installable registry:ui item with trigger, content, and item
-            slots you can compose freely.
+            The accordion ships as an installable registry:ui item with trigger,
+            content, and item slots you can compose freely.
           </p>
           <p>
-            Animation uses the same open/close transitions as the rest of the Base UI styled
-            components in this starter, so panel height eases in and out cleanly.
+            Animation uses the same open/close transitions as the rest of the
+            Base UI styled components in this starter, so panel height eases in
+            and out cleanly.
           </p>
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
         <AccordionTrigger>Can I customize the icons?</AccordionTrigger>
         <AccordionContent>
-          Yes. Edit the chevron icons in the accordion trigger implementation, or wrap the trigger
-          and supply your own indicator.
+          Yes. Edit the chevron icons in the accordion trigger implementation,
+          or wrap the trigger and supply your own indicator.
         </AccordionContent>
       </AccordionItem>
     </Accordion>

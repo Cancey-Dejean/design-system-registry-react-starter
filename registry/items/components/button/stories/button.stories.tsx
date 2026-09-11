@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ArrowRight, Mail, ShoppingCart } from "lucide-react";
 import { fn } from "storybook/test";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 import { cn } from "@/lib/utils";
 
 import { Button, ButtonCTAGroup } from "../button";

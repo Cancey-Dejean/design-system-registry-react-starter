@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { useCopyToClipboard } from "../use-copy-to-clipboard";
 
-const exampleCommand = "npx shadcn@latest add https://example.com/r/example-card.json";
+const exampleCommand =
+  "npx shadcn@latest add https://example.com/r/example-card.json";
 
 function DefaultDemo() {
   const copyState = useCopyToClipboard();
@@ -15,8 +16,10 @@ function DefaultDemo() {
       <Button onClick={() => void copyState.copy(exampleCommand)}>
         {copyState.status === "copied" ? "Copied" : "Copy example command"}
       </Button>
-      <p className="max-w-sm font-mono text-xs break-all text-muted-foreground">{exampleCommand}</p>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground max-w-sm font-mono text-xs break-all">
+        {exampleCommand}
+      </p>
+      <p className="text-muted-foreground text-sm">
         {copyState.status === "copied"
           ? "Copied to clipboard."
           : copyState.status === "error"
@@ -63,7 +66,9 @@ function StatusPanelDemo() {
         </div>
         <div className="flex justify-between gap-4">
           <dt className="text-muted-foreground">error</dt>
-          <dd className="truncate font-mono">{copyState.error?.message ?? "null"}</dd>
+          <dd className="truncate font-mono">
+            {copyState.error?.message ?? "null"}
+          </dd>
         </div>
       </dl>
     </div>
@@ -78,12 +83,18 @@ function InputWithCopyDemo() {
     <div className="flex w-full max-w-md flex-col gap-3">
       <div className="flex items-center gap-2 rounded-lg border px-3 py-2">
         <code className="flex-1 truncate text-sm">{value}</code>
-        <Button size="sm" variant="outline" onClick={() => void copyState.copy(value)}>
-          {copyState.status === "copied" && copyState.value === value ? "Copied" : "Copy"}
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => void copyState.copy(value)}
+        >
+          {copyState.status === "copied" && copyState.value === value
+            ? "Copied"
+            : "Copy"}
         </Button>
       </div>
       {copyState.status === "error" ? (
-        <p className="text-sm text-destructive">{copyState.error.message}</p>
+        <p className="text-destructive text-sm">{copyState.error.message}</p>
       ) : null}
     </div>
   );

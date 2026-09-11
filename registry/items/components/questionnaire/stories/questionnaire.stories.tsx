@@ -23,7 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Questionnaire,
@@ -67,7 +67,9 @@ function DefaultQuestions() {
   return (
     <>
       <QuestionnaireItem name="direction" required>
-        <QuestionnaireTitle>What should the agent build next?</QuestionnaireTitle>
+        <QuestionnaireTitle>
+          What should the agent build next?
+        </QuestionnaireTitle>
         <QuestionnaireDescription>
           Choose a direction or describe another task.
         </QuestionnaireDescription>
@@ -90,13 +92,18 @@ function DefaultQuestions() {
               Make delegated work and results easier to follow.
             </span>
           </QuestionnaireChoice>
-          <QuestionnaireInput aria-label="Another task" placeholder="Describe another task…" />
+          <QuestionnaireInput
+            aria-label="Another task"
+            placeholder="Describe another task…"
+          />
         </QuestionnaireChoices>
         <QuestionnaireError />
       </QuestionnaireItem>
 
       <QuestionnaireItem name="signals" multiple>
-        <QuestionnaireTitle>What should every progress update include?</QuestionnaireTitle>
+        <QuestionnaireTitle>
+          What should every progress update include?
+        </QuestionnaireTitle>
         <QuestionnaireDescription>
           Select all that apply, or skip this question.
         </QuestionnaireDescription>
@@ -176,7 +183,7 @@ export const Default: Story = {
     >
       <QuestionnaireProgress
         render={(_props, state) => (
-          <span className="text-xs font-medium text-muted-foreground tabular-nums">
+          <span className="text-muted-foreground text-xs font-medium tabular-nums">
             Question {state.current} of {state.total}
           </span>
         )}
@@ -195,9 +202,15 @@ export const Default: Story = {
 export const MultipleSelection: Story = {
   name: "Multiple Selection",
   render: () => (
-    <Questionnaire defaultItem="sources" items={multipleItems} onSubmit={handleSubmit}>
+    <Questionnaire
+      defaultItem="sources"
+      items={multipleItems}
+      onSubmit={handleSubmit}
+    >
       <QuestionnaireItem name="sources" required multiple>
-        <QuestionnaireTitle>What context should the agent inspect?</QuestionnaireTitle>
+        <QuestionnaireTitle>
+          What context should the agent inspect?
+        </QuestionnaireTitle>
         <QuestionnaireDescription>
           Select every source that may affect the implementation.
         </QuestionnaireDescription>
@@ -227,9 +240,15 @@ export const MultipleSelection: Story = {
 export const FreeformAnswer: Story = {
   name: "Freeform Answer",
   render: () => (
-    <Questionnaire defaultItem="approach" items={freeformItems} onSubmit={handleSubmit}>
+    <Questionnaire
+      defaultItem="approach"
+      items={freeformItems}
+      onSubmit={handleSubmit}
+    >
       <QuestionnaireItem name="approach" required>
-        <QuestionnaireTitle>How should the agent approach this refactor?</QuestionnaireTitle>
+        <QuestionnaireTitle>
+          How should the agent approach this refactor?
+        </QuestionnaireTitle>
         <QuestionnaireDescription>
           Choose a strategy or write a more specific instruction.
         </QuestionnaireDescription>
@@ -241,7 +260,9 @@ export const FreeformAnswer: Story = {
             <span className="font-medium">Refactor one module at a time</span>
           </QuestionnaireChoice>
           <QuestionnaireChoice value="replace">
-            <span className="font-medium">Replace the implementation completely</span>
+            <span className="font-medium">
+              Replace the implementation completely
+            </span>
           </QuestionnaireChoice>
           <QuestionnaireInput
             aria-label="Custom approach"
@@ -260,10 +281,15 @@ export const FreeformAnswer: Story = {
 export const ExplicitSkip: Story = {
   name: "Explicit Skip",
   render: () => (
-    <Questionnaire defaultItem="kind" items={skipItems} shortcuts="letters" onSubmit={handleSubmit}>
+    <Questionnaire
+      defaultItem="kind"
+      items={skipItems}
+      shortcuts="letters"
+      onSubmit={handleSubmit}
+    >
       <QuestionnaireProgress
         render={(_props, state) => (
-          <span className="text-xs font-medium text-muted-foreground tabular-nums">
+          <span className="text-muted-foreground text-xs font-medium tabular-nums">
             Question {state.current} of {state.total}
           </span>
         )}
@@ -287,7 +313,9 @@ export const ExplicitSkip: Story = {
         <QuestionnaireError />
       </QuestionnaireItem>
       <QuestionnaireItem name="constraints">
-        <QuestionnaireTitle>Are there any implementation constraints?</QuestionnaireTitle>
+        <QuestionnaireTitle>
+          Are there any implementation constraints?
+        </QuestionnaireTitle>
         <QuestionnaireDescription>
           Answer if needed, or intentionally skip this question.
         </QuestionnaireDescription>
@@ -305,7 +333,9 @@ export const ExplicitSkip: Story = {
         <QuestionnaireError />
       </QuestionnaireItem>
       <QuestionnaireItem name="review" required>
-        <QuestionnaireTitle>How should the work be reviewed?</QuestionnaireTitle>
+        <QuestionnaireTitle>
+          How should the work be reviewed?
+        </QuestionnaireTitle>
         <QuestionnaireDescription>
           Choose the checks the agent should complete before handoff.
         </QuestionnaireDescription>
@@ -378,10 +408,12 @@ export const CardComposition: Story = {
       <Card className="w-full max-w-lg">
         <CardHeader>
           <CardTitle>What should the agent work on?</CardTitle>
-          <CardDescription>Choose the task that should be handled next.</CardDescription>
+          <CardDescription>
+            Choose the task that should be handled next.
+          </CardDescription>
           <CardAction>
             <QuestionnaireProgress
-              className="font-semibold tracking-widest text-foreground uppercase"
+              className="text-foreground font-semibold tracking-widest uppercase"
               render={(_props, state) => (
                 <span>
                   Question {state.current} of {state.total}
@@ -417,7 +449,9 @@ export const DialogComposition: Story = {
   ],
   render: () => (
     <Dialog>
-      <DialogTrigger render={<Button variant="outline" />}>Open clarification</DialogTrigger>
+      <DialogTrigger render={<Button variant="outline" />}>
+        Open clarification
+      </DialogTrigger>
       <DialogContent className="sm:max-w-lg">
         <Questionnaire
           defaultItem="direction"
@@ -432,7 +466,7 @@ export const DialogComposition: Story = {
             </DialogDescription>
           </DialogHeader>
           <QuestionnaireProgress
-            className="font-semibold tracking-widest text-foreground uppercase"
+            className="text-foreground font-semibold tracking-widest uppercase"
             render={(_props, state) => (
               <span>
                 Question {state.current} of {state.total}

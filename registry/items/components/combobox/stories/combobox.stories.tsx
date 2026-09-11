@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Combobox,
@@ -38,7 +38,12 @@ const frameworkObjects: Framework[] = [
 const timezoneGroups = [
   {
     region: "Americas",
-    zones: ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles"],
+    zones: [
+      "America/New_York",
+      "America/Chicago",
+      "America/Denver",
+      "America/Los_Angeles",
+    ],
   },
   {
     region: "Europe",
@@ -101,7 +106,11 @@ export const WithClear: Story = {
   name: "With clear",
   render: () => (
     <Combobox items={frameworks} defaultValue="Next.js">
-      <ComboboxInput placeholder="Select a framework" showClear className="w-full" />
+      <ComboboxInput
+        placeholder="Select a framework"
+        showClear
+        className="w-full"
+      />
       <ComboboxContent>
         <ComboboxEmpty>No items found.</ComboboxEmpty>
         <ComboboxList>
@@ -199,7 +208,9 @@ export const CustomItems: Story = {
             <ComboboxItem key={framework.value} value={framework}>
               <div className="flex flex-col gap-0.5">
                 <span className="font-medium">{framework.label}</span>
-                <span className="text-xs text-muted-foreground">{framework.value}</span>
+                <span className="text-muted-foreground text-xs">
+                  {framework.value}
+                </span>
               </div>
             </ComboboxItem>
           )}
@@ -231,7 +242,11 @@ export const Invalid: Story = {
   render: () => (
     <div className="grid gap-2">
       <Combobox items={frameworks}>
-        <ComboboxInput placeholder="Select a framework" className="w-full" aria-invalid />
+        <ComboboxInput
+          placeholder="Select a framework"
+          className="w-full"
+          aria-invalid
+        />
         <ComboboxContent>
           <ComboboxEmpty>No items found.</ComboboxEmpty>
           <ComboboxList>
@@ -243,7 +258,9 @@ export const Invalid: Story = {
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
-      <p className="text-sm text-destructive">Please select a valid framework.</p>
+      <p className="text-destructive text-sm">
+        Please select a valid framework.
+      </p>
     </div>
   ),
 };

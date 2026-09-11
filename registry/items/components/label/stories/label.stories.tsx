@@ -2,7 +2,7 @@ import { Checkbox } from "@registry/components/checkbox/checkbox";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Input } from "@/components/ui/input";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Label } from "../label";
 
@@ -68,7 +68,12 @@ export const DisabledGroup: Story = {
   render: () => (
     <div className="group grid gap-2" data-disabled="true">
       <Label htmlFor="disabled-email">Email</Label>
-      <Input id="disabled-email" type="email" disabled placeholder="disabled@example.com" />
+      <Input
+        id="disabled-email"
+        type="email"
+        disabled
+        placeholder="disabled@example.com"
+      />
     </div>
   ),
 };

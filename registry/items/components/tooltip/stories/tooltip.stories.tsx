@@ -2,9 +2,14 @@ import { Kbd } from "@registry/components/kbd/kbd";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../tooltip";
 
 const meta = {
   title: "Components/Tooltip",
@@ -38,7 +43,9 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => (
     <Tooltip>
-      <TooltipTrigger render={<Button variant="outline" />}>Hover</TooltipTrigger>
+      <TooltipTrigger render={<Button variant="outline" />}>
+        Hover
+      </TooltipTrigger>
       <TooltipContent>
         <p>Add to library</p>
       </TooltipContent>
@@ -51,7 +58,9 @@ export const Sides: Story = {
     <div className="flex flex-wrap items-center justify-center gap-4">
       {(["top", "right", "bottom", "left"] as const).map((side) => (
         <Tooltip key={side}>
-          <TooltipTrigger render={<Button variant="outline" />}>{side}</TooltipTrigger>
+          <TooltipTrigger render={<Button variant="outline" />}>
+            {side}
+          </TooltipTrigger>
           <TooltipContent side={side}>
             <p>Side {side}</p>
           </TooltipContent>
@@ -65,7 +74,9 @@ export const WithKeyboardHint: Story = {
   name: "With keyboard hint",
   render: () => (
     <Tooltip>
-      <TooltipTrigger render={<Button variant="outline" />}>Save</TooltipTrigger>
+      <TooltipTrigger render={<Button variant="outline" />}>
+        Save
+      </TooltipTrigger>
       <TooltipContent>
         <span>Save</span>
         <Kbd>⌘S</Kbd>
@@ -78,11 +89,13 @@ export const LongContent: Story = {
   name: "Long content",
   render: () => (
     <Tooltip>
-      <TooltipTrigger render={<Button variant="outline" />}>Details</TooltipTrigger>
+      <TooltipTrigger render={<Button variant="outline" />}>
+        Details
+      </TooltipTrigger>
       <TooltipContent className="max-w-xs">
         <p>
-          Tooltips work best for short, non-interactive hints. Keep copy focused on what the control
-          does.
+          Tooltips work best for short, non-interactive hints. Keep copy focused
+          on what the control does.
         </p>
       </TooltipContent>
     </Tooltip>
@@ -93,7 +106,9 @@ export const Delayed: Story = {
   render: () => (
     <TooltipProvider delay={500}>
       <Tooltip>
-        <TooltipTrigger render={<Button variant="outline" />}>Slow open</TooltipTrigger>
+        <TooltipTrigger render={<Button variant="outline" />}>
+          Slow open
+        </TooltipTrigger>
         <TooltipContent>
           <p>Opens after 500ms</p>
         </TooltipContent>

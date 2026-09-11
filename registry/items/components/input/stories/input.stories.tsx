@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Input } from "../input";
 
@@ -30,7 +30,16 @@ const meta = {
   argTypes: {
     type: {
       control: "select",
-      options: ["text", "email", "password", "search", "number", "file", "tel", "url"],
+      options: [
+        "text",
+        "email",
+        "password",
+        "search",
+        "number",
+        "file",
+        "tel",
+        "url",
+      ],
     },
     disabled: {
       control: "boolean",
@@ -78,7 +87,9 @@ export const WithText: Story = {
         Username
       </label>
       <Input id="username" placeholder="cade" />
-      <p className="text-sm text-muted-foreground">This is your public display name.</p>
+      <p className="text-muted-foreground text-sm">
+        This is your public display name.
+      </p>
     </div>
   ),
 };
@@ -97,8 +108,15 @@ export const Invalid: Story = {
       <label htmlFor="invalid" className="text-sm leading-none font-medium">
         Email
       </label>
-      <Input id="invalid" type="email" defaultValue="not-an-email" aria-invalid />
-      <p className="text-sm text-destructive">Please enter a valid email address.</p>
+      <Input
+        id="invalid"
+        type="email"
+        defaultValue="not-an-email"
+        aria-invalid
+      />
+      <p className="text-destructive text-sm">
+        Please enter a valid email address.
+      </p>
     </div>
   ),
 };
@@ -119,7 +137,7 @@ function ControlledDemo() {
         onChange={(event) => setValue(event.target.value)}
         placeholder="Type something…"
       />
-      <p className="text-sm text-muted-foreground">Value: {value || "—"}</p>
+      <p className="text-muted-foreground text-sm">Value: {value || "—"}</p>
     </div>
   );
 }

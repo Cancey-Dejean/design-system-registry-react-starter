@@ -1,9 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import Heading from "../heading";
-import { HEADING_LEVELS, HEADING_SIZES, HEADING_WEIGHTS, HEADING_TONES } from "../heading.variants";
+import {
+  HEADING_LEVELS,
+  HEADING_SIZES,
+  HEADING_WEIGHTS,
+  HEADING_TONES,
+} from "../heading.variants";
 
 const meta: Meta<typeof Heading> = {
   title: "Components/Heading",

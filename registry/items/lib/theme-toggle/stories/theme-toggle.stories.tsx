@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { THEME_STORAGE_KEY, ThemeToggle } from "../theme-toggle";
 
@@ -30,10 +30,10 @@ function ThemeStatus() {
   }, []);
 
   return (
-    <p className="text-center text-sm text-muted-foreground">
-      data-theme: <span className="font-mono text-foreground">{theme}</span>
+    <p className="text-muted-foreground text-center text-sm">
+      data-theme: <span className="text-foreground font-mono">{theme}</span>
       {" · "}
-      localStorage: <span className="font-mono text-foreground">{stored}</span>
+      localStorage: <span className="text-foreground font-mono">{stored}</span>
     </p>
   );
 }
@@ -70,9 +70,9 @@ export const Default: Story = {
     <>
       <ThemeToggle />
       <ThemeStatus />
-      <p className="max-w-sm text-center text-sm text-muted-foreground">
-        Click a palette to set `data-theme` on the document root. Wire CSS for each value in your
-        app.
+      <p className="text-muted-foreground max-w-sm text-center text-sm">
+        Click a palette to set `data-theme` on the document root. Wire CSS for
+        each value in your app.
       </p>
     </>
   ),

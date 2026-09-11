@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Checkbox } from "../checkbox";
 
@@ -89,10 +89,15 @@ export const Invalid: Story = {
     <div className="flex items-start gap-2">
       <Checkbox id="must-agree" aria-invalid defaultChecked />
       <div className="grid gap-1.5 leading-none">
-        <label htmlFor="must-agree" className="text-sm leading-none font-medium">
+        <label
+          htmlFor="must-agree"
+          className="text-sm leading-none font-medium"
+        >
           I agree to the terms
         </label>
-        <p className="text-sm text-destructive">You must accept the terms to continue.</p>
+        <p className="text-destructive text-sm">
+          You must accept the terms to continue.
+        </p>
       </div>
     </div>
   ),
@@ -132,11 +137,16 @@ function ControlledDemo() {
           checked={checked}
           onCheckedChange={(value) => setChecked(value)}
         />
-        <label htmlFor="controlled" className="text-sm leading-none font-medium">
+        <label
+          htmlFor="controlled"
+          className="text-sm leading-none font-medium"
+        >
           Controlled checkbox
         </label>
       </div>
-      <p className="text-sm text-muted-foreground">Checked: {checked ? "true" : "false"}</p>
+      <p className="text-muted-foreground text-sm">
+        Checked: {checked ? "true" : "false"}
+      </p>
     </div>
   );
 }

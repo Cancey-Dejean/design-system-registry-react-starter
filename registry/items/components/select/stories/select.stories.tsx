@@ -2,7 +2,7 @@ import { Label } from "@registry/components/label/label";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Select,
@@ -162,7 +162,7 @@ export const Invalid: Story = {
           <SelectItem value="banana">Banana</SelectItem>
         </SelectContent>
       </Select>
-      <p className="text-sm text-destructive">Please choose a fruit.</p>
+      <p className="text-destructive text-sm">Please choose a fruit.</p>
     </div>
   ),
 };
@@ -182,8 +182,9 @@ function ControlledDemo() {
           <SelectItem value="blueberry">Blueberry</SelectItem>
         </SelectContent>
       </Select>
-      <p className="text-sm text-muted-foreground">
-        Value: <span className="font-mono text-foreground">{value ?? "null"}</span>
+      <p className="text-muted-foreground text-sm">
+        Value:{" "}
+        <span className="text-foreground font-mono">{value ?? "null"}</span>
       </p>
     </div>
   );

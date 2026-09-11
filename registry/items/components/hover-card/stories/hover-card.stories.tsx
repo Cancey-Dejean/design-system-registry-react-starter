@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "../hover-card";
 
@@ -44,10 +44,10 @@ export const Default: Story = {
       <HoverCardContent>
         <div className="flex flex-col gap-2">
           <p className="font-medium">@shadcn</p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Building open-source UI that works out of the box.
           </p>
-          <p className="text-xs text-muted-foreground">Joined December 2021</p>
+          <p className="text-muted-foreground text-xs">Joined December 2021</p>
         </div>
       </HoverCardContent>
     </HoverCard>
@@ -58,11 +58,13 @@ export const WithButton: Story = {
   name: "Button trigger",
   render: () => (
     <HoverCard>
-      <HoverCardTrigger render={<Button variant="link" />}>@vercel</HoverCardTrigger>
+      <HoverCardTrigger render={<Button variant="link" />}>
+        @vercel
+      </HoverCardTrigger>
       <HoverCardContent>
         <div className="flex flex-col gap-2">
           <p className="font-medium">Vercel</p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Develop. Preview. Ship. For the best frontend teams.
           </p>
         </div>
@@ -101,7 +103,9 @@ export const AlignStart: Story = {
         Align start
       </HoverCardTrigger>
       <HoverCardContent align="start">
-        <p className="text-sm">Content is aligned to the start of the trigger.</p>
+        <p className="text-sm">
+          Content is aligned to the start of the trigger.
+        </p>
       </HoverCardContent>
     </HoverCard>
   ),

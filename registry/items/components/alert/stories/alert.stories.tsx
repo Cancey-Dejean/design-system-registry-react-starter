@@ -7,7 +7,7 @@ import {
 } from "@tabler/icons-react";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Alert, AlertAction, AlertDescription, AlertTitle } from "../alert";
 
@@ -80,7 +80,9 @@ export const WithAction: Story = {
     <Alert>
       <IconInfoCircle />
       <AlertTitle>New version available</AlertTitle>
-      <AlertDescription>Update now to get the latest features and fixes.</AlertDescription>
+      <AlertDescription>
+        Update now to get the latest features and fixes.
+      </AlertDescription>
       <AlertAction>
         <Button size="sm" variant="outline">
           Update
@@ -95,7 +97,9 @@ export const Success: Story = {
     <Alert className="border-emerald-500/30 text-emerald-700 *:data-[slot=alert-description]:text-emerald-700/90 dark:text-emerald-400 dark:*:data-[slot=alert-description]:text-emerald-400/90 *:[svg]:text-current">
       <IconCircleCheck />
       <AlertTitle>Payment successful</AlertTitle>
-      <AlertDescription>Your subscription has been renewed for another year.</AlertDescription>
+      <AlertDescription>
+        Your subscription has been renewed for another year.
+      </AlertDescription>
     </Alert>
   ),
 };
@@ -114,7 +118,9 @@ export const DescriptionOnly: Story = {
   name: "Description only",
   render: () => (
     <Alert>
-      <AlertDescription>This is a simple alert without a title or leading icon.</AlertDescription>
+      <AlertDescription>
+        This is a simple alert without a title or leading icon.
+      </AlertDescription>
     </Alert>
   ),
 };
@@ -126,12 +132,16 @@ export const Variants: Story = {
       <Alert>
         <IconInfoCircle />
         <AlertTitle>Default</AlertTitle>
-        <AlertDescription>Neutral callout for general information.</AlertDescription>
+        <AlertDescription>
+          Neutral callout for general information.
+        </AlertDescription>
       </Alert>
       <Alert variant="destructive">
         <IconAlertTriangle />
         <AlertTitle>Destructive</AlertTitle>
-        <AlertDescription>Used for errors that need immediate attention.</AlertDescription>
+        <AlertDescription>
+          Used for errors that need immediate attention.
+        </AlertDescription>
       </Alert>
     </>
   ),

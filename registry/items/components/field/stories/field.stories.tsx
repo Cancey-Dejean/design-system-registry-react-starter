@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 import { Textarea } from "@/components/ui/textarea";
 
 import {
@@ -50,7 +50,12 @@ export const Default: Story = {
     <FieldGroup>
       <Field>
         <FieldLabel htmlFor="email">Email</FieldLabel>
-        <Input id="email" type="email" placeholder="you@example.com" autoComplete="email" />
+        <Input
+          id="email"
+          type="email"
+          placeholder="you@example.com"
+          autoComplete="email"
+        />
         <FieldDescription>We will never share your email.</FieldDescription>
       </Field>
     </FieldGroup>
@@ -74,8 +79,15 @@ export const WithError: Story = {
     <FieldGroup>
       <Field data-invalid>
         <FieldLabel htmlFor="password">Password</FieldLabel>
-        <Input id="password" type="password" aria-invalid defaultValue="short" />
-        <FieldError errors={[{ message: "Password must be at least 8 characters." }]} />
+        <Input
+          id="password"
+          type="password"
+          aria-invalid
+          defaultValue="short"
+        />
+        <FieldError
+          errors={[{ message: "Password must be at least 8 characters." }]}
+        />
       </Field>
     </FieldGroup>
   ),
@@ -105,7 +117,9 @@ export const Fieldset: Story = {
   render: () => (
     <FieldSet>
       <FieldLegend>Payment details</FieldLegend>
-      <FieldDescription>Enter your card information. All fields required.</FieldDescription>
+      <FieldDescription>
+        Enter your card information. All fields required.
+      </FieldDescription>
       <FieldGroup>
         <Field>
           <FieldLabel htmlFor="card-name">Name on card</FieldLabel>
@@ -113,7 +127,11 @@ export const Fieldset: Story = {
         </Field>
         <Field>
           <FieldLabel htmlFor="card-number">Card number</FieldLabel>
-          <Input id="card-number" inputMode="numeric" placeholder="ACCT-000015" />
+          <Input
+            id="card-number"
+            inputMode="numeric"
+            placeholder="ACCT-000015"
+          />
         </Field>
       </FieldGroup>
     </FieldSet>
@@ -146,7 +164,9 @@ export const CheckboxField: Story = {
         <Checkbox id="terms" />
         <FieldContent>
           <FieldLabel htmlFor="terms">Accept terms</FieldLabel>
-          <FieldDescription>You agree to our Terms of Service and Privacy Policy.</FieldDescription>
+          <FieldDescription>
+            You agree to our Terms of Service and Privacy Policy.
+          </FieldDescription>
         </FieldContent>
       </Field>
     </FieldGroup>
@@ -165,7 +185,11 @@ export const FormLayout: Story = {
       <FieldGroup>
         <Field>
           <FieldLabel htmlFor="full-name">Full name</FieldLabel>
-          <Input id="full-name" placeholder="Pedro Duarte" autoComplete="name" />
+          <Input
+            id="full-name"
+            placeholder="Pedro Duarte"
+            autoComplete="name"
+          />
         </Field>
         <Field>
           <FieldLabel htmlFor="bio">Bio</FieldLabel>

@@ -11,7 +11,7 @@ import {
   YAxis,
 } from "recharts";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   type ChartConfig,

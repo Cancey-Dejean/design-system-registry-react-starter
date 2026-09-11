@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   MessageScroller,
@@ -49,7 +49,11 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
-function MessageRows({ messages }: { messages: { id: string; author: string; text: string }[] }) {
+function MessageRows({
+  messages,
+}: {
+  messages: { id: string; author: string; text: string }[];
+}) {
   return (
     <>
       {messages.map((message, index) => (
@@ -58,8 +62,8 @@ function MessageRows({ messages }: { messages: { id: string; author: string; tex
           scrollAnchor={index === messages.length - 1}
           className={
             message.author === "you"
-              ? "ml-auto max-w-[85%] rounded-lg bg-primary px-3 py-2 text-sm text-primary-foreground"
-              : "max-w-[85%] rounded-lg bg-muted px-3 py-2 text-sm"
+              ? "bg-primary text-primary-foreground ml-auto max-w-[85%] rounded-lg px-3 py-2 text-sm"
+              : "bg-muted max-w-[85%] rounded-lg px-3 py-2 text-sm"
           }
         >
           {message.text}

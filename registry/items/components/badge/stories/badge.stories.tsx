@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconCheck, IconAlertTriangle } from "@tabler/icons-react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Badge } from "../badge";
 
@@ -30,7 +30,14 @@ const meta: Meta<typeof Badge> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "secondary", "destructive", "outline", "ghost", "link"],
+      options: [
+        "default",
+        "secondary",
+        "destructive",
+        "outline",
+        "ghost",
+        "link",
+      ],
     },
   },
 };
@@ -121,7 +128,11 @@ export const WithIcon: Story = {
 export const AsLink: Story = {
   name: "As link",
   render: () => (
-    <Badge render={<a href="https://ui.shadcn.com" target="_blank" rel="noreferrer" />}>
+    <Badge
+      render={
+        <a href="https://ui.shadcn.com" target="_blank" rel="noreferrer" />
+      }
+    >
       Documentation
     </Badge>
   ),
@@ -132,7 +143,9 @@ export const Status: Story = {
   render: () => (
     <>
       <Badge variant="secondary">In progress</Badge>
-      <Badge className="bg-emerald-600 text-white dark:bg-emerald-700">Active</Badge>
+      <Badge className="bg-emerald-600 text-white dark:bg-emerald-700">
+        Active
+      </Badge>
       <Badge variant="destructive">Blocked</Badge>
       <Badge variant="outline">Queued</Badge>
     </>

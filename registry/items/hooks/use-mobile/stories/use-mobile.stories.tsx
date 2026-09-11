@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { useIsMobile } from "../use-mobile";
 
@@ -9,13 +9,18 @@ function ViewportStatus() {
 
   return (
     <div className="flex flex-col items-center gap-3 text-center">
-      <p className="text-2xl font-semibold tracking-tight">{isMobile ? "Mobile" : "Desktop"}</p>
-      <p className="max-w-sm text-sm text-muted-foreground">
-        `useIsMobile()` is currently{" "}
-        <span className="font-mono text-foreground">{String(isMobile)}</span>. Query:{" "}
-        <span className="font-mono text-foreground">(max-width: 63.999rem)</span>
+      <p className="text-2xl font-semibold tracking-tight">
+        {isMobile ? "Mobile" : "Desktop"}
       </p>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground max-w-sm text-sm">
+        `useIsMobile()` is currently{" "}
+        <span className="text-foreground font-mono">{String(isMobile)}</span>.
+        Query:{" "}
+        <span className="text-foreground font-mono">
+          (max-width: 63.999rem)
+        </span>
+      </p>
+      <p className="text-muted-foreground text-sm">
         Resize the Storybook viewport or browser width to update the result.
       </p>
     </div>
@@ -30,18 +35,18 @@ function LayoutSwitchDemo() {
       {isMobile ? (
         <div className="space-y-2">
           <p className="text-sm font-medium">Compact chrome</p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Render a sheet trigger or bottom nav when the viewport is mobile.
           </p>
         </div>
       ) : (
         <div className="flex gap-4">
-          <aside className="w-28 shrink-0 rounded-md bg-muted p-3 text-xs text-muted-foreground">
+          <aside className="bg-muted text-muted-foreground w-28 shrink-0 rounded-md p-3 text-xs">
             Side nav
           </aside>
           <div className="space-y-2">
             <p className="text-sm font-medium">Wide chrome</p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Keep a persistent rail when there is enough width.
             </p>
           </div>

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { ModeToggle } from "../mode-toggle";
 
@@ -37,10 +37,10 @@ function ModeStatus() {
   }, []);
 
   return (
-    <p className="text-center text-sm text-muted-foreground">
-      Stored: <span className="font-mono text-foreground">{mode}</span>
+    <p className="text-muted-foreground text-center text-sm">
+      Stored: <span className="text-foreground font-mono">{mode}</span>
       {" · "}
-      Resolved: <span className="font-mono text-foreground">{resolved}</span>
+      Resolved: <span className="text-foreground font-mono">{resolved}</span>
     </p>
   );
 }
@@ -77,8 +77,9 @@ export const Default: Story = {
     <>
       <ModeToggle />
       <ModeStatus />
-      <p className="max-w-sm text-center text-sm text-muted-foreground">
-        Click to cycle light → dark → auto. Preference is stored under the `theme` key.
+      <p className="text-muted-foreground max-w-sm text-center text-sm">
+        Click to cycle light → dark → auto. Preference is stored under the
+        `theme` key.
       </p>
     </>
   ),
@@ -88,7 +89,7 @@ export const CustomClassName: Story = {
   name: "Custom className",
   render: () => (
     <>
-      <ModeToggle className="inline-flex size-10 items-center justify-center rounded-lg border border-input bg-muted text-foreground transition-colors hover:bg-accent" />
+      <ModeToggle className="border-input bg-muted text-foreground hover:bg-accent inline-flex size-10 items-center justify-center rounded-lg border transition-colors" />
       <ModeStatus />
     </>
   ),

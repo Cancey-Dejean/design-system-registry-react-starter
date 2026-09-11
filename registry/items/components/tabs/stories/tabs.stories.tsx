@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconFolder, IconHome, IconSettings } from "@tabler/icons-react";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
 
@@ -40,10 +40,16 @@ export const Default: Story = {
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
       </TabsList>
-      <TabsContent value="account" className="rounded-lg border p-4 text-muted-foreground">
+      <TabsContent
+        value="account"
+        className="text-muted-foreground rounded-lg border p-4"
+      >
         Make changes to your account here.
       </TabsContent>
-      <TabsContent value="password" className="rounded-lg border p-4 text-muted-foreground">
+      <TabsContent
+        value="password"
+        className="text-muted-foreground rounded-lg border p-4"
+      >
         Change your password here.
       </TabsContent>
     </Tabs>
@@ -58,13 +64,13 @@ export const Line: Story = {
         <TabsTrigger value="analytics">Analytics</TabsTrigger>
         <TabsTrigger value="reports">Reports</TabsTrigger>
       </TabsList>
-      <TabsContent value="overview" className="pt-4 text-muted-foreground">
+      <TabsContent value="overview" className="text-muted-foreground pt-4">
         Project overview and status.
       </TabsContent>
-      <TabsContent value="analytics" className="pt-4 text-muted-foreground">
+      <TabsContent value="analytics" className="text-muted-foreground pt-4">
         Traffic and engagement metrics.
       </TabsContent>
-      <TabsContent value="reports" className="pt-4 text-muted-foreground">
+      <TabsContent value="reports" className="text-muted-foreground pt-4">
         Generated reports and exports.
       </TabsContent>
     </Tabs>
@@ -73,7 +79,11 @@ export const Line: Story = {
 
 export const Vertical: Story = {
   render: () => (
-    <Tabs defaultValue="home" orientation="vertical" className="w-full flex-row">
+    <Tabs
+      defaultValue="home"
+      orientation="vertical"
+      className="w-full flex-row"
+    >
       <TabsList>
         <TabsTrigger value="home">
           <IconHome data-icon="inline-start" />
@@ -88,13 +98,22 @@ export const Vertical: Story = {
           Settings
         </TabsTrigger>
       </TabsList>
-      <TabsContent value="home" className="rounded-lg border p-4 text-muted-foreground">
+      <TabsContent
+        value="home"
+        className="text-muted-foreground rounded-lg border p-4"
+      >
         Welcome home.
       </TabsContent>
-      <TabsContent value="projects" className="rounded-lg border p-4 text-muted-foreground">
+      <TabsContent
+        value="projects"
+        className="text-muted-foreground rounded-lg border p-4"
+      >
         Your recent projects.
       </TabsContent>
-      <TabsContent value="settings" className="rounded-lg border p-4 text-muted-foreground">
+      <TabsContent
+        value="settings"
+        className="text-muted-foreground rounded-lg border p-4"
+      >
         Preferences and configuration.
       </TabsContent>
     </Tabs>
@@ -112,10 +131,16 @@ export const DisabledTab: Story = {
         </TabsTrigger>
         <TabsTrigger value="other">Other</TabsTrigger>
       </TabsList>
-      <TabsContent value="active" className="rounded-lg border p-4 text-muted-foreground">
+      <TabsContent
+        value="active"
+        className="text-muted-foreground rounded-lg border p-4"
+      >
         This tab is available.
       </TabsContent>
-      <TabsContent value="other" className="rounded-lg border p-4 text-muted-foreground">
+      <TabsContent
+        value="other"
+        className="text-muted-foreground rounded-lg border p-4"
+      >
         Another available panel.
       </TabsContent>
     </Tabs>
@@ -132,15 +157,21 @@ function ControlledDemo() {
           <TabsTrigger value="account">Account</TabsTrigger>
           <TabsTrigger value="password">Password</TabsTrigger>
         </TabsList>
-        <TabsContent value="account" className="rounded-lg border p-4 text-muted-foreground">
+        <TabsContent
+          value="account"
+          className="text-muted-foreground rounded-lg border p-4"
+        >
           Account panel.
         </TabsContent>
-        <TabsContent value="password" className="rounded-lg border p-4 text-muted-foreground">
+        <TabsContent
+          value="password"
+          className="text-muted-foreground rounded-lg border p-4"
+        >
           Password panel.
         </TabsContent>
       </Tabs>
-      <p className="text-sm text-muted-foreground">
-        Active: <span className="font-mono text-foreground">{value}</span>
+      <p className="text-muted-foreground text-sm">
+        Active: <span className="text-foreground font-mono">{value}</span>
       </p>
     </div>
   );

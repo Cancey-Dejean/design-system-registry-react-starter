@@ -10,7 +10,7 @@ import {
 } from "@tabler/icons-react";
 import type { ReactNode } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Sidebar,
@@ -56,7 +56,9 @@ function AppSidebar({
   return (
     <Sidebar collapsible={collapsible} variant={variant} side={side}>
       <SidebarHeader>
-        <div className="flex items-center gap-2 px-2 py-1.5 text-sm font-semibold">Acme Inc</div>
+        <div className="flex items-center gap-2 px-2 py-1.5 text-sm font-semibold">
+          Acme Inc
+        </div>
         <SidebarInput placeholder="Search…" />
       </SidebarHeader>
       <SidebarContent>
@@ -66,7 +68,10 @@ function AppSidebar({
             <SidebarMenu>
               {primaryNav.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton isActive={item.isActive} tooltip={item.title}>
+                  <SidebarMenuButton
+                    isActive={item.isActive}
+                    tooltip={item.title}
+                  >
                     <item.icon />
                     <span>{item.title}</span>
                   </SidebarMenuButton>
@@ -88,7 +93,9 @@ function AppSidebar({
                 <SidebarMenuBadge>24</SidebarMenuBadge>
                 <SidebarMenuSub>
                   <SidebarMenuSubItem>
-                    <SidebarMenuSubButton isActive>Getting started</SidebarMenuSubButton>
+                    <SidebarMenuSubButton isActive>
+                      Getting started
+                    </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
                     <SidebarMenuSubButton>API</SidebarMenuSubButton>
@@ -137,7 +144,7 @@ function Shell({
             <SidebarTrigger />
             <span className="text-sm font-medium">Dashboard</span>
           </header>
-          <div className="flex flex-1 flex-col gap-2 p-4 text-sm text-muted-foreground">
+          <div className="text-muted-foreground flex flex-1 flex-col gap-2 p-4 text-sm">
             {children ?? (
               <>
                 <p>Main content sits in `SidebarInset`.</p>
@@ -210,7 +217,9 @@ export const Floating: Story = {
 export const Inset: Story = {
   render: () => (
     <Shell collapsible="icon" variant="inset">
-      <p>Inset variant nests the content panel with margin and radius on desktop.</p>
+      <p>
+        Inset variant nests the content panel with margin and radius on desktop.
+      </p>
     </Shell>
   ),
 };
@@ -248,7 +257,9 @@ export const Skeleton: Story = {
           </SidebarContent>
         </Sidebar>
         <SidebarInset>
-          <div className="p-4 text-sm text-muted-foreground">Menu skeleton placeholders.</div>
+          <div className="text-muted-foreground p-4 text-sm">
+            Menu skeleton placeholders.
+          </div>
         </SidebarInset>
       </SidebarProvider>
     </TooltipProvider>

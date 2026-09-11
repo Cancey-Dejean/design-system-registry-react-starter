@@ -1,9 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
-import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "../input-otp";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "../input-otp";
 
 const meta = {
   title: "Components/Input OTP",
@@ -84,7 +89,9 @@ export const Pattern: Story = {
           <InputOTPSlot index={5} />
         </InputOTPGroup>
       </InputOTP>
-      <p className="text-sm text-muted-foreground">Enter the 6-digit code sent to your email.</p>
+      <p className="text-muted-foreground text-sm">
+        Enter the 6-digit code sent to your email.
+      </p>
     </div>
   ),
 };
@@ -123,7 +130,7 @@ export const Invalid: Story = {
           <InputOTPSlot index={5} />
         </InputOTPGroup>
       </InputOTP>
-      <p className="text-sm text-destructive">Invalid verification code.</p>
+      <p className="text-destructive text-sm">Invalid verification code.</p>
     </div>
   ),
 };
@@ -146,8 +153,8 @@ function ControlledDemo() {
           <InputOTPSlot index={5} />
         </InputOTPGroup>
       </InputOTP>
-      <p className="text-sm text-muted-foreground">
-        Value: <span className="font-mono text-foreground">{value || "—"}</span>
+      <p className="text-muted-foreground text-sm">
+        Value: <span className="text-foreground font-mono">{value || "—"}</span>
       </p>
     </div>
   );

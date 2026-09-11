@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconBell, IconChevronRight, IconUser } from "@tabler/icons-react";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Item,
@@ -62,7 +62,9 @@ export const Default: Story = {
       </ItemMedia>
       <ItemContent>
         <ItemTitle>Push notifications</ItemTitle>
-        <ItemDescription>Send me a push notification when something happens.</ItemDescription>
+        <ItemDescription>
+          Send me a push notification when something happens.
+        </ItemDescription>
       </ItemContent>
       <ItemActions>
         <Button size="sm" variant="outline">
@@ -138,10 +140,12 @@ export const AsLink: Story = {
     <Item variant="outline" render={<a href="https://ui.shadcn.com" />}>
       <ItemContent>
         <ItemTitle>Documentation</ItemTitle>
-        <ItemDescription>Open the Item component docs on shadcn/ui.</ItemDescription>
+        <ItemDescription>
+          Open the Item component docs on shadcn/ui.
+        </ItemDescription>
       </ItemContent>
       <ItemActions>
-        <IconChevronRight className="size-4 text-muted-foreground" />
+        <IconChevronRight className="text-muted-foreground size-4" />
       </ItemActions>
     </Item>
   ),
@@ -181,15 +185,16 @@ export const HeaderFooter: Story = {
     <Item variant="outline">
       <ItemHeader>
         <ItemTitle>Team plan</ItemTitle>
-        <span className="text-xs text-muted-foreground">$29/mo</span>
+        <span className="text-muted-foreground text-xs">$29/mo</span>
       </ItemHeader>
       <ItemContent>
         <ItemDescription>
-          Unlimited seats, shared libraries, and priority support for growing teams.
+          Unlimited seats, shared libraries, and priority support for growing
+          teams.
         </ItemDescription>
       </ItemContent>
       <ItemFooter>
-        <span className="text-xs text-muted-foreground">Billed annually</span>
+        <span className="text-muted-foreground text-xs">Billed annually</span>
         <Button size="sm">Upgrade</Button>
       </ItemFooter>
     </Item>

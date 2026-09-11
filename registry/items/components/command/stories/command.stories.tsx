@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Command,

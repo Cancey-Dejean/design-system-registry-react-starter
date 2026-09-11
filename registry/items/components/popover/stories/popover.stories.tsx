@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Popover,
@@ -42,11 +42,15 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => (
     <Popover>
-      <PopoverTrigger render={<Button variant="outline" />}>Open popover</PopoverTrigger>
+      <PopoverTrigger render={<Button variant="outline" />}>
+        Open popover
+      </PopoverTrigger>
       <PopoverContent>
         <PopoverHeader>
           <PopoverTitle>Dimensions</PopoverTitle>
-          <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>
+          <PopoverDescription>
+            Set the dimensions for the layer.
+          </PopoverDescription>
         </PopoverHeader>
       </PopoverContent>
     </Popover>
@@ -57,7 +61,9 @@ export const AlignStart: Story = {
   name: "Align start",
   render: () => (
     <Popover>
-      <PopoverTrigger render={<Button variant="outline" />}>Open</PopoverTrigger>
+      <PopoverTrigger render={<Button variant="outline" />}>
+        Open
+      </PopoverTrigger>
       <PopoverContent align="start">
         <p className="text-sm">Aligned to the start of the trigger.</p>
       </PopoverContent>

@@ -9,7 +9,7 @@ import {
 } from "@tabler/icons-react";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { ToggleGroup, ToggleGroupItem } from "../toggle-group";
 
@@ -106,7 +106,12 @@ export const WithLabels: Story = {
 
 export const Vertical: Story = {
   render: () => (
-    <ToggleGroup orientation="vertical" defaultValue={["center"]} variant="outline" spacing={0}>
+    <ToggleGroup
+      orientation="vertical"
+      defaultValue={["center"]}
+      variant="outline"
+      spacing={0}
+    >
       <ToggleGroupItem value="left" aria-label="Align left">
         <IconAlignLeft />
       </ToggleGroupItem>
@@ -141,7 +146,12 @@ function ControlledDemo() {
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <ToggleGroup multiple value={value} onValueChange={setValue} variant="outline">
+      <ToggleGroup
+        multiple
+        value={value}
+        onValueChange={setValue}
+        variant="outline"
+      >
         <ToggleGroupItem value="bold" aria-label="Toggle bold">
           <IconBold />
         </ToggleGroupItem>
@@ -152,8 +162,11 @@ function ControlledDemo() {
           <IconUnderline />
         </ToggleGroupItem>
       </ToggleGroup>
-      <p className="text-sm text-muted-foreground">
-        Value: <span className="font-mono text-foreground">{JSON.stringify(value)}</span>
+      <p className="text-muted-foreground text-sm">
+        Value:{" "}
+        <span className="text-foreground font-mono">
+          {JSON.stringify(value)}
+        </span>
       </p>
     </div>
   );

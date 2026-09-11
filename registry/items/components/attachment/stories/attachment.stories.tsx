@@ -8,7 +8,7 @@ import {
   IconX,
 } from "@tabler/icons-react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Attachment,
@@ -151,7 +151,9 @@ export const States: Story = {
         </AttachmentMedia>
         <AttachmentContent>
           <AttachmentTitle>financial-model.xlsx</AttachmentTitle>
-          <AttachmentDescription>Upload failed. Try again.</AttachmentDescription>
+          <AttachmentDescription>
+            Upload failed. Try again.
+          </AttachmentDescription>
         </AttachmentContent>
         <RemoveAction name="financial-model.xlsx" />
       </Attachment>
@@ -179,9 +181,16 @@ export const Sizes: Story = {
           </AttachmentMedia>
           <AttachmentContent>
             <AttachmentTitle>
-              {size === "default" ? "Default" : size === "sm" ? "Small" : "Extra small"} attachment
+              {size === "default"
+                ? "Default"
+                : size === "sm"
+                  ? "Small"
+                  : "Extra small"}{" "}
+              attachment
             </AttachmentTitle>
-            {size !== "xs" ? <AttachmentDescription>PDF · 2.4 MB</AttachmentDescription> : null}
+            {size !== "xs" ? (
+              <AttachmentDescription>PDF · 2.4 MB</AttachmentDescription>
+            ) : null}
           </AttachmentContent>
           <RemoveAction name={`${size} attachment`} />
         </Attachment>
@@ -254,7 +263,9 @@ export const WithTrigger: Story = {
       </AttachmentMedia>
       <AttachmentContent>
         <AttachmentTitle>research-summary.pdf</AttachmentTitle>
-        <AttachmentDescription>Click card to open · PDF · 920 KB</AttachmentDescription>
+        <AttachmentDescription>
+          Click card to open · PDF · 920 KB
+        </AttachmentDescription>
       </AttachmentContent>
       <RemoveAction name="research-summary.pdf" />
       <AttachmentTrigger

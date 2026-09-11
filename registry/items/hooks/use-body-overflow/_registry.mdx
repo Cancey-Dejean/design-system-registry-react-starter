@@ -1,0 +1,24 @@
+---
+name: use-body-overflow
+type: registry:hook
+title: useBodyOverflow
+description: Locks page scroll by toggling overflow-hidden on document.body.
+files:
+  - path: use-body-overflow.ts
+    type: registry:hook
+---
+
+Pass `true` while a modal, sheet, drawer, or mobile menu is open. The hook adds `overflow-hidden` to
+`document.body` and removes it when closed or on unmount.
+
+```tsx
+import { useBodyOverflow } from "@/hooks/use-body-overflow";
+
+export function MobileMenu({ open }: { open: boolean }) {
+  useBodyOverflow(open);
+
+  return open ? <nav>{/* overlay content */}</nav> : null;
+}
+```
+
+Use alongside overlay components so background content cannot scroll while the overlay is visible.

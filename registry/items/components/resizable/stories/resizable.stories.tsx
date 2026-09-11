@@ -1,8 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../resizable";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "../resizable";
 
 const panelClass = "flex h-full items-center justify-center p-6";
 
@@ -35,7 +39,10 @@ type Story = StoryObj;
 
 export const Horizontal: Story = {
   render: () => (
-    <ResizablePanelGroup orientation="horizontal" className="min-h-[200px] rounded-lg border">
+    <ResizablePanelGroup
+      orientation="horizontal"
+      className="min-h-[200px] rounded-lg border"
+    >
       <ResizablePanel defaultSize={50}>
         <div className={panelClass}>
           <span className="text-sm font-medium">Sidebar</span>
@@ -53,7 +60,10 @@ export const Horizontal: Story = {
 
 export const Vertical: Story = {
   render: () => (
-    <ResizablePanelGroup orientation="vertical" className="min-h-[320px] rounded-lg border">
+    <ResizablePanelGroup
+      orientation="vertical"
+      className="min-h-[320px] rounded-lg border"
+    >
       <ResizablePanel defaultSize={40}>
         <div className={panelClass}>
           <span className="text-sm font-medium">Header</span>
@@ -72,7 +82,10 @@ export const Vertical: Story = {
 export const ThreePanels: Story = {
   name: "Three panels",
   render: () => (
-    <ResizablePanelGroup orientation="horizontal" className="min-h-[200px] rounded-lg border">
+    <ResizablePanelGroup
+      orientation="horizontal"
+      className="min-h-[200px] rounded-lg border"
+    >
       <ResizablePanel defaultSize={25} minSize={15}>
         <div className={panelClass}>
           <span className="text-sm font-medium">Left</span>
@@ -96,7 +109,10 @@ export const ThreePanels: Story = {
 
 export const Nested: Story = {
   render: () => (
-    <ResizablePanelGroup orientation="horizontal" className="min-h-[320px] rounded-lg border">
+    <ResizablePanelGroup
+      orientation="horizontal"
+      className="min-h-[320px] rounded-lg border"
+    >
       <ResizablePanel defaultSize={30} minSize={20}>
         <div className={panelClass}>
           <span className="text-sm font-medium">Nav</span>
@@ -125,7 +141,10 @@ export const Nested: Story = {
 export const WithoutHandle: Story = {
   name: "Without handle grip",
   render: () => (
-    <ResizablePanelGroup orientation="horizontal" className="min-h-[200px] rounded-lg border">
+    <ResizablePanelGroup
+      orientation="horizontal"
+      className="min-h-[200px] rounded-lg border"
+    >
       <ResizablePanel defaultSize={40}>
         <div className={panelClass}>
           <span className="text-sm font-medium">A</span>

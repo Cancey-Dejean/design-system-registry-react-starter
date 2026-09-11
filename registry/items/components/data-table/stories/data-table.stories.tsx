@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { DataTable } from "../data-table";
 import { columns, payments } from "../payments";
@@ -38,7 +38,9 @@ export const Default: Story = {
 
 export const CompactPage: Story = {
   name: "Page size 5",
-  render: () => <DataTable columns={columns} data={payments} initialPageSize={5} />,
+  render: () => (
+    <DataTable columns={columns} data={payments} initialPageSize={5} />
+  ),
 };
 
 export const TableOnly: Story = {

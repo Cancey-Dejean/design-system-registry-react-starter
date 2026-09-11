@@ -2,7 +2,7 @@ import { Card, CardContent } from "@registry/components/card/card";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   type CarouselApi,
@@ -162,7 +162,11 @@ export const Vertical: Story = {
     ),
   ],
   render: () => (
-    <Carousel orientation="vertical" opts={{ align: "start" }} className="w-full max-w-xs">
+    <Carousel
+      orientation="vertical"
+      opts={{ align: "start" }}
+      className="w-full max-w-xs"
+    >
       <CarouselContent className="-mt-1 h-[200px]">
         {SLIDES.map((slide) => (
           <CarouselItem key={slide} className="pt-1 md:basis-1/2">
@@ -209,7 +213,7 @@ function ApiDemo() {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-      <div className="py-2 text-center text-sm text-muted-foreground">
+      <div className="text-muted-foreground py-2 text-center text-sm">
         Slide {current} of {count}
       </div>
     </div>

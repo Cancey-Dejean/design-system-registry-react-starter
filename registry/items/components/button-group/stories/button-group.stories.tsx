@@ -2,9 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconPlus, IconSearch } from "@tabler/icons-react";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
-import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "../button-group";
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "../button-group";
 
 const meta: Meta<typeof ButtonGroup> = {
   title: "Components/Button Group",

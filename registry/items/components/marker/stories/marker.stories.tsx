@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconInfoCircle, IconStar } from "@tabler/icons-react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Marker, MarkerContent, MarkerIcon } from "../marker";
 
@@ -85,7 +85,8 @@ export const WithLink: Story = {
         <IconInfoCircle />
       </MarkerIcon>
       <MarkerContent>
-        Learn more in the <a href="https://ui.shadcn.com/docs/components/base/marker">docs</a>.
+        Learn more in the{" "}
+        <a href="https://ui.shadcn.com/docs/components/base/marker">docs</a>.
       </MarkerContent>
     </Marker>
   ),

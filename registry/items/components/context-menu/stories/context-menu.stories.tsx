@@ -9,7 +9,7 @@ import {
 } from "@tabler/icons-react";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   ContextMenu,
@@ -168,7 +168,9 @@ function RadioDemo() {
       <ContextMenuContent className="w-52">
         <ContextMenuRadioGroup value={person} onValueChange={setPerson}>
           <ContextMenuLabel inset>People</ContextMenuLabel>
-          <ContextMenuRadioItem value="pedro">Pedro Duarte</ContextMenuRadioItem>
+          <ContextMenuRadioItem value="pedro">
+            Pedro Duarte
+          </ContextMenuRadioItem>
           <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
         </ContextMenuRadioGroup>
       </ContextMenuContent>

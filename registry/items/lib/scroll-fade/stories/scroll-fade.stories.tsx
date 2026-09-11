@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 import { cn } from "@/lib/utils";
 
 import {
@@ -45,7 +45,7 @@ function ScrollFrame({
   items?: string[];
 }) {
   return (
-    <div className="w-full max-w-xs overflow-hidden rounded-2xl border bg-background">
+    <div className="bg-background w-full max-w-xs overflow-hidden rounded-2xl border">
       <div className={cn(className, "max-h-44 px-4 py-1")}>
         <ul className="divide-y">
           {items.map((item) => (
@@ -96,12 +96,12 @@ export const NoOverflow: Story = {
 export const Horizontal: Story = {
   name: "Horizontal",
   render: () => (
-    <div className="w-full max-w-sm overflow-hidden rounded-2xl border bg-background">
+    <div className="bg-background w-full max-w-sm overflow-hidden rounded-2xl border">
       <div className={cn(scrollFadeXClass, "flex gap-2 px-3 py-3")}>
         {tags.map((tag) => (
           <span
             key={tag}
-            className="shrink-0 rounded-full border bg-muted px-3 py-1 text-xs font-medium"
+            className="bg-muted shrink-0 rounded-full border px-3 py-1 text-xs font-medium"
           >
             {tag}
           </span>
@@ -124,14 +124,16 @@ export const EdgeFades: Story = {
         ] as const
       ).map(([label, className]) => (
         <div key={label} className="flex flex-col gap-2">
-          <span className="font-mono text-xs text-muted-foreground">{label}</span>
+          <span className="text-muted-foreground font-mono text-xs">
+            {label}
+          </span>
           {label.endsWith("-s") || label.endsWith("-e") ? (
-            <div className="overflow-hidden rounded-2xl border bg-background">
+            <div className="bg-background overflow-hidden rounded-2xl border">
               <div className={cn(className, "flex gap-2 px-3 py-3")}>
                 {tags.slice(0, 8).map((tag) => (
                   <span
                     key={tag}
-                    className="shrink-0 rounded-full border bg-muted px-3 py-1 text-xs font-medium"
+                    className="bg-muted shrink-0 rounded-full border px-3 py-1 text-xs font-medium"
                   >
                     {tag}
                   </span>
@@ -152,12 +154,20 @@ export const FadeSize: Story = {
   render: () => (
     <div className="flex flex-col gap-6 sm:flex-row">
       <div className="flex flex-col gap-2">
-        <span className="font-mono text-xs text-muted-foreground">scroll-fade-4</span>
-        <ScrollFrame className={cn(scrollFadeYClass, scrollFadeSizeClasses[4])} />
+        <span className="text-muted-foreground font-mono text-xs">
+          scroll-fade-4
+        </span>
+        <ScrollFrame
+          className={cn(scrollFadeYClass, scrollFadeSizeClasses[4])}
+        />
       </div>
       <div className="flex flex-col gap-2">
-        <span className="font-mono text-xs text-muted-foreground">scroll-fade-24</span>
-        <ScrollFrame className={cn(scrollFadeYClass, scrollFadeSizeClasses[24])} />
+        <span className="text-muted-foreground font-mono text-xs">
+          scroll-fade-24
+        </span>
+        <ScrollFrame
+          className={cn(scrollFadeYClass, scrollFadeSizeClasses[24])}
+        />
       </div>
     </div>
   ),
@@ -168,11 +178,15 @@ export const Disabled: Story = {
   render: () => (
     <div className="flex flex-col gap-6 sm:flex-row">
       <div className="flex flex-col gap-2">
-        <span className="font-mono text-xs text-muted-foreground">scroll-fade</span>
+        <span className="text-muted-foreground font-mono text-xs">
+          scroll-fade
+        </span>
         <ScrollFrame className={scrollFadeClass} />
       </div>
       <div className="flex flex-col gap-2">
-        <span className="font-mono text-xs text-muted-foreground">scroll-fade-none</span>
+        <span className="text-muted-foreground font-mono text-xs">
+          scroll-fade-none
+        </span>
         <ScrollFrame className={cn(scrollFadeClass, scrollFadeNoneClass)} />
       </div>
     </div>

@@ -2,7 +2,7 @@ import { Label } from "@registry/components/label/label";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { RadioGroup, RadioGroupItem } from "../radio-group";
 
@@ -108,7 +108,7 @@ function ControlledDemo() {
           <Label htmlFor="pay-transfer">Bank transfer</Label>
         </div>
       </RadioGroup>
-      <p className="text-sm text-muted-foreground">Selected: {value}</p>
+      <p className="text-muted-foreground text-sm">Selected: {value}</p>
     </div>
   );
 }

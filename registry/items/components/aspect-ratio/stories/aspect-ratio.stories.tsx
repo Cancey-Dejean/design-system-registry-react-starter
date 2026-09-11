@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { AspectRatio } from "../aspect-ratio";
 
@@ -83,7 +83,7 @@ export const WithPlaceholder: Story = {
   render: () => (
     <AspectRatio
       ratio={4 / 3}
-      className="flex items-center justify-center overflow-hidden rounded-lg border border-dashed bg-muted/40 text-sm text-muted-foreground"
+      className="bg-muted/40 text-muted-foreground flex items-center justify-center overflow-hidden rounded-lg border border-dashed text-sm"
     >
       4 : 3
     </AspectRatio>
@@ -112,8 +112,11 @@ export const Ratios: Story = {
         ] as const
       ).map(([label, ratio]) => (
         <div key={label} className="space-y-2">
-          <p className="text-sm font-medium text-muted-foreground">{label}</p>
-          <AspectRatio ratio={ratio} className="overflow-hidden rounded-lg bg-muted">
+          <p className="text-muted-foreground text-sm font-medium">{label}</p>
+          <AspectRatio
+            ratio={ratio}
+            className="bg-muted overflow-hidden rounded-lg"
+          >
             {sampleImage}
           </AspectRatio>
         </div>

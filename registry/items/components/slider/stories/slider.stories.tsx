@@ -2,7 +2,7 @@ import { Label } from "@registry/components/label/label";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Slider } from "../slider";
 
@@ -34,11 +34,20 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () => <Slider defaultValue={[50]} max={100} step={1} aria-label="Volume" />,
+  render: () => (
+    <Slider defaultValue={[50]} max={100} step={1} aria-label="Volume" />
+  ),
 };
 
 export const Range: Story = {
-  render: () => <Slider defaultValue={[25, 75]} max={100} step={1} aria-label="Price range" />,
+  render: () => (
+    <Slider
+      defaultValue={[25, 75]}
+      max={100}
+      step={1}
+      aria-label="Price range"
+    />
+  ),
 };
 
 export const WithLabel: Story = {
@@ -52,12 +61,20 @@ export const WithLabel: Story = {
 };
 
 export const Steps: Story = {
-  render: () => <Slider defaultValue={[2]} min={0} max={5} step={1} aria-label="Steps" />,
+  render: () => (
+    <Slider defaultValue={[2]} min={0} max={5} step={1} aria-label="Steps" />
+  ),
 };
 
 export const Disabled: Story = {
   render: () => (
-    <Slider defaultValue={[40]} max={100} step={1} disabled aria-label="Disabled slider" />
+    <Slider
+      defaultValue={[40]}
+      max={100}
+      step={1}
+      disabled
+      aria-label="Disabled slider"
+    />
   ),
 };
 
@@ -72,7 +89,9 @@ function ControlledDemo() {
       </div>
       <Slider
         value={value}
-        onValueChange={(next) => setValue(Array.isArray(next) ? [...next] : [next])}
+        onValueChange={(next) =>
+          setValue(Array.isArray(next) ? [...next] : [next])
+        }
         max={100}
         step={1}
         aria-label="Volume"
@@ -98,7 +117,9 @@ function ControlledRangeDemo() {
       </div>
       <Slider
         value={value}
-        onValueChange={(next) => setValue(Array.isArray(next) ? [...next] : [next])}
+        onValueChange={(next) =>
+          setValue(Array.isArray(next) ? [...next] : [next])
+        }
         max={100}
         step={1}
         aria-label="Budget"

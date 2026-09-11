@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Pagination,
@@ -138,7 +138,7 @@ function ControlledDemo() {
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Page {page} of {totalPages}
       </p>
       <Pagination>
@@ -147,7 +147,9 @@ function ControlledDemo() {
             <PaginationPrevious
               href="#"
               aria-disabled={page === 1}
-              className={page === 1 ? "pointer-events-none opacity-50" : undefined}
+              className={
+                page === 1 ? "pointer-events-none opacity-50" : undefined
+              }
               onClick={(event) => {
                 event.preventDefault();
                 setPage((current) => Math.max(1, current - 1));
@@ -175,7 +177,11 @@ function ControlledDemo() {
             <PaginationNext
               href="#"
               aria-disabled={page === totalPages}
-              className={page === totalPages ? "pointer-events-none opacity-50" : undefined}
+              className={
+                page === totalPages
+                  ? "pointer-events-none opacity-50"
+                  : undefined
+              }
               onClick={(event) => {
                 event.preventDefault();
                 setPage((current) => Math.min(totalPages, current + 1));

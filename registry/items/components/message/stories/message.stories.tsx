@@ -1,8 +1,12 @@
 import { Avatar, AvatarFallback } from "@registry/components/avatar/avatar";
-import { Bubble, BubbleContent, BubbleReactions } from "@registry/components/bubble/bubble";
+import {
+  Bubble,
+  BubbleContent,
+  BubbleReactions,
+} from "@registry/components/bubble/bubble";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Message,
@@ -91,7 +95,9 @@ export const Conversation: Story = {
         <MessageContent>
           <MessageHeader>You</MessageHeader>
           <Bubble variant="default" align="end">
-            <BubbleContent>Summarize the design review notes from yesterday.</BubbleContent>
+            <BubbleContent>
+              Summarize the design review notes from yesterday.
+            </BubbleContent>
           </Bubble>
           <MessageFooter>9:42 AM</MessageFooter>
         </MessageContent>
@@ -106,8 +112,8 @@ export const Conversation: Story = {
           <MessageHeader>Assistant</MessageHeader>
           <Bubble variant="muted">
             <BubbleContent>
-              The team aligned on spacing tokens, deferred the nav rework, and assigned ownership of
-              the form docs.
+              The team aligned on spacing tokens, deferred the nav rework, and
+              assigned ownership of the form docs.
             </BubbleContent>
           </Bubble>
           <MessageFooter>9:43 AM</MessageFooter>
@@ -174,7 +180,9 @@ export const HeaderOnly: Story = {
       <MessageContent>
         <MessageHeader>Jane Doe</MessageHeader>
         <Bubble variant="outline">
-          <BubbleContent>Message content without a timestamp footer.</BubbleContent>
+          <BubbleContent>
+            Message content without a timestamp footer.
+          </BubbleContent>
         </Bubble>
       </MessageContent>
     </Message>

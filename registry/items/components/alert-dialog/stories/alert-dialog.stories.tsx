@@ -3,7 +3,7 @@ import { IconAlertTriangle, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   AlertDialog,
@@ -48,13 +48,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <AlertDialog>
-      <AlertDialogTrigger render={<Button variant="outline" />}>Show Dialog</AlertDialogTrigger>
+      <AlertDialogTrigger render={<Button variant="outline" />}>
+        Show Dialog
+      </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your account and remove your
-            data from our servers.
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -70,7 +72,9 @@ export const Small: Story = {
   name: "Small size",
   render: () => (
     <AlertDialog>
-      <AlertDialogTrigger render={<Button variant="outline" />}>Delete project</AlertDialogTrigger>
+      <AlertDialogTrigger render={<Button variant="outline" />}>
+        Delete project
+      </AlertDialogTrigger>
       <AlertDialogContent size="sm">
         <AlertDialogHeader>
           <AlertDialogTitle>Delete project?</AlertDialogTitle>
@@ -91,7 +95,9 @@ export const WithMedia: Story = {
   name: "With media",
   render: () => (
     <AlertDialog>
-      <AlertDialogTrigger render={<Button variant="outline" />}>Review risk</AlertDialogTrigger>
+      <AlertDialogTrigger render={<Button variant="outline" />}>
+        Review risk
+      </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogMedia className="bg-destructive/10 text-destructive">
@@ -99,7 +105,8 @@ export const WithMedia: Story = {
           </AlertDialogMedia>
           <AlertDialogTitle>This action is irreversible</AlertDialogTitle>
           <AlertDialogDescription>
-            You are about to archive this workspace. Collaborators will lose access immediately.
+            You are about to archive this workspace. Collaborators will lose
+            access immediately.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -125,13 +132,15 @@ export const Destructive: Story = {
           </AlertDialogMedia>
           <AlertDialogTitle>Delete account</AlertDialogTitle>
           <AlertDialogDescription>
-            This will permanently delete your account and remove your data from our servers. Type
-            carefully—this cannot be undone.
+            This will permanently delete your account and remove your data from
+            our servers. Type carefully—this cannot be undone.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction variant="destructive">Yes, delete</AlertDialogAction>
+          <AlertDialogAction variant="destructive">
+            Yes, delete
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -146,7 +155,9 @@ function ControlledDemo() {
       <Button variant="outline" onClick={() => setOpen(true)}>
         Open controlled dialog
       </Button>
-      <p className="text-sm text-muted-foreground">Open: {open ? "true" : "false"}</p>
+      <p className="text-muted-foreground text-sm">
+        Open: {open ? "true" : "false"}
+      </p>
       <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -157,7 +168,9 @@ function ControlledDemo() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Keep editing</AlertDialogCancel>
-            <AlertDialogAction onClick={() => setOpen(false)}>Discard</AlertDialogAction>
+            <AlertDialogAction onClick={() => setOpen(false)}>
+              Discard
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

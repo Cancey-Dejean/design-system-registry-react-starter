@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Bubble, BubbleContent, BubbleGroup, BubbleReactions } from "../bubble";
 
@@ -27,7 +27,15 @@ const meta: Meta<typeof Bubble> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "secondary", "muted", "tinted", "outline", "ghost", "destructive"],
+      options: [
+        "default",
+        "secondary",
+        "muted",
+        "tinted",
+        "outline",
+        "ghost",
+        "destructive",
+      ],
     },
     align: {
       control: "select",
@@ -58,12 +66,14 @@ export const Conversation: Story = {
         <BubbleContent>How can I help you today?</BubbleContent>
       </Bubble>
       <Bubble variant="default" align="end">
-        <BubbleContent>Summarize the design review notes from yesterday.</BubbleContent>
+        <BubbleContent>
+          Summarize the design review notes from yesterday.
+        </BubbleContent>
       </Bubble>
       <Bubble variant="muted" align="start">
         <BubbleContent>
-          Here is a short summary: the team aligned on spacing tokens, deferred the nav rework, and
-          assigned ownership of the form docs.
+          Here is a short summary: the team aligned on spacing tokens, deferred
+          the nav rework, and assigned ownership of the form docs.
         </BubbleContent>
       </Bubble>
     </BubbleGroup>
@@ -75,11 +85,24 @@ export const Variants: Story = {
   render: () => (
     <BubbleGroup>
       {(
-        ["default", "secondary", "muted", "tinted", "outline", "ghost", "destructive"] as const
+        [
+          "default",
+          "secondary",
+          "muted",
+          "tinted",
+          "outline",
+          "ghost",
+          "destructive",
+        ] as const
       ).map((variant) => (
-        <Bubble key={variant} variant={variant} align={variant === "default" ? "end" : "start"}>
+        <Bubble
+          key={variant}
+          variant={variant}
+          align={variant === "default" ? "end" : "start"}
+        >
           <BubbleContent>
-            {variant.charAt(0).toUpperCase() + variant.slice(1)} — sample message surface.
+            {variant.charAt(0).toUpperCase() + variant.slice(1)} — sample
+            message surface.
           </BubbleContent>
         </Bubble>
       ))}
@@ -105,7 +128,9 @@ export const WithReactions: Story = {
   render: () => (
     <BubbleGroup className="gap-6 pt-4 pb-6">
       <Bubble variant="muted" align="start">
-        <BubbleContent>Deploy the preview and share the link when it is ready.</BubbleContent>
+        <BubbleContent>
+          Deploy the preview and share the link when it is ready.
+        </BubbleContent>
         <BubbleReactions side="bottom" align="start">
           <span className="px-1.5 text-xs">👍 3</span>
           <span className="px-1.5 text-xs">❤️ 1</span>
@@ -133,12 +158,14 @@ export const MultiContent: Story = {
     <BubbleGroup>
       <Bubble variant="muted" align="start">
         <BubbleContent>First message in a group.</BubbleContent>
-        <BubbleContent className="opacity-90">A second block in the same bubble.</BubbleContent>
+        <BubbleContent className="opacity-90">
+          A second block in the same bubble.
+        </BubbleContent>
       </Bubble>
       <Bubble variant="tinted" align="end">
         <BubbleContent>
-          Longer replies wrap naturally within the max width so multi-line assistant answers stay
-          readable.
+          Longer replies wrap naturally within the max width so multi-line
+          assistant answers stay readable.
         </BubbleContent>
       </Bubble>
     </BubbleGroup>
@@ -155,7 +182,11 @@ export const InteractiveContent: Story = {
         </BubbleContent>
       </Bubble>
       <Bubble variant="default" align="end">
-        <BubbleContent render={<a href="https://ui.shadcn.com" target="_blank" rel="noreferrer" />}>
+        <BubbleContent
+          render={
+            <a href="https://ui.shadcn.com" target="_blank" rel="noreferrer" />
+          }
+        >
           Open documentation
         </BubbleContent>
       </Bubble>

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconCloud, IconFolder, IconSearch } from "@tabler/icons-react";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Empty,
@@ -48,7 +48,9 @@ export const Default: Story = {
           <IconFolder />
         </EmptyMedia>
         <EmptyTitle>No projects yet</EmptyTitle>
-        <EmptyDescription>Get started by creating a new project.</EmptyDescription>
+        <EmptyDescription>
+          Get started by creating a new project.
+        </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
         <Button size="sm">Create project</Button>
@@ -85,8 +87,9 @@ export const Search: Story = {
         </EmptyMedia>
         <EmptyTitle>No results found</EmptyTitle>
         <EmptyDescription>
-          No results for <span className="font-medium text-foreground">“design system”</span>. Try a
-          different query.
+          No results for{" "}
+          <span className="text-foreground font-medium">“design system”</span>.
+          Try a different query.
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>

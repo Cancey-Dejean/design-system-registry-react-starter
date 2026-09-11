@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { toast, Toaster } from "../toast";
 
@@ -142,8 +142,16 @@ export const Stack: Story = {
       variant="outline"
       onClick={() => {
         toast.add({ title: "First toast", description: "Stack me." });
-        toast.add({ type: "info", title: "Second toast", description: "Hover to expand." });
-        toast.add({ type: "success", title: "Third toast", description: "Still in the stack." });
+        toast.add({
+          type: "info",
+          title: "Second toast",
+          description: "Hover to expand.",
+        });
+        toast.add({
+          type: "success",
+          title: "Third toast",
+          description: "Still in the stack.",
+        });
       }}
     >
       Stack toasts

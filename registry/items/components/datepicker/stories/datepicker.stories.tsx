@@ -3,7 +3,7 @@ import { addDays } from "date-fns";
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { DatePicker, DatePickerWithRange } from "../datepicker";
 
@@ -50,7 +50,13 @@ function RangeDemo() {
     to: addDays(new Date(2026, 0, 20), 20),
   });
 
-  return <DatePickerWithRange value={range} onChange={setRange} placeholder="Pick a date range" />;
+  return (
+    <DatePickerWithRange
+      value={range}
+      onChange={setRange}
+      placeholder="Pick a date range"
+    />
+  );
 }
 
 export const Range: Story = {

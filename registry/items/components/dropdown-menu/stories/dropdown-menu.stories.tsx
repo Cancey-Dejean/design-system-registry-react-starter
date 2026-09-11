@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   DropdownMenu,
@@ -59,7 +59,9 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>
+        Open
+      </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem>Profile</DropdownMenuItem>
         <DropdownMenuItem>Billing</DropdownMenuItem>
@@ -73,7 +75,9 @@ export const Default: Story = {
 export const Shortcuts: Story = {
   render: () => (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>
+        Open
+      </DropdownMenuTrigger>
       <DropdownMenuContent className="w-48">
         <DropdownMenuItem>
           Back
@@ -95,7 +99,9 @@ export const Shortcuts: Story = {
 export const Submenu: Story = {
   render: () => (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>
+        Open
+      </DropdownMenuTrigger>
       <DropdownMenuContent className="w-52">
         <DropdownMenuItem>
           <IconCopy />
@@ -129,7 +135,9 @@ function CheckboxesDemo() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>
+        Open
+      </DropdownMenuTrigger>
       <DropdownMenuContent className="w-52">
         <DropdownMenuCheckboxItem
           checked={showBookmarks}
@@ -157,11 +165,15 @@ function RadioDemo() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>
+        Open
+      </DropdownMenuTrigger>
       <DropdownMenuContent className="w-52">
         <DropdownMenuRadioGroup value={person} onValueChange={setPerson}>
           <DropdownMenuLabel inset>People</DropdownMenuLabel>
-          <DropdownMenuRadioItem value="pedro">Pedro Duarte</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="pedro">
+            Pedro Duarte
+          </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="colm">Colm Tuite</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
@@ -176,7 +188,9 @@ export const Radio: Story = {
 export const Groups: Story = {
   render: () => (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>
+        Open
+      </DropdownMenuTrigger>
       <DropdownMenuContent className="w-52">
         <DropdownMenuGroup>
           <DropdownMenuLabel>File</DropdownMenuLabel>
@@ -209,7 +223,9 @@ export const Groups: Story = {
 export const Destructive: Story = {
   render: () => (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>
+        Open
+      </DropdownMenuTrigger>
       <DropdownMenuContent className="w-48">
         <DropdownMenuItem>
           <IconShare />

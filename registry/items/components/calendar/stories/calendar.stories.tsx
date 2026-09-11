@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Calendar } from "../calendar";
 
@@ -37,7 +37,12 @@ function SingleDemo() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   return (
-    <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-lg border" />
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+      className="rounded-lg border"
+    />
   );
 }
 
@@ -74,7 +79,12 @@ function MultipleDemo() {
   ]);
 
   return (
-    <Calendar mode="multiple" selected={dates} onSelect={setDates} className="rounded-lg border" />
+    <Calendar
+      mode="multiple"
+      selected={dates}
+      onSelect={setDates}
+      className="rounded-lg border"
+    />
   );
 }
 

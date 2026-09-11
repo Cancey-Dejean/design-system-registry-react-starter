@@ -1,9 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Text } from "../text";
-import { TEXT_SIZES, TEXT_ALIGNMENTS, TEXT_WEIGHTS, TEXT_TONES } from "../text.variants";
+import {
+  TEXT_SIZES,
+  TEXT_ALIGNMENTS,
+  TEXT_WEIGHTS,
+  TEXT_TONES,
+} from "../text.variants";
 
 const meta: Meta<typeof Text> = {
   title: "Components/Text",
@@ -121,7 +126,8 @@ export const Alignments: Story = {
     <div className="flex w-full flex-col gap-4">
       {TEXT_ALIGNMENTS.map((align) => (
         <Text key={align} {...args} align={align}>
-          Align: <strong>{align}</strong> — The quick brown fox jumps over the lazy dog.
+          Align: <strong>{align}</strong> — The quick brown fox jumps over the
+          lazy dog.
         </Text>
       ))}
     </div>

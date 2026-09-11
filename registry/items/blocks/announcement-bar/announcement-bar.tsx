@@ -77,7 +77,10 @@ export function AnnouncementBarSlider({
       className={cn(announcementBarVariants({ theme }), className)}
       {...props}
     >
-      <Container size="contained" className="flex items-center justify-center gap-3 sm:gap-5">
+      <Container
+        size="contained"
+        className="flex items-center justify-center gap-3 sm:gap-5"
+      >
         {showControls ? (
           <button
             type="button"
@@ -86,7 +89,7 @@ export function AnnouncementBarSlider({
             disabled={!canScrollPrev}
             onClick={scrollPrev}
             className={cn(
-              "shrink-0 text-foreground transition-colors hover:text-foreground/75 disabled:pointer-events-none disabled:opacity-30",
+              "text-foreground hover:text-foreground/75 shrink-0 transition-colors disabled:pointer-events-none disabled:opacity-30",
               theme === "dark" && "text-white",
               !canScrollPrev && "pointer-events-none opacity-30",
             )}
@@ -102,7 +105,7 @@ export function AnnouncementBarSlider({
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${index + 1} of ${slideCount}`}
-                className="min-w-0 shrink-0 grow-0 basis-full text-center text-14"
+                className="text-14 min-w-0 shrink-0 grow-0 basis-full text-center"
               >
                 {slide}
               </div>
@@ -118,7 +121,7 @@ export function AnnouncementBarSlider({
             disabled={!canScrollNext}
             onClick={scrollNext}
             className={cn(
-              "shrink-0 text-foreground transition-colors hover:text-foreground/75 disabled:pointer-events-none disabled:opacity-30",
+              "text-foreground hover:text-foreground/75 shrink-0 transition-colors disabled:pointer-events-none disabled:opacity-30",
               !canScrollNext && "pointer-events-none opacity-30",
               theme === "dark" && "text-white",
             )}

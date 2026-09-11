@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Separator } from "../separator";
 
@@ -44,7 +44,9 @@ export const Default: Story = {
   render: (args) => (
     <div className="space-y-1">
       <h4 className="text-sm leading-none font-medium">Radix Primitives</h4>
-      <p className="text-sm text-muted-foreground">An open-source UI component library.</p>
+      <p className="text-muted-foreground text-sm">
+        An open-source UI component library.
+      </p>
       <Separator {...args} className="my-4" />
       <div className="flex h-5 items-center gap-4 text-sm">
         <div>Blog</div>
@@ -92,12 +94,14 @@ export const InList: Story = {
   name: "In content list",
   render: () => (
     <div className="space-y-0">
-      {["Profile", "Billing", "Team", "Subscription"].map((item, index, items) => (
-        <div key={item}>
-          <div className="py-3 text-sm font-medium">{item}</div>
-          {index < items.length - 1 ? <Separator /> : null}
-        </div>
-      ))}
+      {["Profile", "Billing", "Team", "Subscription"].map(
+        (item, index, items) => (
+          <div key={item}>
+            <div className="py-3 text-sm font-medium">{item}</div>
+            {index < items.length - 1 ? <Separator /> : null}
+          </div>
+        ),
+      )}
     </div>
   ),
 };
@@ -105,7 +109,7 @@ export const InList: Story = {
 export const WithLabel: Story = {
   name: "With label",
   render: () => (
-    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+    <div className="text-muted-foreground flex items-center gap-3 text-sm">
       <Separator className="flex-1" />
       <span>or continue with</span>
       <Separator className="flex-1" />

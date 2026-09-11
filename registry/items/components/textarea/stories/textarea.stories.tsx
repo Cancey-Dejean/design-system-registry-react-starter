@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Textarea } from "../textarea";
 
@@ -69,7 +69,7 @@ export const WithText: Story = {
         Bio
       </label>
       <Textarea id="bio" placeholder="Tell us a little bit about yourself" />
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Your bio will be shown on your public profile.
       </p>
     </div>
@@ -91,7 +91,9 @@ export const Invalid: Story = {
         Feedback
       </label>
       <Textarea id="invalid" defaultValue="Hi" aria-invalid />
-      <p className="text-sm text-destructive">Please enter at least 20 characters.</p>
+      <p className="text-destructive text-sm">
+        Please enter at least 20 characters.
+      </p>
     </div>
   ),
 };
@@ -114,7 +116,7 @@ function ControlledDemo() {
         onChange={(event) => setValue(event.target.value)}
         placeholder="Write something…"
       />
-      <p className="text-sm text-muted-foreground">{value.length} characters</p>
+      <p className="text-muted-foreground text-sm">{value.length} characters</p>
     </div>
   );
 }

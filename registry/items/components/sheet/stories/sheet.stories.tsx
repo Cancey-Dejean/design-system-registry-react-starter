@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Sheet,
@@ -81,11 +81,15 @@ export const SideLeft: Story = {
   name: "Side left",
   render: () => (
     <Sheet>
-      <SheetTrigger render={<Button variant="outline" />}>Open left</SheetTrigger>
+      <SheetTrigger render={<Button variant="outline" />}>
+        Open left
+      </SheetTrigger>
       <SheetContent side="left">
         <SheetHeader>
           <SheetTitle>Navigation</SheetTitle>
-          <SheetDescription>Links and structure for this section.</SheetDescription>
+          <SheetDescription>
+            Links and structure for this section.
+          </SheetDescription>
         </SheetHeader>
         <div className="grid gap-2 px-4 text-sm">
           <a href="#overview" className="hover:underline">
@@ -107,13 +111,17 @@ export const SideTop: Story = {
   name: "Side top",
   render: () => (
     <Sheet>
-      <SheetTrigger render={<Button variant="outline" />}>Open top</SheetTrigger>
+      <SheetTrigger render={<Button variant="outline" />}>
+        Open top
+      </SheetTrigger>
       <SheetContent side="top">
         <SheetHeader>
           <SheetTitle>Announcement</SheetTitle>
-          <SheetDescription>A short banner sheet from the top edge.</SheetDescription>
+          <SheetDescription>
+            A short banner sheet from the top edge.
+          </SheetDescription>
         </SheetHeader>
-        <div className="px-4 pb-4 text-sm text-muted-foreground">
+        <div className="text-muted-foreground px-4 pb-4 text-sm">
           Scheduled maintenance tonight at 11pm UTC.
         </div>
       </SheetContent>
@@ -125,11 +133,15 @@ export const SideBottom: Story = {
   name: "Side bottom",
   render: () => (
     <Sheet>
-      <SheetTrigger render={<Button variant="outline" />}>Open bottom</SheetTrigger>
+      <SheetTrigger render={<Button variant="outline" />}>
+        Open bottom
+      </SheetTrigger>
       <SheetContent side="bottom">
         <SheetHeader>
           <SheetTitle>Share</SheetTitle>
-          <SheetDescription>Choose how you want to share this item.</SheetDescription>
+          <SheetDescription>
+            Choose how you want to share this item.
+          </SheetDescription>
         </SheetHeader>
         <SheetFooter>
           <Button>Copy link</Button>
@@ -148,7 +160,9 @@ export const WithoutCloseButton: Story = {
       <SheetContent showCloseButton={false}>
         <SheetHeader>
           <SheetTitle>Confirm action</SheetTitle>
-          <SheetDescription>Use the footer buttons to dismiss this sheet.</SheetDescription>
+          <SheetDescription>
+            Use the footer buttons to dismiss this sheet.
+          </SheetDescription>
         </SheetHeader>
         <SheetFooter>
           <SheetClose render={<Button variant="outline" />}>Cancel</SheetClose>
@@ -167,12 +181,14 @@ function ControlledDemo() {
       <Button variant="outline" onClick={() => setOpen(true)}>
         Open controlled
       </Button>
-      <p className="text-sm text-muted-foreground">Open: {String(open)}</p>
+      <p className="text-muted-foreground text-sm">Open: {String(open)}</p>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent>
           <SheetHeader>
             <SheetTitle>Controlled sheet</SheetTitle>
-            <SheetDescription>Open state is managed by the parent.</SheetDescription>
+            <SheetDescription>
+              Open state is managed by the parent.
+            </SheetDescription>
           </SheetHeader>
           <SheetFooter>
             <SheetClose render={<Button variant="outline" />}>Close</SheetClose>

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   Card,
@@ -55,11 +55,14 @@ export const Default: Story = {
     <Card {...args}>
       <CardHeader>
         <CardTitle>Login to your account</CardTitle>
-        <CardDescription>Enter your email below to login to your account</CardDescription>
+        <CardDescription>
+          Enter your email below to login to your account
+        </CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-muted-foreground">
-          Use the card for self-contained content groups with a title, body, and actions.
+        <p className="text-muted-foreground text-sm">
+          Use the card for self-contained content groups with a title, body, and
+          actions.
         </p>
       </CardContent>
       <CardFooter className="gap-2">
@@ -75,13 +78,15 @@ export const WithAction: Story = {
     <Card>
       <CardHeader>
         <CardTitle>Scheduled reports</CardTitle>
-        <CardDescription>Weekly snapshots. No more manual exports.</CardDescription>
+        <CardDescription>
+          Weekly snapshots. No more manual exports.
+        </CardDescription>
         <CardAction>
           <Badge variant="secondary">New</Badge>
         </CardAction>
       </CardHeader>
       <CardContent>
-        <ul className="list-inside list-disc space-y-1 text-sm text-muted-foreground">
+        <ul className="text-muted-foreground list-inside list-disc space-y-1 text-sm">
           <li>Choose a schedule (daily or weekly).</li>
           <li>Send to channels or specific teammates.</li>
           <li>Include charts, tables, and key metrics.</li>
@@ -100,7 +105,9 @@ export const SizeSm: Story = {
     <Card size="sm">
       <CardHeader>
         <CardTitle>Small card</CardTitle>
-        <CardDescription>Uses denser spacing for compact layouts.</CardDescription>
+        <CardDescription>
+          Uses denser spacing for compact layouts.
+        </CardDescription>
         <CardAction>
           <Button variant="outline" size="sm">
             Edit
@@ -109,7 +116,8 @@ export const SizeSm: Story = {
       </CardHeader>
       <CardContent>
         <p className="text-muted-foreground">
-          The small size variant tightens gaps and padding across header, content, and footer.
+          The small size variant tightens gaps and padding across header,
+          content, and footer.
         </p>
       </CardContent>
       <CardFooter className="justify-end gap-2">
@@ -134,7 +142,8 @@ export const WithImage: Story = {
       <CardHeader>
         <CardTitle>Design systems meetup</CardTitle>
         <CardDescription>
-          A practical talk on component APIs, accessibility, and shipping faster.
+          A practical talk on component APIs, accessibility, and shipping
+          faster.
         </CardDescription>
         <CardAction>
           <Badge>Featured</Badge>
@@ -160,7 +169,7 @@ export const Simple: Story = {
         <p>Card Content</p>
       </CardContent>
       <CardFooter>
-        <p className="text-sm text-muted-foreground">Card Footer</p>
+        <p className="text-muted-foreground text-sm">Card Footer</p>
       </CardFooter>
     </Card>
   ),

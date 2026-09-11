@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconSearch, IconCopy, IconInfoCircle } from "@tabler/icons-react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import {
   InputGroup,
@@ -95,7 +95,9 @@ export const BlockLabel: Story = {
   render: () => (
     <InputGroup>
       <InputGroupAddon align="block-start">
-        <InputGroupText className="font-medium text-foreground">Email</InputGroupText>
+        <InputGroupText className="text-foreground font-medium">
+          Email
+        </InputGroupText>
       </InputGroupAddon>
       <InputGroupInput type="email" placeholder="you@example.com" />
       <InputGroupAddon align="block-end">
@@ -129,9 +131,15 @@ export const Invalid: Story = {
         <InputGroupAddon>
           <InputGroupText>@</InputGroupText>
         </InputGroupAddon>
-        <InputGroupInput placeholder="username" aria-invalid defaultValue="!!" />
+        <InputGroupInput
+          placeholder="username"
+          aria-invalid
+          defaultValue="!!"
+        />
       </InputGroup>
-      <p className="text-sm text-destructive">Username can only contain letters and numbers.</p>
+      <p className="text-destructive text-sm">
+        Username can only contain letters and numbers.
+      </p>
     </div>
   ),
 };
@@ -142,7 +150,11 @@ export const Disabled: Story = {
       <InputGroupAddon>
         <InputGroupText>https://</InputGroupText>
       </InputGroupAddon>
-      <InputGroupInput disabled placeholder="example.com" defaultValue="docs.example.com" />
+      <InputGroupInput
+        disabled
+        placeholder="example.com"
+        defaultValue="docs.example.com"
+      />
     </InputGroup>
   ),
 };

@@ -2,9 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
-import { DirectionProvider, useDirection, type TextDirection } from "../direction";
+import {
+  DirectionProvider,
+  useDirection,
+  type TextDirection,
+} from "../direction";
 
 const meta = {
   title: "Components/Direction",
@@ -39,18 +43,21 @@ function DirectionReadout() {
   return (
     <div
       dir={direction}
-      className="w-full rounded-lg border bg-card p-4 text-card-foreground shadow-sm"
+      className="bg-card text-card-foreground w-full rounded-lg border p-4 shadow-sm"
     >
       <p className="text-base font-medium">
-        {direction === "rtl" ? "تسجيل الدخول إلى حسابك" : "Login to your account"}
+        {direction === "rtl"
+          ? "تسجيل الدخول إلى حسابك"
+          : "Login to your account"}
       </p>
-      <p className="mt-1 text-sm text-muted-foreground">
+      <p className="text-muted-foreground mt-1 text-sm">
         {direction === "rtl"
           ? "أدخل بريدك الإلكتروني أدناه لتسجيل الدخول إلى حسابك"
           : "Enter your email below to login to your account"}
       </p>
-      <p className="mt-3 text-xs text-muted-foreground">
-        useDirection(): <span className="font-mono text-foreground">{direction}</span>
+      <p className="text-muted-foreground mt-3 text-xs">
+        useDirection():{" "}
+        <span className="text-foreground font-mono">{direction}</span>
       </p>
     </div>
   );
@@ -64,9 +71,13 @@ function ToggleDemo() {
       <Button
         variant="outline"
         size="sm"
-        onClick={() => setDirection((current) => (current === "ltr" ? "rtl" : "ltr"))}
+        onClick={() =>
+          setDirection((current) => (current === "ltr" ? "rtl" : "ltr"))
+        }
       >
-        {direction === "ltr" ? "Switch to Arabic (RTL)" : "Switch to English (LTR)"}
+        {direction === "ltr"
+          ? "Switch to Arabic (RTL)"
+          : "Switch to English (LTR)"}
       </Button>
       <DirectionProvider direction={direction}>
         <DirectionReadout />

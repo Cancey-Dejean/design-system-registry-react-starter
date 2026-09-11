@@ -2,7 +2,7 @@ import { Label } from "@registry/components/label/label";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { Switch } from "../switch";
 
@@ -95,7 +95,7 @@ export const Invalid: Story = {
         <Switch id="must-enable" aria-invalid />
         <Label htmlFor="must-enable">Enable notifications</Label>
       </div>
-      <p className="text-sm text-destructive">This setting is required.</p>
+      <p className="text-destructive text-sm">This setting is required.</p>
     </div>
   ),
 };
@@ -106,10 +106,16 @@ function ControlledDemo() {
   return (
     <div className="grid gap-2">
       <div className="flex items-center gap-2">
-        <Switch id="controlled" checked={checked} onCheckedChange={(value) => setChecked(value)} />
+        <Switch
+          id="controlled"
+          checked={checked}
+          onCheckedChange={(value) => setChecked(value)}
+        />
         <Label htmlFor="controlled">Controlled switch</Label>
       </div>
-      <p className="text-sm text-muted-foreground">Checked: {checked ? "true" : "false"}</p>
+      <p className="text-muted-foreground text-sm">
+        Checked: {checked ? "true" : "false"}
+      </p>
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StoryWrapper from "@/components/ui/story-wrapper";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 import { ScrollArea } from "../scroll-area";
 
-const tags = Array.from({ length: 50 }).map((_, index) => `v1.2.0-beta.${index + 1}`);
+const tags = Array.from({ length: 50 }).map(
+  (_, index) => `v1.2.0-beta.${index + 1}`,
+);
 
 const works = [
   {
@@ -93,8 +95,11 @@ export const Horizontal: Story = {
                 height={400}
               />
             </div>
-            <figcaption className="pt-2 text-xs text-muted-foreground">
-              Photo by <span className="font-semibold text-foreground">{work.artist}</span>
+            <figcaption className="text-muted-foreground pt-2 text-xs">
+              Photo by{" "}
+              <span className="text-foreground font-semibold">
+                {work.artist}
+              </span>
             </figcaption>
           </figure>
         ))}

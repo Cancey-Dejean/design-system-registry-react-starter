@@ -1,0 +1,46 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "ds": {
+    "color": {
+      "brand": {
+        "primary":            { "$value": "{color.indigo.600}", "$type": "color" },
+        "primary-foreground": { "$value": "{color.gray.0}",     "$type": "color" },
+        "primary-hover":      { "$value": "{color.indigo.700}", "$type": "color" },
+        "secondary":          { "$value": "{color.indigo.100}", "$type": "color" },
+        "secondary-foreground": { "$value": "{color.indigo.700}", "$type": "color" }
+      },
+      "background":       { "$value": "{color.gray.0}",   "$type": "color" },
+      "foreground":       { "$value": "{color.gray.900}", "$type": "color" },
+      "muted":            { "$value": "{color.gray.100}", "$type": "color" },
+      "muted-foreground": { "$value": "{color.gray.600}", "$type": "color" },
+      "border":           { "$value": "{color.gray.200}", "$type": "color" },
+      "input":            { "$value": "{color.gray.200}", "$type": "color" },
+      "ring":             { "$value": "{color.indigo.600}", "$type": "color" },
+      "accent":           { "$value": "{color.indigo.50}",  "$type": "color" },
+      "accent-foreground":{ "$value": "{color.indigo.700}", "$type": "color" },
+      "destructive":      { "$value": "{color.red.700}",   "$type": "color" },
+      "destructive-foreground": { "$value": "{color.gray.0}", "$type": "color" },
+      "error":            { "$value": "{color.red.700}",   "$type": "color" },
+      "error-foreground": { "$value": "{color.red.700}",   "$type": "color" }
+    },
+    "font": {
+      "sans": { "$value": "{font.family.sans}", "$type": "fontFamily" },
+      "mono": { "$value": "{font.family.mono}", "$type": "fontFamily" }
+    },
+    "radius": {
+      "sm":   { "$value": "{radius.sm}",   "$type": "dimension" },
+      "md":   { "$value": "{radius.md}",   "$type": "dimension" },
+      "lg":   { "$value": "{radius.lg}",   "$type": "dimension" },
+      "full": { "$value": "{radius.full}", "$type": "dimension" }
+    },
+    "space": {
+      "1":  { "$value": "{space.1}",  "$type": "dimension" },
+      "2":  { "$value": "{space.2}",  "$type": "dimension" },
+      "3":  { "$value": "{space.3}",  "$type": "dimension" },
+      "4":  { "$value": "{space.4}",  "$type": "dimension" },
+      "5":  { "$value": "{space.5}",  "$type": "dimension" },
+      "6":  { "$value": "{space.6}",  "$type": "dimension" },
+      "8":  { "$value": "{space.8}",  "$type": "dimension" }
+    }
+  }
+}

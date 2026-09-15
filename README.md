@@ -180,6 +180,44 @@ Human-facing registry URLs support the shadcn CLI's request headers. CLI request
 
 All pages also support Markdown content negotiation (inspired by [Fumadocs](https://www.fumadocs.dev/docs/headless/utils/negotiation)). AI clients that request `text/markdown`, `text/x-markdown`, or `text/plain` in the `Accept` header receive the Markdown version of the current page directly, while normal browser requests still receive HTML.
 
+## Linting
+
+This project uses [Oxlint](https://oxc.rs/docs/guide/usage/linter) with the [`@shadcn/lint`](https://github.com/shadcn-ui/lint) plugin — an agent-first linter for Tailwind design systems.
+
+### Running the linter
+
+```bash
+bun run lint
+```
+
+### Configuration
+
+Rules are configured in [`.oxlintrc.json`](.oxlintrc.json). The plugin is registered but **no rules are enabled by default** — add rules to enforce your design system's conventions.
+
+#### Available rules
+
+| Rule | What it catches |
+| --- | --- |
+| `shadcn/no-restyle` | Restyling a component with `className` |
+| `shadcn/no-raw-colors` | Raw colors such as `bg-pink-500` |
+| `shadcn/no-arbitrary-values` | Arbitrary values such as `p-[13px]` |
+| `shadcn/no-inline-styles` | Inline styles and `<style>` elements |
+| `shadcn/no-unknown-classes` | Classes Tailwind cannot generate |
+| `shadcn/require-static-classes` | Dynamic class expressions the linter cannot read |
+
+#### Example — allow layout classes, disallow restyling
+
+```json
+{
+  "jsPlugins": ["@shadcn/lint"],
+  "rules": {
+    "shadcn/no-restyle": ["error", { "allow": ["layout"] }]
+  }
+}
+```
+
+See the [`@shadcn/lint` docs](https://github.com/shadcn-ui/lint/blob/main/README.md#rules) for all rule options and configuration examples.
+
 ## Checklist
 
 - [ ] Choose a registry name, namespace, domain, and repository URL in `registry/config.ts`.

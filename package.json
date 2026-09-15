@@ -24,7 +24,8 @@
     "knip": "vp exec knip",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "doctor": "npx react-doctor@latest"
+    "doctor": "npx react-doctor@latest",
+    "lint": "oxlint"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
@@ -74,6 +75,7 @@
     "@content-collections/core": "0.15.0",
     "@content-collections/vite": "0.3.0",
     "@rolldown/plugin-babel": "^0.2.3",
+    "@shadcn/lint": "^0.1.0",
     "@storybook/addon-a11y": "^10.5.7",
     "@storybook/addon-docs": "^10.5.7",
     "@storybook/addon-links": "^10.5.7",
@@ -98,6 +100,7 @@
     "@vitest/coverage-v8": "^4.1.10",
     "babel-plugin-react-compiler": "1.0.0",
     "knip": "^6.11.0",
+    "oxlint": "^1.83.0",
     "playwright": "^1.61.1",
     "prettier": "^3.9.5",
     "prettier-plugin-tailwindcss": "^0.8.1",

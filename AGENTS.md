@@ -52,6 +52,10 @@ Use **Vite+**: `vp install`, `vp dev`, `vp build`, `vp test`
 - Docs chrome: `src/components/docs/`; theme/CSS: `src/styles/styles.css`.
 - See the [SKILL.md](skills/shadcn-registry/SKILL.md) file for the registry authoring workflow.
 
+## Linting
+
+After making UI changes, run `bun run lint` and fix all errors before finishing.
+
 ## Verification
 
 - After registry edits, run `vp check --fix` on touched files and `bun --bun ./scripts/doctor.ts` (if Bun is installed).

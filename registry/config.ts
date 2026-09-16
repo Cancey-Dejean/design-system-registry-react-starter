@@ -5,5 +5,5 @@ export const registryConfig = {
   description: "A TanStack Start template for publishing a shadcn-compatible registry.",
   homepage: "https://design-system-registry-react-starter.vercel.app",
   repositoryUrl: "https://github.com/Cancey-Dejean/design-system-registry-react-starter",
-  storybookUrl: "https://design-system-registry-vue-starter-six.vercel.app",
+  storybookUrl: "https://ds-registry-react-starter-storybook.vercel.app",
 } as const;

@@ -6,7 +6,7 @@ export type HeadingVariantProps = VariantProps<typeof headingCva>;
 
 export type HeadingProps = {
   level?: NonNullable<HeadingVariantProps["level"]>;
-  size?: NonNullable<HeadingVariantProps["size"]>;
-  weight?: NonNullable<HeadingVariantProps["weight"]>;
-  tone?: NonNullable<HeadingVariantProps["tone"]>;
+  size?: HeadingVariantProps["size"];
+  weight?: HeadingVariantProps["weight"];
+  tone?: HeadingVariantProps["tone"];
 } & React.ComponentPropsWithoutRef<"h1">;

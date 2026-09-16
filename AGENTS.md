@@ -11,6 +11,8 @@ skills:
     load: "node_modules/@tanstack/start-client-core/skills/start-core/server-routes/SKILL.md"
   - task: "change the TanStack Start, Vite, or Devtools setup"
     load: "node_modules/@tanstack/start-client-core/skills/start-core/SKILL.md"
+  - task: "add or update Storybook stories, *.stories.tsx, story files, or CSF stories for registry items"
+    load: "skills/writing-story-files/SKILL.md"
 <!-- intent-skills:end -->
 
 # Agent Instructions
@@ -31,6 +33,7 @@ Use **Vite+**: `vp install`, `vp dev`, `vp build`, `vp test`
 
 - Treat short prompts like "add a button component to the registry" as implementation requests.
 - For registry item authoring or adaptation, use the installable `shadcn-registry` [SKILL.md](skills/shadcn-registry/SKILL.md) when available.
+- For Storybook stories (`*.stories.tsx`), use the writing-story-files [SKILL.md](skills/writing-story-files/SKILL.md). Follow `registry/items/components/container/stories/`.
 - After changing published source under `registry/items/**`, sync `_registry.mdx` and `_preview.tsx` with the `sync-registry-metadata` [SKILL.md](skills/sync-registry-metadata/SKILL.md).
 - After shipping user-facing registry, component, docs, or install-path changes, update `registry/docs/changelog.mdx` with the `update-changelog` [SKILL.md](skills/update-changelog/SKILL.md).
 - For new registry items, scaffold the starter files non-interactively with `bun --bun ./scripts/new.ts --type <type> --name <kebab-name> --description "<description>"`; add `--target` for `registry:page`, `registry:file`, and custom alias installs like `@ui/ai/<file>.tsx`, `--file-extension` for non-`ts` file items, and font flags for `registry:font`.

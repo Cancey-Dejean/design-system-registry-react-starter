@@ -83,6 +83,8 @@ export function Preview() {
 
 Keep previews client-safe: static data, local state, and events are fine; avoid network calls, auth, server functions, env reads, and app-only providers.
 
+Storybook stories are authoring-only. **REQUIRED SUB-SKILL:** Use writing-story-files. Do not add `stories/` to `files`.
+
 ## Component Variants
 
 If a component uses `cva` from `class-variance-authority`, put every `cva()` call in a colocated `<name>.variants.ts` file (`.ts`, not `.tsx`). Do not define CVA in the component `.tsx`. Follow `registry/items/components/button/button.variants.ts` and the Component Variants section in `registry/docs/registry.mdx`.

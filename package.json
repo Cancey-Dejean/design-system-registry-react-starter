@@ -15,7 +15,7 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "vp dev",
+    "dev": "concurrently -n app,storybook -c blue,magenta \"vp dev\" \"storybook dev -p 6006\"",
     "build": "vp build",
     "start": "node .output/server/index.mjs",
     "preview": "vp preview",
@@ -99,6 +99,7 @@
     "@vitest/browser-playwright": "^4.1.10",
     "@vitest/coverage-v8": "^4.1.10",
     "babel-plugin-react-compiler": "1.0.0",
+    "concurrently": "^10.0.5",
     "knip": "^6.11.0",
     "oxlint": "^1.83.0",
     "playwright": "^1.61.1",

@@ -35,7 +35,7 @@ describe("install commands", () => {
       `yarn dlx shadcn@latest add ${getCanonicalRegistryItemUrl("sample-item")}`,
     );
     expect(getInstallCommand("sample-item", "bun")).toBe(
-      `bunx --bun shadcn@latest add ${getCanonicalRegistryItemUrl("sample-item")}`,
+      `bunx shadcn add ${getCanonicalRegistryItemUrl("sample-item")}`,
     );
   });
 

@@ -1,4 +1,5 @@
 import type { DocsPageDetail } from "../../lib/docs/detail.server";
+import { DocsPageBody } from "./docs-page-body";
 import { DocsPageHeader } from "./docs-page-header";
 
 type AuthoredDocsPageProps = {
@@ -7,9 +8,9 @@ type AuthoredDocsPageProps = {
 
 export function AuthoredDocsPage({ page }: AuthoredDocsPageProps) {
   return (
-    <article className="flex min-w-0 flex-col gap-8">
+    <DocsPageBody toc={page.toc}>
       <DocsPageHeader title={page.title} description={page.description} pagePath={page.routePath} />
       {page.content}
-    </article>
+    </DocsPageBody>
   );
 }

@@ -57,15 +57,14 @@ export const Route = createFileRoute("/registry/$name")({
 });
 
 function RegistryItemPendingRoute() {
-  return <ContentSkeleton section={registryCatalog.id} variant="registry-item" />;
+  return <ContentSkeleton variant="registry-item" />;
 }
 
 function RegistryItemRoute() {
   const item = Route.useLoaderData();
-  const section = getRegistrySectionForType(item.type);
 
   return (
-    <DocsLayout section={section.id}>
+    <DocsLayout>
       <RegistryItemDoc item={item} />
     </DocsLayout>
   );

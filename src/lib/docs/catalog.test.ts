@@ -47,7 +47,42 @@ Use this page first.
       order: 2,
       group: "Guides",
       contentSource: "# Ignored Heading\n\nUse this page first.",
+      toc: [],
     });
+  });
+
+  test("extracts nested heading toc from markdown body", () => {
+    const page = parseDocsPageSource(
+      "registry/docs/installation.mdx",
+      `---
+title: Installation
+---
+
+## Configure the registry
+
+Body.
+
+## Install an item
+
+### npm
+
+Install with npm.
+`,
+    );
+
+    expect(page?.toc).toEqual([
+      {
+        id: "configure-the-registry",
+        text: "Configure the registry",
+        depth: 2,
+      },
+      {
+        id: "install-an-item",
+        text: "Install an item",
+        depth: 2,
+        children: [{ id: "npm", text: "npm", depth: 3 }],
+      },
+    ]);
   });
 
   test("allows curated callouts but rejects arbitrary MDX components", () => {

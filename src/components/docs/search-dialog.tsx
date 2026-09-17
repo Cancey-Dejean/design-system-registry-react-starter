@@ -6,6 +6,9 @@ import * as React from "react";
 
 import { Button } from "@/components/ui/button";
 
+import { cn } from "../../lib/utils";
+import { useCloseMobileSidebar } from "./docs-sidebar";
+
 const searchHotkey = "Mod+K" satisfies Hotkey;
 
 let searchDialogPanelPromise: Promise<typeof import("./search-dialog-panel")> | undefined;
@@ -16,62 +19,85 @@ const LazySearchDialogPanel = React.lazy(async () => {
   return { default: module.SearchDialogPanel };
 });
 
-export function SearchDialog() {
+type SearchDialogContextValue = {
+  openSearch: () => void;
+  preload: () => void;
+};
+
+const SearchDialogContext = React.createContext<SearchDialogContextValue | null>(null);
+
+function useSearchDialog() {
+  const context = React.useContext(SearchDialogContext);
+
+  if (!context) {
+    throw new Error("SearchDialog must be used within SearchDialogProvider.");
+  }
+
+  return context;
+}
+
+export function SearchDialogProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false);
-  const [shortcutLabel, setShortcutLabel] = React.useState("Ctrl K");
+  const closeMobileSidebar = useCloseMobileSidebar();
+
+  const openSearch = React.useCallback(() => {
+    closeMobileSidebar();
+    setOpen(true);
+  }, [closeMobileSidebar]);
 
   useHotkey(
     searchHotkey,
     () => {
+      closeMobileSidebar();
       setOpen((currentOpen) => !currentOpen);
     },
     { requireReset: true },
   );
 
-  React.useEffect(() => {
-    setShortcutLabel(formatForDisplay(searchHotkey));
-  }, []);
+  const value = React.useMemo<SearchDialogContextValue>(
+    () => ({
+      openSearch,
+      preload: preloadSearchDialogPanel,
+    }),
+    [openSearch],
+  );
 
   return (
-    <>
-      <Button
-        variant="outline"
-        className="mr-4 hidden w-56 justify-between text-muted-foreground sm:flex"
-        onClick={() => setOpen(true)}
-        onFocus={preloadSearchDialogPanel}
-        onPointerEnter={preloadSearchDialogPanel}
-        onTouchStart={preloadSearchDialogPanel}
-      >
-        <span className="flex min-w-0 items-center gap-2">
-          <IconSearch data-icon="inline-start" />
-          <span className="truncate">Search docs</span>
-        </span>
-        <span
-          className="rounded border px-1.5 text-xs text-muted-foreground"
-          suppressHydrationWarning
-        >
-          {shortcutLabel}
-        </span>
-      </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="sm:hidden"
-        onClick={() => setOpen(true)}
-        onFocus={preloadSearchDialogPanel}
-        onPointerEnter={preloadSearchDialogPanel}
-        onTouchStart={preloadSearchDialogPanel}
-        aria-label="Search docs and registry"
-      >
-        <IconSearch data-icon />
-      </Button>
-
+    <SearchDialogContext.Provider value={value}>
+      {children}
       {open ? (
         <React.Suspense fallback={null}>
           <LazySearchDialogPanel open={open} onOpenChange={setOpen} />
         </React.Suspense>
       ) : null}
-    </>
+    </SearchDialogContext.Provider>
+  );
+}
+
+export function SearchDialog({ className }: { className?: string }) {
+  const { openSearch, preload } = useSearchDialog();
+  const shortcutLabel = formatForDisplay(searchHotkey);
+
+  return (
+    <Button
+      variant="outline"
+      className={cn("w-full justify-between text-muted-foreground", className)}
+      onClick={openSearch}
+      onFocus={preload}
+      onPointerEnter={preload}
+      onTouchStart={preload}
+    >
+      <span className="flex min-w-0 items-center gap-2">
+        <IconSearch data-icon="inline-start" />
+        <span className="truncate">Search docs</span>
+      </span>
+      <span
+        className="rounded border px-1.5 text-xs text-muted-foreground"
+        suppressHydrationWarning
+      >
+        {shortcutLabel}
+      </span>
+    </Button>
   );
 }
 

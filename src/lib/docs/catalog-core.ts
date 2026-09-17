@@ -12,6 +12,7 @@ import {
 } from "../content/mdx.ts";
 import type { DocsPageMetadata } from "./catalog-metadata.ts";
 import { docsMdxComponentNames, docsMdxComponentNameSet } from "./mdx-components.ts";
+import { getDocsToc, type DocsTocLink } from "./toc.ts";
 
 export { getSortedDocsPages } from "./catalog-metadata.ts";
 export type { DocsPageMetadata } from "./catalog-metadata.ts";
@@ -26,6 +27,7 @@ type DocsFrontmatter = {
 export type DocsPage = DocsPageMetadata & {
   contentSource: string;
   keywords: string;
+  toc: DocsTocLink[];
 };
 
 export function getDocsRoutePathFromSourcePath(sourcePath: string): string | null {
@@ -52,6 +54,7 @@ export function parseDocsPageSource(sourcePath: string, source: string): DocsPag
     ...metadata,
     contentSource,
     keywords: getDocsKeywords({ ...metadata, contentSource }),
+    toc: getDocsToc(root),
   };
 }
 

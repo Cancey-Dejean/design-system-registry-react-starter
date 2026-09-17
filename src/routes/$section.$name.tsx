@@ -10,7 +10,6 @@ import {
   getRegistryItemRoutePath,
   getRegistrySectionForType,
   getRegistrySectionItem,
-  isRegistrySectionId,
 } from "../lib/registry/sections";
 import { getMarkdownAlternatePath, getSeoHead, getTechArticleJsonLd } from "../lib/seo";
 
@@ -71,22 +70,14 @@ export const Route = createFileRoute("/$section/$name")({
 });
 
 function RegistrySectionItemPendingRoute() {
-  const { section } = Route.useParams();
-
-  return (
-    <ContentSkeleton
-      section={isRegistrySectionId(section) ? section : "components"}
-      variant="registry-item"
-    />
-  );
+  return <ContentSkeleton variant="registry-item" />;
 }
 
 function RegistrySectionItemRoute() {
   const item = Route.useLoaderData();
-  const section = getRegistrySectionForType(item.type);
 
   return (
-    <DocsLayout section={section.id}>
+    <DocsLayout>
       <RegistryItemDoc item={item} />
     </DocsLayout>
   );

@@ -1,6 +1,7 @@
 import { renderServerComponent } from "@tanstack/react-start/rsc";
 import * as React from "react";
 
+import { getUniqueHeadingId } from "../../lib/docs/toc";
 import { highlightCodeToHtml } from "../../lib/registry/highlight.server";
 import { cn } from "../../lib/utils";
 import { CodeBlock } from "./code-block";
@@ -50,15 +51,59 @@ function MdxContent({
   Content: NonNullable<MdxContentModule["default"]>;
   components?: Record<string, unknown>;
 }) {
-  const mdxComponents = components
-    ? Object.assign({}, baseMdxComponents, components)
-    : baseMdxComponents;
+  const headingIds = new Map<string, number>();
+  const mdxComponents = Object.assign(
+    {},
+    baseMdxComponents,
+    createMarkdownHeadingComponents(headingIds),
+    components,
+  );
 
   return (
-    <div className="prose prose-sm max-w-none prose-neutral dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-primary prose-p:text-foreground/90 prose-a:font-medium prose-a:text-primary prose-a:underline prose-a:underline-offset-3 prose-blockquote:*:before:content-none prose-blockquote:*:after:content-none prose-strong:text-primary prose-code:rounded-sm prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:text-[0.9em] prose-code:text-foreground prose-code:before:content-none prose-code:after:content-none prose-li:text-foreground/80 prose-hr:border-foreground/20 prose-blockquote:[&_p]:text-foreground/75 [&_table]:!border-[color:var(--border)] [&_td]:!border-[color:var(--border)] [&_th]:!border-[color:var(--border)]">
+    <div className="prose prose-sm min-w-0 max-w-none prose-neutral dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-primary prose-p:text-foreground/90 prose-a:font-medium prose-a:text-primary prose-a:underline prose-a:underline-offset-3 prose-blockquote:*:before:content-none prose-blockquote:*:after:content-none prose-strong:text-primary prose-code:rounded-sm prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:text-[0.9em] prose-code:text-foreground prose-code:before:content-none prose-code:after:content-none prose-li:text-foreground/80 prose-hr:border-foreground/20 prose-blockquote:[&_p]:text-foreground/75 [&_table]:!border-[color:var(--border)] [&_td]:!border-[color:var(--border)] [&_th]:!border-[color:var(--border)]">
       <Content components={mdxComponents} />
     </div>
   );
+}
+
+function createMarkdownHeadingComponents(usedIds: Map<string, number>) {
+  return {
+    h2: createMarkdownHeading("h2", usedIds),
+    h3: createMarkdownHeading("h3", usedIds),
+  };
+}
+
+function createMarkdownHeading(tag: "h2" | "h3", usedIds: Map<string, number>) {
+  function MarkdownHeading({ id, children, ...props }: React.ComponentProps<"h2">) {
+    const headingId = id ?? getUniqueHeadingId(getReactNodeText(children), usedIds);
+    const HeadingTag = tag;
+
+    return (
+      <HeadingTag id={headingId} {...props}>
+        {children}
+      </HeadingTag>
+    );
+  }
+
+  MarkdownHeading.displayName = `Markdown${tag.toUpperCase()}`;
+
+  return MarkdownHeading;
+}
+
+function getReactNodeText(node: React.ReactNode): string {
+  return React.Children.toArray(node)
+    .map((child) => {
+      if (typeof child === "string" || typeof child === "number") {
+        return String(child);
+      }
+
+      if (!React.isValidElement<{ children?: React.ReactNode }>(child)) {
+        return "";
+      }
+
+      return getReactNodeText(child.props.children);
+    })
+    .join("");
 }
 
 function MarkdownLink({ href, ...props }: React.ComponentProps<"a">) {

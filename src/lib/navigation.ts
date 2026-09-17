@@ -58,6 +58,45 @@ export function getSiteNavigationSections(): SiteNavigationSection[] {
   });
 }
 
+export function isSiteSectionPathActive(
+  section: Pick<SiteNavigationSection, "basePath">,
+  pathname: string,
+) {
+  return pathname === section.basePath || pathname.startsWith(`${section.basePath}/`);
+}
+
+export function getActiveSiteNavigation(pathname: string) {
+  const sections = getSiteNavigationSections();
+  const activeSection =
+    sections.find((section) => isSiteSectionPathActive(section, pathname)) ?? null;
+  const activeItem = activeSection?.items.find((item) => item.routePath === pathname) ?? null;
+
+  return { sections, activeSection, activeItem };
+}
+
+export function getAdjacentSiteNavigation(pathname: string) {
+  return getAdjacentSiteNavigationItems(pathname, getSiteNavigationSections());
+}
+
+export function getAdjacentSiteNavigationItems(
+  pathname: string,
+  sections: readonly SiteNavigationSection[],
+) {
+  const section = sections.find((candidate) => isSiteSectionPathActive(candidate, pathname));
+  const index = section?.items.findIndex((item) => item.routePath === pathname) ?? -1;
+  const current = section && index >= 0 ? (section.items[index] ?? null) : null;
+
+  if (!section || !current) {
+    return { current: null, previous: null, next: null };
+  }
+
+  return {
+    current,
+    previous: section.items[index - 1] ?? null,
+    next: section.items[index + 1] ?? null,
+  };
+}
+
 export function createSiteNavigationSections({
   docsSection,
   registryItems: registryNavigationSourceItems,

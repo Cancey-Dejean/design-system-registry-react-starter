@@ -52,14 +52,14 @@ export const Route = createFileRoute("/docs/$slug")({
 });
 
 function DocsSlugPendingRoute() {
-  return <ContentSkeleton section="docs" />;
+  return <ContentSkeleton />;
 }
 
 function DocsSlugRoute() {
   const { page } = Route.useLoaderData();
 
   return (
-    <DocsLayout section="docs">
+    <DocsLayout>
       <AuthoredDocsPage page={page} />
     </DocsLayout>
   );

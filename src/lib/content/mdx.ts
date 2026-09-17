@@ -247,7 +247,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function getNodeText(node: MdxAstNode): string {
+export function getNodeText(node: MdxAstNode): string {
   if (node.value) {
     return node.value;
   }

@@ -4,7 +4,7 @@ description: Install the design system CSS foundation with the shadcn CLI.
 order: 2
 ---
 
-Before components look correct, add the design system style files. This installs both `globals.css` and `theme.css` into `src/styles/`.
+Before components look correct, add the design system style files. This installs `globals.css` and the theme CSS files into `src/styles/`.
 
 ## Prerequisites
 
@@ -50,14 +50,16 @@ bunx shadcn add "@design-system-ui/styles"
 
 ## What gets installed
 
-| File          | Destination              |
-| ------------- | ------------------------ |
-| `globals.css` | `src/styles/globals.css` |
-| `theme.css`   | `src/styles/theme.css`   |
+| File                   | Destination                       |
+| ---------------------- | --------------------------------- |
+| `globals.css`          | `src/styles/globals.css`          |
+| `theme.css`            | `src/styles/theme.css`            |
+| `theme-secondary.css`  | `src/styles/theme-secondary.css`  |
+| `theme-tertiary.css`   | `src/styles/theme-tertiary.css`   |
 
 The CLI also installs related packages used by the stylesheet (`tw-animate-css`, Geist font packages, and `@tailwindcss/typography`).
 
-If `src/styles/globals.css` or `src/styles/theme.css` already exist, the CLI may ask before overwriting them.
+If those paths already exist, the CLI may ask before overwriting them.
 
 ## Import in your app
 
@@ -67,8 +69,8 @@ Import the globals entry once in your root layout or main stylesheet:
 import "@/styles/globals.css";
 ```
 
-`globals.css` already imports `./theme.css`, so you do not need a second import for the theme tokens.
+`globals.css` already imports `./theme.css`, `./theme-secondary.css`, and `./theme-tertiary.css`, so you do not need extra imports for the theme tokens. See [Theming](/docs/theming) to apply a shipped accent or your own brand colors.
 
 ## Next steps
 
-Browse [components](/components), [hooks](/utilities), and [blocks](/blocks), then follow each item page install command.
+Apply your brand accents in [Theming](/docs/theming), then browse [components](/components), [hooks](/utilities), and [blocks](/blocks) and follow each item page install command.

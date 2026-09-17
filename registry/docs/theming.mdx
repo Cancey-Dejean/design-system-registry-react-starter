@@ -1,11 +1,143 @@
 ---
 title: Theming
-description: Customize the docs shell and published components with your own design tokens.
+description: Apply your brand accents after installing the design system styles, including multi-brand palettes.
 order: 5
 ---
 
-The docs app uses the local shadcn configuration in `components.json` and the global theme in `src/styles/styles.css`.
+Installed components read semantic CSS tokens such as `primary`, `ring`, and `sidebar-primary`. After you install [styles](/docs/styles), you brand the product by changing those tokens — not by editing component source.
 
-Published registry items are independent from the docs shell. Put installable component source in `registry/items/**`, and include any required CSS, dependencies, or registry dependencies in the item frontmatter.
+## Theme files
 
-Use semantic tokens such as `background`, `foreground`, `primary`, `muted`, and `border` so installed components remain easy to customize.
+`globals.css` pulls in the default tokens and optional accent palettes:
+
+```css
+@import "./theme.css";
+@import "./theme-secondary.css";
+@import "./theme-tertiary.css";
+```
+
+| File                   | When it applies                         |
+| ---------------------- | --------------------------------------- |
+| `theme.css`            | Default palette on `:root` and `.dark`  |
+| `theme-secondary.css`  | When `data-theme="theme-secondary"`     |
+| `theme-tertiary.css`   | When `data-theme="theme-tertiary"`      |
+
+With no `data-theme` attribute, the app stays on the default tokens in `theme.css`. Accent files only override the brand-facing tokens (`--primary`, `--ring`, `--sidebar-primary`, `--selection`, and `--chart-*`). Surfaces such as `--background` and `--foreground` stay on the default palette.
+
+Light and dark mode still use the `.dark` class. Each accent file includes a `.dark[data-theme="…"]` block so the brand color can shift in dark mode.
+
+## Use a shipped accent
+
+Set `data-theme` on the root element in your layout so the palette is present on first paint:
+
+```html
+<html lang="en" data-theme="theme-secondary">
+```
+
+`theme-secondary` is amber and `theme-tertiary` is violet. To let users switch palettes, install [Theme Toggle](/utilities/theme-toggle).
+
+## Use your own brand color
+
+Pick one of these approaches.
+
+### Edit the default tokens
+
+For a single-brand app that does not need named palettes, change the accent tokens in `src/styles/theme.css` under `:root` and `.dark`:
+
+```css
+:root {
+  --primary: oklch(0.55 0.19 250);
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.55 0.19 250);
+  --sidebar-primary: oklch(0.55 0.19 250);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-ring: oklch(0.55 0.19 250);
+  --selection: oklch(0.55 0.19 250);
+  --selection-foreground: oklch(0.985 0 0);
+}
+```
+
+Leave `data-theme` unset. Buttons, focus rings, and other `primary` styles pick up the new values.
+
+### Add a named palette
+
+To keep the default palette and add your brand as a selectable accent, create a file next to the shipped themes — for example `src/styles/theme-brand.css`:
+
+```css
+[data-theme="theme-brand"] {
+  --primary: oklch(0.55 0.19 250);
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.55 0.19 250);
+  --sidebar-primary: oklch(0.55 0.19 250);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-ring: oklch(0.55 0.19 250);
+  --selection: oklch(0.55 0.19 250);
+  --selection-foreground: oklch(0.985 0 0);
+  --chart-1: oklch(0.55 0.19 250);
+  --chart-2: oklch(0.6 0.16 220);
+  --chart-3: oklch(0.65 0.12 190);
+  --chart-4: oklch(0.5 0.2 270);
+  --chart-5: oklch(0.7 0.1 230);
+}
+
+.dark[data-theme="theme-brand"] {
+  --primary: oklch(0.72 0.16 248);
+  --primary-foreground: oklch(0.145 0 0);
+  --ring: oklch(0.72 0.16 248);
+  --sidebar-primary: oklch(0.72 0.16 248);
+  --sidebar-primary-foreground: oklch(0.145 0 0);
+  --sidebar-ring: oklch(0.72 0.16 248);
+  --selection: oklch(0.72 0.16 248);
+  --selection-foreground: oklch(0.145 0 0);
+  --chart-1: oklch(0.72 0.16 248);
+  --chart-2: oklch(0.75 0.14 218);
+  --chart-3: oklch(0.78 0.11 188);
+  --chart-4: oklch(0.65 0.18 268);
+  --chart-5: oklch(0.82 0.09 228);
+}
+```
+
+Import it from `globals.css` with the other theme files:
+
+```css
+@import "./theme.css";
+@import "./theme-secondary.css";
+@import "./theme-tertiary.css";
+@import "./theme-brand.css";
+```
+
+Then set the matching attribute:
+
+```html
+<html lang="en" data-theme="theme-brand">
+```
+
+You can also replace the values in `theme-secondary.css` or `theme-tertiary.css` instead of adding a new file. The selector name (`theme-secondary`) and the `data-theme` value must match.
+
+## Multi-brand teams
+
+Named accent palettes are for teams that ship more than one product, partner, or white-label from the same component set. Each brand is a CSS file that only overrides accent tokens; buttons, focus rings, and charts restyle without forking components or duplicating layouts.
+
+That is useful when:
+
+- Several products share density, type, and surfaces (`--background`, `--foreground`, `--muted`) but need distinct `--primary` colors.
+- A platform app switches brand per tenant, environment, or route by setting `data-theme` on `<html>` at render time.
+- Designers and engineers preview every brand on one docs or Storybook surface, using [Theme Toggle](/utilities/theme-toggle) or a `data-theme` attribute on a subtree. Because the selectors are `[data-theme="…"]` rather than `:root` only, a nested region can use a different accent than the rest of the page.
+
+Keep one palette file per brand (`theme-acme.css`, `theme-partner.css`) and import them all from `globals.css`. The shared component library stays the source of truth; brand teams own only their token file.
+
+## Accent tokens
+
+Override this set when you brand an accent. Copy the same keys into both the light and `.dark` blocks.
+
+| Token                          | Typical use                         |
+| ------------------------------ | ----------------------------------- |
+| `--primary`                    | Buttons, key actions, brand fills   |
+| `--primary-foreground`         | Text and icons on `--primary`       |
+| `--ring`                       | Focus rings                         |
+| `--sidebar-primary`            | Sidebar brand and active states     |
+| `--sidebar-primary-foreground` | Text on `--sidebar-primary`         |
+| `--sidebar-ring`               | Sidebar focus rings                 |
+| `--selection`                  | Text selection background           |
+| `--selection-foreground`       | Text selection foreground           |
+| `--chart-1` … `--chart-5`      | Chart series colors                 |

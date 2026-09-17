@@ -1,184 +1,209 @@
-import { Link } from "@tanstack/react-router";
+import { IconChevronRight } from "@tabler/icons-react";
+import { Link, useRouter, useRouterState } from "@tanstack/react-router";
+import * as React from "react";
 
-import type { SiteNavigationItem, SiteNavigationSection } from "../../lib/navigation";
-import { cn } from "../../lib/utils";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import {
+  SidebarGroup,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  useSidebar,
+} from "@/components/ui/sidebar";
 
-type DocsSidebarProps = {
-  sections: readonly SiteNavigationSection[];
-  pathname: string;
-  className?: string;
-  onNavigate?: () => void;
-};
+import {
+  getSiteNavigationSections,
+  type SiteNavigationItem,
+  type SiteNavigationSection,
+} from "../../lib/navigation";
 
-export function DocsSidebar({ sections, pathname, className, onNavigate }: DocsSidebarProps) {
+export function DocsSidebarNav() {
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+  const sections = getSiteNavigationSections();
+  const closeMobile = useCloseMobileSidebar();
+
   return (
-    <nav className={cn("flex flex-col gap-4", className)}>
-      <div data-sidebar-home className="flex flex-col gap-1">
-        <Link
-          to="/"
-          onClick={onNavigate}
-          className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Home
-        </Link>
-      </div>
-
-      {sections.map((section) => (
-        <DocsSidebarSection
-          key={section.id}
-          section={section}
-          pathname={pathname}
-          onNavigate={onNavigate}
-        />
-      ))}
-    </nav>
+    <SidebarGroup>
+      <SidebarMenu>
+        {sections.map((section) => (
+          <SidebarSection
+            key={section.id}
+            section={section}
+            pathname={pathname}
+            onNavigate={closeMobile}
+          />
+        ))}
+      </SidebarMenu>
+    </SidebarGroup>
   );
 }
 
-function DocsSidebarSection({
+function SidebarSection({
   section,
   pathname,
   onNavigate,
 }: {
   section: SiteNavigationSection;
   pathname: string;
-  onNavigate?: () => void;
+  onNavigate: () => void;
 }) {
+  const isIndexActive = pathname === section.basePath;
+  const hasActiveItem = section.items.some((item) => item.routePath === pathname);
+  const shouldOpen = isIndexActive || hasActiveItem;
+
   return (
-    <div className="flex flex-col gap-1">
-      <SidebarSectionLink section={section} onNavigate={onNavigate} />
-      <SidebarItems items={section.items} pathname={pathname} onNavigate={onNavigate} />
-    </div>
+    <SidebarMenuItem>
+      <Collapsible
+        key={shouldOpen ? "active" : "inactive"}
+        defaultOpen={shouldOpen}
+        className="group/collapsible"
+      >
+        <SectionMenuButton section={section} isActive={isIndexActive} onNavigate={onNavigate} />
+        {section.items.length > 0 ? (
+          <>
+            <CollapsibleTrigger render={<SidebarMenuAction className="aria-expanded:rotate-90" />}>
+              <IconChevronRight />
+              <span className="sr-only">Toggle {section.title}</span>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <SidebarMenuSub>
+                {section.items.map((item) => (
+                  <SidebarMenuSubItem key={itemKey(item)}>
+                    <ItemMenuButton item={item} pathname={pathname} onNavigate={onNavigate} />
+                  </SidebarMenuSubItem>
+                ))}
+              </SidebarMenuSub>
+            </CollapsibleContent>
+          </>
+        ) : null}
+      </Collapsible>
+    </SidebarMenuItem>
   );
 }
 
-function SidebarSectionLink({
+function SectionMenuButton({
   section,
+  isActive,
   onNavigate,
 }: {
   section: SiteNavigationSection;
-  onNavigate?: () => void;
+  isActive: boolean;
+  onNavigate: () => void;
 }) {
-  const className = "rounded-md px-3 py-1 text-[13px] font-medium";
+  const title = section.title;
 
   switch (section.id) {
     case "docs":
       return (
-        <Link to="/docs" onClick={onNavigate} className={className}>
-          {section.title}
-        </Link>
+        <SidebarMenuButton
+          className="font-medium"
+          isActive={isActive}
+          render={<Link to="/docs" />}
+          onClick={onNavigate}
+        >
+          {title}
+        </SidebarMenuButton>
       );
     case "components":
     case "blocks":
     case "utilities":
       return (
-        <Link
-          to="/$section"
-          params={{ section: section.id }}
+        <SidebarMenuButton
+          className="font-medium"
+          isActive={isActive}
+          render={<Link to="/$section" params={{ section: section.id }} />}
           onClick={onNavigate}
-          className={className}
         >
-          {section.title}
-        </Link>
+          {title}
+        </SidebarMenuButton>
       );
     case "registry":
       return (
-        <Link to="/registry" onClick={onNavigate} className={className}>
-          {section.title}
-        </Link>
+        <SidebarMenuButton
+          className="font-medium"
+          isActive={isActive}
+          render={<Link to="/registry" />}
+          onClick={onNavigate}
+        >
+          {title}
+        </SidebarMenuButton>
       );
+    default:
+      return null;
   }
-
-  return null;
 }
 
-function SidebarItems({
-  items,
-  pathname,
-  onNavigate,
-}: {
-  items: readonly SiteNavigationItem[];
-  pathname: string;
-  onNavigate?: () => void;
-}) {
-  let previousGroup: string | undefined;
-
-  return (
-    <ul className="flex flex-col gap-0.5">
-      {items.map((item) => {
-        const group = item.kind === "docs" ? item.group : undefined;
-        const showGroup = group && group !== previousGroup;
-        previousGroup = group;
-
-        return (
-          <li key={`${item.kind}:${item.kind === "docs" ? item.slug : item.name}`}>
-            {showGroup ? (
-              <div className="px-3 pt-2 pb-1 text-xs font-medium text-muted-foreground">
-                {group}
-              </div>
-            ) : null}
-            <SidebarItemLink item={item} pathname={pathname} onNavigate={onNavigate} />
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
-function SidebarItemLink({
+function ItemMenuButton({
   item,
   pathname,
   onNavigate,
 }: {
   item: SiteNavigationItem;
   pathname: string;
-  onNavigate?: () => void;
+  onNavigate: () => void;
 }) {
-  const isActive =
-    item.kind === "docs" ? pathname === item.routePath : isRegistryItemActive(item, pathname);
-  const className = cn(
-    "block truncate rounded-md px-3 py-1.5 text-sm transition-colors",
-    isActive
-      ? "bg-accent font-medium text-accent-foreground"
-      : "text-muted-foreground hover:text-foreground",
-  );
+  const isActive = item.routePath === pathname;
 
   if (item.kind === "docs") {
     if (!item.slug) {
       return (
-        <Link to="/docs" onClick={onNavigate} className={className}>
+        <SidebarMenuSubButton isActive={isActive} render={<Link to="/docs" />} onClick={onNavigate}>
           {item.title}
-        </Link>
+        </SidebarMenuSubButton>
       );
     }
 
     return (
-      <Link
-        to="/docs/$slug"
-        params={{ slug: item.slug }}
+      <SidebarMenuSubButton
+        isActive={isActive}
+        render={<Link to="/docs/$slug" params={{ slug: item.slug }} />}
         onClick={onNavigate}
-        className={className}
       >
         {item.title}
-      </Link>
+      </SidebarMenuSubButton>
     );
   }
 
   return (
-    <Link
-      to="/$section/$name"
-      params={{ section: item.sectionId, name: item.name }}
+    <SidebarMenuSubButton
+      isActive={isActive}
+      render={<Link to="/$section/$name" params={{ section: item.sectionId, name: item.name }} />}
       onClick={onNavigate}
-      className={className}
     >
       {item.title}
-    </Link>
+    </SidebarMenuSubButton>
   );
 }
 
-function isRegistryItemActive(
-  item: Extract<SiteNavigationItem, { kind: "registry" }>,
-  pathname: string,
-) {
-  return pathname === item.routePath;
+function itemKey(item: SiteNavigationItem) {
+  return `${item.kind}:${item.kind === "docs" ? item.slug : item.name}`;
+}
+
+export function useCloseMobileSidebar() {
+  const { setOpenMobile } = useSidebar();
+
+  return React.useCallback(() => {
+    setOpenMobile(false);
+  }, [setOpenMobile]);
+}
+
+export function CloseMobileSidebarOnNavigate() {
+  const router = useRouter();
+  const closeMobileSidebar = useCloseMobileSidebar();
+
+  React.useEffect(() => {
+    return router.subscribe("onBeforeLoad", (event) => {
+      if (event.pathChanged) {
+        closeMobileSidebar();
+      }
+    });
+  }, [closeMobileSidebar, router]);
+
+  return null;
 }

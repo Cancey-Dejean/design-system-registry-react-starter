@@ -3,9 +3,8 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Link, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
+import { AccentThemeProvider } from "@/components/docs/accent-theme-provider";
 import { NavigationProgress } from "@/components/docs/navigation-progress";
-import { SiteFooter } from "@/components/docs/site-footer";
-import { SiteHeader } from "@/components/docs/site-header";
 import { ThemeProvider } from "@/components/docs/theme-provider";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -63,16 +62,16 @@ export const Route = createRootRoute({
 function RootRoute() {
   return (
     <ThemeProvider>
-      <TooltipProvider>
-        <NavigationProgress />
-        <div className="flex min-h-svh flex-col">
-          <SiteHeader />
-          <div className="flex-1">
-            <Outlet />
+      <AccentThemeProvider>
+        <TooltipProvider>
+          <NavigationProgress />
+          <div className="flex min-h-svh flex-col">
+            <div className="flex-1">
+              <Outlet />
+            </div>
           </div>
-          <SiteFooter />
-        </div>
-      </TooltipProvider>
+        </TooltipProvider>
+      </AccentThemeProvider>
     </ThemeProvider>
   );
 }

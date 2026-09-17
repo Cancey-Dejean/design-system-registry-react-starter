@@ -52,14 +52,14 @@ export const Route = createFileRoute("/docs/")({
 });
 
 function DocsIndexPendingRoute() {
-  return <ContentSkeleton section="docs" />;
+  return <ContentSkeleton />;
 }
 
 function DocsIndexRoute() {
   const { page } = Route.useLoaderData();
 
   return (
-    <DocsLayout section="docs">
+    <DocsLayout>
       <AuthoredDocsPage page={page} />
     </DocsLayout>
   );

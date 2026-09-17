@@ -1,15 +1,13 @@
-import type { SiteNavigationSectionId } from "../../lib/navigation";
 import { Skeleton } from "../ui/skeleton";
 import { DocsLayout } from "./docs-layout";
 
 type ContentSkeletonProps = {
-  section: SiteNavigationSectionId;
   variant?: "docs" | "registry-item";
 };
 
-export function ContentSkeleton({ section, variant = "docs" }: ContentSkeletonProps) {
+export function ContentSkeleton({ variant = "docs" }: ContentSkeletonProps) {
   return (
-    <DocsLayout section={section}>
+    <DocsLayout>
       <article className="flex min-w-0 flex-col gap-8" aria-busy="true" aria-label="Loading page">
         <header className="flex max-w-3xl flex-col gap-2">
           <div className="flex flex-row flex-wrap items-start justify-between gap-3">

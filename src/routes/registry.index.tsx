@@ -4,7 +4,6 @@ import { DocsLayout } from "@/components/docs/docs-layout";
 import { RegistryItemList } from "@/components/docs/registry-item-list";
 
 import { getRegistryNavigationCatalogWithItems } from "../lib/registry/catalog-navigation";
-import { registryCatalog } from "../lib/registry/item-types";
 import { getRegistryItemRoutePath } from "../lib/registry/sections";
 import { getCollectionPageJsonLd, getMarkdownAlternatePath, getSeoHead } from "../lib/seo";
 
@@ -36,7 +35,7 @@ export const Route = createFileRoute("/registry/")({
 
 function RegistryIndex() {
   return (
-    <DocsLayout section={registryCatalog.id}>
+    <DocsLayout>
       <RegistryItemList catalog={getRegistryNavigationCatalogWithItems()} />
     </DocsLayout>
   );

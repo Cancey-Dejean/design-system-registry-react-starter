@@ -25,6 +25,7 @@ import { Spinner } from "@/components/ui/spinner";
 import type { RegistrySearchResult } from "../../lib/search/registry-search";
 import { searchRegistryItemsFn } from "../../lib/search/registry-search.functions";
 import { cn } from "../../lib/utils";
+import { useCloseMobileSidebar } from "./docs-sidebar";
 
 type SearchDialogPanelProps = {
   open: boolean;
@@ -39,6 +40,7 @@ const sectionOrder = ["docs", "components", "blocks", "utilities"] as const;
 
 export function SearchDialogPanel({ open, onOpenChange }: SearchDialogPanelProps) {
   const navigate = useNavigate();
+  const closeMobileSidebar = useCloseMobileSidebar();
   const searchRegistryItems = useServerFn(searchRegistryItemsFn);
   const [query, setQuery] = React.useState("");
   const [state, setState] = React.useState<SearchState>("idle");
@@ -99,6 +101,7 @@ export function SearchDialogPanel({ open, onOpenChange }: SearchDialogPanelProps
 
   function handleSelect(result: RegistrySearchResult) {
     handleOpenChange(false);
+    closeMobileSidebar();
 
     switch (result.section) {
       case "docs":

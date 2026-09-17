@@ -1,19 +1,12 @@
 import { IconAppWindow, IconCode, IconFiles, IconTerminal } from "@tabler/icons-react";
-import { Link } from "@tanstack/react-router";
 
+import type { DocsTocLink } from "../../lib/docs/toc";
 import type { RegistryItemDetail } from "../../lib/registry/detail.server";
-import { getRegistryItemRoutePath, getRegistrySectionForType } from "../../lib/registry/sections";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "../ui/breadcrumb";
+import { getRegistryItemRoutePath } from "../../lib/registry/sections";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { CodeBlock } from "./code-block";
 import { ComponentPreview } from "./component-preview";
+import { DocsPageBody } from "./docs-page-body";
 import { DocsPageHeader } from "./docs-page-header";
 import { InstallCommand } from "./install-command";
 import { ManualInstallation } from "./manual-install";
@@ -23,25 +16,14 @@ type RegistryItemDocProps = {
 };
 
 export function RegistryItemDoc({ item }: RegistryItemDocProps) {
-  const section = getRegistrySectionForType(item.type);
   const pagePath = getRegistryItemRoutePath(item);
+  const toc: DocsTocLink[] = [
+    { id: "installation", text: "Installation", depth: 2 },
+    ...(item.usage ? [{ id: "usage", text: "Usage", depth: 2 as const }] : []),
+  ];
 
   return (
-    <article className="flex min-w-0 flex-col gap-8">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink render={<Link to="/$section" params={{ section: section.id }} />}>
-              {section.title}
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{item.title}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
+    <DocsPageBody toc={toc}>
       <DocsPageHeader
         title={item.title}
         description={item.description}
@@ -78,7 +60,9 @@ export function RegistryItemDoc({ item }: RegistryItemDocProps) {
       ) : null}
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-heading text-xl font-semibold tracking-tight">Installation</h2>
+        <h2 id="installation" className="font-heading text-xl font-semibold tracking-tight">
+          Installation
+        </h2>
         <Tabs key={`${item.name}:installation`} defaultValue="cli" className="gap-4">
           <TabsList variant="line">
             <TabsTrigger value="cli">
@@ -107,10 +91,12 @@ export function RegistryItemDoc({ item }: RegistryItemDocProps) {
 
       {item.usage ? (
         <section className="flex flex-col gap-4">
-          <h2 className="font-heading text-xl font-semibold tracking-tight">Usage</h2>
+          <h2 id="usage" className="font-heading text-xl font-semibold tracking-tight">
+            Usage
+          </h2>
           {item.usage}
         </section>
       ) : null}
-    </article>
+    </DocsPageBody>
   );
 }

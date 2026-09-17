@@ -52,7 +52,7 @@ function RegistrySectionRoute() {
   const section = Route.useLoaderData();
 
   return (
-    <DocsLayout section={section.id}>
+    <DocsLayout>
       <RegistryItemList catalog={section} />
     </DocsLayout>
   );

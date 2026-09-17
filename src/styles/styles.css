@@ -8,6 +8,8 @@
 
 /* Imported UI Library Styles */
 @import "../../registry/items/files/styles/theme.css";
+@import "../../registry/items/files/styles/theme-secondary.css";
+@import "../../registry/items/files/styles/theme-tertiary.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -146,6 +148,11 @@
 }
 
 @layer components {
+  h2[id],
+  h3[id] {
+    scroll-margin-top: 5rem;
+  }
+
   /* Restore hand cursor on interactive elements */
   /* https://ui.shadcn.com/docs/components/radix/button#cursor */
   button:not(:disabled),

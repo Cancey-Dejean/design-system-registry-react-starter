@@ -182,5 +182,6 @@ function createDocsPage({
     order: 0,
     contentSource: `# ${title}`,
     keywords,
+    toc: [],
   };
 }

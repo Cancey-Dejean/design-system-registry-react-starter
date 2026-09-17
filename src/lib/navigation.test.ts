@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 
 import type { DocsNavigationSection } from "./docs/catalog";
-import { createSiteNavigationSections } from "./navigation";
+import { createSiteNavigationSections, getAdjacentSiteNavigationItems } from "./navigation";
 
 const fixtureDocsSection = {
   id: "docs",
@@ -85,6 +85,61 @@ describe("site navigation", () => {
     ).toMatchObject({
       routePath: "/utilities/use-clipboard",
       sectionId: "utilities",
+    });
+  });
+
+  test("resolves previous and next pages within the active section", () => {
+    const sections = createSiteNavigationSections({
+      docsSection: {
+        ...fixtureDocsSection,
+        items: [
+          ...fixtureDocsSection.items,
+          {
+            title: "Installation",
+            description: "Install the registry.",
+            slug: "installation",
+            routePath: "/docs/installation",
+          },
+          {
+            title: "CLI",
+            description: "Use the CLI.",
+            slug: "cli",
+            routePath: "/docs/cli",
+          },
+        ],
+      },
+      registryItems: [
+        ...fixtureRegistryItems,
+        {
+          name: "beta-button",
+          title: "Beta Button",
+          description: "A button.",
+          type: "registry:ui",
+        },
+      ],
+    });
+
+    expect(getAdjacentSiteNavigationItems("/docs", sections)).toMatchObject({
+      current: { routePath: "/docs" },
+      previous: null,
+      next: { routePath: "/docs/installation" },
+    });
+    expect(getAdjacentSiteNavigationItems("/docs/installation", sections)).toMatchObject({
+      previous: { routePath: "/docs" },
+      next: { routePath: "/docs/cli" },
+    });
+    expect(getAdjacentSiteNavigationItems("/docs/cli", sections)).toMatchObject({
+      previous: { routePath: "/docs/installation" },
+      next: null,
+    });
+    expect(getAdjacentSiteNavigationItems("/components/alpha-card", sections)).toMatchObject({
+      previous: null,
+      next: { routePath: "/components/beta-button" },
+    });
+    expect(getAdjacentSiteNavigationItems("/components", sections)).toEqual({
+      current: null,
+      previous: null,
+      next: null,
     });
   });
 

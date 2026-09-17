@@ -107,7 +107,7 @@ function SectionMenuButton({
           render={<Link to="/docs" />}
           onClick={onNavigate}
         >
-          {title}
+          <span>{title}</span>
         </SidebarMenuButton>
       );
     case "components":
@@ -120,7 +120,7 @@ function SectionMenuButton({
           render={<Link to="/$section" params={{ section: section.id }} />}
           onClick={onNavigate}
         >
-          {title}
+          <span>{title}</span>
         </SidebarMenuButton>
       );
     case "registry":
@@ -131,7 +131,7 @@ function SectionMenuButton({
           render={<Link to="/registry" />}
           onClick={onNavigate}
         >
-          {title}
+          <span>{title}</span>
         </SidebarMenuButton>
       );
     default:
@@ -154,7 +154,7 @@ function ItemMenuButton({
     if (!item.slug) {
       return (
         <SidebarMenuSubButton isActive={isActive} render={<Link to="/docs" />} onClick={onNavigate}>
-          {item.title}
+          <span>{item.title}</span>
         </SidebarMenuSubButton>
       );
     }
@@ -165,7 +165,7 @@ function ItemMenuButton({
         render={<Link to="/docs/$slug" params={{ slug: item.slug }} />}
         onClick={onNavigate}
       >
-        {item.title}
+        <span>{item.title}</span>
       </SidebarMenuSubButton>
     );
   }
@@ -176,7 +176,7 @@ function ItemMenuButton({
       render={<Link to="/$section/$name" params={{ section: item.sectionId, name: item.name }} />}
       onClick={onNavigate}
     >
-      {item.title}
+      <span>{item.title}</span>
     </SidebarMenuSubButton>
   );
 }

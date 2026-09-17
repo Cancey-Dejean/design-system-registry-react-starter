@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 
-import { cn } from "cn"
+import { cn } from "cn";
 
 const buttonBase = cn(
   "group relative inline-flex shrink-0 items-center justify-center gap-2 rounded-md border border-transparent leading-none font-medium whitespace-nowrap",
@@ -29,9 +29,9 @@ const buttonConfig = {
       true: "p-0 rounded-full",
     },
     size: {
-      sm: "h-8 px-3 [font-size:var(--text-12)]",
-      md: "h-9 px-4 [font-size:var(--text-14)]",
-      lg: "h-10 px-6 [font-size:var(--text-16)]",
+      sm: "h-8 px-3 text-12",
+      md: "h-9 px-4 text-14",
+      lg: "h-10 px-6 text-16",
       "icon-sm": "size-8 [&_svg]:size-3.5",
       "icon-md": "size-9 [&_svg]:size-4",
       "icon-lg": "size-10 [&_svg]:size-4.5",

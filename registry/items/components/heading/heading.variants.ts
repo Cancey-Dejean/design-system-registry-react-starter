@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 
-import { cn } from "cn"
+import { cn } from "cn";
 
 const headingBase = cn("leading-none tracking-tight");
 

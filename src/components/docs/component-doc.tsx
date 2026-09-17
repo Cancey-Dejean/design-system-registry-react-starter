@@ -32,7 +32,7 @@ export function RegistryItemDoc({ item }: RegistryItemDocProps) {
       />
 
       {item.hasPreview ? (
-        <Tabs key={`${item.name}:preview`} defaultValue="preview" className="gap-4">
+        <Tabs key={`${item.name}:preview`} defaultValue="preview" className="min-w-0 gap-4">
           <TabsList variant="line">
             <TabsTrigger value="preview">
               <IconAppWindow data-icon="inline-start" />
@@ -59,11 +59,11 @@ export function RegistryItemDoc({ item }: RegistryItemDocProps) {
         </Tabs>
       ) : null}
 
-      <section className="flex flex-col gap-4">
+      <section className="flex min-w-0 flex-col gap-4">
         <h2 id="installation" className="font-heading text-xl font-semibold tracking-tight">
           Installation
         </h2>
-        <Tabs key={`${item.name}:installation`} defaultValue="cli" className="gap-4">
+        <Tabs key={`${item.name}:installation`} defaultValue="cli" className="min-w-0 gap-4">
           <TabsList variant="line">
             <TabsTrigger value="cli">
               <IconTerminal data-icon="inline-start" />
@@ -90,7 +90,7 @@ export function RegistryItemDoc({ item }: RegistryItemDocProps) {
       </section>
 
       {item.usage ? (
-        <section className="flex flex-col gap-4">
+        <section className="flex min-w-0 flex-col gap-4">
           <h2 id="usage" className="font-heading text-xl font-semibold tracking-tight">
             Usage
           </h2>

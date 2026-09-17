@@ -66,7 +66,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
               <HeaderActions className="ml-auto" />
             </div>
           </header>
-          <div className="flex flex-1 flex-col gap-4 pt-6 pr-4 pl-6">{children}</div>
+          <div className="flex min-w-0 flex-1 flex-col gap-4 pt-6 pr-4 pl-6">{children}</div>
           <SiteFooter />
         </SidebarInset>
       </SearchDialogProvider>

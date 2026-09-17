@@ -44,7 +44,7 @@ export function CodeBlock({ code, highlightedHtml, header, className }: CodeBloc
       {highlightedHtml ? (
         <div
           className={cn(
-            "overflow-x-auto py-3 pl-4 text-[13px] has-[pre[style*='--line-number-width']]:pl-6",
+            "min-w-0 overflow-x-auto py-3 pl-4 text-[13px] has-[pre[style*='--line-number-width']]:pl-6",
             header ? "pr-4" : "pr-12",
           )}
           dangerouslySetInnerHTML={{ __html: highlightedHtml }}

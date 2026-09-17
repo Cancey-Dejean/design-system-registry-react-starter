@@ -47,7 +47,7 @@ function AdjacentPageButton({
           variant="outline"
           aria-label={ariaLabel}
           title={item.title}
-          render={<Link to="/docs" />}
+          render={<Link to="/docs" activeOptions={{ exact: true }} />}
         >
           {icon}
         </Button>
@@ -60,7 +60,9 @@ function AdjacentPageButton({
         variant="outline"
         aria-label={ariaLabel}
         title={item.title}
-        render={<Link to="/docs/$slug" params={{ slug: item.slug }} />}
+        render={
+          <Link to="/docs/$slug" params={{ slug: item.slug }} activeOptions={{ exact: true }} />
+        }
       >
         {icon}
       </Button>
@@ -73,7 +75,13 @@ function AdjacentPageButton({
       variant="outline"
       aria-label={ariaLabel}
       title={item.title}
-      render={<Link to="/$section/$name" params={{ section: item.sectionId, name: item.name }} />}
+      render={
+        <Link
+          to="/$section/$name"
+          params={{ section: item.sectionId, name: item.name }}
+          activeOptions={{ exact: true }}
+        />
+      }
     >
       {icon}
     </Button>

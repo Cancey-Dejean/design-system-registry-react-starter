@@ -13,6 +13,8 @@ skills:
     load: "node_modules/@tanstack/start-client-core/skills/start-core/SKILL.md"
   - task: "add or update Storybook stories, *.stories.tsx, story files, or CSF stories for registry items"
     load: "skills/writing-story-files/SKILL.md"
+  - task: "verify, audit, or debug the docs site or registry UI in Safari or WebKit"
+    load: "skills/safari-mcp/SKILL.md"
 <!-- intent-skills:end -->
 
 # Agent Instructions
@@ -65,3 +67,4 @@ After making UI changes, run `bun run lint` and fix all errors before finishing.
 - After changing published registry source, sync `_registry.mdx` and `_preview.tsx` with [sync-registry-metadata](skills/sync-registry-metadata/SKILL.md).
 - For route/docs changes, run `vp build` so `src/routeTree.gen.ts` updates.
 - Build before handoff when registry JSON, routes, or source loading changed: `vp build`.
+- For Safari/WebKit UI verification, use [safari-mcp](skills/safari-mcp/SKILL.md). Do not substitute Chromium.

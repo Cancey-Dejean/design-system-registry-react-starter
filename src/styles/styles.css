@@ -13,6 +13,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@utility transition-smooth {
+  @apply transition-all duration-300 ease-in-out;
+}
+
 @theme inline {
   --font-sans: "Geist Variable", sans-serif;
   --font-mono: "Geist Mono Variable", monospace;
@@ -183,7 +187,9 @@
   .shiki:not(.shiki-plain) .line {
     counter-increment: code-line;
     min-width: max-content;
-    padding-inline-start: calc(var(--line-number-width) + var(--line-number-gap));
+    padding-inline-start: calc(
+      var(--line-number-width) + var(--line-number-gap)
+    );
     position: relative;
   }
   .shiki:not(.shiki-plain) .line::before {

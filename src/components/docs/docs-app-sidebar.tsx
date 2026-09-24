@@ -23,7 +23,12 @@ export function DocsAppSidebar(props: ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" render={<Link to="/" />} onClick={closeMobileSidebar}>
+            <SidebarMenuButton
+              size="lg"
+              render={<Link to="/" />}
+              className="[&_svg:not([class*='size-'])]:size-auto"
+              onClick={closeMobileSidebar}
+            >
               <span className="font-mono text-sm font-semibold tracking-tighter">
                 {siteConfig.name}
               </span>

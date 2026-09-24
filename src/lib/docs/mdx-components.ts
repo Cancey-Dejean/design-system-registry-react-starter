@@ -1,4 +1,4 @@
-export const docsMdxComponentNames = ["Callout"] as const;
+export const docsMdxComponentNames = ["Callout", "InstallCommand"] as const;
 
 export type DocsMdxComponentName = (typeof docsMdxComponentNames)[number];
 

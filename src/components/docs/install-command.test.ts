@@ -11,6 +11,7 @@ import {
   getInstallCommand,
   getPackageInstallCommand,
   getPackageInstallCommands,
+  getRegistryInstallCommand,
 } from "./install-command";
 
 describe("install commands", () => {
@@ -36,6 +37,27 @@ describe("install commands", () => {
     );
     expect(getInstallCommand("sample-item", "bun")).toBe(
       `bunx shadcn add ${getCanonicalRegistryItemUrl("sample-item")}`,
+    );
+  });
+
+  test("builds namespaced registry install commands by package manager", () => {
+    expect(getRegistryInstallCommand("example-card", "npm")).toBe(
+      "npx shadcn@latest add @design-system-ui/example-card",
+    );
+    expect(getRegistryInstallCommand("example-card", "pnpm")).toBe(
+      "pnpm dlx shadcn@latest add @design-system-ui/example-card",
+    );
+    expect(getRegistryInstallCommand("example-card", "yarn")).toBe(
+      "yarn dlx shadcn@latest add @design-system-ui/example-card",
+    );
+    expect(getRegistryInstallCommand("example-card", "bun")).toBe(
+      'bunx shadcn add "@design-system-ui/example-card"',
+    );
+    expect(getRegistryInstallCommand("example-card", "deno")).toBe(
+      "deno run -A npm:shadcn@latest add @design-system-ui/example-card",
+    );
+    expect(getRegistryInstallCommand("example-card", "vite-plus")).toBe(
+      "vpx shadcn@latest add @design-system-ui/example-card",
     );
   });
 

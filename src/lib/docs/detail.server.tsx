@@ -1,3 +1,4 @@
+import { DocsInstallCommand } from "@/components/docs/install-command";
 import {
   DocsCallout,
   renderMdxContentModule,
@@ -18,6 +19,7 @@ const docsContentModules = import.meta.glob<MdxContentModule>("../../../registry
 const docsContentModulesByPath = normalizeGlobFiles(docsContentModules);
 const docsMdxComponents = {
   Callout: DocsCallout,
+  InstallCommand: DocsInstallCommand,
 } satisfies Record<DocsMdxComponentName, unknown>;
 
 export async function getDocsPageDetailData(data: DocsPageDetailInput) {

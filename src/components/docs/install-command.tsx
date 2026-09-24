@@ -3,7 +3,7 @@
 import { IconChevronDown } from "@tabler/icons-react";
 import * as React from "react";
 
-import { getCanonicalRegistryItemUrl } from "../../lib/site-config";
+import { getCanonicalRegistryItemUrl, siteConfig } from "../../lib/site-config";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/button";
 import { CopyButton } from "../ui/copy-button";
@@ -223,6 +223,30 @@ export function getInstallCommand(itemName: string, packageManager: PackageManag
   return assertNever(packageManager);
 }
 
+export function getRegistryInstallCommand(
+  itemName: string,
+  packageManager: PackageManager,
+): string {
+  const target = formatRegistryInstallTarget(itemName, packageManager);
+
+  switch (packageManager) {
+    case "bun":
+      return `bunx shadcn add ${target}`;
+    case "pnpm":
+      return `pnpm dlx shadcn@latest add ${target}`;
+    case "yarn":
+      return `yarn dlx shadcn@latest add ${target}`;
+    case "npm":
+      return `npx shadcn@latest add ${target}`;
+    case "deno":
+      return `deno run -A npm:shadcn@latest add ${target}`;
+    case "vite-plus":
+      return `vpx shadcn@latest add ${target}`;
+  }
+
+  return assertNever(packageManager);
+}
+
 export function getPackageInstallCommand(
   packages: readonly string[],
   packageManager: PackageManager,
@@ -304,6 +328,21 @@ export function InstallCommand({ item, className }: InstallCommandProps) {
       className={className}
       copyLabel="Copy install command"
       getCommand={(packageManager) => getInstallCommand(item.name, packageManager)}
+    />
+  );
+}
+
+type DocsInstallCommandProps = {
+  name: string;
+  className?: string;
+};
+
+export function DocsInstallCommand({ name, className }: DocsInstallCommandProps) {
+  return (
+    <PackageManagerCommand
+      className={cn("not-prose my-4", className)}
+      copyLabel="Copy install command"
+      getCommand={(packageManager) => getRegistryInstallCommand(name, packageManager)}
     />
   );
 }
@@ -406,6 +445,12 @@ function usePackageManagerPreference(): PackageManagerPreference {
   }, []);
 
   return [packageManager, setPackageManager] as const;
+}
+
+function formatRegistryInstallTarget(itemName: string, packageManager: PackageManager): string {
+  const specifier = `${siteConfig.namespace}/${itemName}`;
+
+  return packageManager === "bun" ? `"${specifier}"` : specifier;
 }
 
 function isPackageManager(value: string | null): value is PackageManager {

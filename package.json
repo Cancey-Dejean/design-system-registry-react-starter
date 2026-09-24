@@ -24,6 +24,7 @@
     "knip": "vp exec knip",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "upgrade-storybook": "npx storybook upgrade",
     "doctor": "npx react-doctor@latest",
     "lint": "oxlint"
   },

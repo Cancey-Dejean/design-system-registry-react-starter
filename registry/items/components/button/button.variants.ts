@@ -9,7 +9,7 @@ const buttonBase = cn(
   "disabled:pointer-events-none disabled:opacity-50",
   "focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none",
   "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
-  "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:size-4",
 );
 
 const buttonConfig = {
@@ -27,7 +27,6 @@ const buttonConfig = {
     },
     icon: {
       true: "p-0 rounded-full",
-      // false: "[&_svg:not([class*='size-'])]:size-4",
     },
     size: {
       sm: "h-8 px-3 text-12",

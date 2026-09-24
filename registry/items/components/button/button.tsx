@@ -32,6 +32,7 @@ function Button<T extends React.ElementType = "button">({
   return (
     <Component
       data-slot="button"
+      tabIndex={as === "button" ? 0 : undefined}
       className={cn(
         buttonVariants({ variant, size, fullWidth, icon }),
         className,

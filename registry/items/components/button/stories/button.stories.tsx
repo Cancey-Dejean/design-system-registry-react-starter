@@ -2,28 +2,28 @@ import { Spinner } from "@registry/components/spinner/spinner";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ArrowRight, Mail, ShoppingCart } from "lucide-react";
 import { fn } from "storybook/test";
-
-import StoryWrapper from "@registry/lib/story-wrapper";
-import { cn } from "cn";
-
 import { Button, ButtonCTAGroup } from "../button";
 import { BUTTON_SIZES, BUTTON_VARIANTS } from "../button.variants";
+import StoryWrapper from "@registry/lib/story-wrapper";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
-  tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
   },
+  globals: {
+    backgrounds: { value: "dark" },
+  },
   decorators: [
     (Story) => (
-      <StoryWrapper className="max-w-full p-4">
+      <StoryWrapper className="p-4">
         <Story />
       </StoryWrapper>
     ),
   ],
   args: {
+    as: "button",
     variant: "primary",
     size: "md",
     onClick: fn(),
@@ -42,6 +42,7 @@ const meta: Meta<typeof Button> = {
     },
     as: { control: false },
     icon: { control: false },
+    onClick: { table: { disable: true } },
   },
 };
 
@@ -68,8 +69,8 @@ export const LeadingIcon: Story = {
   render: (args) => (
     <div className="flex flex-col items-center gap-6">
       <ButtonCTAGroup>
-        {(["sm", "md", "lg"] as const).map((size) => (
-          <Button key={size} {...args} size={size}>
+        {BUTTON_VARIANTS.map((variant) => (
+          <Button key={variant} {...args} variant={variant}>
             <Mail />
             {args.children}
           </Button>
@@ -93,8 +94,8 @@ export const TrailingIcon: Story = {
   render: (args) => (
     <div className="flex flex-col items-center gap-6">
       <ButtonCTAGroup>
-        {(["sm", "md", "lg"] as const).map((size) => (
-          <Button key={size} {...args} size={size}>
+        {BUTTON_VARIANTS.map((variant) => (
+          <Button key={variant} {...args} variant={variant}>
             {args.children}
             <ArrowRight />
           </Button>
@@ -112,17 +113,20 @@ export const Loading: Story = {
   render: ({ children, loading, ...args }) => {
     return (
       <ButtonCTAGroup>
-        <Button {...args}>
-          {loading ? (
-            <>
-              <Spinner className="absolute top-1/2 left-1/2 size-5 -translate-x-1/2 -translate-y-1/2 animate-spin cursor-progress opacity-50" />
-
-              <span className={cn(loading && "opacity-0")}>{children}</span>
-            </>
-          ) : (
-            <span>{children || "Button"}</span>
-          )}
-        </Button>
+        {BUTTON_VARIANTS.map((variant) => (
+          <Button
+            key={variant}
+            {...args}
+            variant={variant}
+            aria-label={loading ? "Loading" : undefined}
+          >
+            {loading ? (
+              <Spinner className="size-6" />
+            ) : (
+              <span>{children || "Button"}</span>
+            )}
+          </Button>
+        ))}
       </ButtonCTAGroup>
     );
   },
@@ -135,6 +139,13 @@ export const Linkable: Story = {
     children: "Link",
     fullWidth: false,
   },
+  render: (args) => (
+    <ButtonCTAGroup>
+      {BUTTON_VARIANTS.map((variant) => (
+        <Button key={variant} {...args} variant={variant} />
+      ))}
+    </ButtonCTAGroup>
+  ),
 };
 
 export const Group: Story = {
@@ -151,9 +162,7 @@ export const Group: Story = {
   render: (args) => (
     <ButtonCTAGroup>
       {BUTTON_VARIANTS.map((variant) => (
-        <Button key={variant} {...args} variant={variant}>
-          {args?.children || "Button"}
-        </Button>
+        <Button key={variant} {...args} variant={variant} />
       ))}
     </ButtonCTAGroup>
   ),
@@ -165,7 +174,9 @@ export const Icon: Story = {
     icon: true,
   },
   argTypes: {
-    fullWidth: { control: false },
+    fullWidth: { table: { disable: true } },
+    as: { table: { disable: true } },
+    variant: { control: false },
     size: {
       description: "The size of the button",
       control: "select",
@@ -175,9 +186,11 @@ export const Icon: Story = {
 
   render: (args) => (
     <ButtonCTAGroup>
-      <Button {...args}>
-        <ShoppingCart />
-      </Button>
+      {BUTTON_VARIANTS.map((variant) => (
+        <Button key={variant} {...args} variant={variant}>
+          <ShoppingCart />
+        </Button>
+      ))}
     </ButtonCTAGroup>
   ),
 };

@@ -41,9 +41,10 @@ Skip for pure internal refactors with no install, API, docs, or behavior impact 
 
 ### vX.Y.Z
 
-- Short bullet focused on user or maintainer impact.
-- Use **Bold lead-in:** when grouping related bullets.
-- Call out **Breaking:** changes explicitly.
+- **New:** `Spinner` is an accessible loading indicator.
+- **Update:** `Button` variants now use CSS variables for colors.
+- **Docs:** [Installation](/docs/installation) now uses one package-manager switcher.
+- **Breaking:** Removed the `link` button variant. Use `as="a"` instead.
 
 ---
 ```
@@ -55,11 +56,23 @@ Skip for pure internal refactors with no install, API, docs, or behavior impact 
 
 ## Bullet Style
 
+Every bullet starts with a kind label:
+
+- **New:** something added
+- **Update:** a change to existing behavior
+- **Fix:** a bug fix
+- **Docs:** documentation and previews
+- **Styles:** theme and style publishing
+- **Breaking:** a breaking change
+
 Good:
 
 ```mdx
-- **Component variants:** `cva()` definitions now live in colocated `<name>.variants.ts` files.
-- Added `Spinner`, an accessible loading indicator.
+- **New:** `Spinner` is an accessible loading indicator.
+- **Update:** `cva()` definitions now live in colocated `<name>.variants.ts` files.
+- **Docs:** Documented the Component Variants pattern on [Registry](/docs/registry).
+- **Fix:** The pointer cursor now appears when hovering `Button` components.
+- **Styles:** The `styles` item now publishes `theme-secondary.css`.
 - **Breaking:** Removed the `link` button variant. Use `as="a"` instead.
 ```
 

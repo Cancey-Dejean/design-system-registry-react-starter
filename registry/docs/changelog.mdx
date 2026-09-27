@@ -28,9 +28,8 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ### v1.5.4
 
-- **Docs:** Replaced leftover `_cn` template copy on [Agents](/docs/agents) with the Markdown and `llms.txt` routes coding tools actually need.
 - **Docs:** Updated the Bun install command on [Installation](/docs/installation) and [Styles](/docs/styles) to `bunx shadcn add "@design-system-ui/..."`, which works in new Bun projects.
-- **Theming:** Documented how consumer apps apply brand accents after installing [Styles](/docs/styles): ship `data-theme` palettes from `globals.css`, add a custom `[data-theme]` CSS file, or keep one component set with a palette file per brand for multi-brand teams. See [Theming](/docs/theming).
+- **Docs:** Documented how consumer apps apply brand accents after installing [Styles](/docs/styles): ship `data-theme` palettes from `globals.css`, add a custom `[data-theme]` CSS file, or keep one component set with a palette file per brand for multi-brand teams. See [Theming](/docs/theming).
 - **Styles:** The `styles` item now publishes `theme-secondary.css` and `theme-tertiary.css` so the accent imports in `globals.css` resolve after install.
 
 ---
@@ -39,8 +38,8 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ### v1.5.3
 
-- Added `useBodyOverflow`, a hook that locks page scroll by toggling `overflow-hidden` on `document.body`.
-- Added `useCloseMobileMenuOnResize`, a hook that dismisses mobile menus and overlays when the viewport is resized.
+- **New:** `useBodyOverflow` is a hook that locks page scroll by toggling `overflow-hidden` on `document.body`.
+- **New:** `useCloseMobileMenuOnResize` is a hook that dismisses mobile menus and overlays when the viewport is resized.
 
 ---
 
@@ -48,7 +47,7 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ### v1.5.2
 
-- **Announcement Bar:** Moved the block from `registry/items/blocks/hero/announcement-bar/` to `registry/items/blocks/announcement-bar/` as a standalone block item. Install targets now publish under `components/ui/announcement-bar/` and declare `container` as a local registry dependency.
+- **Breaking:** Moved `Announcement Bar` from `registry/items/blocks/hero/announcement-bar/` to `registry/items/blocks/announcement-bar/` as a standalone block item. Install targets now publish under `components/ui/announcement-bar/` and declare `container` as a local registry dependency.
 
 ---
 
@@ -56,7 +55,7 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ### v1.5.1
 
-- **Logos:** The Instagram logo now renders the full-color gradient brand mark instead of the flat black glyph. It sizes from its `viewBox` rather than fixed `width`/`height`, so it scales with the `Logo` `size` variants.
+- **Update:** The Instagram logo now renders the full-color gradient brand mark instead of the flat black glyph. It sizes from its `viewBox` rather than fixed `width`/`height`, so it scales with the `Logo` `size` variants.
 
 ---
 
@@ -64,9 +63,9 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ### v1.5.0
 
-- **Component variants:** Components that use `class-variance-authority` now keep every `cva()` call in a colocated `<name>.variants.ts` file (`.ts`, not `.tsx`). The component file imports the helper; it does not define CVA inline.
-- **Extracted variants:** Moved CVA out of component source for `Alert`, `Attachment`, `Badge`, `Bubble`, `Button Group`, `Empty`, `Field`, `Input Group`, `Item`, `Marker`, `Navigation Menu`, `Sidebar`, `Tabs`, and `Toggle`. `Toggle Group` now imports `toggleVariants` from `toggle.variants.ts`.
-- **Container:** Renamed `container.variants.tsx` / `container.types.tsx` to `.ts` so the file extension matches the variants convention.
+- **Update:** Components that use `class-variance-authority` now keep every `cva()` call in a colocated `<name>.variants.ts` file (`.ts`, not `.tsx`). The component file imports the helper; it does not define CVA inline.
+- **Update:** Moved CVA out of component source for `Alert`, `Attachment`, `Badge`, `Bubble`, `Button Group`, `Empty`, `Field`, `Input Group`, `Item`, `Marker`, `Navigation Menu`, `Sidebar`, `Tabs`, and `Toggle`. `Toggle Group` now imports `toggleVariants` from `toggle.variants.ts`.
+- **Update:** Renamed `container.variants.tsx` / `container.types.tsx` to `.ts` so the file extension matches the variants convention.
 - **Docs:** Documented the Component Variants pattern on the [Registry](/docs/registry) authoring page, with pointers from Agents docs, `AGENTS.md`, and the `shadcn-registry` skill so maintainers and coding agents follow the same layout as `button.variants.ts`.
 
 ---
@@ -75,12 +74,12 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ### v1.4.0
 
-- **Install paths:** Multi-file components now publish nested folder structure instead of flattening basename-only into `ui/`. Nested packages such as `Icons` and `Logos` install under `components/icons/**` and `components/logos/**` (including `icon/`, `icon-set/`, `logo/`, and `logo-set/`).
-- **Published package imports:** Same-item relative imports are preserved in installed source so multi-file packages keep working after `shadcn add` (for example `./icon.variants`, `./logo-set/apple`, `../index`).
-- **Icons / Logos:** Added explicit install `target`s for every published file; removed unused `icon-set/types.ts` and `logo-set/types.ts` stubs.
-- **Data Table:** Sample `payments.tsx` (columns + fixture data) is now a published registry file, not story-only source.
-- **Targets & docs:** Install targets and usage examples updated across registry items (including `Accordion`, `Button`, `Hero`, and many component `_registry.mdx` pages) so install paths match consumers’ `components.json` aliases.
-- **Previews:** Component registry preview exports and docs samples tightened for catalog rendering.
+- **Breaking:** Multi-file components now publish nested folder structure instead of flattening basename-only into `ui/`. Nested packages such as `Icons` and `Logos` install under `components/icons/**` and `components/logos/**` (including `icon/`, `icon-set/`, `logo/`, and `logo-set/`).
+- **Update:** Same-item relative imports are preserved in installed source so multi-file packages keep working after `shadcn add` (for example `./icon.variants`, `./logo-set/apple`, `../index`).
+- **Update:** Added explicit install `target`s for every published `Icons` and `Logos` file; removed unused `icon-set/types.ts` and `logo-set/types.ts` stubs.
+- **New:** `Data Table` now publishes sample `payments.tsx` (columns + fixture data) as a registry file, not story-only source.
+- **Docs:** Install targets and usage examples updated across registry items (including `Accordion`, `Button`, `Hero`, and many component `_registry.mdx` pages) so install paths match consumers’ `components.json` aliases.
+- **Docs:** Component registry preview exports and docs samples tightened for catalog rendering.
 
 ---
 
@@ -88,13 +87,13 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ### v1.3.0
 
-- Documented how to register `@design-system-ui` in `components.json` on the [Installation](/docs/installation) and [Styles](/docs/styles) pages, so new projects can resolve namespaced install commands.
-- Added `Container`, a centered content wrapper with max-width size variants.
-- Published registry metadata and preview files for `Container` so it is discoverable in the registry catalog and docs.
-- Added `Icons`, a typed icon component with size variants and a searchable gallery for browsing and copying icons.
-- Published registry metadata and preview files for `Icons` so it is discoverable in the registry catalog and docs.
-- Added `Logos`, brand logo SVGs with a searchable gallery for browsing and copying.
-- Published registry metadata and preview files for `Logos` so it is discoverable in the registry catalog and docs.
+- **Docs:** Documented how to register `@design-system-ui` in `components.json` on the [Installation](/docs/installation) and [Styles](/docs/styles) pages, so new projects can resolve namespaced install commands.
+- **New:** `Container` is a centered content wrapper with max-width size variants.
+- **Docs:** Published registry metadata and preview files for `Container` so it is discoverable in the registry catalog and docs.
+- **New:** `Icons` is a typed icon component with size variants and a searchable gallery for browsing and copying icons.
+- **Docs:** Published registry metadata and preview files for `Icons` so it is discoverable in the registry catalog and docs.
+- **New:** `Logos` is a set of brand logo SVGs with a searchable gallery for browsing and copying.
+- **Docs:** Published registry metadata and preview files for `Logos` so it is discoverable in the registry catalog and docs.
 
 ---
 
@@ -102,21 +101,21 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ### v1.2.0
 
-- Added a new `Heading` preview component to demonstrate sizing in the docs.
-- Updated `Heading` styles to use CSS variables for size and tone, improving theme consistency.
-- Improved Heading component compatibility and docs examples/stories.
-- Added centralized theme style imports and refined global selection styling.
-- Added `Link Text`, a polymorphic text-link component with tone, underline, size, and external-link options.
-- Added `Link Spread`, an absolute-positioned anchor helper for making full card surfaces clickable.
-- Published registry metadata and preview files for both link components so they are discoverable in the registry catalog and docs.
-- Added `Section`, a semantic wrapper component with responsive vertical padding variants.
-- Published registry metadata and preview files for `Section` so it is discoverable in the registry catalog and docs.
-- Added a reusable `DemoSection` for Storybook and aligned the `Section` story to render that shared demo.
-- Added `Spinner`, an accessible loading indicator built on Lucide's Loader2 icon.
-- Published registry metadata and preview files for `Spinner` so it is discoverable in the registry catalog and docs.
-- Added `Text`, a polymorphic body-text component with size, weight, tone, and alignment controls.
-- Published registry metadata and preview files for `Text` so it is discoverable in the registry catalog and docs.
-- Published `Hero` as a registry block, including metadata and preview files so it is discoverable in the registry catalog and docs.
+- **Docs:** Added a `Heading` preview component to demonstrate sizing in the docs.
+- **Update:** `Heading` styles now use CSS variables for size and tone, improving theme consistency.
+- **Docs:** Improved `Heading` component compatibility and docs examples/stories.
+- **Styles:** Added centralized theme style imports and refined global selection styling.
+- **New:** `Link Text` is a polymorphic text-link component with tone, underline, size, and external-link options.
+- **New:** `Link Spread` is an absolute-positioned anchor helper for making full card surfaces clickable.
+- **Docs:** Published registry metadata and preview files for both link components so they are discoverable in the registry catalog and docs.
+- **New:** `Section` is a semantic wrapper component with responsive vertical padding variants.
+- **Docs:** Published registry metadata and preview files for `Section` so it is discoverable in the registry catalog and docs.
+- **Docs:** Added a reusable `DemoSection` for Storybook and aligned the `Section` story to render that shared demo.
+- **New:** `Spinner` is an accessible loading indicator built on Lucide's Loader2 icon.
+- **Docs:** Published registry metadata and preview files for `Spinner` so it is discoverable in the registry catalog and docs.
+- **New:** `Text` is a polymorphic body-text component with size, weight, tone, and alignment controls.
+- **Docs:** Published registry metadata and preview files for `Text` so it is discoverable in the registry catalog and docs.
+- **New:** `Hero` is a registry block, including metadata and preview files so it is discoverable in the registry catalog and docs.
 
 ---
 
@@ -124,8 +123,8 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ### v1.1.0
 
-- Updated `Button` variants and sizes to use CSS variables for colors and typography, improving theme support (including dark mode on the primary variant).
-- Simplified default icon (`svg`) sizing inside buttons.
+- **Update:** `Button` variants and sizes now use CSS variables for colors and typography, improving theme support (including dark mode on the primary variant).
+- **Update:** Simplified default icon (`svg`) sizing inside buttons.
 - **Breaking:** Removed the `link` variant. Use an `as="a"` button (or a link styled separately) instead.
 - **Breaking:** Removed the `icon-xs` size. Use `icon-sm`, `icon-md`, or `icon-lg`.
 - **Breaking:** Resized icon buttons — `icon-md` is now `size-9` (was `size-10`) and `icon-lg` is now `size-10` (was `size-12`).
@@ -136,4 +135,4 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ### v1.0.1
 
-- Fixed the pointer cursor when hovering `Button` components.
+- **Fix:** The pointer cursor now appears when hovering `Button` components.

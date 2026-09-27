@@ -29,9 +29,12 @@ export function DocsTableOfContents({ links }: DocsTableOfContentsProps) {
   }
 
   return (
-    <nav aria-label="On this page" className="flex flex-col gap-3 text-sm">
-      <span className="text-foreground font-medium">On This Page</span>
-      <ul className="flex flex-col">
+    <nav
+      aria-label="On this page"
+      className="flex max-h-[min(28rem,calc(100vh-8rem))] flex-col gap-3 text-sm"
+    >
+      <span className="shrink-0 font-medium text-foreground">On This Page</span>
+      <ul className="no-scrollbar flex min-h-0 scroll-fade flex-col overflow-y-auto overscroll-contain">
         {links.map((link) => (
           <li key={link.id}>
             <TocAnchor link={link} activeId={activeId} onClick={onLinkClick} />
@@ -39,11 +42,7 @@ export function DocsTableOfContents({ links }: DocsTableOfContentsProps) {
               <ul className="ml-3">
                 {link.children.map((child) => (
                   <li key={child.id}>
-                    <TocAnchor
-                      link={child}
-                      activeId={activeId}
-                      onClick={onLinkClick}
-                    />
+                    <TocAnchor link={child} activeId={activeId} onClick={onLinkClick} />
                   </li>
                 ))}
               </ul>
@@ -70,8 +69,8 @@ function TocAnchor({
       className={cn(
         "-ml-px block border-l-2 py-1 pl-3 transition-colors",
         activeId === link.id
-          ? "border-foreground text-foreground font-medium"
-          : "text-muted-foreground hover:text-foreground border-transparent",
+          ? "border-foreground font-medium text-foreground"
+          : "border-transparent text-muted-foreground hover:text-foreground",
       )}
       onClick={() => onClick(link.id)}
     >
@@ -81,10 +80,7 @@ function TocAnchor({
 }
 
 function flattenTocLinks(links: readonly DocsTocLink[]): DocsTocLink[] {
-  return links.flatMap((link) => [
-    link,
-    ...(link.children ? flattenTocLinks(link.children) : []),
-  ]);
+  return links.flatMap((link) => [link, ...(link.children ? flattenTocLinks(link.children) : [])]);
 }
 
 function subscribeToToc(onStoreChange: () => void) {
@@ -100,17 +96,14 @@ function subscribeToToc(onStoreChange: () => void) {
 function getActiveHeadingId(flatLinks: readonly DocsTocLink[]): string | null {
   const headingEls = flatLinks
     .map((link) => ({ id: link.id, el: document.getElementById(link.id) }))
-    .filter(
-      (entry): entry is { id: string; el: HTMLElement } => entry.el !== null,
-    );
+    .filter((entry): entry is { id: string; el: HTMLElement } => entry.el !== null);
 
   if (headingEls.length === 0) {
     return null;
   }
 
   const scrolledToBottom =
-    window.innerHeight + window.scrollY >=
-    document.documentElement.scrollHeight - 2;
+    window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
 
   if (scrolledToBottom) {
     return headingEls.at(-1)?.id ?? null;

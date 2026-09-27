@@ -25,24 +25,28 @@ Skip for pure internal refactors with no install, API, docs, or behavior impact 
 
 ## Workflow
 
-1. Read `registry/docs/changelog.mdx` and note the latest `## vX.Y.Z: …` heading.
+1. Read `registry/docs/changelog.mdx` and note the latest date heading (`## Month D, YYYY`) and its version (`### vX.Y.Z`).
 2. Summarize **only what landed in this session / PR** from the git diff or known edits. Prefer consumer impact over implementation detail.
 3. Choose a version bump:
    - **Major** (`x.0.0`): breaking consumer API or install path changes
    - **Minor** (`x.Y.0`): new items, conventions, or non-breaking enhancements
    - **Patch** (`x.y.Z`): fixes, docs clarifications, small non-breaking tweaks
 4. Use today's date from the conversation/user context as `Month D, YYYY` (for example `August 14, 2026`).
-5. Edit the changelog:
-   - If the latest section is already today's release and still unreleased work for the same bump, **append bullets** there.
-   - Otherwise **insert a new section** immediately after the intro blurb and before the previous release:
+5. Each calendar day has **one** version: the latest version released that day. Edit the changelog:
+   - If the latest section is already today's date, **append bullets** under that day's version. If this session's bump is higher, replace the `### vX.Y.Z` subheading with the new version and keep every note from earlier versions that day under it.
+   - Otherwise **insert a new day** immediately after the intro blurb and before the previous release:
 
 ```mdx
-## vX.Y.Z: Month D, YYYY
+## Month D, YYYY
+
+### vX.Y.Z
 
 - Short bullet focused on user or maintainer impact.
 - Use **Bold lead-in:** when grouping related bullets.
 - Call out **Breaking:** changes explicitly.
 ```
+
+   - Do not add a second version heading for the same date. Move notes from any earlier same-day version under the latest version, then remove the earlier version heading.
 
 6. Match existing tone: concise bullets, component names in backticks or plain title case as in prior entries, link to docs pages when helpful (`[Registry](/docs/registry)`).
 7. Do not invent unshipped work. Do not rewrite older release sections unless correcting a factual error.

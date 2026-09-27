@@ -1,4 +1,4 @@
 interface:
   display_name: "Shadcn Registry"
-  short_description: "Author installable shadcn registry items"
-  default_prompt: "Use $shadcn-registry to add or adapt an installable registry item."
+  short_description: "Author @design-system-ui registry items"
+  default_prompt: "Use $shadcn-registry to add or adapt an installable Design System UI item."

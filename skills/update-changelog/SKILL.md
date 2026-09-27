@@ -44,6 +44,8 @@ Skip for pure internal refactors with no install, API, docs, or behavior impact 
 - Short bullet focused on user or maintainer impact.
 - Use **Bold lead-in:** when grouping related bullets.
 - Call out **Breaking:** changes explicitly.
+
+---
 ```
 
    - Do not add a second version heading for the same date. Move notes from any earlier same-day version under the latest version, then remove the earlier version heading.

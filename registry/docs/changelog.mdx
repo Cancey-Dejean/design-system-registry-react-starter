@@ -22,6 +22,8 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 - **Docs:** Pointed the `@design-system-ui` registry URL on [Installation](/docs/installation) and [Styles](/docs/styles) at `https://reactdocs.canceydejean.dev/r/{name}.json`.
 
+---
+
 ## September 17, 2026
 
 ### v1.5.4
@@ -31,6 +33,8 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 - **Theming:** Documented how consumer apps apply brand accents after installing [Styles](/docs/styles): ship `data-theme` palettes from `globals.css`, add a custom `[data-theme]` CSS file, or keep one component set with a palette file per brand for multi-brand teams. See [Theming](/docs/theming).
 - **Styles:** The `styles` item now publishes `theme-secondary.css` and `theme-tertiary.css` so the accent imports in `globals.css` resolve after install.
 
+---
+
 ## September 2, 2026
 
 ### v1.5.3
@@ -38,17 +42,23 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 - Added `useBodyOverflow`, a hook that locks page scroll by toggling `overflow-hidden` on `document.body`.
 - Added `useCloseMobileMenuOnResize`, a hook that dismisses mobile menus and overlays when the viewport is resized.
 
+---
+
 ## August 31, 2026
 
 ### v1.5.2
 
 - **Announcement Bar:** Moved the block from `registry/items/blocks/hero/announcement-bar/` to `registry/items/blocks/announcement-bar/` as a standalone block item. Install targets now publish under `components/ui/announcement-bar/` and declare `container` as a local registry dependency.
 
+---
+
 ## August 15, 2026
 
 ### v1.5.1
 
 - **Logos:** The Instagram logo now renders the full-color gradient brand mark instead of the flat black glyph. It sizes from its `viewBox` rather than fixed `width`/`height`, so it scales with the `Logo` `size` variants.
+
+---
 
 ## August 14, 2026
 
@@ -58,6 +68,8 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 - **Extracted variants:** Moved CVA out of component source for `Alert`, `Attachment`, `Badge`, `Bubble`, `Button Group`, `Empty`, `Field`, `Input Group`, `Item`, `Marker`, `Navigation Menu`, `Sidebar`, `Tabs`, and `Toggle`. `Toggle Group` now imports `toggleVariants` from `toggle.variants.ts`.
 - **Container:** Renamed `container.variants.tsx` / `container.types.tsx` to `.ts` so the file extension matches the variants convention.
 - **Docs:** Documented the Component Variants pattern on the [Registry](/docs/registry) authoring page, with pointers from Agents docs, `AGENTS.md`, and the `shadcn-registry` skill so maintainers and coding agents follow the same layout as `button.variants.ts`.
+
+---
 
 ## August 10, 2026
 
@@ -70,6 +82,8 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 - **Targets & docs:** Install targets and usage examples updated across registry items (including `Accordion`, `Button`, `Hero`, and many component `_registry.mdx` pages) so install paths match consumers’ `components.json` aliases.
 - **Previews:** Component registry preview exports and docs samples tightened for catalog rendering.
 
+---
+
 ## July 22, 2026
 
 ### v1.3.0
@@ -81,6 +95,8 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 - Published registry metadata and preview files for `Icons` so it is discoverable in the registry catalog and docs.
 - Added `Logos`, brand logo SVGs with a searchable gallery for browsing and copying.
 - Published registry metadata and preview files for `Logos` so it is discoverable in the registry catalog and docs.
+
+---
 
 ## July 20, 2026
 
@@ -102,6 +118,8 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 - Published registry metadata and preview files for `Text` so it is discoverable in the registry catalog and docs.
 - Published `Hero` as a registry block, including metadata and preview files so it is discoverable in the registry catalog and docs.
 
+---
+
 ## July 19, 2026
 
 ### v1.1.0
@@ -111,6 +129,8 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 - **Breaking:** Removed the `link` variant. Use an `as="a"` button (or a link styled separately) instead.
 - **Breaking:** Removed the `icon-xs` size. Use `icon-sm`, `icon-md`, or `icon-lg`.
 - **Breaking:** Resized icon buttons — `icon-md` is now `size-9` (was `size-10`) and `icon-lg` is now `size-10` (was `size-12`).
+
+---
 
 ## April 21, 2026
 

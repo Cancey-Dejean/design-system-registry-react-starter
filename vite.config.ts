@@ -216,7 +216,7 @@ const config = defineConfig({
         extends: true,
         test: {
           setupFiles: ["./src/test/setup.ts"],
-          include: ["src/**/*.test.ts", "src/**/*.test.tsx"],
+          include: ["src/**/*.test.ts", "src/**/*.test.tsx", "registry/items/lib/**/*.test.ts"],
           globals: true,
         },
       },

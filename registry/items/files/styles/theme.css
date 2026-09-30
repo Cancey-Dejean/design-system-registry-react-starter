@@ -2,22 +2,6 @@
   --radius: 0.625rem;
   --font-body: "Inter Variable", sans-serif;
 
-  /* Font sizes */
-  --text-10: 10px;
-  --text-12: 12px;
-  --text-14: 14px;
-  --text-16: 16px;
-  --text-18: 18px;
-  --text-20: 20px;
-  --text-24: 24px;
-  --text-30: 30px;
-  --text-36: 36px;
-  --text-48: 48px;
-  --text-60: 60px;
-  --text-72: 72px;
-  --text-96: 96px;
-  --text-120: 120px;
-
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -55,6 +39,51 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+@theme {
+  /*
+   * Font sizes. Every `--text-<name>` here is a `text-<name>` utility.
+   * Keep the names in `themeTextSizes` (`registry/items/lib/utils.ts`) so
+   * `cn` merges them as sizes, not text colors.
+   */
+  --text-10: 10px;
+  --text-12: 12px;
+  --text-14: 14px;
+  --text-16: 16px;
+  --text-18: 18px;
+  --text-20: 20px;
+  --text-24: 24px;
+  --text-30: 30px;
+  --text-36: 36px;
+  --text-48: 48px;
+  --text-60: 60px;
+  --text-72: 72px;
+  --text-96: 96px;
+  --text-120: 120px;
+
+  /* Semantic type scale — 14px UI body, tight display sizes. */
+  --text-label: 0.75rem;
+  --text-label--line-height: 1rem;
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.25rem;
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.375rem;
+  --text-heading: 1.125rem;
+  --text-heading--line-height: 1.5rem;
+  --text-heading--letter-spacing: -0.01em;
+  --text-title: 1.5rem;
+  --text-title--line-height: 1.2;
+  --text-title--letter-spacing: -0.02em;
+  --text-display: 2.75rem;
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.035em;
+  --text-display-xl: 4.25rem;
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.045em;
+
+  /* Motion — short, ease-out. */
+  --ease-snappy: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {

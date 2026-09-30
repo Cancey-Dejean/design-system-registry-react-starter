@@ -22,11 +22,11 @@
   }
 
   html {
-    @apply font-body;
+    @apply scroll-smooth font-body [scrollbar-gutter:stable];
   }
 
   body {
-    @apply bg-background text-foreground overflow-x-hidden antialiased selection:bg-red-500/20 selection:text-red-200;
+    @apply overflow-x-hidden bg-background text-foreground antialiased selection:bg-red-500/20 selection:text-red-200;
   }
 
   a {

@@ -216,8 +216,15 @@ const config = defineConfig({
         extends: true,
         test: {
           setupFiles: ["./src/test/setup.ts"],
-          include: ["src/**/*.test.ts", "src/**/*.test.tsx", "registry/items/lib/**/*.test.ts"],
+          include: ["src/**/*.test.ts", "src/**/*.test.tsx", "registry/items/**/*.test.ts"],
           globals: true,
+          // @fast-check/vitest reads Vitest's current suite. Inline it so Vite
+          // does not bundle a second copy of vitest.
+          server: {
+            deps: {
+              inline: ["@fast-check/vitest"],
+            },
+          },
         },
       },
       {

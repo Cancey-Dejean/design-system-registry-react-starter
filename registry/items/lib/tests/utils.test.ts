@@ -1,12 +1,17 @@
+/* oxlint-disable vitest/no-standalone-expect -- @fast-check/vitest's test is the test block */
+
 import { readFileSync } from "node:fs";
 
-import { describe, expect, test } from "vitest";
+import { test } from "@fast-check/vitest";
+import { describe, expect } from "vitest";
 
-import { cn, themeTextSizes } from "./utils";
+import { textColorClass, textSizeClass, themeTextSizeClass, utilityClass } from "@/test/fast-check";
+
+import { cn, themeTextSizes } from "../utils";
 
 describe("cn", () => {
   test("registers every theme font size", () => {
-    const theme = readFileSync(new URL("../files/styles/theme.css", import.meta.url), "utf8");
+    const theme = readFileSync(new URL("../../files/styles/theme.css", import.meta.url), "utf8");
     const themeSizes = [...theme.matchAll(/--text-([a-z0-9-]+):/g)]
       .map((match) => match[1])
       .filter((name) => name && !name.includes("--"));
@@ -36,4 +41,26 @@ describe("cn", () => {
       cn("text-60 font-semibold tracking-tight text-foreground sm:text-72", "leading-none"),
     ).toBe("text-60 font-semibold tracking-tight text-foreground sm:text-72 leading-none");
   });
+
+  test.prop({
+    size: themeTextSizeClass,
+    color: textColorClass,
+  })("keeps a theme size beside a text color", ({ size, color }) => {
+    expect(classTokens(cn(size, color))).toEqual(new Set([size, color]));
+  });
+
+  test.prop({
+    first: textSizeClass,
+    second: textSizeClass,
+  })("resolves a later size over an earlier size", ({ first, second }) => {
+    expect(cn(first, second)).toBe(second);
+  });
+
+  test.prop([utilityClass])("is idempotent for one utility class", (value) => {
+    expect(cn(value, value)).toBe(cn(value));
+  });
 });
+
+function classTokens(value: string) {
+  return new Set(value.split(/\s+/u).filter(Boolean));
+}

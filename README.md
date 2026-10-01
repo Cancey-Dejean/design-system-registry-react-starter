@@ -152,6 +152,7 @@ Skills in [`skills/`](skills) are the source for work in this repo. Harness copi
 | --- | --- |
 | `shadcn-registry` | Adding or adapting installable registry items |
 | `writing-story-files` | Storybook stories for registry items |
+| `writing-property-tests` | Property-based tests with fast-check, Vitest, and Storybook |
 | `sync-registry-metadata` | Keeping `_registry.mdx` and `_preview.tsx` in sync with published source |
 | `update-changelog` | User-facing notes in `registry/docs/changelog.mdx` |
 | `safari-mcp` | Verifying the docs site in Safari |

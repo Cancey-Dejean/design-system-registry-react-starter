@@ -1,5 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { assert, asyncProperty } from "fast-check";
+import { flushSync } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { expect, within } from "storybook/test";
+
+import { buttonRenderCase, domPropertyRuns } from "@/test/fast-check";
 
 import { Button } from "../button";
 
@@ -74,6 +79,58 @@ export const AsLink_RendersLinkRole: Story = {
     await expect(link).toBeVisible();
     await expect(link).toHaveAttribute("href", "/");
     await expect(link.tagName).toBe("A");
+  },
+};
+
+export const Property_ValidPropsRender: Story = {
+  args: { children: "Property" },
+  play: async ({ canvasElement }) => {
+    const host = document.createElement("div");
+    canvasElement.append(host);
+    const root = createRoot(host);
+
+    try {
+      await assert(
+        asyncProperty(buttonRenderCase, async (sample) => {
+          if (sample.as === "button") {
+            flushSync(() => {
+              root.render(
+                <Button disabled={sample.disabled} size={sample.size} variant={sample.variant}>
+                  {sample.children}
+                </Button>,
+              );
+            });
+
+            const button = within(host).getByRole("button", { name: sample.children });
+            await expect(button.tagName).toBe("BUTTON");
+
+            if (sample.disabled) {
+              await expect(button).toBeDisabled();
+            } else {
+              await expect(button).toBeEnabled();
+            }
+
+            return;
+          }
+
+          flushSync(() => {
+            root.render(
+              <Button as="a" href={sample.href} size={sample.size} variant={sample.variant}>
+                {sample.children}
+              </Button>,
+            );
+          });
+
+          const link = within(host).getByRole("link", { name: sample.children });
+          await expect(link.tagName).toBe("A");
+          await expect(link).toHaveAttribute("href", sample.href);
+        }),
+        { numRuns: domPropertyRuns },
+      );
+    } finally {
+      root.unmount();
+      host.remove();
+    }
   },
 };
 

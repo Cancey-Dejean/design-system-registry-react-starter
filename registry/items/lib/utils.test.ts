@@ -30,4 +30,10 @@ describe("cn", () => {
   test("resolves color against color", () => {
     expect(cn("text-red-500", "text-foreground")).toBe("text-foreground");
   });
+
+  test("keeps heading scale sizes beside a tone", () => {
+    expect(
+      cn("text-60 font-semibold tracking-tight text-foreground sm:text-72", "leading-none"),
+    ).toBe("text-60 font-semibold tracking-tight text-foreground sm:text-72 leading-none");
+  });
 });

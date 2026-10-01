@@ -34,6 +34,8 @@ bunx shadcn add "@design-system-ui/button"
 
 `styles` installs `globals.css`, `theme.css`, `theme-secondary.css`, and `theme-tertiary.css` into `src/styles/`. Brand accents are documented on the [theming](https://reactdocs.canceydejean.dev/docs/theming) page.
 
+`theme.css` publishes a type scale as `text-*` utilities: pixel sizes from `text-10` through `text-120`, and semantic sizes such as `text-label`, `text-body`, and `text-display`. The `cn` package treats any `text-*` class outside Tailwind's t-shirt scale as a text color, so `text-60` is removed when it is merged with `text-foreground`. [`registry/items/lib/utils.ts`](registry/items/lib/utils.ts) registers those names as font sizes, and the docs app re-exports that helper from [`src/lib/utils.ts`](src/lib/utils.ts). `Heading` uses it, which keeps sizes such as `text-60` and `sm:text-72` next to a tone. Put `leading-none` after the size class, because a font-size utility removes an earlier `leading-*`. Details are on the [styles](https://reactdocs.canceydejean.dev/docs/styles) page.
+
 ## Local development
 
 This repo uses [Vite+](https://viteplus.dev/) (`vp`) for the app and [Bun](https://bun.com/) for registry scripts.

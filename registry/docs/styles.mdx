@@ -28,12 +28,12 @@ Without this, the CLI returns `Unknown registry "@design-system-ui"`. See [Insta
 
 ## What gets installed
 
-| File                   | Destination                       |
-| ---------------------- | --------------------------------- |
-| `globals.css`          | `src/styles/globals.css`          |
-| `theme.css`            | `src/styles/theme.css`            |
-| `theme-secondary.css`  | `src/styles/theme-secondary.css`  |
-| `theme-tertiary.css`   | `src/styles/theme-tertiary.css`   |
+| File                  | Destination                      |
+| --------------------- | -------------------------------- |
+| `globals.css`         | `src/styles/globals.css`         |
+| `theme.css`           | `src/styles/theme.css`           |
+| `theme-secondary.css` | `src/styles/theme-secondary.css` |
+| `theme-tertiary.css`  | `src/styles/theme-tertiary.css`  |
 
 The CLI also installs related packages used by the stylesheet (`tw-animate-css`, Geist font packages, and `@tailwindcss/typography`).
 
@@ -48,6 +48,77 @@ import "@/styles/globals.css";
 ```
 
 `globals.css` already imports `./theme.css`, `./theme-secondary.css`, and `./theme-tertiary.css`, so you do not need extra imports for the theme tokens. See [Theming](/docs/theming) to apply a shipped accent or your own brand colors.
+
+## Type scale
+
+`theme.css` defines font sizes inside `@theme`. Each `--text-<name>` variable is a `text-<name>` utility.
+
+| Group       | Classes                                                                                                                                                   | What they set                                                                 |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Pixel sizes | `text-10`, `text-12`, `text-14`, `text-16`, `text-18`, `text-20`, `text-24`, `text-30`, `text-36`, `text-48`, `text-60`, `text-72`, `text-96`, `text-120` | Font size only, in pixels                                                     |
+| Semantic    | `text-label`, `text-meta`, `text-body`, `text-heading`, `text-title`, `text-display`, `text-display-xl`                                                   | Font size plus line-height. `text-heading` and larger also set letter-spacing |
+
+[Heading](/components/heading) uses the pixel scale and steps up at the `sm` breakpoint:
+
+| `size` | Default   | `sm`      |
+| ------ | --------- | --------- |
+| `xs`   | `text-18` | `text-20` |
+| `sm`   | `text-20` | `text-24` |
+| `md`   | `text-24` | `text-30` |
+| `lg`   | `text-30` | `text-36` |
+| `xl`   | `text-36` | `text-48` |
+| `2xl`  | `text-48` | `text-60` |
+| `3xl`  | `text-60` | `text-72` |
+
+## Register the sizes with `cn`
+
+The `cn` package knows Tailwind's t-shirt sizes (`text-sm`, `text-lg`). Every other `text-*` class is merged as a text color, so `text-60` disappears when a tone such as `text-foreground` is in the same `cn()` call. Responsive classes such as `sm:text-72` stay, because they do not share that color group.
+
+Register the theme names as font sizes. This repo does that in `registry/items/lib/utils.ts`, and the docs app re-exports it from `src/lib/utils.ts`. After installing styles, use the same list in your app's `@/lib/utils`:
+
+```ts
+import { createCn } from "cn/config";
+
+const themeTextSizes = [
+  "10",
+  "12",
+  "14",
+  "16",
+  "18",
+  "20",
+  "24",
+  "30",
+  "36",
+  "48",
+  "60",
+  "72",
+  "96",
+  "120",
+  "label",
+  "meta",
+  "body",
+  "heading",
+  "title",
+  "display",
+  "display-xl",
+] as const;
+
+export const cn = createCn({
+  extend: {
+    classGroups: {
+      "font-size": [{ text: [...themeTextSizes] }],
+    },
+  },
+});
+```
+
+When you add a `--text-*` name in `theme.css`, add that name to `themeTextSizes` as well.
+
+`Heading` imports this `cn`. Put `leading-none` after the size class. A font-size utility removes an earlier `leading-*` class, so the tight leading has to come second:
+
+```tsx
+className={cn(headingVariants({ size, weight, tone }), "leading-none", className)}
+```
 
 ## Next steps
 

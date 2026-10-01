@@ -1,6 +1,5 @@
 import { cva } from "class-variance-authority";
-
-import { cn } from "cn"
+import { cn } from "cn";
 
 const linkTextBase = cn(
   "inline-flex items-center gap-1 leading-none! font-medium transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none",
@@ -20,9 +19,9 @@ const linkTextConfig = {
       always: "underline",
     },
     size: {
-      sm: "[font-size:var(--text-14)]",
-      md: "[font-size:var(--text-16)]",
-      lg: "[font-size:var(--text-24)]",
+      sm: "text-14",
+      md: "text-16",
+      lg: "text-24",
     },
   },
   compoundVariants: [],

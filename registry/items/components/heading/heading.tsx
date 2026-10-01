@@ -1,4 +1,4 @@
-import { cn } from "cn";
+import { cn } from "@/lib/utils";
 
 import type { HeadingProps } from "./heading.types";
 import { headingVariants } from "./heading.variants";
@@ -17,7 +17,7 @@ export default function Heading({
     <Tag
       data-slot="heading"
       data-size={level}
-      className={cn(headingVariants({ size, weight, tone }), className)}
+      className={cn(headingVariants({ size, weight, tone }), "leading-none", className)}
       {...props}
     />
   );

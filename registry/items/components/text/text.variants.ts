@@ -1,16 +1,15 @@
 import { cva } from "class-variance-authority";
-
-import { cn } from "cn"
+import { cn } from "cn";
 
 const textBase = cn("tracking-tight");
 
 const textConfig = {
   variants: {
     size: {
-      xs: "[font-size:var(--text-12)] sm:[font-size:var(--text-14)]",
-      sm: "[font-size:var(--text-14)] sm:[font-size:var(--text-16)]",
-      md: "[font-size:var(--text-16)] sm:[font-size:var(--text-18)]",
-      lg: "[font-size:var(--text-18)] sm:[font-size:var(--text-20)]",
+      xs: "text-12 sm:text-14",
+      sm: "text-14 sm:text-16",
+      md: "text-16 sm:text-18",
+      lg: "text-18 sm:text-20",
     },
     weight: {
       light: "font-light",

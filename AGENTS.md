@@ -17,6 +17,8 @@ skills:
     load: "skills/writing-property-tests/SKILL.md"
   - task: "verify, audit, or debug the docs site or registry UI in Safari or WebKit"
     load: "skills/safari-mcp/SKILL.md"
+  - task: "design, redesign, build, restyle, or mock up UI before implementing it, including screens, pages, sections, layouts, flows, and component visuals"
+    load: "skills/approving-design-examples/SKILL.md"
 <!-- intent-skills:end -->
 
 # Agent Instructions

@@ -135,6 +135,11 @@ const config = defineConfig({
       },
     },
   },
+  // RSC serialization and the SSR serializer must share one RawStream
+  // class. Separate server chunks otherwise fail `instanceof` and 500.
+  ssr: {
+    external: ["@tanstack/router-core"],
+  },
   server: {
     watch: {
       ignored: [

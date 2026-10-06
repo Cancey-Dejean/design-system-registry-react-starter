@@ -22,6 +22,7 @@ function item(name: string, overrides: Partial<RegistryFlowItem> = {}): Registry
     localDependencies: [],
     remoteDependencies: [],
     files: [`components/ui/${name}.tsx`],
+    api: { variants: [], props: [] },
     ...overrides,
   };
 }

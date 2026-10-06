@@ -34,10 +34,17 @@ import {
 } from "@/lib/registry/flow-graph";
 import type { RegistryItemType } from "@/lib/registry/item-types";
 import { getRegistrySectionIdForType } from "@/lib/registry/sections";
-import { cn } from "@/lib/utils";
 
 import { DocsInstallCommand } from "../install-command";
-import { flowCanvasDefaults, getFlowEdgeStyle, type FlowViewProps } from "./flow-canvas";
+import {
+  flowCanvasDefaults,
+  flowSegmentClassName,
+  flowSegmentedClassName,
+  flowToolbarClassName,
+  flowToolbarLabelClassName,
+  getFlowEdgeStyle,
+  type FlowViewProps,
+} from "./flow-canvas";
 import {
   FLOW_ITEM_HEIGHT,
   FLOW_ITEM_WIDTH,
@@ -256,102 +263,105 @@ function FlowMapCanvas({ graph, selected, onSelect, colorMode }: FlowViewProps) 
   };
 
   return (
-    <div className="relative h-[min(780px,calc(100svh-13rem))] min-h-120 overflow-hidden rounded-xl border bg-muted/30">
-      <div className="pointer-events-none absolute inset-x-3 top-3 z-10 flex flex-wrap items-center gap-2">
-        <div className="pointer-events-auto relative w-full sm:w-64">
-          <SearchIcon className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Find an item…"
-            aria-label="Find a registry item"
-            className="h-9 bg-card pl-8 shadow-xs dark:bg-card"
-          />
-        </div>
-        {typeCounts.map(([type, count]) => {
-          const shown = !hiddenTypes.has(type);
-
-          return (
-            <button
-              key={type}
-              type="button"
-              aria-pressed={shown}
-              onClick={() => toggleType(type)}
-              className={cn(
-                "pointer-events-auto inline-flex h-8 items-center gap-1.5 rounded-full border bg-card px-3 text-xs shadow-xs transition-colors",
-                !shown && "border-dashed bg-transparent text-muted-foreground shadow-none",
-              )}
-            >
-              <RegistryTypeIcon type={type} className="size-3" strokeWidth={1.75} />
-              {getRegistryTypeLabel(type)}
-              <span className="font-mono text-muted-foreground">{count}</span>
-            </button>
-          );
-        })}
-        <span className="text-xs text-muted-foreground">
-          {layout.connected.length} connected · {graph.names.length - layout.connected.length}{" "}
-          standalone hidden
+    <section className="flex h-[min(780px,calc(100svh-13rem))] min-h-120 flex-col overflow-hidden rounded-xl border bg-card">
+      <div className={flowToolbarClassName}>
+        <span className={flowToolbarLabelClassName}>
+          How it connects ·{" "}
+          <span className="normal-case">
+            {layout.connected.length} connected · {graph.names.length - layout.connected.length}{" "}
+            standalone hidden
+          </span>
         </span>
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="relative w-full sm:w-48">
+            <SearchIcon className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Find an item…"
+              aria-label="Find a registry item"
+              className="h-8 pl-8"
+            />
+          </div>
+          <fieldset className={flowSegmentedClassName}>
+            <legend className="sr-only">Item types</legend>
+            {typeCounts.map(([type, count]) => (
+              <button
+                key={type}
+                type="button"
+                aria-pressed={!hiddenTypes.has(type)}
+                onClick={() => toggleType(type)}
+                className={flowSegmentClassName}
+              >
+                <RegistryTypeIcon type={type} className="size-3" strokeWidth={1.75} />
+                {getRegistryTypeLabel(type)}
+                <span className="font-mono font-normal text-muted-foreground">{count}</span>
+              </button>
+            ))}
+          </fieldset>
+        </div>
       </div>
 
-      <ReactFlow
-        {...flowCanvasDefaults}
-        nodes={nodes}
-        edges={edges}
-        nodeTypes={nodeTypes}
-        colorMode={colorMode}
-        fitView
-        fitViewOptions={{ padding: { top: 0.2, left: 0.08, right: 0.35, bottom: 0.1 } }}
-        onNodeClick={(_, node) => {
-          if (node.type === "item" && node.data.target) {
-            select(node.data.target);
-          }
-        }}
-        onPaneClick={() => setInspectorOpen(false)}
-      >
-        <Background gap={18} size={1.2} color="var(--border)" />
-        <Controls position="bottom-left" showInteractive={false} />
-        <MiniMap
-          position="bottom-left"
-          style={{ marginLeft: 56, width: 160, height: 100 }}
-          className="hidden sm:block"
-          pannable
-          zoomable
-          nodeBorderRadius={4}
-          nodeColor={(node) => {
-            if (node.id === active) {
-              return "var(--foreground)";
+      <div className="relative min-h-0 flex-1 bg-muted/30">
+        <ReactFlow
+          {...flowCanvasDefaults}
+          nodes={nodes}
+          edges={edges}
+          nodeTypes={nodeTypes}
+          colorMode={colorMode}
+          fitView
+          fitViewOptions={{ padding: { top: 0.2, left: 0.08, right: 0.35, bottom: 0.1 } }}
+          onNodeClick={(_, node) => {
+            if (node.type === "item" && node.data.target) {
+              select(node.data.target);
             }
-
-            if (up.has(node.id)) {
-              return flowColors.up;
-            }
-
-            return down.has(node.id) ? flowColors.down : "var(--border)";
           }}
-        />
-      </ReactFlow>
+          onPaneClick={() => setInspectorOpen(false)}
+        >
+          <Background gap={18} size={1.2} color="var(--border)" />
+          <Controls position="bottom-left" showInteractive={false} />
+          <MiniMap
+            position="bottom-left"
+            style={{ marginLeft: 56, width: 160, height: 100 }}
+            className="hidden sm:block"
+            pannable
+            zoomable
+            nodeBorderRadius={4}
+            nodeColor={(node) => {
+              if (node.id === active) {
+                return "var(--foreground)";
+              }
 
-      {active ? (
-        <FlowInspector
-          graph={graph}
-          name={active}
-          onSelect={select}
-          onClose={() => setInspectorOpen(false)}
-        />
-      ) : (
-        <div className="absolute top-3 right-3 z-10 hidden gap-3 rounded-lg border bg-card px-3 py-2 text-xs shadow-xs lg:flex">
-          <span className="inline-flex items-center gap-1.5">
-            <span className="h-0.5 w-4 rounded-full" style={{ background: flowColors.up }} />
-            Depends on
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <span className="h-0.5 w-4 rounded-full" style={{ background: flowColors.down }} />
-            Used by
-          </span>
-        </div>
-      )}
-    </div>
+              if (up.has(node.id)) {
+                return flowColors.up;
+              }
+
+              return down.has(node.id) ? flowColors.down : "var(--border)";
+            }}
+          />
+        </ReactFlow>
+
+        {active ? (
+          <FlowInspector
+            graph={graph}
+            name={active}
+            onSelect={select}
+            onClose={() => setInspectorOpen(false)}
+          />
+        ) : (
+          <div className="absolute top-3 right-3 z-10 hidden gap-3 rounded-lg border bg-card px-3 py-2 text-xs shadow-xs lg:flex">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-0.5 w-4 rounded-full" style={{ background: flowColors.up }} />
+              Depends on
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-0.5 w-4 rounded-full" style={{ background: flowColors.down }} />
+              Used by
+            </span>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
@@ -404,7 +414,7 @@ function FlowInspector({ graph, name, onSelect, onClose }: FlowInspectorProps) {
   return (
     <aside
       aria-label={`${item.title} details`}
-      className="absolute inset-x-3 bottom-3 z-20 flex max-h-[55%] animate-in flex-col overflow-hidden rounded-xl border bg-card shadow-xl duration-200 fade-in slide-in-from-right-2 md:inset-x-auto md:top-16 md:right-3 md:max-h-none md:w-80"
+      className="absolute inset-x-3 bottom-3 z-20 flex max-h-[55%] animate-in flex-col overflow-hidden rounded-xl border bg-card shadow-xl duration-200 fade-in slide-in-from-right-2 md:inset-x-auto md:top-3 md:right-3 md:max-h-none md:w-80"
     >
       <div className="flex flex-col gap-3 border-b p-4">
         <div className="flex items-start justify-between gap-2">

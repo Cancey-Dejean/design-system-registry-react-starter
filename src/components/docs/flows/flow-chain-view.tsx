@@ -1,5 +1,21 @@
-import { Background, Controls, ReactFlow, type Edge } from "@xyflow/react";
-import { ArrowDownIcon, GlobeIcon, PackageIcon, TerminalIcon } from "lucide-react";
+import {
+  Background,
+  BaseEdge,
+  Controls,
+  ReactFlow,
+  getSmoothStepPath,
+  type Edge,
+  type EdgeProps,
+} from "@xyflow/react";
+import {
+  ArrowDownIcon,
+  GlobeIcon,
+  ListTreeIcon,
+  PackageIcon,
+  SlidersHorizontalIcon,
+  TerminalIcon,
+  type LucideIcon,
+} from "lucide-react";
 import * as React from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -19,33 +35,49 @@ import { cn } from "@/lib/utils";
 import { DocsInstallCommand } from "../install-command";
 import {
   flowCanvasDefaults,
+  flowSegmentClassName,
+  flowSegmentedClassName,
   flowSidebarScrollClassName,
+  flowToolbarClassName,
+  flowToolbarLabelClassName,
   getFlowEdgeStyle,
   type FlowViewProps,
 } from "./flow-canvas";
 import { FlowItemPicker } from "./flow-item-picker";
 import {
   FLOW_CHAIN_WIDTH,
+  FLOW_PROP_WIDTH,
+  FlowChainHotContext,
+  FlowPropToggleContext,
   FlowChainNodeView,
+  FlowPropNodeView,
   estimateChainNodeHeight,
+  estimatePropNodeHeight,
   flowColors,
+  getApiSummary,
   getRegistryTypeIcon,
   getRegistryTypeLabel,
   RegistryTypeIcon,
   type FlowChainNode,
+  type FlowPropNode,
+  type FlowPropNodeData,
 } from "./flow-nodes";
+import { FlowPropsPanel } from "./flow-props-panel";
 
 type ChainMode = "installs" | "dependents";
 
-const nodeTypes = { chain: FlowChainNodeView };
+const nodeTypes = { chain: FlowChainNodeView, prop: FlowPropNodeView };
+const edgeTypes = { chain: FlowChainEdgeView };
 const ROOT_ID = "chain:root";
 const NPM_ID = "chain:npm";
 const COLUMN_GAP = FLOW_CHAIN_WIDTH + 40;
 const LAYER_GAP = 70;
 const ROW_GAP = 24;
 const MAX_ROW_NODES = 3;
+const PROP_GAP = 88;
+const PROP_STACK_GAP = 14;
 
-type ChainNodeSpec = Omit<FlowChainNode["data"], "hot">;
+type ChainNodeSpec = FlowChainNode["data"];
 
 type ChainModel = {
   layers: Map<string, number>;
@@ -67,6 +99,7 @@ function getItemSpec(
     lines: [],
     variant: "item",
     target: name,
+    apiSummary: item ? getApiSummary(item.api) : undefined,
     ...overrides,
   };
 }
@@ -185,15 +218,67 @@ function buildDependentsChain(graph: RegistryFlowGraph, name: string): ChainMode
   return { layers, specs, edges };
 }
 
-function layoutChain({ layers, specs, edges }: ChainModel, hot: string | null) {
+type PropSpec = Omit<FlowPropNodeData, "expanded"> & { id: string };
+
+function getPropSpecs(graph: RegistryFlowGraph, ids: Iterable<string>): Map<string, PropSpec[]> {
+  const propSpecs = new Map<string, PropSpec[]>();
+
+  for (const owner of ids) {
+    const api = graph.items.get(owner)?.api;
+
+    if (!api) {
+      continue;
+    }
+
+    const specs: PropSpec[] = api.variants.map((variant) => ({
+      id: `prop:${owner}:${variant.name}`,
+      owner,
+      label: variant.name,
+      rows: variant.options.map((option) => ({
+        label: option,
+        isDefault: option === variant.defaultValue,
+      })),
+    }));
+
+    if (api.props.length > 0) {
+      specs.push({
+        id: `prop:${owner}:*`,
+        owner,
+        label: "props",
+        rows: api.props.map((prop) => ({
+          label: `${prop.name}${prop.optional ? "?" : ""}`,
+          detail: prop.defaultValue === undefined ? prop.type : `= ${prop.defaultValue}`,
+        })),
+      });
+    }
+
+    if (specs.length > 0) {
+      propSpecs.set(owner, specs);
+    }
+  }
+
+  return propSpecs;
+}
+
+function layoutChain(
+  { layers, specs, edges }: ChainModel,
+  propSpecs: ReadonlyMap<string, readonly PropSpec[]> | undefined,
+  expandedProps: ReadonlySet<string>,
+) {
   const byLayer: string[][] = [];
 
   for (const [id, layer] of layers) {
     byLayer[layer] = [...(byLayer[layer] ?? []), id];
   }
 
-  const nodes: FlowChainNode[] = [];
+  const columnGap = propSpecs ? COLUMN_GAP + PROP_GAP + FLOW_PROP_WIDTH : COLUMN_GAP;
+  const nodes: (FlowChainNode | FlowPropNode)[] = [];
+  const propEdges: Edge[] = [];
+  // Turning each edge inside the gap above its target row keeps horizontal
+  // runs clear of prop stacks, which make rows taller than their chain nodes.
+  const turnY = new Map<string, number>();
   let y = 0;
+  let gapAbove = 0;
 
   for (const ids of byLayer) {
     const sorted = (ids ?? []).toSorted();
@@ -209,34 +294,104 @@ function layoutChain({ layers, specs, edges }: ChainModel, hot: string | null) {
           return;
         }
 
-        rowHeight = Math.max(rowHeight, estimateChainNodeHeight(spec.lines.length));
+        if (gapAbove > 0) {
+          turnY.set(id, y - gapAbove / 2);
+        }
+
+        const x = (index - (row.length - 1) / 2) * columnGap;
+        const ownProps = propSpecs?.get(id) ?? [];
+        let propY = y;
+
+        rowHeight = Math.max(
+          rowHeight,
+          estimateChainNodeHeight(spec.lines.length, !propSpecs && Boolean(spec.apiSummary)),
+        );
         nodes.push({
           id,
           type: "chain",
-          position: { x: (index - (row.length - 1) / 2) * COLUMN_GAP, y },
-          data: { ...spec, hot: hot === id },
+          position: { x, y },
+          data: propSpecs ? { ...spec, apiSummary: undefined } : spec,
         });
+
+        for (const { id: propId, ...propData } of ownProps) {
+          const expanded = expandedProps.has(propId);
+
+          nodes.push({
+            id: propId,
+            type: "prop",
+            position: { x: x + FLOW_CHAIN_WIDTH + PROP_GAP, y: propY },
+            data: { ...propData, expanded },
+          });
+          propEdges.push({
+            id: `${id}->${propId}`,
+            source: id,
+            sourceHandle: "props",
+            target: propId,
+            type: "default",
+            style: getFlowEdgeStyle(flowColors.neutral, { opacity: 0.45 }),
+          });
+          propY += estimatePropNodeHeight(propData.rows.length, expanded) + PROP_STACK_GAP;
+        }
+
+        rowHeight = Math.max(rowHeight, propY - y - PROP_STACK_GAP);
       });
 
-      y += rowHeight + (start + MAX_ROW_NODES < sorted.length ? ROW_GAP : LAYER_GAP);
+      gapAbove = start + MAX_ROW_NODES < sorted.length ? ROW_GAP : LAYER_GAP;
+      y += rowHeight + gapAbove;
     }
   }
 
   return {
     nodes,
-    edges: edges.map((edge) => ({
-      type: "smoothstep",
-      pathOptions: { borderRadius: 12 },
-      style: getFlowEdgeStyle(flowColors.neutral),
-      ...edge,
-    })),
+    edges: [
+      ...edges.map(
+        (edge): ChainEdge => ({
+          style: getFlowEdgeStyle(flowColors.neutral),
+          ...edge,
+          type: "chain",
+          data: { turnY: turnY.get(edge.target) },
+        }),
+      ),
+      ...propEdges,
+    ],
   };
+}
+
+type ChainEdge = Edge<{ turnY?: number }, "chain">;
+
+function FlowChainEdgeView({
+  sourceX,
+  sourceY,
+  targetX,
+  targetY,
+  sourcePosition,
+  targetPosition,
+  style,
+  markerEnd,
+  data,
+}: EdgeProps<ChainEdge>) {
+  const [path] = getSmoothStepPath({
+    sourceX,
+    sourceY,
+    targetX,
+    targetY,
+    sourcePosition,
+    targetPosition,
+    borderRadius: 12,
+    centerY: data?.turnY !== undefined && data.turnY > sourceY ? data.turnY : undefined,
+  });
+
+  return <BaseEdge path={path} style={style} markerEnd={markerEnd} />;
 }
 
 export function FlowChainView({ graph, selected, onSelect, colorMode, header }: FlowViewProps) {
   const [mode, setMode] = React.useState<ChainMode>("installs");
   const [hot, setHot] = React.useState<string | null>(null);
+  // Only canvas hover previews another item's props. Previewing from the
+  // install list would resize the panel above it and shift the hovered row.
+  const [previewName, setPreviewName] = React.useState<string | null>(null);
   const item = graph.items.get(selected);
+  const propsItem = (previewName ? graph.items.get(previewName) : undefined) ?? item;
   const steps = React.useMemo(() => getInstallOrder(graph, selected), [graph, selected]);
   const packages = React.useMemo(() => getInstallPackages(graph, steps), [graph, steps]);
   const model = React.useMemo(
@@ -246,7 +401,45 @@ export function FlowChainView({ graph, selected, onSelect, colorMode, header }: 
         : buildDependentsChain(graph, selected),
     [graph, selected, mode, steps, packages],
   );
-  const { nodes, edges } = React.useMemo(() => layoutChain(model, hot), [model, hot]);
+  const [showProps, setShowProps] = React.useState(true);
+  const [expandedProps, setExpandedProps] = React.useState<ReadonlySet<string>>(new Set());
+  const propSpecs = React.useMemo(() => getPropSpecs(graph, model.layers.keys()), [graph, model]);
+  const propIds = [...propSpecs.values()].flat().map((spec) => spec.id);
+  const optionCount = [...propSpecs.values()]
+    .flat()
+    .reduce((total, spec) => total + spec.rows.length, 0);
+  const propsShown = showProps && propIds.length > 0;
+  const allExpanded = propIds.length > 0 && propIds.every((id) => expandedProps.has(id));
+  const { nodes, edges } = React.useMemo(
+    () => layoutChain(model, propsShown ? propSpecs : undefined, expandedProps),
+    [model, propsShown, propSpecs, expandedProps],
+  );
+  const toggleProp = React.useCallback((id: string) => {
+    setExpandedProps((current) => {
+      const next = new Set(current);
+
+      if (!next.delete(id)) {
+        next.add(id);
+      }
+
+      return next;
+    });
+  }, []);
+  const setAllExpanded = (expanded: boolean) => {
+    setExpandedProps((current) => {
+      const next = new Set(current);
+
+      for (const id of propIds) {
+        if (expanded) {
+          next.add(id);
+        } else {
+          next.delete(id);
+        }
+      }
+
+      return next;
+    });
+  };
 
   if (!item) {
     return null;
@@ -332,6 +525,10 @@ export function FlowChainView({ graph, selected, onSelect, colorMode, header }: 
           ))}
         </dl>
 
+        {propsItem ? (
+          <FlowPropsPanel item={propsItem} previewing={propsItem.name !== selected} />
+        ) : null}
+
         <div>
           <h3 className="mb-1.5 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
             {mode === "installs" ? "Install order" : "Impact"}
@@ -416,34 +613,113 @@ export function FlowChainView({ graph, selected, onSelect, colorMode, header }: 
 
       <div className="contents lg:flex lg:h-[calc(100svh-4rem)] lg:min-w-0 lg:flex-col lg:gap-6 lg:py-6">
         {header ? <div className="order-first lg:order-none">{header}</div> : null}
-        <section className="relative h-[min(780px,calc(100svh-13rem))] min-h-120 overflow-hidden rounded-xl border bg-muted/30 lg:h-auto lg:min-h-0 lg:flex-1">
-          <Badge variant="outline" className="absolute top-3 left-3 z-10 bg-card font-mono">
-            <ArrowDownIcon />
-            {mode === "installs" ? "top → bottom: resolve order" : "top → bottom: blast radius"}
-          </Badge>
-          <ReactFlow
-            key={`${selected}-${mode}`}
-            {...flowCanvasDefaults}
-            nodes={nodes}
-            edges={edges}
-            nodeTypes={nodeTypes}
-            colorMode={colorMode}
-            fitView
-            fitViewOptions={{ padding: 0.2, maxZoom: 1 }}
-            onNodeMouseEnter={(_, node) => setHot(node.id)}
-            onNodeMouseLeave={() => setHot(null)}
-            onNodeClick={(_, node) => {
-              if (node.data.target && node.data.target !== selected) {
-                onSelect(node.data.target);
-              }
-            }}
-          >
-            <Background gap={20} size={1.2} color="var(--border)" />
-            <Controls position="bottom-right" showInteractive={false} />
-          </ReactFlow>
+        <section className="flex h-[min(780px,calc(100svh-13rem))] min-h-120 flex-col overflow-hidden rounded-xl border bg-card lg:h-auto lg:min-h-0 lg:flex-1">
+          <div className={flowToolbarClassName}>
+            <span className={cn(flowToolbarLabelClassName, "inline-flex items-center gap-1.5")}>
+              <ArrowDownIcon className="size-3" />
+              {mode === "installs" ? "Install order" : "Impact"} ·{" "}
+              <span className="normal-case">
+                {mode === "installs" ? "top → bottom: resolve order" : "top → bottom: blast radius"}
+              </span>
+            </span>
+            {propIds.length > 0 ? (
+              <fieldset className={flowSegmentedClassName}>
+                <legend className="sr-only">Canvas details</legend>
+                <CanvasToggle
+                  pressed={showProps}
+                  onPressedChange={setShowProps}
+                  icon={SlidersHorizontalIcon}
+                  label="Props"
+                  count={propIds.length}
+                />
+                <CanvasToggle
+                  pressed={allExpanded}
+                  onPressedChange={setAllExpanded}
+                  disabled={!showProps}
+                  icon={ListTreeIcon}
+                  label="Options"
+                  count={optionCount}
+                />
+              </fieldset>
+            ) : null}
+          </div>
+          <div className="min-h-0 flex-1 bg-muted/30">
+            <FlowChainHotContext value={hot}>
+              <FlowPropToggleContext value={toggleProp}>
+                <ReactFlow
+                  key={`${selected}-${mode}-${propsShown}`}
+                  {...flowCanvasDefaults}
+                  nodes={nodes}
+                  edges={edges}
+                  nodeTypes={nodeTypes}
+                  edgeTypes={edgeTypes}
+                  colorMode={colorMode}
+                  fitView
+                  fitViewOptions={{
+                    padding: { top: "24px", bottom: "24px", x: "24px" },
+                    maxZoom: 1,
+                  }}
+                  onNodeMouseEnter={(_, node) => {
+                    const id = node.type === "prop" ? node.data.owner : node.id;
+
+                    setHot(id);
+                    setPreviewName(graph.items.has(id) ? id : null);
+                  }}
+                  onNodeMouseLeave={() => {
+                    setHot(null);
+                    setPreviewName(null);
+                  }}
+                  onNodeClick={(_, node) => {
+                    if (
+                      node.type === "chain" &&
+                      node.data.target &&
+                      node.data.target !== selected
+                    ) {
+                      onSelect(node.data.target);
+                    }
+                  }}
+                >
+                  <Background gap={20} size={1.2} color="var(--border)" />
+                  <Controls position="bottom-right" showInteractive={false} />
+                </ReactFlow>
+              </FlowPropToggleContext>
+            </FlowChainHotContext>
+          </div>
         </section>
       </div>
     </div>
+  );
+}
+
+type CanvasToggleProps = {
+  pressed: boolean;
+  onPressedChange: (pressed: boolean) => void;
+  icon: LucideIcon;
+  label: string;
+  count: number;
+  disabled?: boolean;
+};
+
+function CanvasToggle({
+  pressed,
+  onPressedChange,
+  icon: Icon,
+  label,
+  count,
+  disabled = false,
+}: CanvasToggleProps) {
+  return (
+    <button
+      type="button"
+      aria-pressed={pressed && !disabled}
+      disabled={disabled}
+      onClick={() => onPressedChange(!pressed)}
+      className={flowSegmentClassName}
+    >
+      <Icon className="size-3" strokeWidth={1.75} />
+      {label}
+      <span className="font-mono font-normal text-muted-foreground">{count}</span>
+    </button>
   );
 }
 

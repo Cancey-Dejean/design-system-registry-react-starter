@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 
 import { parseDocsPageMetadataSource, parseDocsPageSource } from "./src/lib/docs/catalog-core.ts";
 import { parseRegistryFlowItem } from "./src/lib/registry/flow-data.ts";
+import { getRegistryItemApi } from "./src/lib/registry/flow-props.ts";
 import { getDefaultRegistryTitle } from "./src/lib/registry/item-title.ts";
 import {
   parseRegistryMdxDocument,
@@ -99,7 +100,7 @@ const registryFlowItems = defineCollection({
     const path = getSourcePath("registry/items", document);
     const { content: _content, _meta: _ignoredMeta, ...metadata } = document;
 
-    return parseRegistryFlowItem(path, metadata);
+    return parseRegistryFlowItem(path, metadata, getRegistryItemApi);
   },
 });
 

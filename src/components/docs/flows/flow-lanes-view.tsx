@@ -14,7 +14,11 @@ import { cn } from "@/lib/utils";
 
 import {
   flowCanvasDefaults,
+  flowSegmentClassName,
+  flowSegmentedClassName,
   flowSidebarScrollClassName,
+  flowToolbarClassName,
+  flowToolbarLabelClassName,
   getFlowEdgeStyle,
   type FlowViewProps,
 } from "./flow-canvas";
@@ -276,9 +280,9 @@ export function FlowLanesView({ graph, selected, onSelect, colorMode, header }: 
           <span>Registry items</span>
           <span>{visibleNames.length}</span>
         </div>
-        <div className="flex flex-wrap gap-x-3 gap-y-1 px-1 text-xs text-muted-foreground">
+        <div className="no-scrollbar flex min-w-0 shrink-0 scroll-fade-x gap-3 overflow-x-auto overscroll-x-contain px-1 text-xs whitespace-nowrap text-muted-foreground [--scroll-fade-reveal:1px]">
           {(["shared", "composite", "standalone"] as const).map((role) => (
-            <span key={role} className="inline-flex items-center gap-1.5 capitalize">
+            <span key={role} className="inline-flex flex-none items-center gap-1.5 capitalize">
               <span className={cn("size-1.5 rounded-full", roleDotClassNames[role])} />
               {role}
             </span>
@@ -349,11 +353,11 @@ export function FlowLanesView({ graph, selected, onSelect, colorMode, header }: 
         </section>
 
         <section className="overflow-hidden rounded-xl border bg-card">
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b px-4 py-2.5">
-            <span className="font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
+          <div className={flowToolbarClassName}>
+            <span className={flowToolbarLabelClassName}>
               How it flows · <span className="normal-case">click an item to trace it</span>
             </span>
-            <fieldset className="inline-flex gap-0.5 rounded-lg border p-0.5">
+            <fieldset className={flowSegmentedClassName}>
               <legend className="sr-only">Direction</legend>
               {directionOptions.map((option) => (
                 <button
@@ -361,7 +365,7 @@ export function FlowLanesView({ graph, selected, onSelect, colorMode, header }: 
                   type="button"
                   aria-pressed={direction === option.value}
                   onClick={() => setDirection(option.value)}
-                  className="rounded-md px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground aria-pressed:bg-muted aria-pressed:font-medium aria-pressed:text-foreground"
+                  className={flowSegmentClassName}
                 >
                   {option.label}
                 </button>

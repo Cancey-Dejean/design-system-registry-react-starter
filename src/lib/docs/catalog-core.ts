@@ -93,6 +93,7 @@ function parseDocsPageMetadata(
       title,
       description,
       order: frontmatter.order ?? 0,
+      hasToc: getDocsToc(root).length > 0,
       ...(group ? { group } : {}),
       ...(frontmatter.audience ? { audience: frontmatter.audience } : {}),
     },

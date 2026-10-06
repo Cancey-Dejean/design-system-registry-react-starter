@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -45,6 +45,44 @@ function matchNodeExternalConditions(): Plugin {
           );
         }
       },
+    },
+  };
+}
+
+// @tailwindcss/vite treats every `*.css?*` import as a stylesheet, including
+// `?raw`. Registry CSS then bundles as an empty string, so the published
+// styles item ships without its file contents.
+function registryItemCssRaw(): Plugin {
+  const prefix = "\0registry-item-css:";
+
+  return {
+    name: "registry-item-css-raw",
+    enforce: "pre",
+    resolveId(source, importer) {
+      const [filePath, query] = source.split("?");
+
+      if (!filePath?.endsWith(".css") || !query?.split("&").includes("raw")) {
+        return undefined;
+      }
+
+      const absolutePath = path.isAbsolute(filePath)
+        ? filePath
+        : path.resolve(path.dirname(importer ?? dirname), filePath);
+
+      if (!absolutePath.includes(`${path.sep}registry${path.sep}items${path.sep}`)) {
+        return undefined;
+      }
+
+      return `${prefix}${absolutePath}.js`;
+    },
+    load(id) {
+      if (!id.startsWith(prefix)) {
+        return undefined;
+      }
+
+      const filePath = id.slice(prefix.length, -".js".length);
+
+      return `export default ${JSON.stringify(readFileSync(filePath, "utf8"))}`;
     },
   };
 }
@@ -213,6 +251,7 @@ const config = defineConfig({
       include: ["**/registry/docs/*.{md,mdx}", "**/registry/items/**/_registry.mdx"],
       remarkPlugins: [remarkFrontmatter, remarkGfm],
     }),
+    registryItemCssRaw(),
     tailwindcss(),
     ...(process.env.VITEST === "true"
       ? []

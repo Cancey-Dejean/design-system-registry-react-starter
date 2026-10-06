@@ -9,6 +9,7 @@ export type DocsPageMetadata = {
   title: string;
   description: string;
   order: number;
+  hasToc: boolean;
   group?: string;
   /** Set when the page is not for projects that install from the registry. */
   audience?: DocsAudience;

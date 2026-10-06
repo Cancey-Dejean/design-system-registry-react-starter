@@ -79,6 +79,11 @@ Use this page first.
     expect(getDocsPage("installation")).not.toHaveProperty("audience");
   });
 
+  test("records whether a docs page has an on-this-page list", () => {
+    expect(getDocsPage("agents")?.hasToc).toBe(false);
+    expect(getDocsPage("theming")?.hasToc).toBe(true);
+  });
+
   test("extracts nested heading toc from markdown body", () => {
     const page = parseDocsPageSource(
       "registry/docs/installation.mdx",

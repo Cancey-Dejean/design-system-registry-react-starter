@@ -6,6 +6,7 @@ import { DocsLayout } from "@/components/docs/docs-layout";
 import { useServerComponentsReady } from "@/hooks/use-server-components-ready";
 
 import { getDocsPageDetail } from "../lib/docs/detail.functions";
+import { getSiteNavigationSection } from "../lib/navigation";
 import { getMarkdownAlternatePath, getSeoHead, getTechArticleJsonLd } from "../lib/seo";
 import { siteConfig } from "../lib/site-config";
 
@@ -53,7 +54,12 @@ export const Route = createFileRoute("/docs/$slug")({
 });
 
 function DocsSlugPendingRoute() {
-  return <ContentSkeleton />;
+  const { slug } = Route.useParams();
+  const page = getSiteNavigationSection("docs").items.find(
+    (item) => item.kind === "docs" && item.slug === slug,
+  );
+
+  return <ContentSkeleton toc={page?.kind === "docs" ? page.hasToc : true} />;
 }
 
 function DocsSlugRoute() {

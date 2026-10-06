@@ -494,26 +494,6 @@ export function FlowChainView({ graph, selected, onSelect, colorMode, header }: 
           </p>
         </div>
 
-        <fieldset className="inline-flex self-start rounded-lg border p-0.5">
-          <legend className="sr-only">Flow direction</legend>
-          {(
-            [
-              ["installs", "What it installs"],
-              ["dependents", "What depends on it"],
-            ] as const
-          ).map(([value, label]) => (
-            <button
-              key={value}
-              type="button"
-              aria-pressed={mode === value}
-              onClick={() => setMode(value)}
-              className="rounded-md px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground aria-pressed:bg-muted aria-pressed:font-medium aria-pressed:text-foreground"
-            >
-              {label}
-            </button>
-          ))}
-        </fieldset>
-
         {mode === "installs" ? <DocsInstallCommand name={selected} className="my-0" /> : null}
 
         <dl className="grid grid-cols-3 divide-x overflow-hidden rounded-lg border">
@@ -622,26 +602,47 @@ export function FlowChainView({ graph, selected, onSelect, colorMode, header }: 
                 {mode === "installs" ? "top → bottom: resolve order" : "top → bottom: blast radius"}
               </span>
             </span>
-            {propIds.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-2">
               <fieldset className={flowSegmentedClassName}>
-                <legend className="sr-only">Canvas details</legend>
-                <CanvasToggle
-                  pressed={showProps}
-                  onPressedChange={setShowProps}
-                  icon={SlidersHorizontalIcon}
-                  label="Props"
-                  count={propIds.length}
-                />
-                <CanvasToggle
-                  pressed={allExpanded}
-                  onPressedChange={setAllExpanded}
-                  disabled={!showProps}
-                  icon={ListTreeIcon}
-                  label="Options"
-                  count={optionCount}
-                />
+                <legend className="sr-only">Flow direction</legend>
+                {(
+                  [
+                    ["installs", "What it installs"],
+                    ["dependents", "What depends on it"],
+                  ] as const
+                ).map(([value, label]) => (
+                  <button
+                    key={value}
+                    type="button"
+                    aria-pressed={mode === value}
+                    onClick={() => setMode(value)}
+                    className={flowSegmentClassName}
+                  >
+                    {label}
+                  </button>
+                ))}
               </fieldset>
-            ) : null}
+              {propIds.length > 0 ? (
+                <fieldset className={flowSegmentedClassName}>
+                  <legend className="sr-only">Canvas details</legend>
+                  <CanvasToggle
+                    pressed={showProps}
+                    onPressedChange={setShowProps}
+                    icon={SlidersHorizontalIcon}
+                    label="Props"
+                    count={propIds.length}
+                  />
+                  <CanvasToggle
+                    pressed={allExpanded}
+                    onPressedChange={setAllExpanded}
+                    disabled={!showProps}
+                    icon={ListTreeIcon}
+                    label="Options"
+                    count={optionCount}
+                  />
+                </fieldset>
+              ) : null}
+            </div>
           </div>
           <div className="min-h-0 flex-1 bg-muted/30">
             <FlowChainHotContext value={hot}>

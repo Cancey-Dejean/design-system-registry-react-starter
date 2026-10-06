@@ -11,7 +11,7 @@ export type { DocsPage } from "./catalog-core";
 
 export type DocsNavigationItem = Pick<
   DocsPage,
-  "title" | "description" | "slug" | "routePath" | "group" | "audience"
+  "title" | "description" | "slug" | "routePath" | "group" | "audience" | "hasToc"
 >;
 
 export type DocsNavigationSection = {
@@ -61,5 +61,6 @@ function toDocsNavigationItem(page: DocsPage): DocsNavigationItem {
     routePath: page.routePath,
     ...(page.group ? { group: page.group } : {}),
     ...(page.audience ? { audience: page.audience } : {}),
+    hasToc: page.hasToc,
   };
 }

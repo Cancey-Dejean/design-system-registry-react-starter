@@ -53,7 +53,7 @@ export const Route = createFileRoute("/docs/")({
 });
 
 function DocsIndexPendingRoute() {
-  return <ContentSkeleton />;
+  return <ContentSkeleton toc={false} />;
 }
 
 function DocsIndexRoute() {

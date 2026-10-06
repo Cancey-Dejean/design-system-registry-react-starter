@@ -2,11 +2,7 @@ import { IconChevronRight } from "@tabler/icons-react";
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
 import * as React from "react";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   SidebarGroup,
   SidebarMenu,
@@ -43,6 +39,16 @@ export function DocsSidebarNav() {
             onNavigate={closeMobile}
           />
         ))}
+        <SidebarMenuItem>
+          <SidebarMenuButton
+            className="font-medium"
+            isActive={pathname === "/flows"}
+            render={<Link to="/flows" />}
+            onClick={closeMobile}
+          >
+            <span>Component flows</span>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>
   );
@@ -58,9 +64,7 @@ function SidebarSection({
   onNavigate: () => void;
 }) {
   const isIndexActive = pathname === section.basePath;
-  const hasActiveItem = section.items.some(
-    (item) => item.routePath === pathname,
-  );
+  const hasActiveItem = section.items.some((item) => item.routePath === pathname);
   const shouldOpen = isIndexActive || hasActiveItem;
 
   return (
@@ -70,16 +74,10 @@ function SidebarSection({
         defaultOpen={shouldOpen}
         className="group/collapsible"
       >
-        <SectionMenuButton
-          section={section}
-          isActive={isIndexActive}
-          onNavigate={onNavigate}
-        />
+        <SectionMenuButton section={section} isActive={isIndexActive} onNavigate={onNavigate} />
         {section.items.length > 0 ? (
           <>
-            <CollapsibleTrigger
-              render={<SidebarMenuAction className="aria-expanded:rotate-90" />}
-            >
+            <CollapsibleTrigger render={<SidebarMenuAction className="aria-expanded:rotate-90" />}>
               <IconChevronRight />
               <span className="sr-only">Toggle {section.title}</span>
             </CollapsibleTrigger>
@@ -87,11 +85,7 @@ function SidebarSection({
               <SidebarMenuSub>
                 {section.items.map((item) => (
                   <SidebarMenuSubItem key={itemKey(item)}>
-                    <ItemMenuButton
-                      item={item}
-                      pathname={pathname}
-                      onNavigate={onNavigate}
-                    />
+                    <ItemMenuButton item={item} pathname={pathname} onNavigate={onNavigate} />
                   </SidebarMenuSubItem>
                 ))}
               </SidebarMenuSub>
@@ -169,11 +163,7 @@ function ItemMenuButton({
   if (item.kind === "docs") {
     if (!item.slug) {
       return (
-        <SidebarMenuSubButton
-          isActive={isActive}
-          render={<Link to="/docs" />}
-          onClick={onNavigate}
-        >
+        <SidebarMenuSubButton isActive={isActive} render={<Link to="/docs" />} onClick={onNavigate}>
           <span>{item.title}</span>
         </SidebarMenuSubButton>
       );
@@ -193,12 +183,7 @@ function ItemMenuButton({
   return (
     <SidebarMenuSubButton
       isActive={isActive}
-      render={
-        <Link
-          to="/$section/$name"
-          params={{ section: item.sectionId, name: item.name }}
-        />
-      }
+      render={<Link to="/$section/$name" params={{ section: item.sectionId, name: item.name }} />}
       onClick={onNavigate}
     >
       <span>{item.title}</span>

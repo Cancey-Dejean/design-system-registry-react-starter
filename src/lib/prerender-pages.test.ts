@@ -35,6 +35,7 @@ describe("prerender pages", () => {
         "/docs/getting-started.md",
         "/registry",
         "/registry.md",
+        "/flows",
         "/components",
         "/components.md",
         "/components/alpha-card",

@@ -2,6 +2,7 @@ import { defineCollection, defineConfig, defineParser } from "@content-collectio
 import { z } from "zod/v4";
 
 import { parseDocsPageMetadataSource, parseDocsPageSource } from "./src/lib/docs/catalog-core.ts";
+import { parseRegistryFlowItem } from "./src/lib/registry/flow-data.ts";
 import { getDefaultRegistryTitle } from "./src/lib/registry/item-title.ts";
 import {
   parseRegistryMdxDocument,
@@ -89,6 +90,19 @@ const registryNavigationItems = defineCollection({
   },
 });
 
+const registryFlowItems = defineCollection({
+  name: "registryFlowItems",
+  directory: "registry/items",
+  include: "**/_registry.mdx",
+  schema: registryMdxSchema,
+  transform: (document) => {
+    const path = getSourcePath("registry/items", document);
+    const { content: _content, _meta: _ignoredMeta, ...metadata } = document;
+
+    return parseRegistryFlowItem(path, metadata);
+  },
+});
+
 const registryPreviews = defineCollection({
   name: "registryPreviews",
   directory: "registry/items",
@@ -107,6 +121,7 @@ export default defineConfig({
     docsNavigationItems,
     registryMdxItems,
     registryNavigationItems,
+    registryFlowItems,
     registryPreviews,
   ],
 });

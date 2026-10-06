@@ -60,6 +60,7 @@ export function createPrerenderPages({
 
   addPath(registryCatalog.basePath);
   addPath(getDocsMarkdownPath(registryCatalog.basePath));
+  addPath("/flows");
 
   for (const section of getRegistrySectionsWithItems(registryItems)) {
     addPath(section.basePath);

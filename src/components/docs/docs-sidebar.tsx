@@ -177,7 +177,7 @@ function ItemMenuButton({
         onClick={onNavigate}
       >
         <span className="min-w-0 truncate">{item.title}</span>
-        {item.audience === "maintainers" ? <MaintainersBadge /> : null}
+        {item.audience === "maintainers" ? <MaintainersBadge /> : <DevBadge />}
       </SidebarMenuSubButton>
     );
   }
@@ -202,6 +202,18 @@ function HookBadge() {
       className="ml-auto size-4.5 justify-center bg-amber-500/15 px-0 font-mono text-[10px] font-semibold text-amber-700 dark:text-amber-300"
     >
       H
+    </Badge>
+  );
+}
+
+function DevBadge() {
+  return (
+    <Badge
+      variant="outline"
+      title="For developers and consumers of the registry"
+      className="ml-auto h-4.5 px-1.5 font-mono text-[10px] font-normal tracking-wide text-muted-foreground uppercase"
+    >
+      Dev
     </Badge>
   );
 }

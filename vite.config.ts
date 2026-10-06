@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -15,13 +16,45 @@ import { playwright } from "@vitest/browser-playwright";
 import { nitro } from "nitro/vite";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
-import { defineConfig } from "vite-plus";
+import { defineConfig, type Plugin } from "vite-plus";
 
 import { getPrerenderPages } from "./src/lib/prerender-pages.ts";
 import { shouldExcludeFromSitemap } from "./src/lib/seo.ts";
 import { siteConfig } from "./src/lib/site-config.ts";
 const dirname =
   typeof __dirname !== "undefined" ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+
+// Nitro adds `development` to the external conditions of server environments,
+// but Node resolves the imports inside externalized packages without it. A
+// package reached both ways then loads twice: seroval's dev build from Vite and
+// its production build through @tanstack/router-core and seroval-plugins. The
+// two Stream classes fail `instanceof` and break streamed server function
+// results on client-side navigation.
+function matchNodeExternalConditions(): Plugin {
+  return {
+    name: "match-node-external-conditions",
+    apply: "serve",
+    configEnvironment: {
+      order: "post",
+      handler(name, config) {
+        const conditions = config.resolve?.externalConditions;
+        const consumer = config.consumer ?? (name === "client" ? "client" : "server");
+        if (consumer === "server" && conditions) {
+          config.resolve!.externalConditions = conditions.filter(
+            (condition) => condition !== "development",
+          );
+        }
+      },
+    },
+  };
+}
+
+// Vitest only reads the generated collections. Regenerating them on every test
+// run rewrites files the dev server watches, and editor test runners that
+// restart often turn that into a constant reload loop.
+const shouldGenerateContentCollections =
+  process.env.VITEST !== "true" ||
+  !existsSync(path.join(dirname, ".content-collections/generated/index.js"));
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 
@@ -136,9 +169,11 @@ const config = defineConfig({
     },
   },
   // RSC serialization and the SSR serializer must share one RawStream
-  // class. Separate server chunks otherwise fail `instanceof` and 500.
+  // class, and one seroval instance for streamed server function results.
+  // Separate copies otherwise fail `instanceof` checks and 500.
+  // see `matchNodeExternalConditions`.
   ssr: {
-    external: ["@tanstack/router-core"],
+    external: ["@tanstack/router-core", "seroval", "seroval-plugins"],
   },
   server: {
     watch: {
@@ -171,8 +206,9 @@ const config = defineConfig({
     ],
   },
   plugins: [
+    matchNodeExternalConditions(),
     devtools(),
-    contentCollections(),
+    ...(shouldGenerateContentCollections ? [contentCollections()] : []),
     createMdx({
       include: ["**/registry/docs/*.{md,mdx}", "**/registry/items/**/_registry.mdx"],
       remarkPlugins: [remarkFrontmatter, remarkGfm],

@@ -3,6 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { AuthoredDocsPage } from "@/components/docs/authored-docs-page";
 import { ContentSkeleton } from "@/components/docs/content-skeleton";
 import { DocsLayout } from "@/components/docs/docs-layout";
+import { useServerComponentsReady } from "@/hooks/use-server-components-ready";
 
 import { getDocsPageDetail } from "../lib/docs/detail.functions";
 import { getMarkdownAlternatePath, getSeoHead, getTechArticleJsonLd } from "../lib/seo";
@@ -57,6 +58,7 @@ function DocsIndexPendingRoute() {
 
 function DocsIndexRoute() {
   const { page } = Route.useLoaderData();
+  useServerComponentsReady(page.content);
 
   return (
     <DocsLayout>

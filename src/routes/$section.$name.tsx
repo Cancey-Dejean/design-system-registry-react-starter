@@ -3,6 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { RegistryItemDoc } from "@/components/docs/component-doc";
 import { ContentSkeleton } from "@/components/docs/content-skeleton";
 import { DocsLayout } from "@/components/docs/docs-layout";
+import { useServerComponentsReady } from "@/hooks/use-server-components-ready";
 
 import { registryNavigationItems } from "../lib/registry/catalog-navigation";
 import { getRegistryItemDetail } from "../lib/registry/detail.functions";
@@ -75,6 +76,7 @@ function RegistrySectionItemPendingRoute() {
 
 function RegistrySectionItemRoute() {
   const item = Route.useLoaderData();
+  useServerComponentsReady(item.preview, item.usage);
 
   return (
     <DocsLayout>

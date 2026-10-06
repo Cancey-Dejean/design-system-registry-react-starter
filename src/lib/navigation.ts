@@ -30,6 +30,7 @@ type RegistryNavigationItem = {
   title: string;
   name: string;
   description: string;
+  type: RegistryNavigationSourceItem["type"];
   sectionId: RegistrySectionId;
   routePath: string;
 };
@@ -234,6 +235,7 @@ function toRegistryNavigationItem(item: RegistryNavigationSourceItem): RegistryN
     title: item.title,
     name: item.name,
     description: item.description,
+    type: item.type,
     sectionId: getRegistrySectionIdForType(item.type),
     routePath: getRegistryItemRoutePath(item),
   };

@@ -83,7 +83,7 @@ function SidebarSection({
               <span className="sr-only">Toggle {section.title}</span>
             </CollapsibleTrigger>
             <CollapsibleContent>
-              <SidebarMenuSub>
+              <SidebarMenuSub className="mr-0 pr-0">
                 {section.items.map((item) => (
                   <SidebarMenuSubItem key={itemKey(item)}>
                     <ItemMenuButton item={item} pathname={pathname} onNavigate={onNavigate} />
@@ -188,8 +188,21 @@ function ItemMenuButton({
       render={<Link to="/$section/$name" params={{ section: item.sectionId, name: item.name }} />}
       onClick={onNavigate}
     >
-      <span>{item.title}</span>
+      <span className="min-w-0 truncate">{item.title}</span>
+      {item.type === "registry:hook" ? <HookBadge /> : null}
     </SidebarMenuSubButton>
+  );
+}
+
+function HookBadge() {
+  return (
+    <Badge
+      title="Hook"
+      aria-label="Hook"
+      className="ml-auto size-4.5 justify-center bg-amber-500/15 px-0 font-mono text-[10px] font-semibold text-amber-700 dark:text-amber-300"
+    >
+      H
+    </Badge>
   );
 }
 

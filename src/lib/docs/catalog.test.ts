@@ -51,6 +51,34 @@ Use this page first.
     });
   });
 
+  test("parses a maintainers audience and omits it by default", () => {
+    const maintainersPage = parseDocsPageSource(
+      "registry/docs/authoring.mdx",
+      "---\ntitle: Authoring\naudience: maintainers\n---\n\nBody.\n",
+    );
+    const consumerPage = parseDocsPageSource(
+      "registry/docs/usage.mdx",
+      "---\ntitle: Usage\n---\n\nBody.\n",
+    );
+
+    expect(maintainersPage?.audience).toBe("maintainers");
+    expect(consumerPage).not.toHaveProperty("audience");
+  });
+
+  test("rejects unsupported docs audiences", () => {
+    expect(() =>
+      parseDocsPageSource(
+        "registry/docs/authoring.mdx",
+        "---\ntitle: Authoring\naudience: everyone\n---\n\nBody.\n",
+      ),
+    ).toThrow(/unsupported audience "everyone"/u);
+  });
+
+  test("marks the registry authoring page for maintainers", () => {
+    expect(getDocsPage("registry")?.audience).toBe("maintainers");
+    expect(getDocsPage("installation")).not.toHaveProperty("audience");
+  });
+
   test("extracts nested heading toc from markdown body", () => {
     const page = parseDocsPageSource(
       "registry/docs/installation.mdx",

@@ -53,7 +53,7 @@ Use **Vite+**: `vp install`, `vp dev`, `vp build`, `vp test`
 - Routes: `src/routes/`; do not edit `src/routeTree.gen.ts` by hand.
 - Registry site config: `registry/config.ts` controls public copy, links, registry name, namespace, homepage, and repository URL.
 - Registry URL helpers and route path policy stay in `src/lib/site-config.ts`.
-- Authored docs: direct `registry/docs/*.mdx` or `registry/docs/*.md` files with optional `title`, `description`, `order`, and `group` frontmatter. Nested docs pages are not supported yet.
+- Authored docs: direct `registry/docs/*.mdx` or `registry/docs/*.md` files with optional `title`, `description`, `order`, `group`, and `audience` frontmatter. Set `audience: maintainers` on pages for registry maintainers rather than consuming projects; the sidebar shows a Maintainers badge. Nested docs pages are not supported yet.
 - Registry item docs and metadata live in `registry/items/**/_registry.mdx`; interactive previews live in sibling `_preview.tsx` files.
 - If a component uses `cva` from `class-variance-authority`, put it in a colocated `<name>.variants.ts` file. Follow `registry/items/components/button/button.variants.ts` and the Component Variants section in `registry/docs/registry.mdx`.
 - Registry catalog: `src/lib/registry/catalog.ts`; JSON output: `src/lib/registry/json.server.ts`.

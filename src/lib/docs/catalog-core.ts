@@ -10,18 +10,19 @@ import {
   parseYamlFrontmatterObject,
   type MdxAstNode,
 } from "../content/mdx.ts";
-import type { DocsPageMetadata } from "./catalog-metadata.ts";
+import { docsAudiences, type DocsAudience, type DocsPageMetadata } from "./catalog-metadata.ts";
 import { docsMdxComponentNames, docsMdxComponentNameSet } from "./mdx-components.ts";
 import { getDocsToc, type DocsTocLink } from "./toc.ts";
 
 export { getSortedDocsPages } from "./catalog-metadata.ts";
-export type { DocsPageMetadata } from "./catalog-metadata.ts";
+export type { DocsAudience, DocsPageMetadata } from "./catalog-metadata.ts";
 
 type DocsFrontmatter = {
   title?: string;
   description?: string;
   order?: number;
   group?: string;
+  audience?: DocsAudience;
 };
 
 export type DocsPage = DocsPageMetadata & {
@@ -93,6 +94,7 @@ function parseDocsPageMetadata(
       description,
       order: frontmatter.order ?? 0,
       ...(group ? { group } : {}),
+      ...(frontmatter.audience ? { audience: frontmatter.audience } : {}),
     },
   };
 }
@@ -143,7 +145,24 @@ function parseDocsFrontmatter(path: string, frontmatter: string): DocsFrontmatte
     description: getOptionalStringField(diagnostic, value, "description"),
     order: getOptionalNumberField(diagnostic, value, "order"),
     group: getOptionalStringField(diagnostic, value, "group"),
+    audience: getDocsAudience(path, getOptionalStringField(diagnostic, value, "audience")),
   };
+}
+
+function getDocsAudience(path: string, value: string | undefined): DocsAudience | undefined {
+  if (value === undefined) {
+    return undefined;
+  }
+
+  const audience = docsAudiences.find((candidate) => candidate === value);
+
+  if (!audience) {
+    throw new Error(
+      `Docs page ${path} has unsupported audience "${value}". Use one of: ${docsAudiences.join(", ")}.`,
+    );
+  }
+
+  return audience;
 }
 
 function assertCuratedDocsMdx(path: string, root: MdxAstNode): void {

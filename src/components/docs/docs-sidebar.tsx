@@ -2,6 +2,7 @@ import { IconChevronRight } from "@tabler/icons-react";
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
 import * as React from "react";
 
+import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   SidebarGroup,
@@ -175,7 +176,8 @@ function ItemMenuButton({
         render={<Link to="/docs/$slug" params={{ slug: item.slug }} />}
         onClick={onNavigate}
       >
-        <span>{item.title}</span>
+        <span className="min-w-0 truncate">{item.title}</span>
+        {item.audience === "maintainers" ? <MaintainersBadge /> : null}
       </SidebarMenuSubButton>
     );
   }
@@ -188,6 +190,18 @@ function ItemMenuButton({
     >
       <span>{item.title}</span>
     </SidebarMenuSubButton>
+  );
+}
+
+function MaintainersBadge() {
+  return (
+    <Badge
+      variant="outline"
+      title="For registry maintainers, not projects that install from the registry"
+      className="ml-auto h-4.5 px-1.5 font-mono text-[10px] font-normal tracking-wide text-muted-foreground uppercase"
+    >
+      Maintainers
+    </Badge>
   );
 }
 

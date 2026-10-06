@@ -15,7 +15,7 @@ import {
 
 type DocsNavigationItem = Pick<
   DocsPageMetadata,
-  "title" | "description" | "slug" | "routePath" | "group"
+  "title" | "description" | "slug" | "routePath" | "group" | "audience"
 >;
 
 type DocsNavigationSection = {
@@ -171,6 +171,7 @@ function toDocsNavigationEntry(item: DocsNavigationItem): DocsNavigationEntry {
     slug: item.slug,
     routePath: item.routePath,
     ...(item.group ? { group: item.group } : {}),
+    ...(item.audience ? { audience: item.audience } : {}),
   };
 }
 
@@ -181,6 +182,7 @@ function toDocsNavigationItem(item: DocsPageMetadata): DocsNavigationItem {
     slug: item.slug,
     routePath: item.routePath,
     ...(item.group ? { group: item.group } : {}),
+    ...(item.audience ? { audience: item.audience } : {}),
   };
 }
 

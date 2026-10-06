@@ -1,3 +1,7 @@
+export const docsAudiences = ["maintainers"] as const;
+
+export type DocsAudience = (typeof docsAudiences)[number];
+
 export type DocsPageMetadata = {
   sourcePath: string;
   slug: string;
@@ -6,6 +10,8 @@ export type DocsPageMetadata = {
   description: string;
   order: number;
   group?: string;
+  /** Set when the page is not for projects that install from the registry. */
+  audience?: DocsAudience;
 };
 
 export function getSortedDocsPages<T extends DocsPageMetadata>(pages: readonly T[]): T[] {

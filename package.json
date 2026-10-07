@@ -111,7 +111,7 @@
     "prettier-plugin-tailwindcss": "^0.8.1",
     "storybook": "^10.6.1",
     "tailwindcss": "^4.2.4",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plus": "latest",
     "vitest": "npm:@voidzero-dev/vite-plus-test@latest",

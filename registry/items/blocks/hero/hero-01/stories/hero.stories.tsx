@@ -16,6 +16,6 @@ const meta: Meta<typeof Hero> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Block: Story = {
+export const Block01: Story = {
   render: (args) => <Hero {...args} />,
 };

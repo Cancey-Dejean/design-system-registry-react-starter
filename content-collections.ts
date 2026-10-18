@@ -10,6 +10,10 @@ import {
   parseRegistryMdxMetadataDocument,
   type ParsedRegistryMdx,
 } from "./src/lib/registry/mdx.ts";
+import {
+  getStorybookReference,
+  getStoryRegistryItemName,
+} from "./src/lib/registry/storybook-index.ts";
 
 type SourceDocument = {
   _meta: {
@@ -116,6 +120,20 @@ const registryPreviews = defineCollection({
   }),
 });
 
+const registryStorybookItems = defineCollection({
+  name: "registryStorybookItems",
+  directory: "registry/items",
+  include: "**/*.stories.{js,jsx,mjs,ts,tsx}",
+  parser: sourceParser,
+  schema: sourceSchema,
+  transform: async (document, context) => {
+    const path = getSourcePath("registry/items", document);
+    const reference = getStorybookReference(document.source, path);
+    const itemName = reference ? await getStoryRegistryItemName(path) : undefined;
+    return reference && itemName ? { ...reference, itemName } : context.skip("No registry story.");
+  },
+});
+
 export default defineConfig({
   content: [
     authoredDocs,
@@ -124,9 +142,11 @@ export default defineConfig({
     registryNavigationItems,
     registryFlowItems,
     registryPreviews,
+    registryStorybookItems,
   ],
 });
 
 function getSourcePath(root: string, document: SourceDocument): string {
-  return `${root}/${document._meta.filePath}`.replace(/\\/gu, "/");
+  const { _meta: metadata } = document;
+  return `${root}/${metadata.filePath}`.replace(/\\/gu, "/");
 }

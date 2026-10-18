@@ -226,3 +226,16 @@
     display: none;
   }
 }
+
+/* Isolate published block styles and scale a desktop artboard to each gallery card. */
+.block-gallery-preview {
+  container-type: inline-size;
+  aspect-ratio: 8 / 5;
+}
+.block-gallery-preview iframe {
+  scale: calc(100cqw / 1440px);
+}
+
+body[data-block-preview] {
+  overflow: hidden;
+}

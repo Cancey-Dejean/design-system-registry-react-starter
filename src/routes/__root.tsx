@@ -1,6 +1,13 @@
 import { IconArrowRight, IconHome } from "@tabler/icons-react";
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { HeadContent, Link, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
+import {
+  HeadContent,
+  Link,
+  Outlet,
+  Scripts,
+  createRootRoute,
+  useRouterState,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import { AccentThemeProvider } from "@/components/docs/accent-theme-provider";
@@ -169,14 +176,20 @@ function NotFoundSectionLink({
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const isBlockPreview = useRouterState({
+    select: (state) => state.location.pathname.startsWith("/block-preview/"),
+  });
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body className="font-sans [overflow-wrap:anywhere] tabular-nums antialiased">
+      <body
+        data-block-preview={isBlockPreview || undefined}
+        className="font-sans [overflow-wrap:anywhere] tabular-nums antialiased"
+      >
         {children}
-        {import.meta.env.DEV ? (
+        {import.meta.env.DEV && !isBlockPreview ? (
           <TanStackDevtools
             config={{
               position: "bottom-right",

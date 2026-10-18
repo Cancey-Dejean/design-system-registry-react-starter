@@ -1,5 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 
+import { BlockGallery } from "@/components/docs/block-gallery";
 import { DocsLayout } from "@/components/docs/docs-layout";
 import { RegistryItemList } from "@/components/docs/registry-item-list";
 
@@ -8,6 +9,9 @@ import { getRegistryItemRoutePath, getRegistrySectionWithItems } from "../lib/re
 import { getCollectionPageJsonLd, getMarkdownAlternatePath, getSeoHead } from "../lib/seo";
 
 export const Route = createFileRoute("/$section/")({
+  validateSearch: (search: Record<string, unknown>): { category?: string } => ({
+    category: typeof search.category === "string" ? search.category : undefined,
+  }),
   loader: ({ params }) => {
     const section = getRegistrySectionWithItems(params.section, registryNavigationItems);
 
@@ -50,10 +54,15 @@ export const Route = createFileRoute("/$section/")({
 
 function RegistrySectionRoute() {
   const section = Route.useLoaderData();
+  const { category } = Route.useSearch();
 
   return (
-    <DocsLayout>
-      <RegistryItemList catalog={section} />
+    <DocsLayout showFooter={section.id !== "blocks"}>
+      {section.id === "blocks" ? (
+        <BlockGallery items={section.items} category={category} />
+      ) : (
+        <RegistryItemList catalog={section} />
+      )}
     </DocsLayout>
   );
 }

@@ -23,6 +23,8 @@ import { Route as UtilitiesDotmdRouteImport } from './routes/utilities[.]md'
 import { Route as SectionIndexRouteImport } from './routes/$section.index'
 import { Route as SectionNameRouteImport } from './routes/$section.$name'
 import { Route as SectionChar123nameChar125DotmdRouteImport } from './routes/$section.{$name}[.]md'
+import { Route as BlockPreviewNameRouteImport } from './routes/block-preview.$name'
+import { Route as BlocksHeroRouteImport } from './routes/blocks.hero'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 import { Route as DocsChar123slugChar125DotmdRouteImport } from './routes/docs.{$slug}[.]md'
@@ -103,6 +105,16 @@ const SectionChar123nameChar125DotmdRoute =
     path: '/$section/{$name}.md',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlockPreviewNameRoute = BlockPreviewNameRouteImport.update({
+  id: '/block-preview/$name',
+  path: '/block-preview/$name',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlocksHeroRoute = BlocksHeroRouteImport.update({
+  id: '/blocks/hero',
+  path: '/blocks/hero',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DocsIndexRoute = DocsIndexRouteImport.update({
   id: '/docs/',
   path: '/docs/',
@@ -161,6 +173,8 @@ export interface FileRoutesByFullPath {
   '/utilities.md': typeof UtilitiesDotmdRoute
   '/$section/$name': typeof SectionNameRoute
   '/$section/{$name}.md': typeof SectionChar123nameChar125DotmdRoute
+  '/block-preview/$name': typeof BlockPreviewNameRoute
+  '/blocks/hero': typeof BlocksHeroRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/{$slug}.md': typeof DocsChar123slugChar125DotmdRoute
   '/r/registry.json': typeof RRegistryDotjsonRoute
@@ -185,6 +199,8 @@ export interface FileRoutesByTo {
   '/utilities.md': typeof UtilitiesDotmdRoute
   '/$section/$name': typeof SectionNameRoute
   '/$section/{$name}.md': typeof SectionChar123nameChar125DotmdRoute
+  '/block-preview/$name': typeof BlockPreviewNameRoute
+  '/blocks/hero': typeof BlocksHeroRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/{$slug}.md': typeof DocsChar123slugChar125DotmdRoute
   '/r/registry.json': typeof RRegistryDotjsonRoute
@@ -210,6 +226,8 @@ export interface FileRoutesById {
   '/utilities.md': typeof UtilitiesDotmdRoute
   '/$section/$name': typeof SectionNameRoute
   '/$section/{$name}.md': typeof SectionChar123nameChar125DotmdRoute
+  '/block-preview/$name': typeof BlockPreviewNameRoute
+  '/blocks/hero': typeof BlocksHeroRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/{$slug}.md': typeof DocsChar123slugChar125DotmdRoute
   '/r/registry.json': typeof RRegistryDotjsonRoute
@@ -236,6 +254,8 @@ export interface FileRouteTypes {
     | '/utilities.md'
     | '/$section/$name'
     | '/$section/{$name}.md'
+    | '/block-preview/$name'
+    | '/blocks/hero'
     | '/docs/$slug'
     | '/docs/{$slug}.md'
     | '/r/registry.json'
@@ -260,6 +280,8 @@ export interface FileRouteTypes {
     | '/utilities.md'
     | '/$section/$name'
     | '/$section/{$name}.md'
+    | '/block-preview/$name'
+    | '/blocks/hero'
     | '/docs/$slug'
     | '/docs/{$slug}.md'
     | '/r/registry.json'
@@ -284,6 +306,8 @@ export interface FileRouteTypes {
     | '/utilities.md'
     | '/$section/$name'
     | '/$section/{$name}.md'
+    | '/block-preview/$name'
+    | '/blocks/hero'
     | '/docs/$slug'
     | '/docs/{$slug}.md'
     | '/r/registry.json'
@@ -309,6 +333,8 @@ export interface RootRouteChildren {
   UtilitiesDotmdRoute: typeof UtilitiesDotmdRoute
   SectionNameRoute: typeof SectionNameRoute
   SectionChar123nameChar125DotmdRoute: typeof SectionChar123nameChar125DotmdRoute
+  BlockPreviewNameRoute: typeof BlockPreviewNameRoute
+  BlocksHeroRoute: typeof BlocksHeroRoute
   DocsSlugRoute: typeof DocsSlugRoute
   DocsChar123slugChar125DotmdRoute: typeof DocsChar123slugChar125DotmdRoute
   RRegistryDotjsonRoute: typeof RRegistryDotjsonRoute
@@ -420,6 +446,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SectionChar123nameChar125DotmdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/block-preview/$name': {
+      id: '/block-preview/$name'
+      path: '/block-preview/$name'
+      fullPath: '/block-preview/$name'
+      preLoaderRoute: typeof BlockPreviewNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blocks/hero': {
+      id: '/blocks/hero'
+      path: '/blocks/hero'
+      fullPath: '/blocks/hero'
+      preLoaderRoute: typeof BlocksHeroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/docs/': {
       id: '/docs/'
       path: '/docs'
@@ -493,6 +533,8 @@ const rootRouteChildren: RootRouteChildren = {
   UtilitiesDotmdRoute: UtilitiesDotmdRoute,
   SectionNameRoute: SectionNameRoute,
   SectionChar123nameChar125DotmdRoute: SectionChar123nameChar125DotmdRoute,
+  BlockPreviewNameRoute: BlockPreviewNameRoute,
+  BlocksHeroRoute: BlocksHeroRoute,
   DocsSlugRoute: DocsSlugRoute,
   DocsChar123slugChar125DotmdRoute: DocsChar123slugChar125DotmdRoute,
   RRegistryDotjsonRoute: RRegistryDotjsonRoute,

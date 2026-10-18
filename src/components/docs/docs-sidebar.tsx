@@ -15,6 +15,7 @@ import {
   SidebarMenuSubItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { getBlockCategory } from "@/lib/registry/block-gallery";
 
 import {
   getSiteNavigationSections,
@@ -64,6 +65,8 @@ function SidebarSection({
   pathname: string;
   onNavigate: () => void;
 }) {
+  if (section.id === "blocks")
+    return <BlockSidebarSection section={section} pathname={pathname} onNavigate={onNavigate} />;
   const isIndexActive = pathname === section.basePath;
   const hasActiveItem = section.items.some((item) => item.routePath === pathname);
   const shouldOpen = isIndexActive || hasActiveItem;
@@ -93,6 +96,98 @@ function SidebarSection({
             </CollapsibleContent>
           </>
         ) : null}
+      </Collapsible>
+    </SidebarMenuItem>
+  );
+}
+
+function BlockSidebarSection({
+  section,
+  pathname,
+  onNavigate,
+}: {
+  section: SiteNavigationSection;
+  pathname: string;
+  onNavigate: () => void;
+}) {
+  const searchStr = useRouterState({ select: (state) => state.location.searchStr });
+  const queryCategory = new URLSearchParams(searchStr).get("category");
+  const groups = new Map<string, { id: string; title: string; count: number }>();
+  for (const item of section.items) {
+    if (item.kind !== "registry") continue;
+    const category = getBlockCategory(item.name);
+    const current = groups.get(category.id);
+    groups.set(category.id, { ...category, count: (current?.count ?? 0) + 1 });
+  }
+  const detail = section.items.find((item) => item.routePath === pathname);
+  const activeCategory =
+    pathname === "/blocks/hero"
+      ? "hero"
+      : detail?.kind === "registry"
+        ? getBlockCategory(detail.name).id
+        : pathname === "/blocks"
+          ? queryCategory
+          : null;
+  const isAllActive = pathname === "/blocks" && !queryCategory;
+  const shouldOpen = pathname === "/blocks" || pathname.startsWith("/blocks/");
+  return (
+    <SidebarMenuItem>
+      <Collapsible
+        key={shouldOpen ? "active" : "inactive"}
+        defaultOpen={shouldOpen}
+        className="group/collapsible"
+      >
+        <SectionMenuButton section={section} isActive={isAllActive} onNavigate={onNavigate} />
+        <CollapsibleTrigger render={<SidebarMenuAction className="aria-expanded:rotate-90" />}>
+          <IconChevronRight />
+          <span className="sr-only">Toggle Blocks</span>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <SidebarMenuSub className="mr-0 pr-0">
+            <SidebarMenuSubItem>
+              <SidebarMenuSubButton
+                isActive={isAllActive}
+                render={
+                  <Link
+                    to="/$section"
+                    params={{ section: "blocks" }}
+                    search={{ category: undefined }}
+                  />
+                }
+                onClick={onNavigate}
+              >
+                <span>All blocks</span>
+                <Badge variant="secondary" className="ml-auto">
+                  {section.items.length}
+                </Badge>
+              </SidebarMenuSubButton>
+            </SidebarMenuSubItem>
+            {[...groups.values()].map((category) => (
+              <SidebarMenuSubItem key={category.id}>
+                <SidebarMenuSubButton
+                  isActive={activeCategory === category.id}
+                  render={
+                    category.id === "hero" ? (
+                      <Link to="/blocks/hero" />
+                    ) : (
+                      <Link
+                        to="/$section"
+                        params={{ section: "blocks" }}
+                        search={{ category: category.id }}
+                      />
+                    )
+                  }
+                  onClick={onNavigate}
+                >
+                  <span className="min-w-0 truncate">{category.title}</span>
+                  <Badge variant="secondary" className="ml-auto">
+                    {category.count}
+                  </Badge>
+                </SidebarMenuSubButton>
+              </SidebarMenuSubItem>
+            ))}
+          </SidebarMenuSub>
+        </CollapsibleContent>
       </Collapsible>
     </SidebarMenuItem>
   );

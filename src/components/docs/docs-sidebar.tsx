@@ -162,7 +162,10 @@ function BlockSidebarSection({
                   onClick={onNavigate}
                 >
                   <span className="min-w-0 truncate">{category.title}</span>
-                  <Badge variant="secondary" className="ml-auto">
+                  <Badge
+                    variant="secondary"
+                    className="ml-auto size-5 shrink-0 rounded-full border-border p-0"
+                  >
                     {category.count}
                   </Badge>
                 </SidebarMenuSubButton>
@@ -288,7 +291,7 @@ function DevBadge() {
     <Badge
       variant="outline"
       title="For developers and consumers of the registry"
-      className="ml-auto h-4.5 px-1.5 font-mono text-[10px] font-normal tracking-wide text-muted-foreground uppercase"
+      className="ml-auto h-4.5 border-blue-500/30 bg-blue-500/10 px-1.5 font-mono text-[10px] font-normal tracking-wide text-blue-700 uppercase dark:text-blue-300"
     >
       Dev
     </Badge>
@@ -300,7 +303,7 @@ function MaintainersBadge() {
     <Badge
       variant="outline"
       title="For registry maintainers, not projects that install from the registry"
-      className="ml-auto h-4.5 px-1.5 font-mono text-[10px] font-normal tracking-wide text-muted-foreground uppercase"
+      className="ml-auto h-4.5 border-violet-500/30 bg-violet-500/10 px-1.5 font-mono text-[10px] font-normal tracking-wide text-violet-700 uppercase dark:text-violet-300"
     >
       Maintainers
     </Badge>

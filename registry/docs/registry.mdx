@@ -1,9 +1,16 @@
 ---
 title: Registry
-description: Scaffold and author installable registry items under registry/items.
+description: An AI-ready maintainer workflow for creating, documenting, and validating installable registry items.
 order: 2
 audience: maintainers
 ---
+
+<Callout title="AI-ready for maintainers">
+  Use an AI coding assistant to create registry items, adapt existing components, write previews and
+  Storybook stories, and keep metadata and documentation in sync. This repository provides agent
+  instructions, reusable skills, and noninteractive scaffolding so assistants can follow the same
+  workflow as maintainers.
+</Callout>
 
 Registry items live under `registry/items/**` and can be installed by shadcn-compatible CLIs. Start new items with the scaffold command so the folder, `_registry.mdx`, source file, metadata, and generated registry JSON paths follow the template conventions.
 
@@ -20,6 +27,31 @@ bun --bun ./scripts/new.ts
 <Callout title="Requires Bun">
   [Make sure Bun is installed before running these scripts.](https://bun.com/)
 </Callout>
+
+## Create Items with AI
+
+Open this repository in your AI coding tool and describe the item you want: its behavior, variants, accessibility requirements, and intended install path. Ask the assistant to read `AGENTS.md` and follow the registry authoring skill in `skills/shadcn-registry/SKILL.md`.
+
+For example:
+
+```text
+Create a stats-panel block in this registry using the existing design system.
+Read AGENTS.md and follow skills/shadcn-registry/SKILL.md.
+Scaffold the item noninteractively, implement accessible responsive markup,
+and add usage documentation, a preview, and Storybook stories.
+Keep metadata and dependencies in sync, update the changelog,
+and run the required checks and production build. Report the results.
+```
+
+The AI-assisted workflow follows the same source-of-truth files and checks as manual authoring:
+
+1. **Scaffold:** Use `scripts/new.ts` with explicit flags to create the item under `registry/items/**`.
+2. **Implement:** Build against existing registry patterns and theme tokens, with design review where required by the repository instructions.
+3. **Document:** Update `_registry.mdx`, `_preview.tsx`, and Storybook stories. Use the matching skills for story authoring and metadata synchronization.
+4. **Validate:** Run `vp check --fix` on touched source, `bun run lint`, `bun --bun ./scripts/doctor.ts`, relevant tests, and `vp build`.
+5. **Review:** Inspect the implementation, preview, metadata, and install output before publishing. AI-generated work still needs maintainer review.
+
+The repository skills cover registry authoring, Storybook stories, metadata synchronization, property-based testing, and changelog updates. For tools that need readable documentation context, see [Agents](/docs/agents), [`/llms.txt`](/llms.txt), and [`/llms-full.txt`](/llms-full.txt).
 
 ## Item Types
 

@@ -10,8 +10,13 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ## October 18, 2026
 
-### v1.9.0
+### v1.10.0
 
+- **Docs:** The maintainer Registry guide highlights the AI-ready authoring workflow, with an example prompt, repository skills, and validation steps.
+
+- **Update:** Gallery cards and detail preview panels use the shared `DotCanvas` background with a radial fade that reveals dots toward the edges.
+
+- **New:** `dot-canvas` is a decorative dotted canvas overlay for design surfaces. Use `size` `12`, `20`, or `24` inside a `relative` container.
 - **Fix:** Production builds resolve Shiki core without an unused WebAssembly loader, fixing the Vercel SSR build failure.
 
 - **New:** Registry detail headers link directly to their Storybook stories. Destinations are generated from story metadata and the configured Storybook URL, without per-item links to maintain. Missing stories show a dimmed, disabled action with a “Storybook Needed” hint.

@@ -1,6 +1,7 @@
 import { createCompositeComponent, type AnyCompositeComponent } from "@tanstack/react-start/rsc";
 import type * as React from "react";
 
+import { DotCanvas } from "../../../registry/items/lib/dot-canvas/dot-canvas";
 import { normalizeGlobFiles } from "../glob";
 import { getRegistryItem } from "./catalog";
 import type { RegistryItemDetailInput } from "./detail.types";
@@ -36,9 +37,13 @@ export async function renderRegistryPreview(path: string): Promise<AnyCompositeC
   return createCompositeComponent(() => (
     <div
       data-slot="component-preview"
-      className="grid min-h-72 place-items-center rounded-lg border bg-background p-6"
+      className="relative isolate grid min-h-72 place-items-center rounded-lg border bg-background p-6"
     >
-      <div data-slot="component-preview-stage" className="grid min-h-60 w-full place-items-center">
+      <DotCanvas className="rounded-[inherit] mask-[radial-gradient(ellipse_at_center,transparent_20%,black_85%)]" />
+      <div
+        data-slot="component-preview-stage"
+        className="relative z-1 grid min-h-60 w-full place-items-center"
+      >
         <Preview />
       </div>
     </div>

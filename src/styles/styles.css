@@ -238,6 +238,16 @@
 
 body[data-block-preview] {
   overflow: hidden;
+  background: transparent;
+}
+
+/* Reveal the gallery canvas through the isolated preview document. */
+body[data-block-preview] [data-slot="component-preview"] {
+  background: transparent;
+}
+
+body[data-block-preview] [data-slot="component-preview"] > [aria-hidden] {
+  display: none;
 }
 
 .component-gallery-preview iframe {

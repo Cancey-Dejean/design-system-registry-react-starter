@@ -1,0 +1,28 @@
+---
+name: dot-canvas
+type: registry:lib
+title: Dot Canvas
+description: A decorative dotted canvas overlay for design surfaces and page backgrounds.
+files:
+  - path: dot-canvas.tsx
+    type: registry:lib
+---
+
+Place `DotCanvas` inside a `relative` container. It fills the parent with a dotted grid and ignores
+pointer events, so content above stays interactive.
+
+```tsx
+import { DotCanvas } from "@/lib/dot-canvas";
+
+export function Example() {
+  return (
+    <div className="relative h-48 overflow-hidden rounded-xl border">
+      <DotCanvas />
+      <p className="relative z-10 p-6 text-sm">Content sits above the dots.</p>
+    </div>
+  );
+}
+```
+
+Pass `size` as `12`, `20`, or `24` (default) to change grid pitch. Use `className` for opacity,
+masks, or placement overrides.

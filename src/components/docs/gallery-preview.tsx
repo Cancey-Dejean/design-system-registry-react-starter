@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
+import { DotCanvas } from "../../../registry/items/lib/dot-canvas/dot-canvas";
 import { Skeleton } from "../ui/skeleton";
 
 export function GalleryPreview({
@@ -65,6 +66,7 @@ export function GalleryPreview({
       aria-hidden="true"
       inert
     >
+      <DotCanvas className="mask-[radial-gradient(ellipse_at_center,transparent_20%,black_85%)]" />
       {!ready && (
         <div
           data-preview-loading

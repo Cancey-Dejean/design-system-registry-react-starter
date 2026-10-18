@@ -97,10 +97,8 @@ const blocks = [
 const $ = (selector) => document.querySelector(selector);
 const gallery = $("#gallery");
 const search = $("#search");
-const dialog = $("#detail-dialog");
 let category = "all";
 let heroPage = false;
-let opener;
 function artboard(block) {
   const dashboard =
     '<div class="mini-dashboard"><div class="dashboard-top">Overview　 /　 Your workspace</div><div class="dashboard-stats"><span>24,862</span><span>+18.6%</span><span>1,204</span></div><div class="mini-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>';
@@ -126,7 +124,7 @@ function render() {
   gallery.innerHTML = visible
     .map(
       (block) =>
-        `<li><button class="block-card" data-block="${block.id}" aria-label="Preview ${blockTitle(block)}">${artboard(block)}<div class="card-caption"><div><h2>${blockTitle(block)}</h2><span class="block-badge">${block.category}</span></div><span class="card-arrow" aria-hidden="true"><span class="preview-action">Preview block</span>↗</span></div></button></li>`,
+        `<li><a class="block-card" href="http://localhost:3002/blocks/${block.id}" data-block="${block.id}" aria-label="View ${blockTitle(block)}">${artboard(block)}<div class="card-caption"><div><h2>${blockTitle(block)}</h2><span class="block-badge">${block.category}</span></div><span class="card-arrow" aria-hidden="true"><span class="preview-action">View block</span>↗</span></div></a></li>`,
     )
     .join("");
   $("#empty-state").hidden = visible.length > 0;
@@ -159,6 +157,7 @@ function route() {
   document.body.classList.remove("mobile-menu-open");
   syncMenu();
   render();
+  scrollTo(0, 0);
 }
 function setView(list) {
   $("#main").classList.toggle("list", list);
@@ -186,16 +185,6 @@ $("#reset").addEventListener("click", () => {
   else render();
   search.focus();
 });
-gallery.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-block]");
-  if (!button) return;
-  const block = blocks.find((item) => item.id === button.dataset.block);
-  opener = button;
-  $("#detail-title").textContent = `${blockTitle(block)} · ${block.name}`;
-  $("#detail-preview").innerHTML = artboard(block);
-  dialog.showModal();
-});
-dialog.addEventListener("close", () => opener?.focus());
 $("#menu-toggle").addEventListener("click", () => {
   document.body.classList.toggle(
     matchMedia("(max-width:760px)").matches ? "mobile-menu-open" : "sidebar-collapsed",

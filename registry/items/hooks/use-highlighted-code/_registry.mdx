@@ -1,0 +1,40 @@
+---
+name: use-highlighted-code
+type: registry:hook
+title: Use Highlighted Code
+description: Streams Shiki-highlighted React nodes for a code string and language, including incremental updates.
+localRegistryDependencies:
+  - code-block
+files:
+  - path: use-highlighted-code.ts
+    type: registry:hook
+---
+
+Pass the source string and a language key supported by `code-block`'s highlighter. While the
+highlighter loads, plain text lines are returned; afterward you get one React node per line.
+
+```tsx
+import {
+  CodeBlock,
+  CodeBlockContent,
+  CodeBlockLine,
+} from "@/components/ui/code-block/code-block";
+import { useHighlightedCode } from "@/hooks/use-highlighted-code";
+
+const source = `const greeting = "hello";
+console.log(greeting);`;
+
+export function Example() {
+  const lines = useHighlightedCode(source, "typescript");
+
+  return (
+    <CodeBlock>
+      <CodeBlockContent>
+        {lines.map((line, index) => (
+          <CodeBlockLine key={index}>{line}</CodeBlockLine>
+        ))}
+      </CodeBlockContent>
+    </CodeBlock>
+  );
+}
+```

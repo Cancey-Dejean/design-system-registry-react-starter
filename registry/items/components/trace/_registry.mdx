@@ -1,0 +1,59 @@
+---
+name: trace
+type: registry:ui
+title: Trace
+description: Building blocks for agent steps—reasoning, tool calls, sources, and expandable detail.
+dependencies:
+  - lucide-react
+localRegistryDependencies:
+  - collapsible
+  - shimmer
+files:
+  - path: trace.tsx
+    type: registry:ui
+    target: components/ui/trace/trace.tsx
+---
+
+Use `Trace` for the steps an agent takes. Each `TraceLine` has an icon, title, and optional
+description and status. Wrap a line in `TraceCollapsible` to show more detail when it expands.
+
+```tsx
+import { SearchIcon, TerminalIcon } from "lucide-react";
+
+import {
+  Trace,
+  TraceCollapsible,
+  TraceCollapsibleContent,
+  TraceCollapsibleTrigger,
+  TraceIcon,
+  TraceLine,
+  TraceTitle,
+} from "@/components/ui/trace/trace";
+
+export function Example() {
+  return (
+    <Trace>
+      <TraceLine>
+        <TraceIcon>
+          <SearchIcon />
+        </TraceIcon>
+        <TraceTitle>Searched for minimumReleaseAge</TraceTitle>
+      </TraceLine>
+      <TraceCollapsible>
+        <TraceCollapsibleTrigger>
+          <TraceLine>
+            <TraceIcon>
+              <TerminalIcon />
+            </TraceIcon>
+            <TraceTitle>Ran node --version</TraceTitle>
+          </TraceLine>
+        </TraceCollapsibleTrigger>
+        <TraceCollapsibleContent>v24.18.0</TraceCollapsibleContent>
+      </TraceCollapsible>
+    </Trace>
+  );
+}
+```
+
+Set `status` on `TraceLine` to `running`, `error`, or `pending`. Install `shimmer` so running titles
+animate. Wrap a line in a link or dialog trigger to open detail elsewhere.

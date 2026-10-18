@@ -1,0 +1,57 @@
+---
+name: code-block
+type: registry:ui
+title: Code Block
+description: A composable code panel with header, copy button, line variants, and optional Shiki highlighting.
+dependencies:
+  - class-variance-authority
+  - lucide-react
+  - shiki
+localRegistryDependencies:
+  - button
+  - scroll-fade
+files:
+  - path: code-block.tsx
+    type: registry:ui
+    target: components/ui/code-block/code-block.tsx
+  - path: code-block.variants.ts
+    type: registry:ui
+    target: components/ui/code-block/code-block.variants.ts
+  - path: highlighter.tsx
+    type: registry:ui
+    target: components/ui/code-block/highlighter.tsx
+---
+
+Compose a terminal or source panel with a title, copy action, and content.
+
+```tsx
+import {
+  CodeBlock,
+  CodeBlockActions,
+  CodeBlockContent,
+  CodeBlockCopyButton,
+  CodeBlockHeader,
+  CodeBlockTitle,
+} from "@/components/ui/code-block/code-block";
+
+const output = `$ bun install
+$ bun run build`;
+
+export function Example() {
+  return (
+    <CodeBlock>
+      <CodeBlockHeader>
+        <CodeBlockTitle>Terminal</CodeBlockTitle>
+        <CodeBlockActions>
+          <CodeBlockCopyButton value={output} />
+        </CodeBlockActions>
+      </CodeBlockHeader>
+      <CodeBlockContent>{output}</CodeBlockContent>
+    </CodeBlock>
+  );
+}
+```
+
+Use `variant="destructive"` for error output. Pass `lineNumbers` on `CodeBlockContent` for numbered
+plain text, or pair with `use-highlighted-code` and `CodeBlockLine` for Shiki tokens. Install
+`scroll-fade` so horizontal fade classes apply.

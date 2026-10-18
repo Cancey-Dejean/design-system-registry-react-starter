@@ -6,8 +6,8 @@
     <meta name="color-scheme" content="light dark" />
     <title>Blocks · design-system-ui</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="styles.css?v=readable" />
-    <script src="gallery.js?v=readable" defer></script>
+    <link rel="stylesheet" href="styles.css?v=direct-links" />
+    <script src="gallery.js?v=direct-links" defer></script>
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to gallery</a>
@@ -127,7 +127,7 @@
         </div>
         <div class="results-line flex items-center justify-between gap-3">
           <p id="result-count" role="status" aria-live="polite">9 blocks</p>
-          <span>Preview a block to take a closer look <span aria-hidden="true">↗</span></span>
+          <span>Open a block to explore the details <span aria-hidden="true">↗</span></span>
         </div>
         <ul id="gallery" class="gallery grid gap-5" aria-label="Block variants"></ul>
         <section id="empty-state" class="empty-state" hidden>
@@ -146,21 +146,5 @@
         </footer>
       </main>
     </div>
-    <dialog id="detail-dialog" aria-labelledby="detail-title" aria-describedby="detail-description">
-      <div class="dialog-header flex items-center justify-between gap-4">
-        <div>
-          <p class="eyebrow">BLOCK PREVIEW</p>
-          <h2 id="detail-title"></h2>
-        </div>
-        <form method="dialog">
-          <button class="icon-button" aria-label="Close preview" autofocus>✕</button>
-        </form>
-      </div>
-      <div id="detail-preview"></div>
-      <p id="detail-description" class="dialog-description">
-        Illustrative HTML preview for design approval. Installation and source code will be part of
-        the future React integration.
-      </p>
-    </dialog>
   </body>
 </html>

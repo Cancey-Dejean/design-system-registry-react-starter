@@ -1,0 +1,26 @@
+---
+name: hero-01
+type: registry:block
+title: Hero 01
+description: A full-bleed marketing hero with announcement badge, dual CTAs, and product screenshot.
+dependencies:
+  - lucide-react
+localRegistryDependencies:
+  - button
+  - heading
+  - text
+files:
+  - path: hero.tsx
+    type: registry:block
+    target: components/ui/hero-01/hero.tsx
+---
+
+Use the hero as a landing-page marketing section. It ships with sample copy and images you can replace after install.
+
+```tsx
+import Hero from "@/components/ui/hero-01/hero";
+
+export function Example() {
+  return <Hero />;
+}
+```

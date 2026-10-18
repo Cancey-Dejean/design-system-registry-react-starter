@@ -1,9 +1,10 @@
-import { Button } from "@registry/components/button/button";
-import Heading from "@registry/components/heading/heading";
-import { Text } from "@registry/components/text/text";
 import { ChevronRight } from "lucide-react";
 
-export default function Hero() {
+import { Button } from "../../../components/button/button";
+import Heading from "../../../components/heading/heading";
+import { Text } from "../../../components/text/text";
+
+export default function Hero02() {
   return (
     <div className="relative isolate overflow-hidden bg-white dark:bg-gray-900">
       <svg
@@ -75,16 +76,12 @@ export default function Hero() {
               </span>
             </a>
           </div>
-          <Heading
-            level="h1"
-            size="3xl"
-            className="mt-4 text-gray-900 dark:text-white"
-          >
+          <Heading level="h1" size="3xl" className="mt-4 text-gray-900 dark:text-white">
             Deploy to the cloud with confidence
           </Heading>
           <Text className="mt-3 text-pretty dark:text-gray-400">
-            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-            lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.
+            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat
+            commodo. Elit sunt amet fugiat veniam occaecat.
           </Text>
           <div className="mt-6 flex items-center gap-x-2">
             <Button variant="primary" as="a" href="/#">

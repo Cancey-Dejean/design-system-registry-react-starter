@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import Hero from "../hero";
+import Hero from "..";
 
 const meta: Meta<typeof Hero> = {
   title: "Blocks/Hero",

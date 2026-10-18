@@ -12,6 +12,8 @@ Use this page to publish notable registry updates, new items, breaking changes, 
 
 ### v1.9.0
 
+- **Fix:** Production builds resolve Shiki core without an unused WebAssembly loader, fixing the Vercel SSR build failure.
+
 - **New:** Registry detail headers link directly to their Storybook stories. Destinations are generated from story metadata and the configured Storybook URL, without per-item links to maintain. Missing stories show a dimmed, disabled action with a “Storybook Needed” hint.
 
 - **Fix:** Gallery previews now load only near the viewport, show loading feedback until rendered, and skip source highlighting and usage documentation when fetching preview data.

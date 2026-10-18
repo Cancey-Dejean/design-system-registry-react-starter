@@ -227,6 +227,13 @@ const config = defineConfig({
   resolve: {
     tsconfigPaths: true,
     alias: [
+      // Nitro enables Shiki's `unwasm` export condition during SSR. Our
+      // highlighters configure their engines explicitly, so use the core
+      // package without the unused default WASM loader.
+      {
+        find: /^shiki\/core$/,
+        replacement: "@shikijs/core",
+      },
       // shadcn/schema is compiled against Zod v3 and still calls deepPartial().
       // Keep bare zod imports on the v3 entry even when another dependency
       // hoists Zod v4 to the workspace root. see: https://github.com/shadcn-ui/ui/pull/9311

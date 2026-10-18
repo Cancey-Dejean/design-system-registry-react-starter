@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 
-import { BlockGallery } from "@/components/docs/block-gallery";
+import { RegistryGallery } from "@/components/docs/block-gallery";
 import { DocsLayout } from "@/components/docs/docs-layout";
 import { RegistryItemList } from "@/components/docs/registry-item-list";
 
@@ -57,9 +57,14 @@ function RegistrySectionRoute() {
   const { category } = Route.useSearch();
 
   return (
-    <DocsLayout showFooter={section.id !== "blocks"}>
-      {section.id === "blocks" ? (
-        <BlockGallery items={section.items} category={category} />
+    <DocsLayout showFooter={section.id === "utilities"}>
+      {section.id === "blocks" || section.id === "components" ? (
+        <RegistryGallery
+          key={section.id}
+          items={section.items}
+          category={category}
+          section={section.id}
+        />
       ) : (
         <RegistryItemList catalog={section} />
       )}

@@ -12,40 +12,63 @@ import { Button } from "../ui/button";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "../ui/input-group";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 
-export function BlockGallery({
+export function RegistryGallery({
   items,
   category = "all",
   categoryPage = false,
+  section = "blocks",
 }: {
   items: readonly RegistryNavigationCatalogItem[];
   category?: string;
   categoryPage?: boolean;
+  section?: "blocks" | "components";
 }) {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [view, setView] = useState("grid");
-  const blocks = getBlockGalleryItems(items);
+  const isComponents = section === "components";
+  const noun = isComponents ? "components" : "blocks";
+  const blocks = isComponents
+    ? items
+        .filter((item) => item.type === "registry:ui" || item.type === "registry:component")
+        .map((item) => ({
+          name: item.name,
+          title: item.title,
+          type: item.type,
+          description: item.description,
+          category: { id: "all", title: "Component" },
+        }))
+    : getBlockGalleryItems(items);
   const categories = [...new Map(blocks.map((item) => [item.category.id, item.category])).values()];
   const selected = categories.find((item) => item.id === category);
   const visible = blocks.filter(
     (item) =>
-      (category === "all" || item.category.id === category) &&
+      (isComponents || category === "all" || item.category.id === category) &&
       `${item.title} ${item.name} ${item.category.title} ${item.description}`
         .toLowerCase()
         .includes(query.trim().toLowerCase()),
   );
 
   return (
-    <section className="flex min-w-0 flex-col gap-6 pb-8" aria-label="Block gallery">
+    <section
+      className="flex min-w-0 flex-col gap-6 pb-8"
+      aria-label={isComponents ? "Component gallery" : "Block gallery"}
+    >
       <header className="flex flex-col gap-2">
         <h1 className="font-heading text-3xl font-semibold tracking-tight">
-          {categoryPage && selected ? `${selected.title} blocks` : "Blocks"}
+          {categoryPage && selected
+            ? `${selected.title} blocks`
+            : isComponents
+              ? "Components"
+              : "Blocks"}
         </h1>
         <p className="text-base text-muted-foreground">
-          Composed templates and larger UI sections.
+          {isComponents
+            ? "Installable UI primitives and components."
+            : "Composed templates and larger UI sections."}
         </p>
       </header>
-      {!categoryPage && (
+      {!categoryPage && !isComponents && (
         <Tabs
           value={category}
           onValueChange={(value) => {
@@ -87,8 +110,8 @@ export function BlockGallery({
             </InputGroupAddon>
             <InputGroupInput
               type="search"
-              aria-label="Search blocks"
-              placeholder="Search blocks…"
+              aria-label={`Search ${noun}`}
+              placeholder={`Search ${noun}…`}
               value={query}
               onChange={(event) => setQuery(event.target.value)}
             />
@@ -111,7 +134,7 @@ export function BlockGallery({
         </Tabs>
       </div>
       <output className="sr-only" aria-live="polite">
-        {visible.length} blocks
+        {visible.length} {noun}
       </output>
       <ul
         className={cn(
@@ -123,7 +146,7 @@ export function BlockGallery({
           <li key={item.name} className="min-w-0">
             <Link
               to="/$section/$name"
-              params={{ section: "blocks", name: item.name }}
+              params={{ section, name: item.name }}
               aria-label={`View ${item.title}`}
               className={cn(
                 "group flex min-w-0 flex-col rounded-xl outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
@@ -133,6 +156,7 @@ export function BlockGallery({
               <div
                 className={cn(
                   "block-gallery-preview pointer-events-none relative overflow-hidden rounded-lg border bg-muted/20",
+                  isComponents && "component-gallery-preview",
                   view === "list" && "order-2",
                 )}
                 aria-hidden="true"
@@ -143,7 +167,7 @@ export function BlockGallery({
                   loading="lazy"
                   tabIndex={-1}
                   title={`${item.title} preview`}
-                  src={`/block-preview/${item.name}`}
+                  src={`/${isComponents ? "component-preview" : "block-preview"}/${item.name}`}
                   className="absolute top-0 left-0 h-[900px] w-[1440px] origin-top-left border-0"
                 />
               </div>
@@ -177,13 +201,13 @@ export function BlockGallery({
       </ul>
       {visible.length === 0 && (
         <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed px-6 py-16 text-center">
-          <h2 className="text-lg font-semibold">No blocks found</h2>
+          <h2 className="text-lg font-semibold">No {noun} found</h2>
           <p className="text-sm text-muted-foreground">Try another search or category.</p>
           <Button
             variant="outline"
             onClick={() => {
               setQuery("");
-              if (!categoryPage)
+              if (!categoryPage && !isComponents)
                 void navigate({
                   to: "/$section",
                   params: { section: "blocks" },
@@ -198,3 +222,5 @@ export function BlockGallery({
     </section>
   );
 }
+
+export { RegistryGallery as BlockGallery };

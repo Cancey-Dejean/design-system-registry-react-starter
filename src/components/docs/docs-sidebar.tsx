@@ -144,24 +144,6 @@ function BlockSidebarSection({
         </CollapsibleTrigger>
         <CollapsibleContent>
           <SidebarMenuSub className="mr-0 pr-0">
-            <SidebarMenuSubItem>
-              <SidebarMenuSubButton
-                isActive={isAllActive}
-                render={
-                  <Link
-                    to="/$section"
-                    params={{ section: "blocks" }}
-                    search={{ category: undefined }}
-                  />
-                }
-                onClick={onNavigate}
-              >
-                <span>All blocks</span>
-                <Badge variant="secondary" className="ml-auto">
-                  {section.items.length}
-                </Badge>
-              </SidebarMenuSubButton>
-            </SidebarMenuSubItem>
             {[...groups.values()].map((category) => (
               <SidebarMenuSubItem key={category.id}>
                 <SidebarMenuSubButton

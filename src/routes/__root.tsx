@@ -177,7 +177,9 @@ function NotFoundSectionLink({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   const isBlockPreview = useRouterState({
-    select: (state) => state.location.pathname.startsWith("/block-preview/"),
+    select: (state) =>
+      state.location.pathname.startsWith("/block-preview/") ||
+      state.location.pathname.startsWith("/component-preview/"),
   });
   return (
     <html lang="en" suppressHydrationWarning>

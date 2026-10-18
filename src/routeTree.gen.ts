@@ -25,6 +25,7 @@ import { Route as SectionNameRouteImport } from './routes/$section.$name'
 import { Route as SectionChar123nameChar125DotmdRouteImport } from './routes/$section.{$name}[.]md'
 import { Route as BlockPreviewNameRouteImport } from './routes/block-preview.$name'
 import { Route as BlocksHeroRouteImport } from './routes/blocks.hero'
+import { Route as ComponentPreviewNameRouteImport } from './routes/component-preview.$name'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 import { Route as DocsChar123slugChar125DotmdRouteImport } from './routes/docs.{$slug}[.]md'
@@ -115,6 +116,11 @@ const BlocksHeroRoute = BlocksHeroRouteImport.update({
   path: '/blocks/hero',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComponentPreviewNameRoute = ComponentPreviewNameRouteImport.update({
+  id: '/component-preview/$name',
+  path: '/component-preview/$name',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DocsIndexRoute = DocsIndexRouteImport.update({
   id: '/docs/',
   path: '/docs/',
@@ -175,6 +181,7 @@ export interface FileRoutesByFullPath {
   '/$section/{$name}.md': typeof SectionChar123nameChar125DotmdRoute
   '/block-preview/$name': typeof BlockPreviewNameRoute
   '/blocks/hero': typeof BlocksHeroRoute
+  '/component-preview/$name': typeof ComponentPreviewNameRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/{$slug}.md': typeof DocsChar123slugChar125DotmdRoute
   '/r/registry.json': typeof RRegistryDotjsonRoute
@@ -201,6 +208,7 @@ export interface FileRoutesByTo {
   '/$section/{$name}.md': typeof SectionChar123nameChar125DotmdRoute
   '/block-preview/$name': typeof BlockPreviewNameRoute
   '/blocks/hero': typeof BlocksHeroRoute
+  '/component-preview/$name': typeof ComponentPreviewNameRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/{$slug}.md': typeof DocsChar123slugChar125DotmdRoute
   '/r/registry.json': typeof RRegistryDotjsonRoute
@@ -228,6 +236,7 @@ export interface FileRoutesById {
   '/$section/{$name}.md': typeof SectionChar123nameChar125DotmdRoute
   '/block-preview/$name': typeof BlockPreviewNameRoute
   '/blocks/hero': typeof BlocksHeroRoute
+  '/component-preview/$name': typeof ComponentPreviewNameRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/{$slug}.md': typeof DocsChar123slugChar125DotmdRoute
   '/r/registry.json': typeof RRegistryDotjsonRoute
@@ -256,6 +265,7 @@ export interface FileRouteTypes {
     | '/$section/{$name}.md'
     | '/block-preview/$name'
     | '/blocks/hero'
+    | '/component-preview/$name'
     | '/docs/$slug'
     | '/docs/{$slug}.md'
     | '/r/registry.json'
@@ -282,6 +292,7 @@ export interface FileRouteTypes {
     | '/$section/{$name}.md'
     | '/block-preview/$name'
     | '/blocks/hero'
+    | '/component-preview/$name'
     | '/docs/$slug'
     | '/docs/{$slug}.md'
     | '/r/registry.json'
@@ -308,6 +319,7 @@ export interface FileRouteTypes {
     | '/$section/{$name}.md'
     | '/block-preview/$name'
     | '/blocks/hero'
+    | '/component-preview/$name'
     | '/docs/$slug'
     | '/docs/{$slug}.md'
     | '/r/registry.json'
@@ -335,6 +347,7 @@ export interface RootRouteChildren {
   SectionChar123nameChar125DotmdRoute: typeof SectionChar123nameChar125DotmdRoute
   BlockPreviewNameRoute: typeof BlockPreviewNameRoute
   BlocksHeroRoute: typeof BlocksHeroRoute
+  ComponentPreviewNameRoute: typeof ComponentPreviewNameRoute
   DocsSlugRoute: typeof DocsSlugRoute
   DocsChar123slugChar125DotmdRoute: typeof DocsChar123slugChar125DotmdRoute
   RRegistryDotjsonRoute: typeof RRegistryDotjsonRoute
@@ -460,6 +473,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlocksHeroRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/component-preview/$name': {
+      id: '/component-preview/$name'
+      path: '/component-preview/$name'
+      fullPath: '/component-preview/$name'
+      preLoaderRoute: typeof ComponentPreviewNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/docs/': {
       id: '/docs/'
       path: '/docs'
@@ -535,6 +555,7 @@ const rootRouteChildren: RootRouteChildren = {
   SectionChar123nameChar125DotmdRoute: SectionChar123nameChar125DotmdRoute,
   BlockPreviewNameRoute: BlockPreviewNameRoute,
   BlocksHeroRoute: BlocksHeroRoute,
+  ComponentPreviewNameRoute: ComponentPreviewNameRoute,
   DocsSlugRoute: DocsSlugRoute,
   DocsChar123slugChar125DotmdRoute: DocsChar123slugChar125DotmdRoute,
   RRegistryDotjsonRoute: RRegistryDotjsonRoute,

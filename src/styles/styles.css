@@ -239,3 +239,9 @@
 body[data-block-preview] {
   overflow: hidden;
 }
+
+.component-gallery-preview iframe {
+  width: 720px;
+  height: 450px;
+  scale: calc(100cqw / 720px);
+}

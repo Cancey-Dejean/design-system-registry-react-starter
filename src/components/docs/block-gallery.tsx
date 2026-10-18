@@ -11,6 +11,7 @@ import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "../ui/input-group";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import { GalleryPreview } from "./gallery-preview";
 
 export function RegistryGallery({
   items,
@@ -153,24 +154,12 @@ export function RegistryGallery({
                 view === "grid" && "border p-1 transition-colors hover:border-foreground/30",
               )}
             >
-              <div
-                className={cn(
-                  "block-gallery-preview pointer-events-none relative overflow-hidden rounded-lg border bg-muted/20",
-                  isComponents && "component-gallery-preview",
-                  view === "list" && "order-2",
-                )}
-                aria-hidden="true"
-                inert
-              >
-                {/* oxlint-disable-next-line react/iframe-missing-sandbox -- Trusted same-origin registry previews use the app runtime and shared theme storage. */}
-                <iframe
-                  loading="lazy"
-                  tabIndex={-1}
-                  title={`${item.title} preview`}
-                  src={`/${isComponents ? "component-preview" : "block-preview"}/${item.name}`}
-                  className="absolute top-0 left-0 h-[900px] w-[1440px] origin-top-left border-0"
-                />
-              </div>
+              <GalleryPreview
+                name={item.name}
+                title={item.title}
+                isComponents={isComponents}
+                stacked={view === "list"}
+              />
               <div
                 className={cn(
                   "flex items-center justify-between gap-4",

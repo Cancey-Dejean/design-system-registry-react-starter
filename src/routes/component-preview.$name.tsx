@@ -1,12 +1,13 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { ComponentPreview } from "@/components/docs/component-preview";
+import { PreviewReady } from "@/components/docs/preview-ready";
 import { useServerComponentsReady } from "@/hooks/use-server-components-ready";
-import { getRegistryItemDetail } from "@/lib/registry/detail.functions";
+import { getRegistryPreview } from "@/lib/registry/preview.functions";
 
 export const Route = createFileRoute("/component-preview/$name")({
   loader: async ({ params }) => {
-    const { item } = await getRegistryItemDetail({ data: { name: params.name } });
+    const { item } = await getRegistryPreview({ data: { name: params.name } });
     if (!item || (item.type !== "registry:ui" && item.type !== "registry:component"))
       throw notFound();
     return item;
@@ -21,6 +22,7 @@ function ComponentPreviewRoute() {
     <div className="flex min-h-[450px] items-center justify-center p-8">
       <div className="flex w-full max-w-xl flex-col items-center">
         <ComponentPreview preview={item.preview ?? null} />
+        <PreviewReady name={item.name} />
       </div>
     </div>
   );

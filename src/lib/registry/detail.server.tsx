@@ -1,6 +1,3 @@
-import { createCompositeComponent, type AnyCompositeComponent } from "@tanstack/react-start/rsc";
-import * as React from "react";
-
 import {
   renderMdxContentModule,
   type MdxContentModule,
@@ -11,6 +8,7 @@ import { getRegistryItem } from "./catalog";
 import type { RegistryItemDetailInput } from "./detail.types";
 import { getRegistryDisplaySource } from "./display-source.server";
 import { highlightCodeToHtml } from "./highlight.server";
+import { renderRegistryPreview } from "./preview.server";
 import {
   getRegistryItemWithSources,
   type RegistryCatalogItemWithSources,
@@ -19,21 +17,12 @@ import {
 } from "./source.server";
 
 type RenderedUsage = Awaited<ReturnType<typeof renderUsage>>;
-type RenderedPreview = Awaited<ReturnType<typeof renderPreview>>;
-type RegistryPreviewModule = React.ComponentType;
+type RenderedPreview = Awaited<ReturnType<typeof renderRegistryPreview>>;
 
 const registryUsageModules = import.meta.glob<MdxContentModule>(
   "../../../registry/items/**/_registry.mdx",
 );
-const registryPreviewModules = import.meta.glob<RegistryPreviewModule>(
-  "../../../registry/items/**/_preview.tsx",
-  {
-    import: "Preview",
-  },
-);
-
 const registryUsageModulesByPath = normalizeGlobFiles(registryUsageModules);
-const registryPreviewModulesByPath = normalizeGlobFiles(registryPreviewModules);
 
 export type HighlightedRegistrySourceFile = RegistrySourceFileWithSource & {
   highlightedHtml: string;
@@ -74,7 +63,7 @@ async function highlightRegistryItem(
 ): Promise<RegistryItemDetail> {
   const { hasPreview, hasUsage, usageSource: _usageSource, ...itemWithoutUsageFlag } = item;
   const [preview, previewSourceFile, sourceFiles, usage] = await Promise.all([
-    hasPreview ? renderPreview(item.previewSourceFile.path) : null,
+    hasPreview ? renderRegistryPreview(item.previewSourceFile.path) : null,
     highlightPreviewSourceFile(item, item.previewSourceFile),
     Promise.all(item.sourceFiles.map((file) => highlightSourceFile(item, file))),
     renderUsage(item.registryMdxFilePath, hasUsage),
@@ -122,25 +111,4 @@ async function renderUsage(path: string, hasUsage: boolean) {
   }
 
   return renderMdxContentModule(registryUsageModulesByPath[path]);
-}
-
-async function renderPreview(path: string): Promise<AnyCompositeComponent | null> {
-  const loadPreview = registryPreviewModulesByPath[path];
-
-  if (!loadPreview) {
-    return null;
-  }
-
-  const Preview = await loadPreview();
-
-  return createCompositeComponent(() => (
-    <div
-      data-slot="component-preview"
-      className="grid min-h-72 place-items-center rounded-lg border bg-background p-6"
-    >
-      <div data-slot="component-preview-stage" className="grid min-h-60 w-full place-items-center">
-        <Preview />
-      </div>
-    </div>
-  ));
 }

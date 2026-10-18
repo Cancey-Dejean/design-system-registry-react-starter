@@ -1259,6 +1259,96 @@ dialog::backdrop {
   background: var(--surface);
   font-weight: 500;
 }
+.card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.arrow-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--foreground);
+}
+.arrow-circle svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.5;
+}
+.block-card:hover .arrow-circle {
+  background: var(--surface);
+}
+.category-tabs {
+  position: relative;
+}
+.category-tabs a {
+  transition: color 180ms ease;
+}
+.category-tabs a[aria-current] {
+  border-bottom-color: transparent;
+}
+.category-tabs .category-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: var(--indicator-width, 0px);
+  transform: translateX(var(--indicator-x, 0px));
+  background: var(--foreground);
+  padding: 0;
+  margin: 0;
+  border-radius: 2px;
+  pointer-events: none;
+}
+.category-tabs.indicator-ready .category-indicator {
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.toolbar {
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.toolbar search {
+  min-width: 0;
+  flex: 0 1 320px;
+}
+.toolbar .search-field {
+  width: 100%;
+  height: 40px;
+}
+.view-toggle {
+  flex-shrink: 0;
+}
+.view-toggle button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+.view-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+@media (max-width: 760px) {
+  .toolbar {
+    gap: 12px;
+  }
+  .toolbar search {
+    width: auto;
+    flex: 1;
+  }
+}
+#gallery {
+  margin-top: 24px;
+}
+#empty-state {
+  margin-top: 24px;
+}
 @property --tw-space-y-reverse {
   syntax: "*";
   inherits: false;

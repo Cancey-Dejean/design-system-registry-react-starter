@@ -124,13 +124,31 @@ function render() {
   gallery.innerHTML = visible
     .map(
       (block) =>
-        `<li><a class="block-card" href="http://localhost:3002/blocks/${block.id}" data-block="${block.id}" aria-label="View ${blockTitle(block)}">${artboard(block)}<div class="card-caption"><div><h2>${blockTitle(block)}</h2><span class="block-badge">${block.category}</span></div><span class="card-arrow" aria-hidden="true"><span class="preview-action">View block</span>↗</span></div></a></li>`,
+        `<li><a class="block-card" href="http://localhost:3002/blocks/${block.id}" data-block="${block.id}" aria-label="View ${blockTitle(block)}">${artboard(block)}<div class="card-caption"><div><h2>${blockTitle(block)}</h2><span class="block-badge">${block.category}</span></div><span class="card-arrow" aria-hidden="true"><span class="preview-action">View block</span><span class="arrow-circle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span></div></a></li>`,
     )
     .join("");
   $("#empty-state").hidden = visible.length > 0;
   $("#result-count").textContent =
     `${visible.length} ${visible.length === 1 ? "block" : "blocks"}${category !== "all" ? ` in ${category}` : ""}`;
 }
+const categoryTabs = $("#categories");
+const indicator = document.createElement("span");
+indicator.className = "category-indicator";
+indicator.setAttribute("aria-hidden", "true");
+categoryTabs.append(indicator);
+function updateIndicator() {
+  if (categoryTabs.hidden) {
+    categoryTabs.classList.remove("indicator-ready");
+    return;
+  }
+  const active = categoryTabs.querySelector('[aria-current="page"]');
+  if (!active) return;
+  indicator.style.setProperty("--indicator-x", `${active.offsetLeft}px`);
+  indicator.style.setProperty("--indicator-width", `${active.offsetWidth}px`);
+  requestAnimationFrame(() => categoryTabs.classList.add("indicator-ready"));
+}
+new ResizeObserver(updateIndicator).observe(categoryTabs);
+void document.fonts.ready.then(updateIndicator);
 function route() {
   const [path, query = ""] = location.hash.slice(1).split("?");
   heroPage = path === "/blocks/hero";
@@ -145,7 +163,6 @@ function route() {
   $("#page-description").textContent = heroPage
     ? "Make a memorable first impression. Explore hero layouts for your next landing page."
     : "Thoughtful starting points for your next interface. Find a layout, make it yours.";
-  $("#total-count").textContent = heroPage ? "6" : "9";
   $("#hero-crumb").hidden = !heroPage;
   $("#categories").hidden = heroPage;
   document.title = `${heroPage ? "Hero blocks" : "Blocks"} · design-system-ui`;
@@ -154,6 +171,7 @@ function route() {
     if (active) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   });
+  updateIndicator();
   document.body.classList.remove("mobile-menu-open");
   syncMenu();
   render();

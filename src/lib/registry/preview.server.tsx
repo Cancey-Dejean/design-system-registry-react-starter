@@ -37,7 +37,7 @@ export async function renderRegistryPreview(path: string): Promise<AnyCompositeC
   return createCompositeComponent(() => (
     <div
       data-slot="component-preview"
-      className="relative isolate grid min-h-72 place-items-center rounded-lg border bg-background p-6"
+      className="relative isolate grid min-h-72 w-full place-items-center rounded-lg border bg-background p-6"
     >
       <DotCanvas className="rounded-[inherit] mask-[radial-gradient(ellipse_at_center,transparent_20%,black_85%)]" />
       <div
